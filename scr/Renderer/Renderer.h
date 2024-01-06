@@ -16,6 +16,9 @@ class Script;
 		void Clear();
 		void IndexedDraw(const VertexArray& vertexArray);
 		void ArrayDraw(const VertexArray& vertexArray);
+		//TODO:
+		//Render calls with shaders
+
 
 		std::vector<Script*> scripts;
 	};

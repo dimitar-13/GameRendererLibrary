@@ -1,5 +1,9 @@
 #pragma once
 
+
+
+//TODO:
+//Add more shaders and a way to be able to keep track of uniforms 
 const char* VertexShader =
 "#version 330 core\n"
 "layout(location = 0) in vec2 aPos;\n"

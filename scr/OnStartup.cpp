@@ -6,13 +6,11 @@
 #include<GLFW/glfw3.h>
 #include"Renderer/Renderer.h"
 #include"../Core/Global.h"
-
+#include"WindowFunctions/WindowFunctions.h"
 
 int OnStartUp()
 {
     glfwInit();
-
- 
 
     Global::winContext = glfwCreateWindow(*Global::winWidth, *Global::winHeight, "My Title", NULL, NULL);
     if (!Global::winContext)
@@ -30,9 +28,7 @@ int OnStartUp()
     glewExperimental = GL_TRUE;
     glViewport(0, 0, 1000, 1000);
 
-
-    
-
+    glfwSetWindowSizeCallback(Global::winContext, Resize);
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu

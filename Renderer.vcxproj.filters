@@ -42,6 +42,9 @@
     <ClCompile Include="scr\GameObject\GameObject.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="scr\WindowFunctions\WindowFunctions.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="scr\Renderer\Renderer.h">
@@ -84,6 +87,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="scr\Script\ScriptManager\ScriptManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="scr\WindowFunctions\WindowFunctions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

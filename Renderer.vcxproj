@@ -160,6 +160,7 @@
     <ClCompile Include="scr\Sprite\Sprite.cpp" />
     <ClCompile Include="scr\Input\Input.cpp" />
     <ClCompile Include="scr\Transform\Transoform.cpp" />
+    <ClCompile Include="scr\WindowFunctions\WindowFunctions.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\Global.h" />
@@ -176,6 +177,7 @@
     <ClInclude Include="scr\Shader\ShadersContianer\Shaders.h" />
     <ClInclude Include="scr\Sprite\Sprite.h" />
     <ClInclude Include="scr\Transform\Transoform.h" />
+    <ClInclude Include="scr\WindowFunctions\WindowFunctions.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
