@@ -16,6 +16,7 @@ int OnStartUp()
     if (!Global::winContext)
     {
         glfwTerminate();
+        glfwDestroyWindow(Global::winContext);
         return -1;
     }
     glfwMakeContextCurrent(Global::winContext);
