@@ -1,10 +1,12 @@
 #pragma once
 #include<GL/glew.h>
 #include"../../OpenglData/VertexData/Vertex.h"
+#include<vector>
 class VertexArray
 {
 public:
-	VertexArray(const Vertex vertex[],unsigned int count);
+	//For Testing purposes
+	VertexArray(std::vector<Vertex>& verts, unsigned int count);
 	void BindArray() const { glBindVertexArray(this->vertexArrayHandleID); };
 	void UnbindArray()const { glBindVertexArray(0); }
 	void DeleteVertexArray();

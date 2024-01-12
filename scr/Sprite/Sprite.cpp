@@ -2,21 +2,44 @@
 #include<gl/glew.h>
 #include<iostream>
 #include"../../Debuging/OpenglDebug.h"
-
+#include<vector>
 Sprite::Sprite()
 {
-	//this->vertexArray = new VertexArray();
 
-	const float verts[] = {
-		//Position   Color
-		0.5f,0.5f	,0.0f,0.0f,0.0f,
-		0.5f,-0.5	,0.0f,0.0f,0.0f,
-		-0.5f,-0.5	,0.0f,0.0f,0.0f,
+	Vertex vert;
+	vert.Position = glm::vec3(0.5f, 0.5f, 0.0f);
+	vert.Color = glm::vec3(0.0f, 0.0f, 0.0f);
+	vert.UvCoords = glm::vec2(0.0f, 0.0);
+	this->verts.push_back(vert);
 
-		-0.5f,-0.5	,0.0f,0.0f,0.0f,
-		0.5f,0.5	,0.0f,0.0f,0.0f,
-		-0.5f,0.5	,0.0f,0.0f,0.0f
-	};				
+	vert.Position = glm::vec3(0.5f, -0.5, 0.0f);
+	vert.Color = glm::vec3(0.0f, 0.0f, 0.0f);
+	vert.UvCoords = glm::vec2(0.0f, 0.0);
+	this->verts.push_back(vert);
+
+	vert.Position = glm::vec3(-0.5f, -0.5, 0.0f);
+	vert.Color = glm::vec3(0.0f, 0.0f, 0.0f);
+	vert.UvCoords = glm::vec2(0.0f, 0.0);
+	this->verts.push_back(vert);
+
+	vert.Position = glm::vec3(-0.5f, -0.5, 0.0f);
+	vert.Color = glm::vec3(0.0f, 0.0f, 0.0f);
+	vert.UvCoords = glm::vec2(0.0f, 0.0);
+	this->verts.push_back(vert);
+
+	vert.Position = glm::vec3(0.5f, 0.5, 0.0f);
+	vert.Color = glm::vec3(0.0f, 0.0f, 0.0f);
+	vert.UvCoords = glm::vec2(0.0f, 0.0);
+	this->verts.push_back(vert);
+
+	vert.Position = glm::vec3(-0.5f, 0.5, 0.0f);
+	vert.Color = glm::vec3(0.0f, 0.0f, 0.0f);
+	vert.UvCoords = glm::vec2(0.0f, 0.0);
+	this->verts.push_back(vert);
+
+	
+	 //std::cout << sizeof(verts);
+	this->vertexArray = new VertexArray(this->verts, 6);
 
 	/*unsigned int VBO;
 	GLCall(glGenBuffers(1, &VBO));
@@ -36,6 +59,6 @@ void Sprite::Draw(ShaderProgram shader)
 {
 	shader.UseProgram();
 	this->vertexArray->BindArray();
-	glDrawArrays(GL_TRIANGLES, 0, 6);
+	glDrawArrays(GL_TRIANGLES, 0, 1);
 	this->vertexArray->UnbindArray();
 }

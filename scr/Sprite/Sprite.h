@@ -15,7 +15,7 @@ public:
 	
 
 private:
-
+	std::vector<Vertex> verts;
 	VertexArray* vertexArray;
 
 	//Position

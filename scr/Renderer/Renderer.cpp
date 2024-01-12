@@ -3,18 +3,19 @@
 #include"../Shader/ShaderProgram/ShaderProgram.h"
 #include"../Shader/ShadersContianer/Shaders.h"
 #include"../../Core/Global.h"
-#include"../../scr/GameObject/GameObject.h"
+#include"../../scr/SceneManager/SceneManager.h"
 #include<iostream>
 
 
     void Renderer::StartRenderLoop()
     {
-
+        SceneManager testManager;
+        testManager.sceneObjects = this->objs;
 
         Sprite sprite;
         ShaderProgram shader = ShaderProgram(VertexShader, FragmentShader);
 
-        this->scripts[0]->OnStart();
+        //this->scripts[0]->OnStart();
         //this->scripts[1]->OnStart();
 
         
@@ -26,7 +27,11 @@
         {
             glClear(GL_COLOR_BUFFER_BIT);
             glClearColor(1, 0, 0, 1);
-            this->scripts[0]->OnUpdate();
+            testManager.Update();
+
+
+            testManager.Draw();
+            //this->scripts[0]->OnUpdate();
 
             //Render Scene objs
             //for (size_t i = 0; i < scripts.size(); i++)

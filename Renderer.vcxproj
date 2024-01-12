@@ -155,7 +155,9 @@
     <ClCompile Include="scr\OnStartup.cpp" />
     <ClCompile Include="scr\OpenglData\VertexArray\VertexArray.cpp" />
     <ClCompile Include="scr\Renderer\Renderer.cpp" />
+    <ClCompile Include="scr\SceneManager\SceneManager.cpp" />
     <ClCompile Include="scr\ScriptableObject\ScriptableObject.cpp" />
+    <ClCompile Include="scr\Script\Script.cpp" />
     <ClCompile Include="scr\Shader\ShaderProgram\ShaderProgram.cpp" />
     <ClCompile Include="scr\Sprite\Sprite.cpp" />
     <ClCompile Include="scr\Input\Input.cpp" />
@@ -170,6 +172,7 @@
     <ClInclude Include="scr\OpenglData\VertexArray\VertexArray.h" />
     <ClInclude Include="scr\OpenglData\VertexData\Vertex.h" />
     <ClInclude Include="scr\Renderer\Renderer.h" />
+    <ClInclude Include="scr\SceneManager\SceneManager.h" />
     <ClInclude Include="scr\ScriptableObject\ScriptableObject.h" />
     <ClInclude Include="scr\Script\Script.h" />
     <ClInclude Include="scr\Script\ScriptManager\ScriptManager.h" />
