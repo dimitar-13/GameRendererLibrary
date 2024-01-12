@@ -1,18 +1,24 @@
 #pragma once
 #include"../../scr/Transform/Transoform.h"
 #include"../../scr/Sprite/Sprite.h"
-#include"../../scr/GameObject/GameObject.h"
 #include<string>
+
+class GameObject;
+class SceneManager;
 //Can be named scene object
 class ScriptableObject {
 
 public:
-	ScriptableObject(const GameObject& gameObj_to_attach);
+	ScriptableObject() { };
 
 
 protected:
-
+	
 	Transform* transform = 0;
 	Sprite* sprite = 0;
 	std::string name;
+private:
+	friend class SceneManager;
+	void AttachValuesFromGameObject(const GameObject& gameObj_to_attach);
+	void DetachValuesFromGameObject();
 };

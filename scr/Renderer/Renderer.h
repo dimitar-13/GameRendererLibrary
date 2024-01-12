@@ -2,9 +2,11 @@
 #include<GL/glew.h>
 #include<GLFW/glfw3.h>
 #include"..\Sprite\Sprite.h"
-#include"../Script/Script.h"
 #include"../../scr/OpenglData/VertexArray/VertexArray.h"
 #include<vector>
+
+class GameObject;
+
 class Script;
 
 
@@ -20,7 +22,7 @@ class Script;
 		//Render calls with shaders
 
 
-		std::vector<Script*> scripts;
+		std::vector<GameObject*> objs;
 	};
 	
 

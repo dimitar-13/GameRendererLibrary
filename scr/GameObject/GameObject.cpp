@@ -9,6 +9,7 @@ GameObject::GameObject(std::string objectName)
 
 GameObject::~GameObject()
 {
+	
 	delete(this->transform);
 	delete(this->sprite);
 }
