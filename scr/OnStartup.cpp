@@ -7,7 +7,7 @@
 #include"SceneManager/SceneManager.h"
 #include"../Core/Global.h"
 #include"WindowFunctions/WindowFunctions.h"
-
+#include"Shader/ShaderProgram/ShaderProgram.h"
 inline SceneManager *  mainSceneManager;
 
 
@@ -31,8 +31,6 @@ int OnStartUp()
     }
     glewExperimental = GL_TRUE;
     glViewport(0, 0, *Global::winWidth, *Global::winHeight);
-
- 
 
     //For now object will be defined in the range from -winWidth/2 to winWidth/2 ,-winHeight/2 to winHeight/2
     //I might change it to be from 0 to winWidth and so on but for now because its ez to use the model matrix will keep it like this 

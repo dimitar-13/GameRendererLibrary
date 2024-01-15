@@ -23,6 +23,6 @@ inline const char* FragmentShader =
 "in vec4 debug;\n"
 "void main()\n"
 "{\n"
-"Color = vec3(1.0,1.0,1.0);\n"
+"Color = uColor;\n"
 "}\0";
 
