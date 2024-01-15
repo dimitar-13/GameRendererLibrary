@@ -1,5 +1,4 @@
 #pragma once
-#include"../../scr/Renderer/Renderer.h"
 #include"../../scr/ScriptableObject/ScriptableObject.h"
 #include<vector>
 
@@ -11,7 +10,6 @@ public:
 	
 	Script() { };
 protected:
-	friend class Renderer;
 	
 	virtual void OnUpdate(){ };
 	virtual void OnStart(){ };

@@ -15,7 +15,7 @@ class Transform
 public:
 	//Model matrix
 	Transform();
-	glm::mat4 GetModelMatrix();
+	const glm::mat4& GetModelMatrix();
 	void Rotate(float angle_in_degrees, Axies axie_to_roate);
 	void Translate(float amount, Axies axie_to_move);
 	void Scale(float amount,Axies axie_to_scale_along);
