@@ -1,28 +1,30 @@
 #pragma once
 #include<GL/glew.h>
 #include<GLFW/glfw3.h>
-#include"..\Sprite\Sprite.h"
 #include"../../scr/OpenglData/VertexArray/VertexArray.h"
+
 #include<vector>
 
-class GameObject;
+class ShaderProgram;
 
-class Script;
+class Renderer 
+{
+public:
+	Renderer();
 
+	void EnableDepthTest() { glEnable(GL_DEPTH_TEST); }
+	void DisableDepthTest() { glDisable(GL_DEPTH_TEST); }
 
-	class Renderer 
-	{
-	public:
-		void StartRenderLoop();
-		void RenderOject();
-		void Clear();
-		void IndexedDraw(const VertexArray& vertexArray);
-		void ArrayDraw(const VertexArray& vertexArray);
-		//TODO:
-		//Render calls with shaders
+	void Clear() { glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); }
 
 
-		std::vector<GameObject*> objs;
-	};
+	void IndexedDraw(const VertexArray& vertexArray);
+	void ArrayDraw(const VertexArray& vertexArray);
+	
+	//TODO:
+	//Render calls with shaders
+
+	ShaderProgram * mainShader;
+};
 	
 

@@ -11,13 +11,16 @@ class Sprite
 {
 public:
 	Sprite();
-	void Draw(ShaderProgram shader);
-	
+	void Draw(const ShaderProgram& shader);
+	const VertexArray& GetVertexArray() { return *this->vertexArray;}
+	const glm::vec3 GetSpriteColor() { return this->Color; }
+	glm::vec3 SetSpriteColor(glm::vec3 color) { return this->Color = color; }
+
 
 private:
 	std::vector<Vertex> verts;
 	VertexArray* vertexArray;
-
+	glm::vec3 Color;
 	//Position
 
 };

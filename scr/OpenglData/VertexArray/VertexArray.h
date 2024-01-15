@@ -6,7 +6,7 @@ class VertexArray
 {
 public:
 	//For Testing purposes
-	VertexArray(std::vector<Vertex>& verts, unsigned int count);
+	VertexArray(const std::vector<Vertex> verts, unsigned int count);
 	void BindArray() const { glBindVertexArray(this->vertexArrayHandleID); };
 	void UnbindArray()const { glBindVertexArray(0); }
 	void DeleteVertexArray();

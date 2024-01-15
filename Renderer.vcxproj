@@ -166,6 +166,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\Global.h" />
+    <ClInclude Include="Core\SpriteData.h" />
     <ClInclude Include="Debuging\OpenglDebug.h" />
     <ClInclude Include="scr\GameObject\GameObject.h" />
     <ClInclude Include="scr\Input\Input.h" />

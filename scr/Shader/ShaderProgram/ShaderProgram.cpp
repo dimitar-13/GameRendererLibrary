@@ -31,27 +31,25 @@ ShaderProgram::ShaderProgram(const char* vertexShader, const char* fragmentShade
 	}
 }
 
-void ShaderProgram::SetUniform3FloatVector(std::string Name, float value[3])
+void ShaderProgram::SetUniform3FloatVector(std::string Name, const glm::vec3& value) const
 {
-	GLCall(glUniform3fv(this->getShaderUniformLocation(Name.c_str()), 1, value));
+	glUniform3fv(this->GetShaderUniformLocation(Name.c_str()), 1, &value[0]);
 }
 
-void ShaderProgram::SetUniform3Float(const char* Name, float value1, float value2, float value3)
+void ShaderProgram::SetUniform3Float(const char* Name, float value1, float value2, float value3) const
 {
-	GLCall(glUniform3f(this->getShaderUniformLocation(Name),value1,value2,value3));
-
-}
-
-void ShaderProgram::SetUniformInt(const char* Name, int value)
-{
-	glUniform1i(this->getShaderUniformLocation(Name), value);
+	GLCall(glUniform3f(this->GetShaderUniformLocation(Name),value1,value2,value3));
 
 }
 
-void ShaderProgram::SetUniform4x4Matrix(const char* Name, float value)
+void ShaderProgram::SetUniformInt(const char* Name, int value) const
 {
-	//glUniform3fv(this->getShaderUniformLocation(Name), 1, value);
+	glUniform1i(this->GetShaderUniformLocation(Name), value);
+}
 
+void ShaderProgram::SetUniform4x4Matrix(const char* Name, const glm::mat4& value) const
+{
+	glUniformMatrix4fv(this->GetShaderUniformLocation(Name), 1,GL_FALSE, glm::value_ptr(value));
 }
 
 int ShaderProgram::CompileShader(GLenum shaderType, const char* source)
@@ -81,7 +79,17 @@ bool ShaderProgram::IsShaderCompiled(unsigned int shader)
 	return true;
 }
 
-int ShaderProgram::getShaderUniformLocation(const char* Name)
+int ShaderProgram::GetShaderUniformLocation(const char* Name)const
 {
-	return glGetUniformLocation(this->programID,Name);
+	if (this->shaderUniformCashe.find(Name) != shaderUniformCashe.end())
+		return this->shaderUniformCashe[Name];
+
+	int result = glGetUniformLocation(this->programID, Name);
+	if (result < 0)
+	{
+		std::cout << "Error:Cant find uniform with name:" << Name << std::endl; 
+		return -1;
+	}
+	this->shaderUniformCashe[Name] = result;
+	return result;
 }
