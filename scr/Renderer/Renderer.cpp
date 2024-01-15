@@ -6,7 +6,7 @@
 
 Renderer::Renderer()
 {
-    this->mainShader = new ShaderProgram(VertexShader, FragmentShader);
+    this->mainShader = new ShaderProgram("../Renderer/Assets/Shaders/Color_shader.glsl");
 }
 
 void Renderer::IndexedDraw(const VertexArray& vertexArray)
