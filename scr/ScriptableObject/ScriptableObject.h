@@ -13,10 +13,12 @@ public:
 
 
 protected:
-	
 	Transform* transform = 0;
-	Sprite* sprite = 0;
 	std::string name;
+	Sprite* GetSprite() { return sprite; }
+private:
+	Sprite* sprite = 0;
+
 private:
 	friend class SceneManager;
 	void AttachValuesFromGameObject(const GameObject& gameObj_to_attach);

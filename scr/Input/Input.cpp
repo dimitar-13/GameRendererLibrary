@@ -1,4 +1,3 @@
-
 #include"input.h"
 
 	bool IsButtonPressed(Keys key)

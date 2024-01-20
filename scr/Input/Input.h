@@ -17,7 +17,7 @@ enum Keys
 	KEY_ARRPW_RIGHT = GLFW_KEY_RIGHT
 };
 
-	bool IsButtonPressed(Keys key);
+ bool IsButtonPressed(Keys key);
 
 
 

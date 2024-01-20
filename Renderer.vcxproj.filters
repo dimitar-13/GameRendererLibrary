@@ -51,6 +51,9 @@
     <ClCompile Include="scr\SceneManager\SceneManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="scr\TextureClass\Texture2D\Texture2D.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="scr\Renderer\Renderer.h">
@@ -104,8 +107,16 @@
     <ClInclude Include="Core\SpriteData.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="scr\TextureClass\Texture2D\Texture2D.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Shaders\Color_shader.glsl" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Assets\Textures\Texture.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

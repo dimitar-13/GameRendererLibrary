@@ -1,9 +1,9 @@
 #include "GameObject.h"
 
-GameObject::GameObject(std::string objectName)
+GameObject::GameObject(std::string objectName, Sprite* sprite)
 {
 	this->transform = new Transform();
-	this->sprite = new Sprite();
+	this->sprite = sprite;
 	this->name = objectName;
 }
 

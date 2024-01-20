@@ -10,6 +10,7 @@
 #include"Shader/ShaderProgram/ShaderProgram.h"
 inline SceneManager *  mainSceneManager;
 
+//TODO:__declspec(dllexport)
 
 int OnStartUp()
 {

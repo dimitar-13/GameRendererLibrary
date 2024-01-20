@@ -74,9 +74,9 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>GLEW_STATIC</PreprocessorDefinitions>
+      <PreprocessorDefinitions>GLEW_STATIC;RENDER_ENGINE_API_BUILD</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)../Renderer\Dependencies\GLEW\include;$(SolutionDir)../Renderer\Dependencies\GLFW\include;$(SolutionDir)../Renderer\Dependencies\GLM;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)../Renderer\Dependencies\GLEW\include;$(SolutionDir)../Renderer\Dependencies\GLFW\include;$(SolutionDir)../Renderer\Dependencies\GLM;$(SolutionDir)../Renderer\Dependencies\ImgReading;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
@@ -94,9 +94,9 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>GLEW_STATIC</PreprocessorDefinitions>
+      <PreprocessorDefinitions>GLEW_STATIC;RENDER_ENGINE_API_BUILD</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)../Renderer\Dependencies\GLEW\include;$(SolutionDir)../Renderer\Dependencies\GLFW\include;$(SolutionDir)../Renderer\Dependencies\GLM;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)../Renderer\Dependencies\GLEW\include;$(SolutionDir)../Renderer\Dependencies\GLFW\include;$(SolutionDir)../Renderer\Dependencies\GLM;$(SolutionDir)../Renderer\Dependencies\ImgReading;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
@@ -114,9 +114,9 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>GLEW_STATIC</PreprocessorDefinitions>
+      <PreprocessorDefinitions>GLEW_STATIC;RENDER_ENGINE_API_BUILD</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)../Renderer\Dependencies\GLEW\include;$(SolutionDir)../Renderer\Dependencies\GLFW\include;$(SolutionDir)../Renderer\Dependencies\GLM;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)../Renderer\Dependencies\GLEW\include;$(SolutionDir)../Renderer\Dependencies\GLFW\include;$(SolutionDir)../Renderer\Dependencies\GLM;$(SolutionDir)../Renderer\Dependencies\ImgReading;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
@@ -134,9 +134,9 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>GLEW_STATIC</PreprocessorDefinitions>
+      <PreprocessorDefinitions>GLEW_STATIC;RENDER_ENGINE_API_BUILD</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)../Renderer\Dependencies\GLEW\include;$(SolutionDir)../Renderer\Dependencies\GLFW\include;$(SolutionDir)../Renderer\Dependencies\GLM;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)../Renderer\Dependencies\GLEW\include;$(SolutionDir)../Renderer\Dependencies\GLFW\include;$(SolutionDir)../Renderer\Dependencies\GLM;$(SolutionDir)../Renderer\Dependencies\ImgReading;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
@@ -161,6 +161,7 @@
     <ClCompile Include="scr\Shader\ShaderProgram\ShaderProgram.cpp" />
     <ClCompile Include="scr\Sprite\Sprite.cpp" />
     <ClCompile Include="scr\Input\Input.cpp" />
+    <ClCompile Include="scr\TextureClass\Texture2D\Texture2D.cpp" />
     <ClCompile Include="scr\Transform\Transoform.cpp" />
     <ClCompile Include="scr\WindowFunctions\WindowFunctions.cpp" />
   </ItemGroup>
@@ -180,11 +181,15 @@
     <ClInclude Include="scr\Shader\ShaderProgram\ShaderProgram.h" />
     <ClInclude Include="scr\Shader\ShadersContianer\Shaders.h" />
     <ClInclude Include="scr\Sprite\Sprite.h" />
+    <ClInclude Include="scr\TextureClass\Texture2D\Texture2D.h" />
     <ClInclude Include="scr\Transform\Transoform.h" />
     <ClInclude Include="scr\WindowFunctions\WindowFunctions.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Shaders\Color_shader.glsl" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Assets\Textures\Texture.jpg" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
