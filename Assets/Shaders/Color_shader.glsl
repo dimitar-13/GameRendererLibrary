@@ -6,9 +6,11 @@ layout(location = 1) in vec2 aUvCoords;
 uniform mat4 ModelMatrix;
 uniform mat4 ProjectionMatrix;
 out vec4 debug;
+out vec2 UvCoords;
 void main()
 {
 gl_Position = ProjectionMatrix* ModelMatrix * vec4(aPos.xy,0,1.0f);
+UvCoords = aUvCoords;
 }
 
 #Shader_type = fragment
@@ -16,8 +18,11 @@ gl_Position = ProjectionMatrix* ModelMatrix * vec4(aPos.xy,0,1.0f);
 out vec3 Color;
 uniform vec3 uColor;
 in vec4 debug;
+in vec2 UvCoords;
+uniform sampler2D samplerTexture;
+
 void main()
 {
-Color = vec3(1.0,1.0,1.0);
+Color = texture(samplerTexture,UvCoords).rgb;
 }
 

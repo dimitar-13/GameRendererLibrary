@@ -7,7 +7,7 @@
 
 class ShaderProgram;
 
-class Renderer 
+class Renderer
 {
 public:
 	Renderer();

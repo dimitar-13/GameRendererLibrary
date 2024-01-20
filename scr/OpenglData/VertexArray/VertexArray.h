@@ -2,6 +2,8 @@
 #include<GL/glew.h>
 #include"../../OpenglData/VertexData/Vertex.h"
 #include<vector>
+#include"../../Core/Global.h"
+
 class VertexArray
 {
 public:

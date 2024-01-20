@@ -4,6 +4,7 @@
 #include"../../scr/Script/Script.h"
 #include<string>
 #include<vector>
+#include"../../Core/Global.h"
 
 class SceneManager;
 
@@ -11,7 +12,7 @@ class SceneManager;
 class GameObject
 {
 public:
-	GameObject(std::string objectName);
+	GameObject(std::string objectName,  Sprite* sprite = 0);
 	~GameObject();
 	std::string name;
 	std::vector<Script*> attachedScripts;

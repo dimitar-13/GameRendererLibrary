@@ -40,6 +40,13 @@ void SceneManager::Draw(const ShaderProgram& shader)
 		shader.UseProgram();
 		shader.SetUniform4x4Matrix("ModelMatrix", this->sceneObjects[i]->transform->GetModelMatrix());
 		shader.SetUniform4x4Matrix("ProjectionMatrix", *Global::projection);
+		Texture2D* texture = this->sceneObjects[i]->sprite->GetSpriteTexture();
+		if (texture != NULL)
+		{
+			glActiveTexture(0);
+			texture->BindTexture();
+			shader.SetUniformInt("samplerTexture", 0);
+		}
 		//shader.SetUniform3FloatVector("uColor", this->sceneObjects[i]->sprite->GetSpriteColor());
 
 		this->renderer.ArrayDraw(this->sceneObjects[i]->sprite->GetVertexArray());

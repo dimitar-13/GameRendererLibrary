@@ -6,26 +6,20 @@
 #include<vector>
 Sprite::Sprite()
 {
-
-	
 	this->Color = glm::vec3(1);
-
-	
-	 //std::cout << sizeof(verts);
 	this->vertexArray = new VertexArray(SpriteVertexData::GenQuadVerts(), 6);
 
-	/*unsigned int VBO;
-	GLCall(glGenBuffers(1, &VBO));
-	
-	this->vertexArray->BindArray();
-	GLCall(glBindBuffer(GL_ARRAY_BUFFER, VBO));
-	GLCall(glBufferData(GL_ARRAY_BUFFER, sizeof(verts), verts, GL_STATIC_DRAW));
-	
+}
 
-	this->vertexArray->UnbindArray();
+Sprite::Sprite(std::string& texturePath):Sprite()
+{
+	this->texture = new Texture2D(texturePath);
+}
 
-	GLCall(glBindBuffer(GL_ARRAY_BUFFER, 0));*/
-
+Sprite::~Sprite()
+{
+	delete(this->texture);
+	delete(this->vertexArray);
 }
 
 void Sprite::Draw(const ShaderProgram& shader)
