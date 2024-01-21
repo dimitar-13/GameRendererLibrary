@@ -4,25 +4,25 @@
 #include"../../Debuging/OpenglDebug.h"
 #include"../../../Core/SpriteData.h"
 #include<vector>
-Sprite::Sprite()
+SpriteRenderer::Sprite::Sprite()
 {
 	this->Color = glm::vec3(1);
 	this->vertexArray = new VertexArray(SpriteVertexData::GenQuadVerts(), 6);
 
 }
 
-Sprite::Sprite(std::string& texturePath):Sprite()
+SpriteRenderer::Sprite::Sprite(std::string& texturePath):Sprite()
 {
 	this->texture = new Texture2D(texturePath);
 }
 
-Sprite::~Sprite()
+SpriteRenderer::Sprite::~Sprite()
 {
 	delete(this->texture);
 	delete(this->vertexArray);
 }
 
-void Sprite::Draw(const ShaderProgram& shader)
+void SpriteRenderer::Sprite::Draw(const ShaderProgram& shader)
 {
 	shader.UseProgram();
 	this->vertexArray->BindArray();

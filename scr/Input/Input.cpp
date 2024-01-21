@@ -1,6 +1,6 @@
 #include"input.h"
 
-	bool IsButtonPressed(Keys key)
+	bool SpriteRenderer::IsButtonPressed(SpriteRenderer::Keys key)
 	{
 		return glfwGetKey(Global::winContext, key) == GLFW_PRESS;
 	}

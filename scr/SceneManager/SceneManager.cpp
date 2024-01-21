@@ -1,7 +1,7 @@
 #include "SceneManager.h"
-#include"../../scr/Shader/ShadersContianer/Shaders.h"
+#include"Shader/ShadersContianer/Shaders.h"
 #include"../../Core/Global.h"
-void SceneManager::Start()
+void SpriteRenderer::SceneManager::Start()
 {
 	for (size_t i = 0; i < this->sceneObjects.size(); i++)
 	{
@@ -15,7 +15,7 @@ void SceneManager::Start()
 	PipelineLoop();
 }
 
-void SceneManager::Update()
+void SpriteRenderer::SceneManager::Update()
 {
 	for (size_t i = 0; i < this->sceneObjects.size(); i++)
 	{
@@ -28,7 +28,7 @@ void SceneManager::Update()
 	}
 }
 
-void SceneManager::Draw(const ShaderProgram& shader)
+void SpriteRenderer::SceneManager::Draw(const ShaderProgram& shader)
 {
 	//ShaderProgram shader = ShaderProgram(VertexShader, FragmentShader);
 
@@ -54,7 +54,7 @@ void SceneManager::Draw(const ShaderProgram& shader)
 
 }
 
-void SceneManager::PipelineLoop()
+void SpriteRenderer::SceneManager::PipelineLoop()
 {
 	this->renderer.EnableDepthTest();
 	while (!glfwWindowShouldClose(Global::winContext))
