@@ -1,28 +1,31 @@
 #pragma once
-#include"../../scr/Transform/Transoform.h"
-#include"../../scr/Sprite/Sprite.h"
-#include"../../scr/Script/Script.h"
+#include"Transform/Transoform.h"
+#include"Sprite/Sprite.h"
+#include"Script/Script.h"
 #include<string>
 #include<vector>
 #include"../../Core/Global.h"
 
-class SceneManager;
 
-
-class GameObject
+namespace SpriteRenderer
 {
-public:
-	GameObject(std::string objectName,  Sprite* sprite = 0);
-	~GameObject();
-	std::string name;
-	std::vector<Script*> attachedScripts;
+	class SceneManager;
 
-protected:
-	friend class ScriptableObject;
-	Transform* transform = 0;
-	Sprite* sprite = 0;
+	class GameObject
+	{
+	public:
+		GameObject(std::string objectName, Sprite* sprite = 0);
+		~GameObject();
+		std::string name;
+		std::vector<Script*> attachedScripts;
 
-private:
-	friend class SceneManager;
-	
-};
+	protected:
+		friend class ScriptableObject;
+		Transform* transform = 0;
+		Sprite* sprite = 0;
+
+	private:
+		friend class SceneManager;
+
+	};
+}

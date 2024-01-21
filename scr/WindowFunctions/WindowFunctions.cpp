@@ -1,7 +1,7 @@
 #include "WindowFunctions.h"
 #include"../../Core/Global.h"
 #include<iostream>
-void Resize(GLFWwindow* window, int width, int height)
+void SpriteRenderer::Resize(GLFWwindow* window, int width, int height)
 {
 	glViewport(0, 0, width, height);
 	*Global::winHeight = height;

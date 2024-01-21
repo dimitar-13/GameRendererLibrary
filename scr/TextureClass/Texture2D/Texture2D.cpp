@@ -2,7 +2,7 @@
 #define STB_IMAGE_IMPLEMENTATION
 #include<stb_image.h>
 
-Texture2D::Texture2D(const std::string& path, TextureFiltering filtering)
+SpriteRenderer::Texture2D::Texture2D(const std::string& path, TextureFiltering filtering)
 {
 	ReadTexture(path);
 	if (textSource)
@@ -23,7 +23,7 @@ Texture2D::Texture2D(const std::string& path, TextureFiltering filtering)
 	stbi_image_free(textSource);
 }
 
-Texture2D::Texture2D(int width, int height, TextureFiltering filtering)
+SpriteRenderer::Texture2D::Texture2D(int width, int height, TextureFiltering filtering)
 {
 	this->width = width;
 	this->height = height;
@@ -34,7 +34,7 @@ Texture2D::Texture2D(int width, int height, TextureFiltering filtering)
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, this->width, this->height, 0, GL_RGB, GL_UNSIGNED_BYTE, NULL);
 }
 
-unsigned char* Texture2D::ReadTexture(const std::string& path)
+unsigned char* SpriteRenderer::Texture2D::ReadTexture(const std::string& path)
 {
 	int nrChannels;
 	textSource = stbi_load(path.c_str(), &this->width, &this->height, &nrChannels, 3);

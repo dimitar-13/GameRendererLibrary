@@ -1,19 +1,19 @@
 #include "Renderer.h"
-#include"../Shader/ShaderProgram/ShaderProgram.h"
-#include"../Shader/ShadersContianer/Shaders.h"
+#include"Shader/ShaderProgram/ShaderProgram.h"
+#include"Shader/ShadersContianer/Shaders.h"
 #include<iostream>
 
 
-Renderer::Renderer()
+SpriteRenderer::Renderer::Renderer()
 {
-    this->mainShader = new ShaderProgram("../Renderer/Assets/Shaders/Color_shader.glsl");
+    this->mainShader = new SpriteRenderer::ShaderProgram("../Renderer/Assets/Shaders/Color_shader.glsl");
 }
 
-void Renderer::IndexedDraw(const VertexArray& vertexArray)
+void SpriteRenderer::Renderer::IndexedDraw(const VertexArray& vertexArray)
 {
 }
 
-void Renderer::ArrayDraw(const VertexArray& vertexArray)
+void SpriteRenderer::Renderer::ArrayDraw(const VertexArray& vertexArray)
 {
     vertexArray.BindArray();
     glDrawArrays(GL_TRIANGLES, 0, vertexArray.GetVertexCount());

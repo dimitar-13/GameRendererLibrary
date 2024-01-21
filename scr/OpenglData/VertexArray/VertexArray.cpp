@@ -3,7 +3,7 @@
 #include<iostream>
 
 
-VertexArray::VertexArray(const std::vector<Vertex> verts, unsigned int count)
+SpriteRenderer::VertexArray::VertexArray(const std::vector<Vertex> verts, unsigned int count)
 {
 	glGenVertexArrays(1, &this->vertexArrayHandleID);
 	//glGenBuffers(1, &this->elementBufferHandleID);
@@ -37,6 +37,6 @@ VertexArray::VertexArray(const std::vector<Vertex> verts, unsigned int count)
 	
 }
 
-void VertexArray::DeleteVertexArray()
+void SpriteRenderer::VertexArray::DeleteVertexArray()
 {
 }

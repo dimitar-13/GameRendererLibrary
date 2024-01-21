@@ -4,9 +4,9 @@
 #include"../../Core/Global.h"
 namespace SpriteVertexData {
 
-	inline std::vector<Vertex>GenQuadVerts()
+	inline std::vector<SpriteRenderer::Vertex>GenQuadVerts()
 	{
-        std::vector<Vertex> verts;
+        std::vector<SpriteRenderer::Vertex> verts;
 
         const float test = 20;
 

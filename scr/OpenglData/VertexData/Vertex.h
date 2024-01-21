@@ -1,14 +1,14 @@
 #pragma once
-#include "../../Dependencies/GLM/glm.hpp"
-#include "../../Dependencies/GLM/gtc/type_ptr.hpp"
-#include "../../Dependencies/GLM/gtc/matrix_transform.hpp"
+#include <GLM/glm.hpp>
+#include <GLM/gtc/type_ptr.hpp>
+#include <GLM/gtc/matrix_transform.hpp>
 #include"../../Core/Global.h"
-
+namespace SpriteRenderer {
 	struct Vertex {
 		//Position
-			glm::vec3 Position;
+		glm::vec3 Position;
 		//Uv coords
-			glm::vec2 UvCoords;
+		glm::vec2 UvCoords;
 	};
 
-
+}
