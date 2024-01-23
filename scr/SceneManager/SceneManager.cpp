@@ -1,6 +1,7 @@
 #include "SceneManager.h"
 #include"Shader/ShadersContianer/Shaders.h"
 #include"../../Core/Global.h"
+#include"Input/Input.h"
 void SpriteRenderer::SceneManager::Start()
 {
 	for (size_t i = 0; i < this->sceneObjects.size(); i++)
@@ -59,17 +60,19 @@ void SpriteRenderer::SceneManager::PipelineLoop()
 	this->renderer.EnableDepthTest();
 	while (!glfwWindowShouldClose(Global::winContext))
 	{
-		Update();
-
 		this->renderer.Clear();
 		glClearColor(1, 0, 0, 0);
+
+		Update();
 		
 		Draw(*this->renderer.mainShader);
 
 		glfwSwapBuffers(Global::winContext);
 		glfwPollEvents();
 	}
+}
 
-	glfwTerminate();
-	glfwDestroyWindow(Global::winContext);
+void SpriteRenderer::SceneManager::onUpdateCallback(void(*func_ptr)())
+{
+	(*func_ptr)();
 }

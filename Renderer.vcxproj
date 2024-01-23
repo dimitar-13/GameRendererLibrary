@@ -203,6 +203,7 @@
     <None Include="Assets\Shaders\Color_shader.glsl" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="Assets\Textures\Apple.png" />
     <Image Include="Assets\Textures\Texture.jpg" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

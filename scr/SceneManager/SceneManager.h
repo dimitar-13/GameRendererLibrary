@@ -11,8 +11,7 @@ namespace SpriteRenderer {
 		void Update();
 		void Draw(const ShaderProgram& shader);
 		void AddObjectToScene(GameObject& obj) { this->sceneObjects.push_back(&obj); };
-
-
+		void onUpdateCallback(void(*func_ptr)());
 	private:
 		Renderer renderer;
 		std::vector<GameObject*> sceneObjects;
@@ -22,4 +21,5 @@ namespace SpriteRenderer {
 
 
 	};
+
 }
