@@ -1,6 +1,5 @@
 #include"EntryPoint.h"
 
-
 //TODO:__declspec(dllexport)
 namespace SpriteRenderer {
 
@@ -12,15 +11,15 @@ namespace SpriteRenderer {
         Global::winContext = glfwCreateWindow(*Global::winWidth, *Global::winHeight, "My Title", NULL, NULL);
         if (!Global::winContext)
         {
-            glfwTerminate();
             glfwDestroyWindow(Global::winContext);
+            glfwTerminate();
             return -1;
         }
         glfwMakeContextCurrent(Global::winContext);
         if (glewInit() != GLEW_OK)
         {
-            glfwTerminate();
             glfwDestroyWindow(Global::winContext);
+            glfwTerminate();
             return -1;
         }
         glewExperimental = GL_TRUE;
@@ -32,7 +31,17 @@ namespace SpriteRenderer {
         *Global::projection = glm::ortho<float>(-*Global::winWidth / 2, *Global::winWidth / 2, -*Global::winHeight / 2, *Global::winHeight / 2, -1.0, 1.0);
 
         glfwSetWindowSizeCallback(Global::winContext, Resize);
+        glfwSetKeyCallback(Global::winContext, key_callback);
+        glfwSetCursorPosCallback(Global::winContext, mouse_position_callback);
+        glfwSetMouseButtonCallback(Global::winContext, MouseCallback);
+        glfwSetInputMode(Global::winContext, GLFW_STICKY_KEYS, GLFW_TRUE);
         mainSceneManager = new SceneManager();
+    }
+    void Terminate()
+    {
+       glfwDestroyWindow(Global::winContext);
+       glfwTerminate();
+       delete(mainSceneManager);
     }
 }
 
