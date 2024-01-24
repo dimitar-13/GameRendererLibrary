@@ -1,3 +1,4 @@
+#include"Rendererpch.h"
 #include"EntryPoint.h"
 #include"Log/Log.h"
 //TODO:__declspec(dllexport)
