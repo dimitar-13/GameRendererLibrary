@@ -1,11 +1,11 @@
 #pragma once
+#include"Rendererpch.h"
 #include"Shader/ShaderProgram/ShaderProgram.h"
 #include"OpenglData/VertexArray/VertexArray.h"
 #include <GLM/glm.hpp>
 #include <GLM/gtc/type_ptr.hpp>
 #include <GLM/gtc/matrix_transform.hpp>
 #include"TextureClass/Texture2D/Texture2D.h"
-#include<vector>
 namespace SpriteRenderer {
 	enum SpriteShape {
 

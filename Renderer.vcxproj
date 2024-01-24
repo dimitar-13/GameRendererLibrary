@@ -90,6 +90,8 @@
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)../Renderer\Dependencies\GLEW\include;$(SolutionDir)../Renderer\Dependencies\GLFW\include;$(SolutionDir)../Renderer\Dependencies\GLM;$(SolutionDir)../Renderer\Dependencies\ImgReading;$(SolutionDir)../Renderer\scr;$(SolutionDir)../Renderer/vendor\fmt\fmt-10.2.1\include;$(SolutionDir)../Renderer/vendor\fmt\fmt-10.2.1;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>Rendererpch.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -110,6 +112,8 @@
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)../Renderer\Dependencies\GLEW\include;$(SolutionDir)../Renderer\Dependencies\GLFW\include;$(SolutionDir)../Renderer\Dependencies\GLM;$(SolutionDir)../Renderer\Dependencies\ImgReading;$(SolutionDir)../Renderer\scr;$(SolutionDir)../Renderer/vendor\fmt\fmt-10.2.1\include;$(SolutionDir)../Renderer/vendor\fmt\fmt-10.2.1;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>Rendererpch.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -130,6 +134,8 @@
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)../Renderer\Dependencies\GLEW\include;$(SolutionDir)../Renderer\Dependencies\GLFW\include;$(SolutionDir)../Renderer\Dependencies\GLM;$(SolutionDir)../Renderer\Dependencies\ImgReading;$(SolutionDir)../Renderer\scr;$(SolutionDir)../Renderer/vendor\fmt\fmt-10.2.1\include;$(SolutionDir)../Renderer/vendor\fmt\fmt-10.2.1;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>Rendererpch.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -150,6 +156,8 @@
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)../Renderer\Dependencies\GLEW\include;$(SolutionDir)../Renderer\Dependencies\GLFW\include;$(SolutionDir)../Renderer\Dependencies\GLM;$(SolutionDir)../Renderer\Dependencies\ImgReading;$(SolutionDir)../Renderer\scr;$(SolutionDir)../Renderer/vendor\fmt\fmt-10.2.1\include;$(SolutionDir)../Renderer/vendor\fmt\fmt-10.2.1;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>Rendererpch.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -163,6 +171,12 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="scr\Rendererpch.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+    </ClCompile>
     <ClCompile Include="scr\Log\Log.cpp">
       <DeploymentContent>false</DeploymentContent>
     </ClCompile>
@@ -185,6 +199,7 @@
     <ClInclude Include="Core\SpriteData.h" />
     <ClInclude Include="Debuging\OpenglDebug.h" />
     <ClInclude Include="include\RendererEngine_s.h" />
+    <ClInclude Include="scr\Rendererpch.h" />
     <ClInclude Include="scr\Log\Log.h" />
     <ClInclude Include="scr\EntryPoint.h" />
     <ClInclude Include="scr\GameObject\GameObject.h" />

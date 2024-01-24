@@ -1,6 +1,5 @@
-﻿#include "ShaderProgram.h"
-#include<iostream>
-#include<fstream>
+﻿#include"Rendererpch.h"
+#include "ShaderProgram.h"
 #include"Log/Log.h"
 SpriteRenderer::ShaderProgram::ShaderProgram(const char* vertexShader, const char* fragmentShader)
 {

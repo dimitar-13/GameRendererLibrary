@@ -1,8 +1,7 @@
 #pragma once
 #include"../../Core/Global.h"
 #include<GLFW/glfw3.h>
-#include<string>
-#include<unordered_map>
+#include"Rendererpch.h"
 namespace SpriteRenderer
 {
 	enum KeyCodeEnum

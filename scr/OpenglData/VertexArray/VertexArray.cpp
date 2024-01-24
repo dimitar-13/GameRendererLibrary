@@ -1,7 +1,5 @@
+#include"Rendererpch.h"
 #include "VertexArray.h"
-
-#include<iostream>
-
 
 SpriteRenderer::VertexArray::VertexArray(const std::vector<Vertex> verts, unsigned int count)
 {

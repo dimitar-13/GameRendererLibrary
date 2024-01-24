@@ -1,7 +1,7 @@
+#include"Rendererpch.h"
 #include "WindowFunctions.h"
 #include"../../Core/Global.h"
 #include"Input/Input.h"
-#include<iostream>
 void SpriteRenderer::Resize(GLFWwindow* window, int width, int height)
 {
 	glViewport(0, 0, width, height);

@@ -1,5 +1,5 @@
+#include"Rendererpch.h"
 #include "GameObject.h"
-
 SpriteRenderer::GameObject::GameObject(std::string objectName, Sprite* sprite)
 {
 	this->transform = new Transform();

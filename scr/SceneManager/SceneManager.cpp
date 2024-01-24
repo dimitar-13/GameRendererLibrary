@@ -1,3 +1,4 @@
+#include"Rendererpch.h"
 #include "SceneManager.h"
 #include"Shader/ShadersContianer/Shaders.h"
 #include"../../Core/Global.h"

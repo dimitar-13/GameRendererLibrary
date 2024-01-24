@@ -1,6 +1,6 @@
 #pragma once
+#include"Rendererpch.h"
 #include"ScriptableObject/ScriptableObject.h"
-#include<vector>
 
 namespace SpriteRenderer {
 	class SceneManager;
