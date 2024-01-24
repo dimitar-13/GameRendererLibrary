@@ -7,7 +7,6 @@
 namespace SpriteRenderer {
 
 	//Make it a singleton or make it so the client cant delete the object
-	inline SpriteRenderer::SceneManager* mainSceneManager;
 	int Init();
 
 	void Terminate();

@@ -1,22 +1,25 @@
 #include"Rendererpch.h"
 #include "SceneManager.h"
-#include"Shader/ShadersContianer/Shaders.h"
 #include"../../Core/Global.h"
 #include"Input/Input.h"
 #include"Log/Log.h"
+void SpriteRenderer::SceneManager::Init()
+{
+	Renderer::Init();
+}
 void SpriteRenderer::SceneManager::Start()
 {
 	RENDER_LOG_MESSAGE_INFO("Render loop was started.");
-	for (size_t i = 0; i < this->sceneObjects.size(); i++)
+	for (size_t i = 0; i < instance.sceneObjects.size(); i++)
 	{
-		for (rsize_t y = 0; y < sceneObjects[i]->attachedScripts.size(); y++)
+		for (rsize_t y = 0; y < instance.sceneObjects[i]->attachedScripts.size(); y++)
 		{
-			sceneObjects[i]->attachedScripts[y]->AttachValuesFromGameObject(*sceneObjects[i]);
-			sceneObjects[i]->attachedScripts[y]->OnStart();
-			sceneObjects[i]->attachedScripts[y]->DetachValuesFromGameObject();
+			instance.sceneObjects[i]->attachedScripts[y]->AttachValuesFromGameObject(*instance.sceneObjects[i]);
+			instance.sceneObjects[i]->attachedScripts[y]->OnStart();
+			instance.sceneObjects[i]->attachedScripts[y]->DetachValuesFromGameObject();
 		}
 	}
-	PipelineLoop();
+	instance.PipelineLoop();
 }
 
 void SpriteRenderer::SceneManager::Update()
@@ -53,29 +56,39 @@ void SpriteRenderer::SceneManager::Draw(const ShaderProgram& shader)
 		}
 		//shader.SetUniform3FloatVector("uColor", this->sceneObjects[i]->sprite->GetSpriteColor());
 
-		this->renderer.ArrayDraw(this->sceneObjects[i]->sprite->GetVertexArray());
+		Renderer::ArrayDraw(this->sceneObjects[i]->sprite->GetVertexArray());
 	}
 
 }
 
 void SpriteRenderer::SceneManager::PipelineLoop()
 {
-	this->renderer.EnableDepthTest();
+	Renderer::EnableDepthTest();
+
+	uint32_t frameCounter = 0;
+	double previousTime = glfwGetTime();
 	while (!glfwWindowShouldClose(Global::winContext))
 	{
-		this->renderer.Clear();
+		
+		Renderer::Clear();
 		glClearColor(1, 0, 0, 0);
 
 		Update();
 		
-		Draw(*this->renderer.mainShader);
+		Draw(Renderer::GetShader());
 
 		glfwSwapBuffers(Global::winContext);
 		glfwPollEvents();
+	
+		if (glfwGetTime() - previousTime >= 1.0f)
+		{
+			previousTime = glfwGetTime();
+			RENDER_LOG_MESSAGE_INFO("FPS:{0}", frameCounter);
+			frameCounter = 0;
+		}
+		else
+		{
+			frameCounter += 1;
+		}	
 	}
-}
-
-void SpriteRenderer::SceneManager::onUpdateCallback(void(*func_ptr)())
-{
-	(*func_ptr)();
 }

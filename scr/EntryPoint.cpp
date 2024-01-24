@@ -53,13 +53,14 @@ namespace SpriteRenderer {
         glfwSetCursorPosCallback(Global::winContext, mouse_position_callback);
         glfwSetMouseButtonCallback(Global::winContext, MouseCallback);
         glfwSetInputMode(Global::winContext, GLFW_STICKY_KEYS, GLFW_TRUE);
-        mainSceneManager = new SceneManager();
+
+        SceneManager::Init();
     }
     void Terminate()
     {
        glfwDestroyWindow(Global::winContext);
        glfwTerminate();
-       delete(mainSceneManager);
+       Renderer::DestroyShader();
        RENDER_LOG_MESSAGE_INFO("Renderer was succsessfully terminated.");
     }
 }
