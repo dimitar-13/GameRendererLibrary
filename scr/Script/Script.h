@@ -1,28 +1,30 @@
 #pragma once
-#include"../../scr/Renderer/Renderer.h"
-#include"../../scr/ScriptableObject/ScriptableObject.h"
-#include"../../scr/GameObject/GameObject.h"
-#include<vector>
-class Script: public ScriptableObject
-{
-public:
-	
+#include"Rendererpch.h"
+#include"ScriptableObject/ScriptableObject.h"
 
-protected:
-	friend class Renderer;
-	Script(const GameObject& gameObj_to_attach) :ScriptableObject(gameObj_to_attach) { };
-	virtual void OnUpdate(){ };
-	virtual void OnStart(){ };
-	virtual void OnDelete() { };
-	ScriptableObject* object = 0;
+namespace SpriteRenderer {
+	class SceneManager;
 
-	std::vector<GameObject*> attachedObjects;
+	class Script : public ScriptableObject
+	{
+	public:
 
-	void AttachScript(const GameObject& gameObj_to_attach);
+		Script() { };
+	protected:
 
-	//Get transform	
-	//Encapsolate the values ingeneral
+		virtual void OnUpdate() { };
+		virtual void OnStart() { };
+		virtual void OnDelete() { };
+		//void AttachScript(const GameObject& gameObj_to_attach);
 
+		//Get transform	
+		//Encapsolate the values ingeneral
 
+	private:
+		friend class SceneManager;
+		//std::vector<GameObject*> attachedObjects;
+		//void AttachScriptToObject(const GameObject& gameObj_to_attach) { this->AttachScriptToObject(gameObj_to_attach); }
+		//void DetachScriptFromCurrentObj() { this->DetachValuesFromGameObject(); }
 
-};
+	};
+}

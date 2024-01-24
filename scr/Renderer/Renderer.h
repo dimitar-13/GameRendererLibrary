@@ -1,23 +1,31 @@
 #pragma once
+#include"Rendererpch.h"
 #include<GL/glew.h>
 #include<GLFW/glfw3.h>
-#include"..\Sprite\Sprite.h"
-#include"../Script/Script.h"
-#include"../../scr/OpenglData/VertexArray/VertexArray.h"
-#include<vector>
-class Script;
+#include"OpenglData/VertexArray/VertexArray.h"
 
 
-	class Renderer 
+namespace SpriteRenderer {
+	class ShaderProgram;
+
+	class Renderer
 	{
 	public:
-		void StartRenderLoop();
-		void RenderOject();
-		void Clear();
+		Renderer();
+
+		void EnableDepthTest() { glEnable(GL_DEPTH_TEST); }
+		void DisableDepthTest() { glDisable(GL_DEPTH_TEST); }
+
+		void Clear() { glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); }
+
+
 		void IndexedDraw(const VertexArray& vertexArray);
 		void ArrayDraw(const VertexArray& vertexArray);
 
-		std::vector<Script*> scripts;
+		//TODO:
+		//Render calls with shaders
+
+		ShaderProgram* mainShader;
 	};
-	
+}
 
