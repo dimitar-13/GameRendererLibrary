@@ -1,5 +1,5 @@
 #include"EntryPoint.h"
-
+#include"Log/Log.h"
 //TODO:__declspec(dllexport)
 namespace SpriteRenderer {
 
@@ -11,6 +11,7 @@ namespace SpriteRenderer {
         Global::winContext = glfwCreateWindow(*Global::winWidth, *Global::winHeight, "My Title", NULL, NULL);
         if (!Global::winContext)
         {
+            RENDER_LOG_MESSAGE_FATAL("GLFW failed to load.");
             glfwDestroyWindow(Global::winContext);
             glfwTerminate();
             return -1;
@@ -18,10 +19,21 @@ namespace SpriteRenderer {
         glfwMakeContextCurrent(Global::winContext);
         if (glewInit() != GLEW_OK)
         {
+            RENDER_LOG_MESSAGE_FATAL("GLEW failed to load.");
             glfwDestroyWindow(Global::winContext);
             glfwTerminate();
             return -1;
         }
+        Log::Init();
+        int numTest = 5;
+        char test = 'A';
+
+        RENDER_LOG_MESSAGE_INFO("Info");
+        RENDER_LOG_MESSAGE_WARNING("warning");
+        RENDER_LOG_MESSAGE_ERROR("error");
+        RENDER_LOG_MESSAGE_FATAL("This should be a number {0} and this should be a char {1}");
+
+        
         glewExperimental = GL_TRUE;
         glViewport(0, 0, *Global::winWidth, *Global::winHeight);
 
