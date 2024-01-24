@@ -1,6 +1,5 @@
 #include"Rendererpch.h"
 #include "Sprite.h"
-#include<gl/glew.h>
 #include"../../Debuging/OpenglDebug.h"
 #include"../../../Core/SpriteData.h"
 SpriteRenderer::Sprite::Sprite()

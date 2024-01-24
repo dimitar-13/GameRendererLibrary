@@ -2,7 +2,6 @@
 #include "Renderer.h"
 #include"Shader/ShaderProgram/ShaderProgram.h"
 #include"Shader/ShadersContianer/Shaders.h"
-#include<iostream>
 
 
 SpriteRenderer::Renderer::Renderer()

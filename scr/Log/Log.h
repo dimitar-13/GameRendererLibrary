@@ -1,9 +1,6 @@
 #pragma once
 #include"Rendererpch.h"
-#define  FMT_HEADER_ONLY
-#include <fmt/core.h>
-#include <fmt/format.h>
-#include <fmt/color.h>
+
 
 namespace SpriteRenderer {
 
