@@ -86,7 +86,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>GLEW_STATIC;RENDER_ENGINE_API_BUILD</PreprocessorDefinitions>
+      <PreprocessorDefinitions>GLEW_STATIC;RENDER_ENGINE_API_BUILD;RENDER_DEBUG</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)../Renderer\Dependencies\GLEW\include;$(SolutionDir)../Renderer\Dependencies\GLFW\include;$(SolutionDir)../Renderer\Dependencies\GLM;$(SolutionDir)../Renderer\Dependencies\ImgReading;$(SolutionDir)../Renderer\scr;$(SolutionDir)../Renderer/vendor\fmt\fmt-10.2.1\include;$(SolutionDir)../Renderer/vendor\fmt\fmt-10.2.1;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
@@ -126,7 +126,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>GLEW_STATIC;RENDER_ENGINE_API_BUILD</PreprocessorDefinitions>
+      <PreprocessorDefinitions>GLEW_STATIC;RENDER_ENGINE_API_BUILD;RENDER_DEBUG</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)../Renderer\Dependencies\GLEW\include;$(SolutionDir)../Renderer\Dependencies\GLFW\include;$(SolutionDir)../Renderer\Dependencies\GLM;$(SolutionDir)../Renderer\Dependencies\ImgReading;$(SolutionDir)../Renderer\scr;$(SolutionDir)../Renderer/vendor\fmt\fmt-10.2.1\include;$(SolutionDir)../Renderer/vendor\fmt\fmt-10.2.1;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>

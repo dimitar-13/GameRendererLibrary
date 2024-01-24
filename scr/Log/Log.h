@@ -1,25 +1,27 @@
 #pragma once
+#define  FMT_HEADER_ONLY
 #include <fmt/core.h>
 #include <fmt/format.h>
 #include <fmt/color.h>
+#include<iostream>
 #include<string>
+
 namespace SpriteRenderer {
 
 
-	class Log
-	{
-	public:
-		static void Init();
-		static void info_message(std::string message);
-		static void error_message(std::string message);
-		static void warning_message(std::string message);
-		static void fatal_message(std::string message);
 
-		//HANDLE getConsole() { return this->appConsole; }
-	};
-#define RENDER_LOG_MESSAGE_INFO(...) Log::info_message(__VA_ARGS__)
-#define RENDER_LOG_MESSAGE_WARNING(...) Log::error_message(__VA_ARGS__)
-#define RENDER_LOG_MESSAGE_ERROR(...) Log::warning_message(__VA_ARGS__)
-#define RENDER_LOG_MESSAGE_FATAL(...) fmt::print(fg(fmt::color::red) | (fmt::emphasis::bold)|(fmt::emphasis::underline),__VA_ARGS__);
+
+#ifdef RENDER_DEBUG
+#define RENDER_LOG_MESSAGE_INFO(message,...)	fmt::print(fg(fmt::color::white),fmt::format(message,__VA_ARGS__));std::cout<<std::endl
+#define RENDER_LOG_MESSAGE_WARNING(message,...) fmt::print(fg(fmt::color::yellow) | (fmt::emphasis::bold),fmt::format(message,__VA_ARGS__));std::cout<<std::endl
+#define RENDER_LOG_MESSAGE_ERROR(message,...)	fmt::print(fg(fmt::color::red) | (fmt::emphasis::bold),fmt::format(message,__VA_ARGS__));std::cout<<std::endl
+#define RENDER_LOG_MESSAGE_FATAL(message,...)	fmt::print(fg(fmt::color::red) | (fmt::emphasis::bold)|(fmt::emphasis::underline),fmt::format(message,__VA_ARGS__));std::cout<<std::endl
+#else
+#define RENDER_LOG_MESSAGE_INFO(message,...)	
+#define RENDER_LOG_MESSAGE_WARNING(message,...) 
+#define RENDER_LOG_MESSAGE_ERROR(message,...)	
+#define RENDER_LOG_MESSAGE_FATAL(message,...)	
+#endif // DEBUG
+
 }
 

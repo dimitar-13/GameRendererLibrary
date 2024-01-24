@@ -16,6 +16,10 @@ namespace SpriteRenderer {
             glfwTerminate();
             return -1;
         }
+        RENDER_LOG_MESSAGE_INFO("GLFW window was created successfully.");
+        RENDER_LOG_MESSAGE_INFO("Window name:'{0}', width:'{1}', height:'{2}'.", "My Title", *Global::winWidth, *Global::winHeight);
+
+
         glfwMakeContextCurrent(Global::winContext);
         if (glewInit() != GLEW_OK)
         {
@@ -24,16 +28,8 @@ namespace SpriteRenderer {
             glfwTerminate();
             return -1;
         }
-        Log::Init();
-        int numTest = 5;
-        char test = 'A';
+        RENDER_LOG_MESSAGE_INFO("GLEW was initialized successfully.");
 
-        RENDER_LOG_MESSAGE_INFO("Info");
-        RENDER_LOG_MESSAGE_WARNING("warning");
-        RENDER_LOG_MESSAGE_ERROR("error");
-        RENDER_LOG_MESSAGE_FATAL("This should be a number {0} and this should be a char {1}");
-
-        
         glewExperimental = GL_TRUE;
         glViewport(0, 0, *Global::winWidth, *Global::winHeight);
 
@@ -54,6 +50,7 @@ namespace SpriteRenderer {
        glfwDestroyWindow(Global::winContext);
        glfwTerminate();
        delete(mainSceneManager);
+       RENDER_LOG_MESSAGE_INFO("Renderer was succsessfully terminated.");
     }
 }
 

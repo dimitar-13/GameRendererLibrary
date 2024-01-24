@@ -1,7 +1,7 @@
 #include "Texture2D.h"
 #define STB_IMAGE_IMPLEMENTATION
 #include<stb_image.h>
-
+#include"Log/Log.h"
 SpriteRenderer::Texture2D::Texture2D(const std::string& path, TextureFiltering filtering)
 {
 	ReadTexture(path);
@@ -18,6 +18,7 @@ SpriteRenderer::Texture2D::Texture2D(const std::string& path, TextureFiltering f
 	}
 	else
 	{
+		RENDER_LOG_MESSAGE_WARNING("Failed to read texture data of texture at:{0}", path);
 		//Error
 	}
 	stbi_image_free(textSource);

@@ -14,7 +14,7 @@ SpriteRenderer::ShaderProgram::ShaderProgram(const char* vertexShader, const cha
 	if (vs == 0 || fs == 0)
 	{
 		//throw error
-		RENDER_LOG_MESSAGE_ERROR("Shader failed to be created.");
+		RENDER_LOG_MESSAGE_ERROR("Shader failed to be created.Vertex shader id:{0}. Fragment shader id:{1}.",vs,fs);
 
 	}
 	else
@@ -68,7 +68,7 @@ void SpriteRenderer::ShaderProgram::CompileProgram(const std::vector<uint32_t>& 
 	{
 		char infolog[225];
 		glGetProgramInfoLog(this->programID, 255, 0, infolog);
-		RENDER_LOG_MESSAGE_ERROR(std::string("PROGRAM LINKING ERROR"+ std::string(infolog)));
+		RENDER_LOG_MESSAGE_ERROR("Program linking error:Error{0}", infolog);
 	}
 }
 
@@ -125,7 +125,7 @@ bool SpriteRenderer::ShaderProgram::IsShaderCompiled(unsigned int shader)
 	{
 		char infoLog[255];
 		glGetShaderInfoLog(shader, 255, 0, infoLog);
-		RENDER_LOG_MESSAGE_ERROR(std::string("Shader compile error:" + std::string(infoLog)));
+		RENDER_LOG_MESSAGE_ERROR("Shader compile error:Error{0}", infoLog);
 		return false;
 	}
 	return true;
@@ -139,9 +139,10 @@ bool SpriteRenderer::ShaderProgram::IsProgramCompiled()
 	{
 		char infolog[225];
 		glGetProgramInfoLog(this->programID, 255, 0, infolog);
-		RENDER_LOG_MESSAGE_ERROR(std::string("PROGRAM LINKING ERROR" + std::string(infolog)));
+		RENDER_LOG_MESSAGE_ERROR("Program compile error:Error{0}", infolog);
 		return false;
 	}
+	RENDER_LOG_MESSAGE_INFO("Shader program with id:'{0}' was compiled successfully.",this->programID);
 	return true;
 }
 
@@ -153,7 +154,7 @@ int SpriteRenderer::ShaderProgram::GetShaderUniformLocation(const char* Name)con
 	int result = glGetUniformLocation(this->programID, Name);
 	if (result < 0)
 	{
-		RENDER_LOG_MESSAGE_WARNING(std::string("Cant find uniform with name:" + std::string(Name)));
+		RENDER_LOG_MESSAGE_WARNING("Cant find uniform with name:{0}",  Name);
 		return -1;
 	}
 	this->shaderUniformCashe[Name] = result;
