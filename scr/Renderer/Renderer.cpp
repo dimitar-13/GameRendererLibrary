@@ -3,10 +3,9 @@
 #include"Shader/ShaderProgram/ShaderProgram.h"
 #include"Shader/ShadersContianer/Shaders.h"
 
-
-SpriteRenderer::Renderer::Renderer()
+void SpriteRenderer::Renderer::Init()
 {
-    this->mainShader = new SpriteRenderer::ShaderProgram("../Renderer/Assets/Shaders/Color_shader.glsl");
+    instance.mainShader = new SpriteRenderer::ShaderProgram("../Renderer/Assets/Shaders/Color_shader.glsl");
 }
 
 void SpriteRenderer::Renderer::IndexedDraw(const VertexArray& vertexArray)
@@ -18,5 +17,11 @@ void SpriteRenderer::Renderer::ArrayDraw(const VertexArray& vertexArray)
     vertexArray.BindArray();
     glDrawArrays(GL_TRIANGLES, 0, vertexArray.GetVertexCount());
     vertexArray.UnbindArray();
+}
+
+void SpriteRenderer::Renderer::DestroyShader()
+{
+    ShaderProgram* shader =  &instance.getShader();
+    delete(shader);
 }
 

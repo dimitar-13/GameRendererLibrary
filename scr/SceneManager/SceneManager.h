@@ -6,20 +6,21 @@ namespace SpriteRenderer {
 	class SceneManager {
 
 	public:
-		SceneManager() {};
-		void Start();
+		static void Init();
+
+		static void Start();
+
+		static void AddObjectToScene(GameObject& obj) { instance.sceneObjects.push_back(&obj); };
+
 		void Update();
 		void Draw(const ShaderProgram& shader);
-		void AddObjectToScene(GameObject& obj) { this->sceneObjects.push_back(&obj); };
-		void onUpdateCallback(void(*func_ptr)());
 	private:
-		Renderer renderer;
 		std::vector<GameObject*> sceneObjects;
-
+		static SceneManager instance;
 	private:
 		void PipelineLoop();
 
 
 	};
-
+	inline SceneManager SceneManager::instance;
 }
