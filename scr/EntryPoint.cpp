@@ -8,6 +8,15 @@ namespace SpriteRenderer {
     int Init()
     {
         glfwInit();
+        glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+        glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+        glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+
+        RENDER_LOG_MESSAGE_INFO("Renderer initilizing.");
+        RENDER_LOG_MESSAGE_INFO("Graphical API:'{0}'.", "OpenGL");
+        RENDER_LOG_MESSAGE_INFO("Graphical API profile:'{0}'.", "Core");
+        RENDER_LOG_MESSAGE_INFO("Graphical API version major:'{0}'.", 3);
+        RENDER_LOG_MESSAGE_INFO("Graphical API version minor:'{0}'.", 3);
 
         Global::winContext = glfwCreateWindow(*Global::winWidth, *Global::winHeight, "My Title", NULL, NULL);
         if (!Global::winContext)

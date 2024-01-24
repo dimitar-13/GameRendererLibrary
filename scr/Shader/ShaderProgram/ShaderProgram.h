@@ -1,10 +1,6 @@
 #pragma once
 #include"Rendererpch.h"
-#include<GL/glew.h>
 #include"../../Debuging/OpenglDebug.h"
-#include <GLM/glm.hpp>
-#include <GLM/gtc/type_ptr.hpp>
-#include <GLM/gtc/matrix_transform.hpp>
 namespace SpriteRenderer {
 	class ShaderProgram
 	{

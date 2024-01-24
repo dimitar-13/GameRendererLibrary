@@ -1,6 +1,5 @@
 #pragma once
 #include"Rendererpch.h"
-#include<GL/glew.h>
 #include"OpenglData/VertexData/Vertex.h"
 #include"../../Core/Global.h"
 namespace SpriteRenderer {

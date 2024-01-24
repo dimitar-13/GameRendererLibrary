@@ -1,6 +1,5 @@
 #pragma once
 #include"../../Core/Global.h"
-#include<GLFW/glfw3.h>
 #include"Rendererpch.h"
 namespace SpriteRenderer
 {

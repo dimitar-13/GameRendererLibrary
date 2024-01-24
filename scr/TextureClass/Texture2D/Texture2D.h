@@ -1,6 +1,5 @@
 #pragma once
 #include"Rendererpch.h"
-#include<GL/glew.h>
 
 namespace SpriteRenderer {
 	enum TextureFiltering {
