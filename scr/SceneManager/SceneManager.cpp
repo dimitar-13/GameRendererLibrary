@@ -1,9 +1,12 @@
+#include"Rendererpch.h"
 #include "SceneManager.h"
 #include"Shader/ShadersContianer/Shaders.h"
 #include"../../Core/Global.h"
 #include"Input/Input.h"
+#include"Log/Log.h"
 void SpriteRenderer::SceneManager::Start()
 {
+	RENDER_LOG_MESSAGE_INFO("Render loop was started.");
 	for (size_t i = 0; i < this->sceneObjects.size(); i++)
 	{
 		for (rsize_t y = 0; y < sceneObjects[i]->attachedScripts.size(); y++)

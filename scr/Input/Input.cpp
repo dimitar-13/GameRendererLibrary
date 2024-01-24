@@ -1,5 +1,5 @@
+#include"Rendererpch.h"
 #include"input.h"
-
 SpriteRenderer::InputManager::InputManager()
 {
 	double mousey, mousex;

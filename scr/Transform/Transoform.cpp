@@ -1,5 +1,5 @@
+#include"Rendererpch.h"
 #include "Transoform.h"
-
 SpriteRenderer::Transform::Transform()
 {
 	this->modelMatrix = glm::mat4(1);

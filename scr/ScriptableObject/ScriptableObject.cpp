@@ -1,6 +1,6 @@
+#include"Rendererpch.h"
 #include "ScriptableObject.h"
 #include "GameObject/GameObject.h"
-
 void SpriteRenderer::ScriptableObject::AttachValuesFromGameObject(const GameObject& gameObj_to_attach)
 {
 	this->transform = gameObj_to_attach.transform;

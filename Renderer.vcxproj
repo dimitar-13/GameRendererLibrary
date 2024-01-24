@@ -86,10 +86,12 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>GLEW_STATIC;RENDER_ENGINE_API_BUILD</PreprocessorDefinitions>
+      <PreprocessorDefinitions>GLEW_STATIC;RENDER_ENGINE_API_BUILD;RENDER_DEBUG</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)../Renderer\Dependencies\GLEW\include;$(SolutionDir)../Renderer\Dependencies\GLFW\include;$(SolutionDir)../Renderer\Dependencies\GLM;$(SolutionDir)../Renderer\Dependencies\ImgReading;$(SolutionDir)../Renderer\scr;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)../Renderer\Dependencies\GLEW\include;$(SolutionDir)../Renderer\Dependencies\GLFW\include;$(SolutionDir)../Renderer\Dependencies\GLM;$(SolutionDir)../Renderer\Dependencies\ImgReading;$(SolutionDir)../Renderer\scr;$(SolutionDir)../Renderer/vendor\fmt\fmt-10.2.1\include;$(SolutionDir)../Renderer/vendor\fmt\fmt-10.2.1;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>Rendererpch.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -108,8 +110,10 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>GLEW_STATIC;RENDER_ENGINE_API_BUILD</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)../Renderer\Dependencies\GLEW\include;$(SolutionDir)../Renderer\Dependencies\GLFW\include;$(SolutionDir)../Renderer\Dependencies\GLM;$(SolutionDir)../Renderer\Dependencies\ImgReading;$(SolutionDir)../Renderer\scr;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)../Renderer\Dependencies\GLEW\include;$(SolutionDir)../Renderer\Dependencies\GLFW\include;$(SolutionDir)../Renderer\Dependencies\GLM;$(SolutionDir)../Renderer\Dependencies\ImgReading;$(SolutionDir)../Renderer\scr;$(SolutionDir)../Renderer/vendor\fmt\fmt-10.2.1\include;$(SolutionDir)../Renderer/vendor\fmt\fmt-10.2.1;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>Rendererpch.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -126,10 +130,12 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>GLEW_STATIC;RENDER_ENGINE_API_BUILD</PreprocessorDefinitions>
+      <PreprocessorDefinitions>GLEW_STATIC;RENDER_ENGINE_API_BUILD;RENDER_DEBUG</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)../Renderer\Dependencies\GLEW\include;$(SolutionDir)../Renderer\Dependencies\GLFW\include;$(SolutionDir)../Renderer\Dependencies\GLM;$(SolutionDir)../Renderer\Dependencies\ImgReading;$(SolutionDir)../Renderer\scr;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)../Renderer\Dependencies\GLEW\include;$(SolutionDir)../Renderer\Dependencies\GLFW\include;$(SolutionDir)../Renderer\Dependencies\GLM;$(SolutionDir)../Renderer\Dependencies\ImgReading;$(SolutionDir)../Renderer\scr;$(SolutionDir)../Renderer/vendor\fmt\fmt-10.2.1\include;$(SolutionDir)../Renderer/vendor\fmt\fmt-10.2.1;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>Rendererpch.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -148,8 +154,10 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>GLEW_STATIC;RENDER_ENGINE_API_BUILD</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)../Renderer\Dependencies\GLEW\include;$(SolutionDir)../Renderer\Dependencies\GLFW\include;$(SolutionDir)../Renderer\Dependencies\GLM;$(SolutionDir)../Renderer\Dependencies\ImgReading;$(SolutionDir)../Renderer\scr;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)../Renderer\Dependencies\GLEW\include;$(SolutionDir)../Renderer\Dependencies\GLFW\include;$(SolutionDir)../Renderer\Dependencies\GLM;$(SolutionDir)../Renderer\Dependencies\ImgReading;$(SolutionDir)../Renderer\scr;$(SolutionDir)../Renderer/vendor\fmt\fmt-10.2.1\include;$(SolutionDir)../Renderer/vendor\fmt\fmt-10.2.1;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>Rendererpch.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -163,6 +171,15 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="scr\Rendererpch.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="scr\Log\Log.cpp">
+      <DeploymentContent>false</DeploymentContent>
+    </ClCompile>
     <ClCompile Include="scr\GameObject\GameObject.cpp" />
     <ClCompile Include="scr\EntryPoint.cpp" />
     <ClCompile Include="scr\OpenglData\VertexArray\VertexArray.cpp" />
@@ -182,6 +199,8 @@
     <ClInclude Include="Core\SpriteData.h" />
     <ClInclude Include="Debuging\OpenglDebug.h" />
     <ClInclude Include="include\RendererEngine_s.h" />
+    <ClInclude Include="scr\Rendererpch.h" />
+    <ClInclude Include="scr\Log\Log.h" />
     <ClInclude Include="scr\EntryPoint.h" />
     <ClInclude Include="scr\GameObject\GameObject.h" />
     <ClInclude Include="scr\Input\Input.h" />

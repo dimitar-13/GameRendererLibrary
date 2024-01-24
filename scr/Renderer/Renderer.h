@@ -1,9 +1,9 @@
 #pragma once
+#include"Rendererpch.h"
 #include<GL/glew.h>
 #include<GLFW/glfw3.h>
 #include"OpenglData/VertexArray/VertexArray.h"
 
-#include<vector>
 
 namespace SpriteRenderer {
 	class ShaderProgram;

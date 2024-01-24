@@ -1,8 +1,7 @@
 #pragma once
+#include"Rendererpch.h"
 #include"Transform/Transoform.h"
 #include"Sprite/Sprite.h"
-#include<string>
-
 
 //Can be named scene object
 namespace SpriteRenderer {

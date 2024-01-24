@@ -1,9 +1,8 @@
 #pragma once
+#include"Rendererpch.h"
 #include"Transform/Transoform.h"
 #include"Sprite/Sprite.h"
 #include"Script/Script.h"
-#include<string>
-#include<vector>
 #include"../../Core/Global.h"
 
 

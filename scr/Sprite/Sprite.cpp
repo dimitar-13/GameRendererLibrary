@@ -1,9 +1,8 @@
+#include"Rendererpch.h"
 #include "Sprite.h"
 #include<gl/glew.h>
-#include<iostream>
 #include"../../Debuging/OpenglDebug.h"
 #include"../../../Core/SpriteData.h"
-#include<vector>
 SpriteRenderer::Sprite::Sprite()
 {
 	this->Color = glm::vec3(1);
