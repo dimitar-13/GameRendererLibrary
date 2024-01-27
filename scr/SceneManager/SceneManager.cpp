@@ -1,8 +1,10 @@
 #include"Rendererpch.h"
 #include "SceneManager.h"
 #include"../../Core/Global.h"
+#include"GameObject/GameObject.h"
 #include"Input/Input.h"
 #include"Log/Log.h"
+#include"Script/Script.h"
 void SpriteRenderer::SceneManager::Init()
 {
 	Renderer::Init();
@@ -10,55 +12,44 @@ void SpriteRenderer::SceneManager::Init()
 void SpriteRenderer::SceneManager::Start()
 {
 	RENDER_LOG_MESSAGE_INFO("Render loop was started.");
-	for (size_t i = 0; i < instance.sceneObjects.size(); i++)
+	
+
+	for (auto& entry : instance.scripts)
 	{
-		for (rsize_t y = 0; y < instance.sceneObjects[i]->attachedScripts.size(); y++)
-		{
-			instance.sceneObjects[i]->attachedScripts[y]->AttachValuesFromGameObject(*instance.sceneObjects[i]);
-			instance.sceneObjects[i]->attachedScripts[y]->OnStart();
-			instance.sceneObjects[i]->attachedScripts[y]->DetachValuesFromGameObject();
-		}
+		for (size_t y = 0; y < entry.second.size(); y++)
+			entry.second[y]->BindScript(entry.first);
 	}
 	instance.PipelineLoop();
 }
 
 void SpriteRenderer::SceneManager::Update()
 {
-	for (size_t i = 0; i < this->sceneObjects.size(); i++)
+	UpdateScripts();
+}
+
+void SpriteRenderer::SceneManager::UpdateTransform()
+{
+
+}
+
+void SpriteRenderer::SceneManager::UpdateScripts()
+{
+	for (auto& entry : instance.scripts)
 	{
-		for (rsize_t y = 0; y < sceneObjects[i]->attachedScripts.size(); y++)
-		{
-		sceneObjects[i]->attachedScripts[y]->AttachValuesFromGameObject(*sceneObjects[i]);
-		sceneObjects[i]->attachedScripts[y]->OnUpdate();
-		sceneObjects[i]->attachedScripts[y]->DetachValuesFromGameObject();
-		}
+		for (size_t y = 0; y < entry.second.size(); y++)
+			entry.second[y]->OnUpdate();
 	}
 }
 
 void SpriteRenderer::SceneManager::Draw(const ShaderProgram& shader)
 {
-	//ShaderProgram shader = ShaderProgram(VertexShader, FragmentShader);
-
-	for (size_t i = 0; i < this->sceneObjects.size(); i++)
+	for (auto& entry :this->sprites)
 	{
-		if (this->sceneObjects[i]->sprite == 0)
-			continue;
-
 		shader.UseProgram();
-		shader.SetUniform4x4Matrix("ModelMatrix", this->sceneObjects[i]->transform->GetModelMatrix());
+		shader.SetUniform4x4Matrix("ModelMatrix", this->transforms[entry.first]->GetModelMatrix());
 		shader.SetUniform4x4Matrix("ProjectionMatrix", *Global::projection);
-		Texture2D* texture = this->sceneObjects[i]->sprite->GetSpriteTexture();
-		if (texture != NULL)
-		{
-			glActiveTexture(0);
-			texture->BindTexture();
-			shader.SetUniformInt("samplerTexture", 0);
-		}
-		//shader.SetUniform3FloatVector("uColor", this->sceneObjects[i]->sprite->GetSpriteColor());
-
-		Renderer::ArrayDraw(this->sceneObjects[i]->sprite->GetVertexArray());
+		Renderer::ArrayDraw(this->sprites[entry.first]->GetVertexArray());
 	}
-
 }
 
 void SpriteRenderer::SceneManager::PipelineLoop()
@@ -91,4 +82,17 @@ void SpriteRenderer::SceneManager::PipelineLoop()
 			frameCounter += 1;
 		}	
 	}
+}
+
+void SpriteRenderer::SceneManager::GetGameObjectID(GameObject& gameobj)
+{
+	uint32_t result =  SceneManager::instance.idItterator;
+	gameobj.objectID = result;
+	instance.sceneObjects[result] = &gameobj;
+	SceneManager::instance.idItterator += 1;
+}
+
+void SpriteRenderer::SceneManager::Terminate()
+{
+	//TODO:Clear memory;
 }

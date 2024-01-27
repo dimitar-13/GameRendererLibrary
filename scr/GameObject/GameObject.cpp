@@ -1,14 +1,16 @@
 #include"Rendererpch.h"
 #include "GameObject.h"
-SpriteRenderer::GameObject::GameObject(std::string objectName, Sprite* sprite)
+#include"SceneManager/SceneManager.h"
+SpriteRenderer::GameObject::GameObject(std::string objectName)
 {
+	SceneManager::GetGameObjectID(*this);
 	this->transform = new Transform();
-	this->sprite = sprite;
+	SceneManager::RegisterComponent<Transform>(*this->transform, this->objectID);
+
 	this->name = objectName;
 }
 
 SpriteRenderer::GameObject::~GameObject()
 {
 	delete(this->transform);
-	delete(this->sprite);
 }

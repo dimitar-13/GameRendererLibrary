@@ -61,6 +61,7 @@ namespace SpriteRenderer {
        glfwDestroyWindow(Global::winContext);
        glfwTerminate();
        Renderer::DestroyShader();
+       SceneManager::Terminate();
        RENDER_LOG_MESSAGE_INFO("Renderer was succsessfully terminated.");
     }
 }

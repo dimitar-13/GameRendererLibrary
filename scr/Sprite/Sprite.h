@@ -22,11 +22,14 @@ namespace SpriteRenderer {
 		Sprite();
 		Sprite(std::string& texturePath);
 		~Sprite();
+
 		void Draw(const ShaderProgram& shader);
+
 		const VertexArray& GetVertexArray() { return *this->vertexArray; }
 		const glm::vec3 GetSpriteColor() { return this->Color; }
 		glm::vec3 SetSpriteColor(glm::vec3 color) { return this->Color = color; }
 		Texture2D* GetSpriteTexture()const { return this->texture; }
+		long int gameObjID =-1;
 
 	private:
 		std::vector<Vertex> verts;

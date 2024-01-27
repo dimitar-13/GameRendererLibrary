@@ -24,7 +24,6 @@ namespace SpriteRenderer {
 		glm::vec3 t_Rotate;
 
 		glm::vec3 t_Scale;
-
 	private:
 		glm::mat4 modelMatrix;
 	};

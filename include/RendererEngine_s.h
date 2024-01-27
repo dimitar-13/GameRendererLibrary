@@ -21,6 +21,7 @@
 //Game object
 #include"GameObject/GameObject.h"
 #include"Transform/Transoform.h"
+#include"Sprite/Sprite.h"
 
 //Sprites and textures
 #include"Sprite/Sprite.h"
