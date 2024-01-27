@@ -149,14 +149,14 @@ namespace SpriteRenderer
 	 class InputManager {
 	 public:
 		 /// <summary>
-		 /// Checks to see if this key is currently beeing pressed down.
-		 /// <returns>Returns true if its pressed and false if its not.</returns>
-		 /// </summary>
-		 static bool IsButtonPressed(KeyCodeEnum key) { return GetInstance().isKeyPressed(key); }
-		 /// <summary>
 		 /// Checks to see if the key is pressed on this frame only.
 		 /// </summary>
 		 /// <returns>Returns true if its pressed or held and false if its not.</returns>
+		 static bool IsButtonPressed(KeyCodeEnum key) { return GetInstance().isKeyPressed(key); }
+		 /// <summary>
+		 /// Checks to see if this key is currently beeing pressed down.
+		 /// <returns>Returns true if its pressed and false if its not.</returns>
+		 /// </summary>
 		 static bool IsButtonDown(KeyCodeEnum key) { return GetInstance().isKeyDown(key); }
 		 /// <summary>
 		 /// Checks to see if this mouse key is currently beeing pressed down.
