@@ -17,6 +17,7 @@
 //Scripts
 #include"Script/Script.h"
 #include"ScriptableObject/ScriptableObject.h"
+#include"DeltaTime.h"
 
 //Game object
 #include"GameObject/GameObject.h"

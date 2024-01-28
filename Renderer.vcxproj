@@ -215,6 +215,7 @@
     <ClInclude Include="scr\Shader\ShadersContianer\Shaders.h" />
     <ClInclude Include="scr\Sprite\Sprite.h" />
     <ClInclude Include="scr\TextureClass\Texture2D\Texture2D.h" />
+    <ClInclude Include="scr\DeltaTime.h" />
     <ClInclude Include="scr\Transform\Transoform.h" />
     <ClInclude Include="scr\WindowFunctions\WindowFunctions.h" />
   </ItemGroup>

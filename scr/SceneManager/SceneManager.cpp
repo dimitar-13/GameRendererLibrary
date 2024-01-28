@@ -58,11 +58,15 @@ void SpriteRenderer::SceneManager::PipelineLoop()
 
 	uint32_t frameCounter = 0;
 	double previousTime = glfwGetTime();
+	double previousFrameTime = 0;
 	while (!glfwWindowShouldClose(Global::winContext))
 	{
-		
+		float time = (float)glfwGetTime();
+		delta = time - previousFrameTime;
+		previousFrameTime = time;
+
 		Renderer::Clear();
-		glClearColor(1, 0, 0, 0);
+		glClearColor(0, 0, 1, 0);
 
 		Update();
 		
@@ -70,8 +74,8 @@ void SpriteRenderer::SceneManager::PipelineLoop()
 
 		glfwSwapBuffers(Global::winContext);
 		glfwPollEvents();
-	
-		if (glfwGetTime() - previousTime >= 1.0f)
+		
+		if (glfwGetTime() - previousTime >= 1.0)
 		{
 			previousTime = glfwGetTime();
 			RENDER_LOG_MESSAGE_INFO("FPS:{0}", frameCounter);
