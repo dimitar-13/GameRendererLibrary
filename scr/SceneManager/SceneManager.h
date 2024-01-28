@@ -1,5 +1,6 @@
 #pragma once
 #include"Rendererpch.h"
+#include"DeltaTime.h"
 #include "Transform/Transoform.h"
 #include "Sprite/Sprite.h"
 #include"Renderer/Renderer.h"
@@ -31,7 +32,8 @@ namespace SpriteRenderer {
 		static void GetGameObjectID(GameObject& gameobject);
 
 		static void Terminate();
-		
+	public:
+		inline static DeltaTime delta;
 	private:
 		std::unordered_map <long long, GameObject*> sceneObjects;
 		std::unordered_map <long long, Transform*> transforms;
