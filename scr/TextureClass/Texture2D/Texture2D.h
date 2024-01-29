@@ -25,8 +25,6 @@ namespace SpriteRenderer {
 		friend class SceneManager;
 		void BindTexture()const { glBindTexture(GL_TEXTURE_2D, this->textureHandle); }
 		void UnBindTexture()const { glBindTexture(GL_TEXTURE_2D, 0); }
-
-
 	private:
 		int width;
 		int height;
