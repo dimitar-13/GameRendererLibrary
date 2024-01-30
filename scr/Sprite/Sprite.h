@@ -20,8 +20,6 @@ namespace SpriteRenderer {
 		Sprite();
 		Sprite(std::string& texturePath);
 		~Sprite();
-		void Draw(const ShaderProgram& shader);
-		long int gameObjID =-1;
 	public:
 		const VertexArray& GetVertexArray() { return *this->vertexArray; }
 		const glm::vec3 GetSpriteColor() { return this->Color; }

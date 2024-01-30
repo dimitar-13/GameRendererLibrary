@@ -3,7 +3,6 @@
 #include"../../Core/Global.h"
 #include"GameObject/GameObject.h"
 #include"Input/Input.h"
-#include"Log/Log.h"
 #include"ScriptableObject/ScriptableObject.h"
 #include"Camera/Camera.h"
 void SpriteRenderer::SceneManager::Init()

@@ -19,12 +19,3 @@ SpriteRenderer::Sprite::~Sprite()
 	delete(this->texture);
 	delete(this->vertexArray);
 }
-
-void SpriteRenderer::Sprite::Draw(const ShaderProgram& shader)
-{
-	shader.UseProgram();
-	this->vertexArray->BindArray();
-	int countTest = this->vertexArray->GetVertexCount();
-	glDrawArrays(GL_TRIANGLES, 0, this->vertexArray->GetVertexCount());
-	this->vertexArray->UnbindArray();
-}

@@ -6,6 +6,7 @@
 #include <type_traits>
 #include"Renderer/Renderer.h"
 #include"Camera/Camera.h"
+#include"Log/Log.h"
 namespace SpriteRenderer {
 	class ScriptableObject;
 	class GameObject;
@@ -14,12 +15,12 @@ namespace SpriteRenderer {
 	public:
 		inline static DeltaTime delta;
 	public:
-		template<typename T>
+		template<typename T,typename = std::enable_if_t<!std::is_void_v<T>>>
 		static void RegisterComponent(long long objectID) { getInstance().registerComponent<T>(objectID); }
-		template<typename T>
+		template<typename T, typename = std::enable_if_t<!std::is_void_v<T>>>
 		static void RemoveComponent(long long objectID) { getInstance().removeComponent<T>(objectID); }
-		template<typename T>
-		static T& GetGameObjectComponent(long long ID) { return instance.getGameObjectComponent<T>(ID); }
+		template<typename T, typename = std::enable_if_t<!std::is_void_v<T>>>
+		static T* GetGameObjectComponent(long long ID) { return instance.getGameObjectComponent<T>(ID); }
 	public:
 		static void Init();
 		static void Start();
@@ -36,6 +37,7 @@ namespace SpriteRenderer {
 		std::unordered_map <long long, OrthographicCamera*> cameras;
 		std::unordered_map <long long, Sprite*> sprites;
 		std::unordered_map <long long, std::vector<std::shared_ptr<ScriptableObject>>> scripts;
+
 		static SceneManager& getInstance() { return instance; }
 		static SceneManager instance;
 		OrthographicCamera* activeCamera;
@@ -45,46 +47,56 @@ namespace SpriteRenderer {
 		template<typename T>
 		void registerComponent(long long objectID);
 		template<typename T>
-		T& getGameObjectComponent(long long ID);
+		T* getGameObjectComponent(long long ID);
 		template<typename T>
 		void removeComponent(long long ID);
+		template<typename T>
+		std::unordered_map <long long, T*>* getComponentHash();
 	};
 	inline SceneManager SceneManager::instance;
 	template<typename T>
-	inline T& SceneManager::getGameObjectComponent(long long ID)
+	inline T* SceneManager::getGameObjectComponent(long long ID)
 	{
-		if  constexpr (std::is_same<T, SpriteRenderer::Sprite>::value && std::is_convertible<T, SpriteRenderer::Sprite>::value)
+		if constexpr (!std::is_convertible<T, ScriptableObject>::value)
 		{
-			return *sprites.at(ID);
+			std::unordered_map <long long, T*>* hash = getComponentHash<T>();
+			if (!hash)
+			{
+				RENDER_LOG_MESSAGE_ERROR("Component of type'{0}' doesnt exist.", typeid(T).name());
+			}
+			else
+			{
+				if (hash->find(ID) != hash->end())
+					return hash->at(ID);
+				else
+				{
+					RENDER_LOG_MESSAGE_WARNING("Cant find component.");
+					return nullptr;
+				}				
+			}
 		}
-		else if  constexpr (std::is_same<T, Transform>::value && std::is_convertible<T, Transform>::value)
+		else if  constexpr (std::is_convertible<T, ScriptableObject>::value)
 		{
-			return *transforms.at(ID);
+			return dynamic_cast<T*>(scripts.at(ID)[0].get());
 		}
-		else if  constexpr (std::is_same<T, OrthographicCamera>::value && std::is_convertible<T, OrthographicCamera>::value)
-		{
-			return *cameras.at(ID);
-		}
-		else if  constexpr ( std::is_convertible<T, ScriptableObject>::value)
-		{
-			return *std::dynamic_pointer_cast<T>(scripts.at(ID)[0]);
-		}
-		// TODO: insert return statement here
 	}
 	template<typename T>
 	inline void SceneManager::registerComponent(long long objectID)
 	{
-		if  constexpr  (std::is_same<T, SpriteRenderer::Sprite>::value && std::is_convertible<T, SpriteRenderer::Sprite>::value)
+		if constexpr (!std::is_convertible<T, ScriptableObject>::value)
 		{
-			 sprites[objectID] = new T();
-		}
-		else if  constexpr  (std::is_same<T, Transform>::value && std::is_convertible<T, Transform>::value)
-		{
-			 transforms[objectID] = new T();
-		}	
-		else if  constexpr (std::is_same<T, OrthographicCamera>::value && std::is_convertible<T, OrthographicCamera>::value)
-		{
-			cameras[objectID] = new T();
+			std::unordered_map <long long, T*>* hash = getComponentHash<T>();
+			if (!hash)
+			{
+				RENDER_LOG_MESSAGE_ERROR("Component of type'{0}' doesnt exist.", typeid(T).name());
+			}
+			else
+			{
+				if (hash->find(objectID) == hash->end())
+					(*hash)[objectID] = new T();
+				else
+					RENDER_LOG_MESSAGE_ERROR("Game object cant have component of type:{0} more then once.", typeid(T).name());
+			}
 		}
 		else if  constexpr (std::is_convertible<T, ScriptableObject>::value)
 		{
@@ -95,28 +107,50 @@ namespace SpriteRenderer {
 	template<typename T>
 	inline void SceneManager::removeComponent(long long ID)
 	{
-		if  constexpr (std::is_same<T, SpriteRenderer::Sprite>::value && std::is_convertible<T, SpriteRenderer::Sprite>::value)
+		if constexpr (!std::is_convertible<T, ScriptableObject>::value)
 		{
-			if (sprites.find(ID) != sprites.end())
+			std::unordered_map <long long, T*>* hash = getComponentHash<T>();
+			if (!hash)
 			{
-				sprites.erase(ID);
+				RENDER_LOG_MESSAGE_ERROR("Component of type'{0}' doesnt exist.", typeid(T).name());
 			}
+			else
+			{
+				if (hash->find(ID) != hash->end())
+					hash->erase(ID);
+				else
+					RENDER_LOG_MESSAGE_ERROR("Game object doesnt have component of type '{0}'.", typeid(T).name());
+			}
+		}
+		else if  constexpr (std::is_convertible<T, ScriptableObject>::value)
+		{
+			 //*std::dynamic_pointer_cast<T>(scripts.erase(ID)[0];
+		}
+	}
+	template<typename T>
+	inline std::unordered_map <long long, T*>* SceneManager::getComponentHash()
+	{
+		if  constexpr (std::is_same<T, Sprite>::value && std::is_convertible<T, Sprite>::value)
+		{
+			return &this->sprites;
 		}
 		else if  constexpr (std::is_same<T, Transform>::value && std::is_convertible<T, Transform>::value)
 		{
-			if (transforms.find(ID) != transforms.end())
-			{
-				transforms.erase(ID);
-			}
+			return &this->transforms;
 		}
 		else if  constexpr (std::is_same<T, OrthographicCamera>::value && std::is_convertible<T, OrthographicCamera>::value)
 		{
-			if (cameras.find(ID) != cameras.end())
-			{
-				cameras.erase(ID);
-			}
+			return &this->cameras;
 		}
-
+		else if  constexpr (std::is_convertible<T, ScriptableObject>::value)
+		{
+			return &this->scripts;
+		}
+		else
+		{
+			RENDER_LOG_MESSAGE_ERROR("No such component of type:{0}.", typeid(T).name());
+			return nullptr;
+		}
 	}
 	
 }

@@ -26,15 +26,17 @@ namespace SpriteRenderer
 		~GameObject();
 	public:
 		template <class T>
-		T& AttachComponent();
+		T* AttachComponent();
 		template <class T>
 		void RemoveComponent();
+		template <class T>
+		T* GetComponent();
 	private:
 		friend class SceneManager;
 		long long objectID;	
 	};
 	template<class T>
-	inline T& SpriteRenderer::GameObject::AttachComponent()
+	inline T* SpriteRenderer::GameObject::AttachComponent()
 	{
 		SceneManager::RegisterComponent<T>(this->objectID);
 		return SceneManager::GetGameObjectComponent<T>(this->objectID);
@@ -42,5 +44,10 @@ namespace SpriteRenderer
 	template <class T>
 	inline void SpriteRenderer::GameObject::RemoveComponent() {
 		SceneManager::RemoveComponent<T>(this->objectID);
+	}
+	template <class T>
+	inline T* SpriteRenderer::GameObject::GetComponent()
+	{
+		return SceneManager::GetGameObjectComponent<T>(this->objectID);
 	}
 }

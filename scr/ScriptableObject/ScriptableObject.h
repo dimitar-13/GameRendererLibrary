@@ -13,12 +13,11 @@ namespace SpriteRenderer {
 		virtual void OnStart() { };
 		virtual void OnDelete() { };
 		template<typename T>
-		T& GetComponent() { return SceneManager::GetGameObjectComponent<T>(this->gameObjectID); }
+		T* GetComponent() { return SceneManager::GetGameObjectComponent<T>(this->gameObjectID); }
 		GameObject* gameObject;
 		void BindScriptToObj(long long ID) { this->gameObjectID = ID; gameObject = &SceneManager::GetGameObjectByID(gameObjectID); }
 	private:
 		friend class SceneManager;
 		long long gameObjectID = -1;
-
 	};
 }
