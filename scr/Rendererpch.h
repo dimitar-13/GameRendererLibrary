@@ -13,6 +13,8 @@
 #include<string>
 #include<unordered_map>
 #include<unordered_set>
+#include<variant>
+#include<memory>
 
 #define  FMT_HEADER_ONLY
 #include <fmt/core.h>

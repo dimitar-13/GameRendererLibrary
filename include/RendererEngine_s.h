@@ -10,12 +10,12 @@
 
 //Renderer Libs
 #include"EntryPoint.h"
+#include"../Core/Global.h"
+#include"Camera/Camera.h"
 #include"SceneManager/SceneManager.h"
 #include"Renderer/Renderer.h"
-#include"../Core/Global.h"
 
 //Scripts
-#include"Script/Script.h"
 #include"ScriptableObject/ScriptableObject.h"
 #include"DeltaTime.h"
 

@@ -2,7 +2,7 @@
 #include"Rendererpch.h"
 #include"../../Core/Global.h"
 #include"SceneManager/SceneManager.h"
-#include"Script/Script.h"
+#include"ScriptableObject/ScriptableObject.h"
 
 //TODO: Add an GameObject idenifier like an ID 
 //Instead of iterating throu each game object in the rendering stage we can pack every component in one continus array of bytes and each component will have the id of the gameobj
@@ -17,28 +17,37 @@
 
 namespace SpriteRenderer
 {
-	class Transform;
 	class GameObject
 	{
 	public:
+		std::string name;
+	public:
 		GameObject(std::string objectName);
 		~GameObject();
-		std::string name;
+	public:
 		template <class T>
-		void AttachComponent(T& component);
+		T* AttachComponent();
+		template <class T>
+		void RemoveComponent();
+		template <class T>
+		T* GetComponent();
 	private:
 		friend class SceneManager;
-		long long objectID;
-		Transform* transform;
+		long long objectID;	
 	};
 	template<class T>
-	inline void SpriteRenderer::GameObject::AttachComponent(T& component)
+	inline T* SpriteRenderer::GameObject::AttachComponent()
 	{
-		SceneManager::RegisterComponent(component, this->objectID);
+		SceneManager::RegisterComponent<T>(this->objectID);
+		return SceneManager::GetGameObjectComponent<T>(this->objectID);
 	}
-	
-	template<> inline void SpriteRenderer::GameObject::AttachComponent<Script>(Script& component)
+	template <class T>
+	inline void SpriteRenderer::GameObject::RemoveComponent() {
+		SceneManager::RemoveComponent<T>(this->objectID);
+	}
+	template <class T>
+	inline T* SpriteRenderer::GameObject::GetComponent()
 	{
-		SceneManager::RegisterComponent(component, this->objectID);
+		return SceneManager::GetGameObjectComponent<T>(this->objectID);
 	}
 }

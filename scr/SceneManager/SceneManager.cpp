@@ -3,8 +3,8 @@
 #include"../../Core/Global.h"
 #include"GameObject/GameObject.h"
 #include"Input/Input.h"
-#include"Log/Log.h"
-#include"Script/Script.h"
+#include"ScriptableObject/ScriptableObject.h"
+#include"Camera/Camera.h"
 void SpriteRenderer::SceneManager::Init()
 {
 	Renderer::Init();
@@ -13,11 +13,15 @@ void SpriteRenderer::SceneManager::Start()
 {
 	RENDER_LOG_MESSAGE_INFO("Render loop was started.");
 	
+	//Instanciate scripts
 
 	for (auto& entry : instance.scripts)
 	{
 		for (size_t y = 0; y < entry.second.size(); y++)
-			entry.second[y]->BindScript(entry.first);
+		{		
+			entry.second[y]->BindScriptToObj(entry.first);
+			entry.second[y]->OnStart();
+		}
 	}
 	instance.PipelineLoop();
 }
@@ -26,12 +30,6 @@ void SpriteRenderer::SceneManager::Update()
 {
 	UpdateScripts();
 }
-
-void SpriteRenderer::SceneManager::UpdateTransform()
-{
-
-}
-
 void SpriteRenderer::SceneManager::UpdateScripts()
 {
 	for (auto& entry : instance.scripts)
@@ -47,7 +45,10 @@ void SpriteRenderer::SceneManager::Draw(const ShaderProgram& shader)
 	{
 		shader.UseProgram();
 		shader.SetUniform4x4Matrix("ModelMatrix", this->transforms[entry.first]->GetModelMatrix());
-		shader.SetUniform4x4Matrix("ProjectionMatrix", *Global::projection);
+		shader.SetUniform4x4Matrix("ViewProjectionMatrix", this->activeCamera->GetViewProjectionMatrix());
+		shader.SetUniformInt("samplerTexture", 1);
+		glActiveTexture(GL_TEXTURE1);
+		entry.second->GetSpriteTexture()->BindTexture();
 		Renderer::ArrayDraw(this->sprites[entry.first]->GetVertexArray());
 	}
 }

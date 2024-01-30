@@ -171,6 +171,7 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="scr\Camera\Camera.cpp" />
     <ClCompile Include="scr\Rendererpch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
@@ -186,7 +187,6 @@
     <ClCompile Include="scr\Renderer\Renderer.cpp" />
     <ClCompile Include="scr\SceneManager\SceneManager.cpp" />
     <ClCompile Include="scr\ScriptableObject\ScriptableObject.cpp" />
-    <ClCompile Include="scr\Script\Script.cpp" />
     <ClCompile Include="scr\Shader\ShaderProgram\ShaderProgram.cpp" />
     <ClCompile Include="scr\Sprite\Sprite.cpp" />
     <ClCompile Include="scr\Input\Input.cpp" />
@@ -195,6 +195,7 @@
     <ClCompile Include="scr\WindowFunctions\WindowFunctions.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="scr\Camera\Camera.h" />
     <ClInclude Include="Core\Global.h" />
     <ClInclude Include="Core\SpriteData.h" />
     <ClInclude Include="Debuging\OpenglDebug.h" />
@@ -209,8 +210,6 @@
     <ClInclude Include="scr\Renderer\Renderer.h" />
     <ClInclude Include="scr\SceneManager\SceneManager.h" />
     <ClInclude Include="scr\ScriptableObject\ScriptableObject.h" />
-    <ClInclude Include="scr\Script\Script.h" />
-    <ClInclude Include="scr\Script\ScriptManager\ScriptManager.h" />
     <ClInclude Include="scr\Shader\ShaderProgram\ShaderProgram.h" />
     <ClInclude Include="scr\Shader\ShadersContianer\Shaders.h" />
     <ClInclude Include="scr\Sprite\Sprite.h" />

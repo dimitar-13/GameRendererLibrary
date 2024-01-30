@@ -64,13 +64,13 @@ void SpriteRenderer::Transform::Scale(float amount, Axies axie_to_scale_along)
 	switch (axie_to_scale_along)
 	{
 	case AXIE_X:
-		this->t_Scale = glm::vec3(amount, t_Scale.y, t_Scale.z);
+		this->t_Scale = glm::vec3(t_Scale.x+amount, t_Scale.y, t_Scale.z);
 		break;
 	case AXIE_Y:
-		this->t_Scale = glm::vec3(t_Scale.x, amount, t_Scale.z);
+		this->t_Scale = glm::vec3(t_Scale.x, t_Scale.y+amount, t_Scale.z);
 		break;
 	case AXIE_Z:
-		this->t_Scale = glm::vec3(t_Scale.x, t_Scale.y, amount);
+		this->t_Scale = glm::vec3(t_Scale.x, t_Scale.y, t_Scale.z+amount);
 		break;
 	default:
 		break;
