@@ -5,6 +5,10 @@
 #include"Input/Input.h"
 #include"ScriptableObject/ScriptableObject.h"
 #include"Camera/Camera.h"
+#include"Physics/Colision/Colider.h"
+#include"Physics/Colision/ColisionDetection.h"
+#include"Physics/PhysicSimulation/PhysicWorld.h"
+
 void SpriteRenderer::SceneManager::Init()
 {
 	Renderer::Init();
@@ -29,6 +33,8 @@ void SpriteRenderer::SceneManager::Start()
 void SpriteRenderer::SceneManager::Update()
 {
 	UpdateScripts();
+	//PhysicsUpdate();
+	UpdateColisions();
 }
 void SpriteRenderer::SceneManager::UpdateScripts()
 {
@@ -36,6 +42,34 @@ void SpriteRenderer::SceneManager::UpdateScripts()
 	{
 		for (size_t y = 0; y < entry.second.size(); y++)
 			entry.second[y]->OnUpdate();
+	}
+}
+
+void SpriteRenderer::SceneManager::UpdateColisions()
+{
+	for (auto& entry : instance.coliders)
+	{
+		entry.second->UpdateTransfrom();
+	}
+
+	for (auto it1 = coliders.begin(); it1 != coliders.end();it1++)
+	{
+		for (auto it2 = std::next(it1); it2 != coliders.end(); it2++)
+		{
+			if (ColisionDetection::isColiding(*it1->second.get(),*it2->second.get()))
+			{
+				RENDER_LOG_MESSAGE_INFO("Colision");
+			}
+		}
+	}
+}
+
+void SpriteRenderer::SceneManager::PhysicsUpdate()
+{
+	for (auto& entry : instance.physicBodies)
+	{
+		//auto* transform = instance.getGameObjectComponent<Transform>(entry.first);
+		//entry.second->UpdatePhysics(delta.GetTimeInSeconds(), transform->t_Position);
 	}
 }
 
@@ -56,10 +90,11 @@ void SpriteRenderer::SceneManager::Draw(const ShaderProgram& shader)
 void SpriteRenderer::SceneManager::PipelineLoop()
 {
 	Renderer::EnableDepthTest();
-
+	PhysicWorld::SetPhysicComponenets(&this->physicBodies);
 	uint32_t frameCounter = 0;
 	double previousTime = glfwGetTime();
 	double previousFrameTime = 0;
+
 	while (!glfwWindowShouldClose(Global::winContext))
 	{
 		float time = (float)glfwGetTime();
@@ -70,7 +105,7 @@ void SpriteRenderer::SceneManager::PipelineLoop()
 		glClearColor(0, 0, 1, 0);
 
 		Update();
-		
+		PhysicWorld::UpdateWorld(delta.GetTimeInSeconds());
 		Draw(Renderer::GetShader());
 
 		glfwSwapBuffers(Global::winContext);
@@ -93,7 +128,7 @@ void SpriteRenderer::SceneManager::GetGameObjectID(GameObject& gameobj)
 {
 	uint32_t result =  SceneManager::instance.idItterator;
 	gameobj.objectID = result;
-	instance.sceneObjects[result] = &gameobj;
+	instance.sceneObjects[result] = std::make_shared< GameObject>(gameobj);
 	SceneManager::instance.idItterator += 1;
 }
 

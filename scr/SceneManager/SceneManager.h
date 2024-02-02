@@ -7,6 +7,8 @@
 #include"Renderer/Renderer.h"
 #include"Camera/Camera.h"
 #include"Log/Log.h"
+#include"Physics/Colision/Colider.h"
+#include"Physics/PhysicBody.h"
 namespace SpriteRenderer {
 	class ScriptableObject;
 	class GameObject;
@@ -28,14 +30,18 @@ namespace SpriteRenderer {
 		static void SetActiveCamera(OrthographicCamera& camera) { instance.activeCamera = &camera; }
 		void Update();
 		void UpdateScripts();
+		void UpdateColisions();
+		void PhysicsUpdate();
 		void Draw(const ShaderProgram& shader);
 		static void GetGameObjectID(GameObject& gameobject);
 		static void Terminate();
 	private:
-		std::unordered_map <long long, GameObject*> sceneObjects;
-		std::unordered_map <long long, Transform*> transforms;
-		std::unordered_map <long long, OrthographicCamera*> cameras;
-		std::unordered_map <long long, Sprite*> sprites;
+		std::unordered_map <long long, std::shared_ptr<GameObject>> sceneObjects;
+		std::unordered_map <long long, std::shared_ptr<Transform>> transforms;
+		std::unordered_map <long long, std::shared_ptr<OrthographicCamera>> cameras;
+		std::unordered_map <long long, std::shared_ptr<Sprite>> sprites;
+		std::unordered_map <long long, std::shared_ptr<Colider>> coliders;
+		std::unordered_map <long long, std::shared_ptr<PhysicBody>> physicBodies;
 		std::unordered_map <long long, std::vector<std::shared_ptr<ScriptableObject>>> scripts;
 
 		static SceneManager& getInstance() { return instance; }
@@ -51,7 +57,7 @@ namespace SpriteRenderer {
 		template<typename T>
 		void removeComponent(long long ID);
 		template<typename T>
-		std::unordered_map <long long, T*>* getComponentHash();
+		std::unordered_map <long long, std::shared_ptr<T>>* getComponentHash();
 	};
 	inline SceneManager SceneManager::instance;
 	template<typename T>
@@ -59,7 +65,7 @@ namespace SpriteRenderer {
 	{
 		if constexpr (!std::is_convertible<T, ScriptableObject>::value)
 		{
-			std::unordered_map <long long, T*>* hash = getComponentHash<T>();
+			std::unordered_map <long long, std::shared_ptr<T>>* hash = getComponentHash<T>();
 			if (!hash)
 			{
 				RENDER_LOG_MESSAGE_ERROR("Component of type'{0}' doesnt exist.", typeid(T).name());
@@ -67,7 +73,7 @@ namespace SpriteRenderer {
 			else
 			{
 				if (hash->find(ID) != hash->end())
-					return hash->at(ID);
+					return hash->at(ID).get();
 				else
 				{
 					RENDER_LOG_MESSAGE_WARNING("Cant find component.");
@@ -85,7 +91,7 @@ namespace SpriteRenderer {
 	{
 		if constexpr (!std::is_convertible<T, ScriptableObject>::value)
 		{
-			std::unordered_map <long long, T*>* hash = getComponentHash<T>();
+			std::unordered_map <long long, std::shared_ptr<T>>* hash = getComponentHash<T>();
 			if (!hash)
 			{
 				RENDER_LOG_MESSAGE_ERROR("Component of type'{0}' doesnt exist.", typeid(T).name());
@@ -93,7 +99,7 @@ namespace SpriteRenderer {
 			else
 			{
 				if (hash->find(objectID) == hash->end())
-					(*hash)[objectID] = new T();
+					(*hash)[objectID] = std::make_shared<T>();
 				else
 					RENDER_LOG_MESSAGE_ERROR("Game object cant have component of type:{0} more then once.", typeid(T).name());
 			}
@@ -103,6 +109,16 @@ namespace SpriteRenderer {
 			scripts[objectID].push_back(std::make_shared<T>());
 		}
 		//Check the type of component and then attach it
+	}
+	template<>
+	inline void SceneManager::registerComponent<Colider>(long long objectID)
+	{	
+		this->coliders[objectID] = std::make_shared< Colider>(*transforms.at(objectID).get());
+	}
+	template<>
+	inline void SceneManager::registerComponent<PhysicBody>(long long objectID)
+	{
+		this->physicBodies[objectID] = std::make_shared< PhysicBody>(&transforms.at(objectID).get()->t_Position);
 	}
 	template<typename T>
 	inline void SceneManager::removeComponent(long long ID)
@@ -128,7 +144,7 @@ namespace SpriteRenderer {
 		}
 	}
 	template<typename T>
-	inline std::unordered_map <long long, T*>* SceneManager::getComponentHash()
+	inline std::unordered_map <long long, std::shared_ptr<T>>* SceneManager::getComponentHash()
 	{
 		if  constexpr (std::is_same<T, Sprite>::value && std::is_convertible<T, Sprite>::value)
 		{
@@ -145,6 +161,14 @@ namespace SpriteRenderer {
 		else if  constexpr (std::is_convertible<T, ScriptableObject>::value)
 		{
 			return &this->scripts;
+		}
+		else if  constexpr (std::is_convertible<T, Colider>::value)
+		{
+			return &this->coliders;
+		}
+		else if  constexpr (std::is_convertible<T, PhysicBody>::value)
+		{
+			return &this->physicBodies;
 		}
 		else
 		{

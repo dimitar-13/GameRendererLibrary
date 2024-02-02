@@ -21,8 +21,11 @@
 
 //Game object
 #include"GameObject/GameObject.h"
+
+//Components
 #include"Transform/Transoform.h"
 #include"Sprite/Sprite.h"
+#include "Physics/PhysicBody.h"
 
 //Sprites and textures
 #include"Sprite/Sprite.h"

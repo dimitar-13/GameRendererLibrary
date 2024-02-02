@@ -5,7 +5,7 @@
 SpriteRenderer::Sprite::Sprite()
 {
 	this->Color = glm::vec3(1);
-	this->vertexArray = new VertexArray(SpriteVertexData::GenQuadVerts(), 6);
+	this->vertexArray = new VertexArray(GenQuadVerts(), 6);
 
 }
 
