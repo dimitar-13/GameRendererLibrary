@@ -5,13 +5,13 @@ void SpriteRenderer::ColisionSolver::SolveForColiders()
 {
 	for (Colision& colision:colisions)
 	{
-		if (colision.colider1.isTrigger || colision.colider2.isTrigger)
-		{
-			//Call trigger event
-		}
-		else
-		{
+		//if (colision.colider1.isTrigger || colision.colider2.isTrigger)
+		//{
+		//	//Call trigger event
+		//}
+		//else
+		//{
 
-		}
+		//}
 	}
 }

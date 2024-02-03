@@ -120,6 +120,11 @@ namespace SpriteRenderer {
 	{
 		this->physicBodies[objectID] = std::make_shared< PhysicBody>(&transforms.at(objectID).get()->t_Position);
 	}
+	template<>
+	inline void SceneManager::removeComponent< PhysicBody>(long long ID)
+	{
+		this->physicBodies.erase(ID);
+	}
 	template<typename T>
 	inline void SceneManager::removeComponent(long long ID)
 	{

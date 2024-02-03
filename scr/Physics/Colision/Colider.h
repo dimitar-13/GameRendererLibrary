@@ -6,6 +6,9 @@ namespace SpriteRenderer {
 	{
 		glm::vec2 originPosition;
 		std::vector<glm::vec2> points;
+		glm::vec2 max;
+		glm::vec2 min;
+
 		float width,height;
 		bool isTrigger = false;
 		Transform * transform;
@@ -14,6 +17,7 @@ namespace SpriteRenderer {
 	};
 	struct Colision
 	{
-		Colider& colider1, colider2;
+		Colider  *colider1, *colider2;
+		glm::vec2 ColisionNormal;
 	};
 }

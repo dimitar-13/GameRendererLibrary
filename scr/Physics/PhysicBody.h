@@ -5,7 +5,7 @@ namespace SpriteRenderer
 	class PhysicBody
 	{
 	public:
-		PhysicBody(glm::vec3* transformPos) { position = transformPos; };
+		PhysicBody(glm::vec3* transformPos) { position = transformPos; }
 		const  glm::vec3 GRAVITY_FORCE = glm::vec3(0,-9.81f,0);
 		void AddForce(glm::vec3 force) { externalForce += force; }
 		void UpdatePhysics(float delta);

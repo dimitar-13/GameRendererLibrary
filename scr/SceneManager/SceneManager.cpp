@@ -18,7 +18,8 @@ void SpriteRenderer::SceneManager::Start()
 	RENDER_LOG_MESSAGE_INFO("Render loop was started.");
 	
 	//Instanciate scripts
-
+	PhysicWorld::SetPhysicComponenets(&instance.physicBodies);
+	PhysicWorld::SetColiderComponents(&instance.coliders);
 	for (auto& entry : instance.scripts)
 	{
 		for (size_t y = 0; y < entry.second.size(); y++)
@@ -33,8 +34,9 @@ void SpriteRenderer::SceneManager::Start()
 void SpriteRenderer::SceneManager::Update()
 {
 	UpdateScripts();
+	PhysicWorld::ResolveColisions();
 	//PhysicsUpdate();
-	UpdateColisions();
+	//UpdateColisions();
 }
 void SpriteRenderer::SceneManager::UpdateScripts()
 {
@@ -90,7 +92,6 @@ void SpriteRenderer::SceneManager::Draw(const ShaderProgram& shader)
 void SpriteRenderer::SceneManager::PipelineLoop()
 {
 	Renderer::EnableDepthTest();
-	PhysicWorld::SetPhysicComponenets(&this->physicBodies);
 	uint32_t frameCounter = 0;
 	double previousTime = glfwGetTime();
 	double previousFrameTime = 0;
