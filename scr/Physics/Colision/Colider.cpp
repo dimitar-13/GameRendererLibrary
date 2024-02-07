@@ -14,6 +14,12 @@ SpriteRenderer::Colider::Colider(Transform& objectTransform)
 
 	//this->t = objectTransform.t_Scale;
 	this->transform = &objectTransform;
+	points = {
+		glm::vec2(min.x,max.y),
+		glm::vec2(min.x,min.y),
+		glm::vec2(max.x,min.y),
+		glm::vec2(max.x,max.y),
+	};
 }
 
 void SpriteRenderer::Colider::UpdateTransfrom()
@@ -26,5 +32,11 @@ void SpriteRenderer::Colider::UpdateTransfrom()
 	this->max.y = this->originPosition.y + (this->height / 2);
 	this->min.x = this->originPosition.x - (this->width / 2);
 	this->min.y = this->originPosition.y - (this->height / 2);
+	points = {
+		glm::vec2(min.x,max.y),
+		glm::vec2(min.x,min.y),
+		glm::vec2(max.x,min.y),
+		glm::vec2(max.x,max.y),
+	};
 	//this->scale = this->transform->t_Scale;
 }

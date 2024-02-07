@@ -19,5 +19,22 @@ namespace SpriteRenderer {
 	{
 		Colider  *colider1, *colider2;
 		glm::vec2 ColisionNormal;
+
+		void GetColisionNormal()
+		{
+			glm::vec2 pointOfColision(0);
+
+			for (const auto& point : colider1->points)
+			{
+				if (point.x == colider2->max.x || point.x == colider2->min.x ||
+					point.y == colider2->max.y || point.y == colider2->min.y)
+				{
+					pointOfColision = point;
+					break;
+				}
+			}
+			ColisionNormal = glm::normalize(colider1->originPosition - pointOfColision);
+		}
+
 	};
 }

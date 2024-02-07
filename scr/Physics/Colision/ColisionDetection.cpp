@@ -4,7 +4,8 @@
 bool SpriteRenderer::ColisionDetection::isColiding(const Colider& colider1, const Colider& colider2) //using AABB
 {
 	bool colisionX = (colider1.max.x >=  colider2.min.x)&&
-				     (colider2.max.x >=  colider1.min.x);										 															 
+				     (colider2.max.x >=  colider1.min.x);
+
 	bool colisionY = (colider1.max.y >=  colider2.min.y)&&
 					 (colider2.max.y >=  colider1.min.y);
 

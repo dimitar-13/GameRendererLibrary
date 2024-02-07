@@ -171,7 +171,7 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="ColisionSolver.cpp" />
+    <ClCompile Include="scr\Physics\Colision\ColisionSolver.cpp" />
     <ClCompile Include="scr\Physics\PhysicSimulation\PhysicWorld.cpp" />
     <ClCompile Include="scr\Metric\MetricHelper.cpp" />
     <ClCompile Include="scr\Physics\Colision\Colider.cpp" />
@@ -201,7 +201,7 @@
     <ClCompile Include="scr\WindowFunctions\WindowFunctions.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ColisionSolver.h" />
+    <ClInclude Include="scr\Physics\Colision\ColisionSolver.h" />
     <ClInclude Include="scr\Physics\PhysicSimulation\PhysicWorld.h" />
     <ClInclude Include="scr\Metric\MetricHelper.h" />
     <ClInclude Include="scr\Physics\Colision\ColisionDetection.h" />

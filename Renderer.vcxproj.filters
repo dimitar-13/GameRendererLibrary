@@ -75,7 +75,7 @@
     <ClCompile Include="scr\Physics\PhysicSimulation\PhysicWorld.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ColisionSolver.cpp">
+    <ClCompile Include="scr\Physics\Colision\ColisionSolver.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -161,7 +161,7 @@
     <ClInclude Include="scr\Physics\PhysicSimulation\PhysicWorld.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ColisionSolver.h">
+    <ClInclude Include="scr\Physics\Colision\ColisionSolver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

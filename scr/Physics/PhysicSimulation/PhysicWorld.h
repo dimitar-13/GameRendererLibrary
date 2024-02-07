@@ -3,6 +3,7 @@
 #include"Physics/PhysicBody.h"
 #include"Physics/Colision/Colider.h"
 #include"Physics/Colision/ColisionDetection.h"
+#include"Physics/Colision/ColisionSolver.h"
 namespace SpriteRenderer
 {
 	class PhysicWorld
@@ -19,7 +20,7 @@ namespace SpriteRenderer
 		std::unordered_map <long long, std::shared_ptr<PhysicBody>>* physicComponents;
 		std::unordered_map <long long, std::shared_ptr<Colider>>* coliders;
 		std::vector<Colision> colisions;
-
+		ColisionSolver solver;
 		float time = 0;
 		static PhysicWorld insatnce;
 		static PhysicWorld& getInstance() { return insatnce; }
