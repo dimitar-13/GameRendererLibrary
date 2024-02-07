@@ -2,12 +2,6 @@
 
 #include"Rendererpch.h"
 namespace SpriteRenderer {
-	enum Axies
-	{
-		AXIE_X = 0,
-		AXIE_Y = 1,
-		AXIE_Z = 2
-	};
 
 	class Transform
 	{
@@ -15,16 +9,17 @@ namespace SpriteRenderer {
 		//Model matrix
 		Transform();
 		const glm::mat4& GetModelMatrix();
-		void Rotate(float angle_in_degrees, Axies axie_to_roate);
-		void Translate(float amount, Axies axie_to_move);
-		void Scale(float amount, Axies axie_to_scale_along);
+		void Rotate(glm::vec2 axie, float angle_in_degrees) { this->m_Rotate += (axie * angle_in_degrees); }
+		void Translate(glm::vec2 position) { m_Position += position; }
+		void Scale(glm::vec2 scale) { m_Scale += scale; };
 
-		glm::vec3 t_Position;
+		glm::vec2 m_Position;
 
-		glm::vec3 t_Rotate;
+		glm::vec2 m_Rotate;
 
-		glm::vec3 t_Scale;
+		glm::vec2 m_Scale;
 	private:
-		glm::mat4 modelMatrix;
+		glm::mat4 m_modelMatrix;
 	};
+#define Vector(x,y) glm::vec2(x,y)
 }
