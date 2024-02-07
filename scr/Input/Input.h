@@ -168,14 +168,14 @@ namespace SpriteRenderer
 		 /// </summary>
 		 /// <returns>Returns true if its pressed or held and false if its not.</returns>
 		 static bool IsMouseButtonDown(MouseButton button) { return GetInstance().isMouseButtonDown(button); }
-		 static InputManager& GetInstance() { return inputManager; }
-		 static std::unordered_map<KeyCodeEnum, KeyStateEnum>& GetKeyHash() { return GetInstance().keyState; }
-		 static std::unordered_map<MouseButton, KeyStateEnum>& GetMouseHash() { return GetInstance().mouseButtonStates; }
+		 static InputManager& GetInstance() { return m_inputManager; }
+		 static std::unordered_map<KeyCodeEnum, KeyStateEnum>& GetKeyHash() { return GetInstance().m_keyState; }
+		 static std::unordered_map<MouseButton, KeyStateEnum>& GetMouseHash() { return GetInstance().m_mouseButtonStates; }
 		 static std::pair<float, float> GetMousePosition() { return GetInstance().getMousePosition(); }
 		 static void SetMousePosition(std::pair<float, float> newPosition) { GetInstance().setMousePosition(newPosition); }
 	 private:
-		 static InputManager inputManager;
-		 std::unordered_map<KeyCodeEnum, KeyStateEnum> keyState = std::unordered_map<KeyCodeEnum, KeyStateEnum>(
+		 static InputManager m_inputManager;
+		 std::unordered_map<KeyCodeEnum, KeyStateEnum> m_keyState = std::unordered_map<KeyCodeEnum, KeyStateEnum>(
 			 {
 			  {KEY_SPACE, KEY_RELEASED },
 			  {KEY_APOSTROPHE, KEY_RELEASED},
@@ -297,7 +297,7 @@ namespace SpriteRenderer
 			  {KEY_RIGHT_ALT, KEY_RELEASED},
 			  {KEY_RIGHT_SUPER, KEY_RELEASED},
 			  {KEY_MENU,KEY_RELEASED} });
-		 std::unordered_map<MouseButton, KeyStateEnum> mouseButtonStates = std::unordered_map<MouseButton, KeyStateEnum>(
+		 std::unordered_map<MouseButton, KeyStateEnum> m_mouseButtonStates = std::unordered_map<MouseButton, KeyStateEnum>(
 			 {
 			 {MOUSE_LEFT_BUTTON    , KEY_RELEASED},
 			 {MOUSE_RIGHT_BUTTON   , KEY_RELEASED},
@@ -320,5 +320,5 @@ namespace SpriteRenderer
 		void setMousePosition(std::pair<float, float> newPosition);
 	};
 
-	inline InputManager InputManager::inputManager;
+	inline InputManager InputManager::m_inputManager;
 }

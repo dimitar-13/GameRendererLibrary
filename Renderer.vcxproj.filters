@@ -74,9 +74,6 @@
     <ClInclude Include="scr\Sprite\Sprite.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Debuging\OpenglDebug.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Core\Global.h">
       <Filter>Header Files</Filter>
     </ClInclude>

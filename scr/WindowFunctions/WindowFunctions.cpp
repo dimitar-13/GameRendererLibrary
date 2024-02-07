@@ -21,7 +21,6 @@ void SpriteRenderer::key_callback(GLFWwindow* window, int key, int scancode, int
   	if (KeyHash.find(keyEnum) != KeyHash.end())
 	{
 		KeyHash.at(keyEnum) = static_cast<KeyStateEnum>(action);
-		std::cout << "Key with keycode" << key << "was:" << action << std::endl;
 	}
 }
 void SpriteRenderer::MouseCallback(GLFWwindow* window, int button, int action, int mods)
@@ -32,12 +31,10 @@ void SpriteRenderer::MouseCallback(GLFWwindow* window, int button, int action, i
 	if (mouseHash.find(mouseButton) != mouseHash.end())
 	{
 		mouseHash.at(mouseButton) = static_cast<KeyStateEnum>(action);
-		std::cout << "Mouse key number:" << mouseButton << "was:" << action << std::endl;
 	}
 }
 
 void SpriteRenderer::mouse_position_callback(GLFWwindow* window, double x, double y)
 {
 	InputManager::SetMousePosition({ x,y });
-	//std::cout << "Mouse at position{" << x << "," << y << "}" << std::endl;
 }
