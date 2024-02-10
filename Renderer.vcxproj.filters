@@ -60,10 +60,10 @@
     <ClCompile Include="scr\Camera\Camera.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="scr\Physics\Colision\ColisionDetection.cpp">
+    <ClCompile Include="scr\Physics\Collision\CollisionDetection.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="scr\Physics\Colision\Colider.cpp">
+    <ClCompile Include="scr\Physics\Collision\Colider.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="scr\Metric\MetricHelper.cpp">
@@ -75,7 +75,7 @@
     <ClCompile Include="scr\Physics\PhysicSimulation\PhysicWorld.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="scr\Physics\Colision\ColisionSolver.cpp">
+    <ClCompile Include="scr\Physics\Collision\CollisionSolver.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -143,10 +143,10 @@
     <ClInclude Include="scr\Camera\Camera.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="scr\Physics\Colision\Colider.h">
+    <ClInclude Include="scr\Physics\Collision\Colider.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="scr\Physics\Colision\ColisionDetection.h">
+    <ClInclude Include="scr\Physics\Collision\CollisionDetection.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="scr\Metric\MetricHelper.h">
@@ -158,7 +158,7 @@
     <ClInclude Include="scr\Physics\PhysicSimulation\PhysicWorld.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="scr\Physics\Colision\ColisionSolver.h">
+    <ClInclude Include="scr\Physics\Collision\CollisionSolver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

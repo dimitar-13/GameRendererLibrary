@@ -12,8 +12,11 @@ void SpriteRenderer::PhysicWorld::UpdateWorld(float delta)
 
 void SpriteRenderer::PhysicWorld::ResolveColisions()
 {
-
-	getInstance().colisions.clear();
+	for (auto& collsion : this->collisions)
+	{
+	this->solver.SolveColision(collsion);
+	}
+	this->collisions.clear();
 }
 
 void SpriteRenderer::PhysicWorld::ColisionCheck()
@@ -27,13 +30,13 @@ void SpriteRenderer::PhysicWorld::ColisionCheck()
 	{
 		for (auto it2 = std::next(it1); it2 != coliders->end(); it2++)
 		{
-			if (ColisionDetection::isColiding(*it1->second, *it2->second))
+			if (CollisionDetection::isCollidingSquare(*it1->second, *it2->second))
 			{
-				this->colisions.push_back({ it1->second.get() , it2->second.get(),it1->second.get()->originPosition - it2->second.get()->originPosition });
+				this->collisions.push_back({ it1->second.get() , it2->second.get(),it1->second.get()->originPosition - it2->second.get()->originPosition });
 				//RENDER_LOG_MESSAGE_INFO("Colision");
 			}
 		}
 	}
-	
+	ResolveColisions();
 	
 }

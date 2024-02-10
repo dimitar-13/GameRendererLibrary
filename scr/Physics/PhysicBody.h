@@ -5,18 +5,18 @@ namespace SpriteRenderer
 	class PhysicBody
 	{
 	public:
-		PhysicBody(glm::vec3* transformPos) { position = transformPos; }
-		const  glm::vec3 GRAVITY_FORCE = glm::vec3(0,-9.81f,0);
-		void AddForce(glm::vec3 force) { externalForce += force; }
+		PhysicBody(glm::vec2* transformPos) { position = transformPos; }
+		const  glm::vec2 GRAVITY_FORCE = glm::vec2(0,-9.81f);
+		void AddForce(glm::vec2 force) { externalForce += force; }
 		void UpdatePhysics(float delta);
 	public:
 		float mass;
-		glm::vec3* position;
+		glm::vec2* position;
 		bool useGravity = true;
 	private:
-		glm::vec3 velocity = glm::vec3(0);
-		glm::vec3 acceleration = glm::vec3(0);
-		glm::vec3 totalForce = glm::vec3(0);
-		glm::vec3 externalForce = glm::vec3(0);
+		glm::vec2 velocity = glm::vec2(0);
+		glm::vec2 acceleration = glm::vec2(0);
+		glm::vec2 totalForce = glm::vec2(0);
+		glm::vec2 externalForce = glm::vec2(0);
 	};
 }

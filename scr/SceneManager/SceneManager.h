@@ -7,7 +7,7 @@
 #include"Renderer/Renderer.h"
 #include"Camera/Camera.h"
 #include"Log/Log.h"
-#include"Physics/Colision/Colider.h"
+#include"Physics/Collision/Colider.h"
 #include"Physics/PhysicBody.h"
 namespace SpriteRenderer {
 	class ScriptableObject;
@@ -40,7 +40,7 @@ namespace SpriteRenderer {
 		std::unordered_map <long long, std::shared_ptr<Transform>> transforms;
 		std::unordered_map <long long, std::shared_ptr<OrthographicCamera>> cameras;
 		std::unordered_map <long long, std::shared_ptr<Sprite>> sprites;
-		std::unordered_map <long long, std::shared_ptr<Colider>> coliders;
+		std::unordered_map <long long, std::shared_ptr<Collider>> colliders;
 		std::unordered_map <long long, std::shared_ptr<PhysicBody>> physicBodies;
 		std::unordered_map <long long, std::vector<std::shared_ptr<ScriptableObject>>> scripts;
 
@@ -111,14 +111,14 @@ namespace SpriteRenderer {
 		//Check the type of component and then attach it
 	}
 	template<>
-	inline void SceneManager::registerComponent<Colider>(long long objectID)
+	inline void SceneManager::registerComponent<Collider>(long long objectID)
 	{	
-		this->coliders[objectID] = std::make_shared< Colider>(*transforms.at(objectID).get());
+		this->colliders[objectID] = std::make_shared< Collider>(*transforms.at(objectID).get());
 	}
 	template<>
 	inline void SceneManager::registerComponent<PhysicBody>(long long objectID)
 	{
-		this->physicBodies[objectID] = std::make_shared< PhysicBody>(&transforms.at(objectID).get()->t_Position);
+		this->physicBodies[objectID] = std::make_shared< PhysicBody>(&transforms.at(objectID).get()->m_Position);
 	}
 	template<>
 	inline void SceneManager::removeComponent< PhysicBody>(long long ID)
@@ -167,9 +167,9 @@ namespace SpriteRenderer {
 		{
 			return &this->scripts;
 		}
-		else if  constexpr (std::is_convertible<T, Colider>::value)
+		else if  constexpr (std::is_convertible<T, Collider>::value)
 		{
-			return &this->coliders;
+			return &this->colliders;
 		}
 		else if  constexpr (std::is_convertible<T, PhysicBody>::value)
 		{

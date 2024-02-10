@@ -5,8 +5,8 @@
 #include"Input/Input.h"
 #include"ScriptableObject/ScriptableObject.h"
 #include"Camera/Camera.h"
-#include"Physics/Colision/Colider.h"
-#include"Physics/Colision/ColisionDetection.h"
+#include"Physics/Collision/Colider.h"
+#include"Physics/Collision/CollisionDetection.h"
 #include"Physics/PhysicSimulation/PhysicWorld.h"
 
 void SpriteRenderer::SceneManager::Init()
@@ -19,7 +19,7 @@ void SpriteRenderer::SceneManager::Start()
 	
 	//Instanciate scripts
 	PhysicWorld::SetPhysicComponenets(&instance.physicBodies);
-	PhysicWorld::SetColiderComponents(&instance.coliders);
+	PhysicWorld::SetColiderComponents(&instance.colliders);
 	for (auto& entry : instance.scripts)
 	{
 		for (size_t y = 0; y < entry.second.size(); y++)
@@ -34,7 +34,7 @@ void SpriteRenderer::SceneManager::Start()
 void SpriteRenderer::SceneManager::Update()
 {
 	UpdateScripts();
-	PhysicWorld::ResolveColisions();
+	//PhysicWorld::ResolveColisions();
 	//PhysicsUpdate();
 	//UpdateColisions();
 }
@@ -49,7 +49,7 @@ void SpriteRenderer::SceneManager::UpdateScripts()
 
 void SpriteRenderer::SceneManager::UpdateColisions()
 {
-	for (auto& entry : instance.coliders)
+	/*for (auto& entry : instance.coliders)
 	{
 		entry.second->UpdateTransfrom();
 	}
@@ -58,12 +58,12 @@ void SpriteRenderer::SceneManager::UpdateColisions()
 	{
 		for (auto it2 = std::next(it1); it2 != coliders.end(); it2++)
 		{
-			if (ColisionDetection::isColiding(*it1->second.get(),*it2->second.get()))
+			if (CollisionDetection::isColiding(*it1->second.get(),*it2->second.get()))
 			{
 				RENDER_LOG_MESSAGE_INFO("Colision");
 			}
 		}
-	}
+	}*/
 }
 
 void SpriteRenderer::SceneManager::PhysicsUpdate()

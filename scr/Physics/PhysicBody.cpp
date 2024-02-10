@@ -7,5 +7,5 @@ void SpriteRenderer::PhysicBody::UpdatePhysics(float delta)
 	acceleration = totalForce / mass;
 	velocity += (acceleration * delta);
 	*position += delta * velocity;
-	totalForce = glm::vec3(0);
+	totalForce = glm::vec2(0);
 }

@@ -171,11 +171,11 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="scr\Physics\Colision\ColisionSolver.cpp" />
+    <ClCompile Include="scr\Physics\Collision\CollisionSolver.cpp" />
     <ClCompile Include="scr\Physics\PhysicSimulation\PhysicWorld.cpp" />
     <ClCompile Include="scr\Metric\MetricHelper.cpp" />
-    <ClCompile Include="scr\Physics\Colision\Colider.cpp" />
-    <ClCompile Include="scr\Physics\Colision\ColisionDetection.cpp" />
+    <ClCompile Include="scr\Physics\Collision\Colider.cpp" />
+    <ClCompile Include="scr\Physics\Collision\CollisionDetection.cpp" />
     <ClCompile Include="scr\Camera\Camera.cpp" />
     <ClCompile Include="scr\Physics\PhysicBody.cpp" />
     <ClCompile Include="scr\Rendererpch.cpp">
@@ -201,15 +201,15 @@
     <ClCompile Include="scr\WindowFunctions\WindowFunctions.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="scr\Physics\Colision\ColisionSolver.h" />
+    <ClInclude Include="scr\Physics\Collision\CollisionSolver.h" />
     <ClInclude Include="scr\Physics\PhysicSimulation\PhysicWorld.h" />
     <ClInclude Include="scr\Metric\MetricHelper.h" />
-    <ClInclude Include="scr\Physics\Colision\ColisionDetection.h" />
+    <ClInclude Include="scr\Physics\Collision\CollisionDetection.h" />
     <ClInclude Include="scr\Camera\Camera.h" />
     <ClInclude Include="Core\Global.h" />
     <ClInclude Include="Core\SpriteData.h" />
     <ClInclude Include="include\RendererEngine_s.h" />
-    <ClInclude Include="scr\Physics\Colision\Colider.h" />
+    <ClInclude Include="scr\Physics\Collision\Colider.h" />
     <ClInclude Include="scr\Physics\PhysicBody.h" />
     <ClInclude Include="scr\Rendererpch.h" />
     <ClInclude Include="scr\Log\Log.h" />

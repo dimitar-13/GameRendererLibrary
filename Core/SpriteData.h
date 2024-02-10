@@ -13,14 +13,15 @@ namespace SpriteRenderer {
         const float UnitMeter = 0.5f*METER_SCALE_FACTOR;
 
         // First triangle (top-right, bottom-right, top-left)
-        verts.push_back({ glm::vec3(UnitMeter, UnitMeter, 0.0f), glm::vec2(1.0f, 1.0f) });
-        verts.push_back({ glm::vec3(UnitMeter, -UnitMeter, 0.0f), glm::vec2(1.0f, 0.0f) });
-        verts.push_back({ glm::vec3(-UnitMeter, UnitMeter, 0.0f), glm::vec2(0.0f, 1.0f) });
+
+        verts.push_back({ glm::vec2(UnitMeter, UnitMeter), glm::vec2(1.0f, 1.0f) });
+        verts.push_back({ glm::vec2(UnitMeter, -UnitMeter), glm::vec2(1.0f, 0.0f) });
+        verts.push_back({ glm::vec2(-UnitMeter, UnitMeter), glm::vec2(0.0f, 1.0f) });
 
         // Second triangle (top-left, bottom-right, bottom-left)
-        verts.push_back({ glm::vec3(-UnitMeter, UnitMeter, 0.0f), glm::vec2(0.0f, 1.0f) });
-        verts.push_back({ glm::vec3(UnitMeter, -UnitMeter, 0.0f), glm::vec2(1.0f, 0.0f) });
-        verts.push_back({ glm::vec3(-UnitMeter, -UnitMeter, 0.0f), glm::vec2(0.0f, 0.0f) });
+        verts.push_back({ glm::vec2(-UnitMeter, UnitMeter), glm::vec2(0.0f, 1.0f) });
+        verts.push_back({ glm::vec2(UnitMeter, -UnitMeter), glm::vec2(1.0f, 0.0f) });
+        verts.push_back({ glm::vec2(-UnitMeter, -UnitMeter), glm::vec2(0.0f, 0.0f) });
 
 		return verts;
 	}
