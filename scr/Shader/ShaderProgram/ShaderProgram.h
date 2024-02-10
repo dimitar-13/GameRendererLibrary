@@ -1,6 +1,5 @@
 #pragma once
 #include"Rendererpch.h"
-#include"../../Debuging/OpenglDebug.h"
 namespace SpriteRenderer {
 	class ShaderProgram
 	{
@@ -11,10 +10,10 @@ namespace SpriteRenderer {
 		void SetUniform3Float(const char* Name, float value1, float value2, float value3)const;
 		void SetUniformInt(const char* Name, int value)const;
 		void SetUniform4x4Matrix(const char* Name, const glm::mat4& value)const;
-		void UseProgram()const { glUseProgram(this->programID); }
+		void UseProgram()const { glUseProgram(this->m_programID); }
 	private:
-		unsigned int programID;
-		mutable std::unordered_map<std::string, uint32_t> shaderUniformCashe;
+		unsigned int m_programID;
+		mutable std::unordered_map<std::string, uint32_t> m_shaderUniformCashe;
 
 	private:
 		int CompileShader(GLenum shaderType, const char* source);

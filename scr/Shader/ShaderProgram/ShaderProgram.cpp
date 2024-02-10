@@ -54,19 +54,19 @@ SpriteRenderer::ShaderProgram::ShaderProgram(const std::string& path)
 
 void SpriteRenderer::ShaderProgram::CompileProgram(const std::vector<uint32_t>& shaders)
 {
-	this->programID = glCreateProgram();
+	this->m_programID = glCreateProgram();
 	for (uint32_t shader : shaders)
 	{
-		glAttachShader(programID, shader);
+		glAttachShader(m_programID, shader);
 	}
-	glLinkProgram(programID);
+	glLinkProgram(m_programID);
 
 	int status;
-	glGetProgramiv(this->programID, GL_LINK_STATUS, &status);
+	glGetProgramiv(this->m_programID, GL_LINK_STATUS, &status);
 	if (!status)
 	{
 		char infolog[225];
-		glGetProgramInfoLog(this->programID, 255, 0, infolog);
+		glGetProgramInfoLog(this->m_programID, 255, 0, infolog);
 		RENDER_LOG_MESSAGE_ERROR("Program linking error:Error{0}", infolog);
 	}
 }
@@ -75,7 +75,7 @@ void SpriteRenderer::ShaderProgram::DetachAndDelete(const std::vector<uint32_t>&
 {
 	for (uint32_t shader : shaders)
 	{
-		glDetachShader(programID, shader);
+		glDetachShader(m_programID, shader);
 		glDeleteShader(shader);
 	}
 }
@@ -87,7 +87,7 @@ void SpriteRenderer::ShaderProgram::SetUniform3FloatVector(std::string Name, con
 
 void SpriteRenderer::ShaderProgram::SetUniform3Float(const char* Name, float value1, float value2, float value3) const
 {
-	GLCall(glUniform3f(this->GetShaderUniformLocation(Name),value1,value2,value3));
+	glUniform3f(this->GetShaderUniformLocation(Name),value1,value2,value3);
 
 }
 
@@ -133,30 +133,30 @@ bool SpriteRenderer::ShaderProgram::IsShaderCompiled(unsigned int shader)
 bool SpriteRenderer::ShaderProgram::IsProgramCompiled()
 {
 	int status;
-	glGetProgramiv(this->programID, GL_LINK_STATUS, &status);
+	glGetProgramiv(this->m_programID, GL_LINK_STATUS, &status);
 	if (!status)
 	{
 		char infolog[225];
-		glGetProgramInfoLog(this->programID, 255, 0, infolog);
+		glGetProgramInfoLog(this->m_programID, 255, 0, infolog);
 		RENDER_LOG_MESSAGE_ERROR("Program compile error:Error{0}", infolog);
 		return false;
 	}
-	RENDER_LOG_MESSAGE_INFO("Shader program with id:'{0}' was compiled successfully.",this->programID);
+	RENDER_LOG_MESSAGE_INFO("Shader program with id:'{0}' was compiled successfully.",this->m_programID);
 	return true;
 }
 
 int SpriteRenderer::ShaderProgram::GetShaderUniformLocation(const char* Name)const
 {
-	if (this->shaderUniformCashe.find(Name) != shaderUniformCashe.end())
-		return this->shaderUniformCashe[Name];
+	if (this->m_shaderUniformCashe.find(Name) != m_shaderUniformCashe.end())
+		return this->m_shaderUniformCashe[Name];
 
-	int result = glGetUniformLocation(this->programID, Name);
+	int result = glGetUniformLocation(this->m_programID, Name);
 	if (result < 0)
 	{
 		RENDER_LOG_MESSAGE_WARNING("Cant find uniform with name:{0}",  Name);
 		return -1;
 	}
-	this->shaderUniformCashe[Name] = result;
+	this->m_shaderUniformCashe[Name] = result;
 	return result;
 }
 
