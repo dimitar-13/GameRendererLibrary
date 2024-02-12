@@ -14,19 +14,20 @@ namespace SpriteRenderer {
 		Collider(Transform& objectTransform);
 		void UpdateTransfrom();
 	};
-	/*struct CircleCollider:public Collider
+	struct CircleCollider
 	{
 		float radius;
+		glm::vec2 originPosition;
 		CircleCollider(Transform& transform);
 	};
-	struct SquareCollider :public Collider {
-		glm::vec2 max;
-		glm::vec2 min;
-		float width, height;
-		SquareCollider(Transform& transform);
-		std::pair<glm::vec2, glm::vec2>GetMinAndMax();
-	};
-*/
+	//struct SquareCollider :public Collider {
+	//	glm::vec2 max;
+	//	glm::vec2 min;
+	//	float width, height;
+	//	SquareCollider(Transform& transform);
+	//	std::pair<glm::vec2, glm::vec2>GetMinAndMax();
+	//};
+
 
 
 	struct Collision

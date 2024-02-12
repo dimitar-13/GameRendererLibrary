@@ -4,11 +4,12 @@
 #include"OpenglData/VertexArray/VertexArray.h"
 #include"TextureClass/Texture2D/Texture2D.h"
 namespace SpriteRenderer {
-	enum SpriteShape {
+	enum SpriteType {
 
-		CUBE = 1,
-		CIRCLE = 2,
-		TRIANGLE = 3
+		SPRITE_SHAPE_TYPE_CUBE = 1,
+		SPRITE_SHAPE_TYPE_CIRCLE = 2,
+		SPRITE_SHAPE_TYPE_TRIANGLE = 3,
+		SPRITE_SHAPE_TYPE_CUSTOM = 4
 	};
 
 	class Sprite
@@ -24,10 +25,12 @@ namespace SpriteRenderer {
 	public:
 		glm::vec3 SetSpriteColor(glm::vec3 color) { return this->m_Color = color; }
 		void SetTexture(const char* path) { this->m_texture = new Texture2D(path); }
+		void SetSpriteType(SpriteType type) { this->m_shapeType = type; }
 	private:
 		std::vector<Vertex> m_verts;
 		VertexArray* m_vertexArray;
 		glm::vec3 m_Color;
+		SpriteType m_shapeType;
 		Texture2D* m_texture;
 	};
 }

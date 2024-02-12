@@ -41,10 +41,8 @@ bool SpriteRenderer::CollisionDetection::isColidingSAT(const Collider& colider1,
 	return true;
 }
 
-//bool SpriteRenderer::CollisionDetection::isCollidingCircleSquare(const CircleCollider& colider1, const SquareCollider& colider2)
-//{
-//	float distance = glm::length(colider2.max - colider1.originPosition);
-//	//Circle collision
-//
-//	return false;
-//}
+bool SpriteRenderer::CollisionDetection::isCollidingCircles(const CircleCollider& colider1, const CircleCollider& colider2)
+{
+	float distance = glm::length(colider2.originPosition - colider1.originPosition);
+	return !(distance > colider2.radius+ colider1.radius);
+}
