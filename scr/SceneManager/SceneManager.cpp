@@ -24,7 +24,7 @@ void SpriteRenderer::SceneManager::Start()
 	{
 		for (size_t y = 0; y < entry.second.size(); y++)
 		{		
-			entry.second[y]->BindScriptToObj(entry.first);
+			entry.second[y]->BindScriptToObj(entry.first, instance.GetGameObjectByID(entry.first));
 			entry.second[y]->OnStart();
 		}
 	}
@@ -75,19 +75,20 @@ void SpriteRenderer::SceneManager::PhysicsUpdate()
 	}
 }
 
-void SpriteRenderer::SceneManager::Draw(const ShaderProgram& shader)
-{
-	for (auto& entry :this->sprites)
-	{
-		shader.UseProgram();
-		shader.SetUniform4x4Matrix("ModelMatrix", this->transforms[entry.first]->GetModelMatrix());
-		shader.SetUniform4x4Matrix("ViewProjectionMatrix", this->activeCamera->GetViewProjectionMatrix());
-		shader.SetUniformInt("samplerTexture", 1);
-		glActiveTexture(GL_TEXTURE1);
-		entry.second->GetSpriteTexture()->BindTexture();
-		Renderer::ArrayDraw(this->sprites[entry.first]->GetVertexArray());
-	}
-}
+//void SpriteRenderer::SceneManager::Draw(const ShaderProgram& shader)
+//{
+//	for (auto& entry :this->sprites)
+//	{
+//		//Need to able to draw circles and squres and maybe batch them together 
+//		shader.UseProgram();
+//		shader.SetUniform4x4Matrix("ModelMatrix", this->transforms[entry.first]->GetModelMatrix());
+//		shader.SetUniform4x4Matrix("ViewProjectionMatrix", this->activeCamera->GetViewProjectionMatrix());
+//		shader.SetUniformInt("samplerTexture", 1);
+//		glActiveTexture(GL_TEXTURE1);
+//		entry.second->GetSpriteTexture()->BindTexture();
+//		Renderer::ArrayDraw(this->sprites[entry.first]->GetVertexArray());
+//	}
+//}
 
 void SpriteRenderer::SceneManager::PipelineLoop()
 {
@@ -107,7 +108,8 @@ void SpriteRenderer::SceneManager::PipelineLoop()
 
 		Update();
 		PhysicWorld::UpdateWorld(delta.GetTimeInSeconds());
-		Draw(Renderer::GetShader());
+		Renderer::Draw(this->sprites);
+		//Draw(Renderer::GetShader());
 
 		glfwSwapBuffers(Global::winContext);
 		glfwPollEvents();

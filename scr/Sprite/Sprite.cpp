@@ -15,6 +15,6 @@ SpriteRenderer::Sprite::Sprite(std::string& texturePath):Sprite()
 
 SpriteRenderer::Sprite::~Sprite()
 {
-	delete(this->m_texture);
+	//delete(this->m_texture);
 	delete(this->m_vertexArray);
 }

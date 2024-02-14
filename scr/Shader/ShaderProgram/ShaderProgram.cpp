@@ -84,6 +84,10 @@ void SpriteRenderer::ShaderProgram::SetUniform3FloatVector(std::string Name, con
 {
 	glUniform3fv(this->GetShaderUniformLocation(Name.c_str()), 1, &value[0]);
 }
+void SpriteRenderer::ShaderProgram::SetUniform2FloatVector(std::string Name, const glm::vec2& value) const
+{
+	glUniform2fv(this->GetShaderUniformLocation(Name.c_str()), 1, &value[0]);
+}
 
 void SpriteRenderer::ShaderProgram::SetUniform3Float(const char* Name, float value1, float value2, float value3) const
 {
@@ -153,7 +157,7 @@ int SpriteRenderer::ShaderProgram::GetShaderUniformLocation(const char* Name)con
 	int result = glGetUniformLocation(this->m_programID, Name);
 	if (result < 0)
 	{
-		RENDER_LOG_MESSAGE_WARNING("Cant find uniform with name:{0}",  Name);
+		//RENDER_LOG_MESSAGE_WARNING("Cant find uniform with name:{0}",  Name);
 		return -1;
 	}
 	this->m_shaderUniformCashe[Name] = result;

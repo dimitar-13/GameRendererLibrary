@@ -4,6 +4,7 @@
 #include"OpenglData/VertexArray/VertexArray.h"
 #include"TextureClass/Texture2D/Texture2D.h"
 namespace SpriteRenderer {
+	class Renderer;
 	enum SpriteType {
 
 		SPRITE_SHAPE_TYPE_CUBE = 1,
@@ -14,6 +15,7 @@ namespace SpriteRenderer {
 
 	class Sprite
 	{
+		friend class Renderer;
 	public:
 		Sprite();
 		Sprite(std::string& texturePath);
@@ -21,10 +23,8 @@ namespace SpriteRenderer {
 	public:
 		const VertexArray& GetVertexArray() { return *this->m_vertexArray; }
 		const glm::vec3 GetSpriteColor() { return this->m_Color; }
-		Texture2D* GetSpriteTexture()const { return this->m_texture; }
 	public:
 		glm::vec3 SetSpriteColor(glm::vec3 color) { return this->m_Color = color; }
-		void SetTexture(const char* path) { this->m_texture = new Texture2D(path); }
 		void SetSpriteType(SpriteType type) { this->m_shapeType = type; }
 	private:
 		std::vector<Vertex> m_verts;

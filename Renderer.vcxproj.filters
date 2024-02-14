@@ -165,6 +165,7 @@
   <ItemGroup>
     <None Include="Assets\Shaders\Color_shader.glsl" />
     <None Include="Assets\Shaders\Circle_shader.glsl" />
+    <None Include="Assets\Shaders\Square_shader.glsl" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Assets\Textures\Texture.jpg">
