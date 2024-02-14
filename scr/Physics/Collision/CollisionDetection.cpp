@@ -1,48 +1,54 @@
 #include "Rendererpch.h"
 #include "CollisionDetection.h"
 #include"Log/Log.h"
-bool SpriteRenderer::CollisionDetection::isCollidingSquare(const Collider& colider1, const Collider& colider2) //using AABB
+
+
+SpriteRenderer::Collision SpriteRenderer::CollisionDetectionFuncs::TestForCollision( CircleCollider& circleCollider1,
+														   Transform& CircleCollider1Transform, 
+														   CircleCollider& CircleCollider2,
+														   Transform& CircleCollider2Transform)
 {
-	if (colider1.lastPosition == colider1.transform->m_Position &&
-		colider2.lastPosition == colider2.transform->m_Position)return false;
-	bool colisionX = (colider1.max.x >  colider2.min.x)&&
-				     (colider2.max.x > colider1.min.x);
+	Collision result{};
+	if (circleCollider1.Position == CircleCollider1Transform.m_Position &&
+		CircleCollider2.Position == CircleCollider2Transform.m_Position)return result;
 
-	bool colisionY = (colider1.max.y >  colider2.min.y)&&
-					 (colider2.max.y >  colider1.min.y);
-
-	return  colisionX && colisionY;
-
-}
-bool SpriteRenderer::CollisionDetection::isColidingSAT(const Collider& colider1, const Collider& colider2) 
-{
-	/*glm::vec2 A = glm::vec2(1, 0);
-	float max = 0;
-	float min = 0;
-	for (size_t i = 0; i < colider1.points.size(); i++)
+	glm::vec2 CollisionNormal = circleCollider1.Position - CircleCollider2.Position;
+	if (glm::length(CollisionNormal) < circleCollider1.radius + CircleCollider2.radius)
 	{
-		if (max < glm::dot(A, colider1.points[i] - A)) {
-			max = glm::dot(A, colider1.points[i] - A);
-		}
+		result.isColliding = true;
+		result.distance = glm::length(CollisionNormal);
+		result.CollisionNormal = glm::normalize(CollisionNormal);
+		return result;
 	}
-	colider1.points[0].x;
-
-	float colider1widthInMeters = colider1.width * METER_SCALE_FACTOR;
-	float colider1heightInMeters = colider1.height * METER_SCALE_FACTOR;
-	float colider2widthInMeters = colider2.width * METER_SCALE_FACTOR;
-	float colider2heightInMeters = colider2.height * METER_SCALE_FACTOR;
-
-	bool colisionX = (colider1.originPosition.x + (colider1widthInMeters / 2) >= colider2.originPosition.x - (colider2widthInMeters / 2)) &&
-		(colider2.originPosition.x + (colider1widthInMeters / 2) >= colider1.originPosition.x - (colider2widthInMeters / 2));
-	bool colisionY = (colider1.originPosition.y + (colider1heightInMeters / 2) >= colider2.originPosition.y - (colider2heightInMeters / 2)) &&
-		(colider2.originPosition.y + (colider1heightInMeters / 2) >= colider1.originPosition.y + (colider2heightInMeters / 2));
-
-	return  colisionX && colisionY;*/
-	return true;
+	return result;
 }
 
-bool SpriteRenderer::CollisionDetection::isCollidingCircles(const CircleCollider& colider1, const CircleCollider& colider2)
+SpriteRenderer::Collision SpriteRenderer::CollisionDetectionFuncs::TestForCollision(SquareCollider& SquareCollider1,
+														    Transform& SquareCollider1Transform,
+														    SquareCollider& SquareCollider2,
+														    Transform& SquareCollider2Transform)
 {
-	float distance = glm::length(colider2.originPosition - colider1.originPosition);
-	return !(distance > colider2.radius+ colider1.radius);
+	if (SquareCollider1.Position == SquareCollider1Transform.m_Position &&
+		SquareCollider2.Position == SquareCollider2Transform.m_Position)return Collision{};
+	Collision result{};
+	bool colisionX = (SquareCollider1.max.x > SquareCollider2.min.x) &&
+		(SquareCollider2.max.x > SquareCollider1.min.x);
+
+	bool colisionY = (SquareCollider1.max.y > SquareCollider2.min.y) &&
+		(SquareCollider2.max.y > SquareCollider1.min.y);
+	if (colisionX && colisionY)
+	{
+		result.isColliding = true;
+
+		return  result;
+	}
+	return Collision{};
+}
+
+SpriteRenderer::Collision SpriteRenderer::CollisionDetectionFuncs::TestForCollision(SquareCollider& SquareCollider1,
+																			Transform& SquareCollider1Transform,
+																			CircleCollider& CircleCollider2,
+																			Transform& CircleCollider2Transform)
+{
+	return Collision{};
 }

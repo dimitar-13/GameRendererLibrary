@@ -1,13 +1,22 @@
 #pragma once
 #include"Physics/Collision/Colider.h"
 namespace SpriteRenderer {
-	class CollisionDetection
-	{
-	public:
-		static bool isCollidingSquare(const Collider& colider1, const Collider& colider2);
-		static bool isCollidingCircles(const CircleCollider& colider1, const CircleCollider& colider2);
-		static bool isColidingSAT(const Collider& colider1, const Collider& colider2);
+	namespace CollisionDetectionFuncs {
 
-	};
+		    Collision TestForCollision(CircleCollider& collider1,
+			 Transform& transform,
+			 CircleCollider& collider2,
+			 Transform& CircleTransform);
+
+		    Collision TestForCollision(SquareCollider& collider1,
+			 Transform& transform,
+			 SquareCollider& collider2,
+			 Transform& CircleTransform);
+
+		    Collision TestForCollision(SquareCollider& collider1,
+			 Transform& transform,
+			 CircleCollider& collider2,
+			 Transform& CircleTransform);
+	}
 }
 
