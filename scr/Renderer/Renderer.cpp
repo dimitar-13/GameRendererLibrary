@@ -3,6 +3,7 @@
 #include"Shader/ShaderProgram/ShaderProgram.h"
 #include"Shader/ShadersContianer/Shaders.h"
 #include"SceneManager/SceneManager.h"
+#include"ECS/ECSManager.h"
 void SpriteRenderer::Renderer::Init()
 {
     m_instance.m_CustomShader = new ShaderProgram("../Renderer/Assets/Shaders/Color_shader.glsl");
@@ -44,16 +45,16 @@ void SpriteRenderer::Renderer::Draw(const std::unordered_map<long long, std::sha
         {
         case SPRITE_SHAPE_TYPE_CUBE:
             m_instance.m_SquareShader->UseProgram();
-            m_instance.m_SquareShader->SetUniform4x4Matrix("ModelMatrix", SceneManager::GetGameObjectComponent<Transform>(sprite.first)->GetModelMatrix());
+            m_instance.m_SquareShader->SetUniform4x4Matrix("ModelMatrix", ECSManager::GetInstance().GetComponent<Transform>(sprite.first)->GetModelMatrix());
             m_instance.m_SquareShader->SetUniform4x4Matrix("ViewProjectionMatrix", SceneManager::GetAtctiveCamera().GetViewProjectionMatrix());
-            m_instance.m_SquareShader->SetUniform3FloatVector("uColor", sprite.second->m_Color);
+            m_instance.m_SquareShader->SetUniform3FloatVector("uColor", ECSManager::GetInstance().GetComponent<Sprite>(sprite.first)->m_Color);
             break;
         case SPRITE_SHAPE_TYPE_CIRCLE:
             m_instance.m_CircleShader->UseProgram();
-            m_instance.m_CircleShader->SetUniform4x4Matrix("ModelMatrix", SceneManager::GetGameObjectComponent<Transform>(sprite.first)->GetModelMatrix());
+            m_instance.m_CircleShader->SetUniform4x4Matrix("ModelMatrix", ECSManager::GetInstance().GetComponent<Transform>(sprite.first)->GetModelMatrix());
             m_instance.m_CircleShader->SetUniform4x4Matrix("ViewProjectionMatrix", SceneManager::GetAtctiveCamera().GetViewProjectionMatrix());
-            m_instance.m_CircleShader->SetUniform2FloatVector("uOrigin", SceneManager::GetGameObjectComponent<Transform>(sprite.first)->m_Position);
-            m_instance.m_CircleShader->SetUniform3FloatVector("uColor", sprite.second->m_Color);
+            m_instance.m_CircleShader->SetUniform2FloatVector("uOrigin", ECSManager::GetInstance().GetComponent<Transform>(sprite.first)->m_Position);
+            m_instance.m_CircleShader->SetUniform3FloatVector("uColor", ECSManager::GetInstance().GetComponent<Sprite>(sprite.first)->m_Color);
             break;
         case SPRITE_SHAPE_TYPE_TRIANGLE:
             break;

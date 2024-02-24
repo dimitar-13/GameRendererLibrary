@@ -3,7 +3,7 @@
 #include"../../Core/Global.h"
 #include"SceneManager/SceneManager.h"
 #include"ScriptableObject/ScriptableObject.h"
-
+#include"ECS/ECSManager.h"
 //TODO: Add an GameObject idenifier like an ID 
 //Instead of iterating throu each game object in the rendering stage we can pack every component in one continus array of bytes and each component will have the id of the gameobj
 //in this way we dont need when rendering to say "Well do you have a script or maybe u have a sprite" because in this way we dont care that much about the class rather then
@@ -38,8 +38,8 @@ namespace SpriteRenderer
 	template<class T>
 	inline T* SpriteRenderer::GameObject::AttachComponent()
 	{
-		SceneManager::RegisterComponent<T>(this->objectID);
-		return SceneManager::GetGameObjectComponent<T>(this->objectID);
+		ECSManager::AddComponent<T>(this->objectID);
+		return ECSManager::GetComponent<T>(this->objectID);
 	}
 	template <class T>
 	inline void SpriteRenderer::GameObject::RemoveComponent() {
@@ -48,6 +48,6 @@ namespace SpriteRenderer
 	template <class T>
 	inline T* SpriteRenderer::GameObject::GetComponent()
 	{
-		return SceneManager::GetGameObjectComponent<T>(this->objectID);
+		return ECSManager::GetComponent<T>(this->objectID);
 	}
 }

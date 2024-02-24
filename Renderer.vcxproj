@@ -171,6 +171,9 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="scr\ECS\ComponentManager.cpp" />
+    <ClCompile Include="scr\ECS\ECSManager.cpp" />
+    <ClCompile Include="scr\ECS\EntityManager.cpp" />
     <ClCompile Include="scr\Physics\Collision\CollisionSolver.cpp" />
     <ClCompile Include="scr\Physics\PhysicSimulation\PhysicWorld.cpp" />
     <ClCompile Include="scr\Metric\MetricHelper.cpp" />
@@ -201,6 +204,10 @@
     <ClCompile Include="scr\WindowFunctions\WindowFunctions.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="scr\ECS\ComponentArray.h" />
+    <ClInclude Include="scr\ECS\ComponentManager.h" />
+    <ClInclude Include="scr\ECS\ECSManager.h" />
+    <ClInclude Include="scr\ECS\EntityManager.h" />
     <ClInclude Include="scr\Physics\Collision\CollisionSolver.h" />
     <ClInclude Include="scr\Physics\PhysicSimulation\PhysicWorld.h" />
     <ClInclude Include="scr\Metric\MetricHelper.h" />

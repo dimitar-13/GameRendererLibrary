@@ -2,6 +2,8 @@
 #include"Rendererpch.h"
 #include"OpenglData/VertexArray/VertexArray.h"
 #include"Sprite/Sprite.h"
+#include"ECS/ComponentArray.h"
+
 
 namespace SpriteRenderer {
 	class ShaderProgram;
