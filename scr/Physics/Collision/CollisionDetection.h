@@ -3,20 +3,14 @@
 namespace SpriteRenderer {
 	namespace CollisionDetectionFuncs {
 
-		    Collision TestForCollision(CircleCollider& collider1,
-			 Transform& transform,
-			 CircleCollider& collider2,
-			 Transform& CircleTransform);
+		    Collision TestForCollision(CircleCollider* collider1,
+			 CircleCollider* collider2);
 
-		    Collision TestForCollision(SquareCollider& collider1,
-			 Transform& transform,
-			 SquareCollider& collider2,
-			 Transform& CircleTransform);
+		    Collision TestForCollision(SquareCollider* collider1,
+			 SquareCollider* collider2);
 
-		    Collision TestForCollision(SquareCollider& collider1,
-			 Transform& transform,
-			 CircleCollider& collider2,
-			 Transform& CircleTransform);
+		    Collision TestForCollision(SquareCollider* collider1,
+		    CircleCollider* collider2);
 	}
 }
 

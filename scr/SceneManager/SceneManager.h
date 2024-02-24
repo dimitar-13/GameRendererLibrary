@@ -64,6 +64,10 @@ namespace SpriteRenderer {
 	template<typename T>
 	inline T* SceneManager::getGameObjectComponent(long long ID)
 	{
+		if constexpr (std::is_base_of<Collider, T>::value)
+		{
+			return dynamic_cast<T*>(this->colliders[ID].get());
+		}
 		if constexpr (!std::is_convertible<T, ScriptableObject>::value)
 		{
 			std::unordered_map <long long, std::shared_ptr<T>>* hash = getComponentHash<T>();
@@ -87,14 +91,22 @@ namespace SpriteRenderer {
 			return dynamic_cast<T*>(scripts.at(ID)[0].get());
 		}
 	}
-	template<>
-	inline void SceneManager::registerComponent<ScriptableObject>(long long objectID)
-	{	
-			scripts[objectID].push_back(std::make_shared<ScriptableObject>());
-	}
 	template<typename T>
 	inline void SceneManager::registerComponent(long long objectID)
 	{
+		if constexpr (std::is_base_of<Collider, T>::value)
+		{
+			this->colliders[objectID] = std::make_shared<T>();
+			this->colliders[objectID]->transform = this->transforms.at(objectID).get();
+			return;
+		}
+		
+		else if constexpr (std::is_base_of<ScriptableObject, T>::value)
+		{
+			this->scripts[objectID].push_back(std::make_shared<T>());
+			return;
+		}
+
 			std::unordered_map <long long, std::shared_ptr<T>>* hash = getComponentHash<T>();
 			if (!hash)
 			{
@@ -103,15 +115,13 @@ namespace SpriteRenderer {
 			else
 			{
 				if (hash->find(objectID) == hash->end())
+				{
+
 					(*hash)[objectID] = std::make_shared<T>();
+				}
 				else
 					RENDER_LOG_MESSAGE_ERROR("Game object cant have component of type:{0} more then once.", typeid(T).name());
 			}
-	}
-	template<>
-	inline void SceneManager::registerComponent<Collider>(long long objectID)
-	{	
-		this->colliders[objectID] = std::make_shared< Collider>(*transforms.at(objectID).get());
 	}
 	template<>
 	inline void SceneManager::registerComponent<PhysicBody>(long long objectID)
@@ -159,7 +169,7 @@ namespace SpriteRenderer {
 		{
 			return &this->cameras;
 		}
-		else if  constexpr (std::is_convertible<T, Collider>::value)
+		else if  constexpr (std::is_same<T,Collider>::value)
 		{
 			return &this->colliders;
 		}

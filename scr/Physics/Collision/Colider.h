@@ -3,46 +3,40 @@
 #include "Transform/Transoform.h"
 
 namespace SpriteRenderer {
-
 	struct Collision
 	{
 		bool isColliding = false;
 		float distance = 0.0;
 		glm::vec2 CollisionNormal;
+		Transform* transformObj1;
+		Transform* transformObj2;
 	};
-
+	struct CircleCollider;
+	struct SquareCollider;
 	struct Collider
 	{
 		glm::vec2 Position;
 		bool isTrigger = false;
-		virtual Collision TestForCollision(Transform& transform, Collider* collider,
-								Transform& transform2) = 0;
-		virtual Collision TestForCollision(Transform& transform,CircleCollider collider,
-									  Transform& CircleTransform) = 0;
-		virtual Collision TestForCollision(Transform& transform,SquareCollider collider,
-									  Transform& SquareTransform) = 0;
+		Transform* transform;
+		virtual Collision TestForCollision(Collider* collider) = 0;
+		virtual Collision TestForCollision(CircleCollider* collider) = 0;
+		virtual Collision TestForCollision(SquareCollider* collider) = 0;
+		void UpdatePosition() { Position = transform->m_Position; }
 	};
 	struct CircleCollider : public Collider
 	{
 		float radius =0.5f;
-		glm::vec2 originPosition;
-		virtual Collision TestForCollision(Transform& transform, Collider* collider,
-			Transform& transform2) override;
-		Collision TestForCollision(Transform& transform, CircleCollider collider,
-			Transform& CircleTransform) override;
-		Collision TestForCollision(Transform& transform, SquareCollider collider,
-			Transform& SquareTransform) override;
+		Collision TestForCollision(Collider* collider) override;
+		Collision TestForCollision(CircleCollider* collider) override;
+		Collision TestForCollision(SquareCollider* collider) override;
 	};
 	struct SquareCollider :public Collider {
 		glm::vec2 max;
 		glm::vec2 min;
 		float width, height;
-		virtual Collision TestForCollision(Transform& transform, Collider* collider,
-			Transform& transform2) override;
-		Collision TestForCollision(Transform& transform, CircleCollider collider,
-			Transform& CircleTransform) {return{};}
-		Collision TestForCollision(Transform& transform, SquareCollider collider,
-			Transform& SquareTransform) override;
-		std::pair<glm::vec2, glm::vec2>GetMinAndMax();
+		Collision TestForCollision(Collider* collider) override;
+		Collision TestForCollision(CircleCollider* collider)  {return{};}
+		Collision TestForCollision(SquareCollider* collider) override;
+		std::pair<glm::vec2, glm::vec2>GetMinAndMax() { std::make_pair(glm::vec2(0), glm::vec2(0)); }
 	};
 }
