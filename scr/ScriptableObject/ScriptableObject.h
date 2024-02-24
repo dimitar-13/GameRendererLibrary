@@ -1,9 +1,9 @@
 #pragma once
 #include"Rendererpch.h"
-#include"SceneManager/SceneManager.h"
 //Can be named scene object
 namespace SpriteRenderer {
-
+	class SceneManager;
+	class GameObject;
 	class ScriptableObject {
 	public:
 		template<typename T>
@@ -12,10 +12,8 @@ namespace SpriteRenderer {
 		virtual void OnUpdate() { };
 		virtual void OnStart() { };
 		virtual void OnDelete() { };
-		template<typename T>
-		T* GetComponent() { return SceneManager::GetGameObjectComponent<T>(this->gameObjectID); }
 		GameObject* gameObject;
-		void BindScriptToObj(long long ID) { this->gameObjectID = ID; gameObject = &SceneManager::GetGameObjectByID(gameObjectID); }
+		void BindScriptToObj(long long ID,GameObject& ref) { this->gameObjectID = ID; gameObject = &ref; }
 	private:
 		friend class SceneManager;
 		long long gameObjectID = -1;
