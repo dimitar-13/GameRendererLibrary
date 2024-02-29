@@ -3,5 +3,12 @@
 
 void SpriteRenderer::ECSManager::RemoveEntity(Entity ent)
 {
-	m_componentManager.EntityDestroyed(ent);
+	GetInstance().m_componentManager.EntityDestroyed(ent);
+	GetInstance().m_EntityManager.DestroyEntity(ent);
+}
+
+void SpriteRenderer::ECSManager::DestroyECSManager()
+{
+	GetInstance().m_componentManager.DestroyComponentArrays();
+	GetInstance().m_systemManager.~SystemManager();
 }

@@ -23,3 +23,8 @@ void SpriteRenderer::EntityManager::DestroyEntity(Entity ent)
     m_entitites.push(ent);
     --m_entityCount;
 }
+
+void SpriteRenderer::EntityManager::DestroyEntities()
+{
+    m_entityCount = 0;
+}

@@ -171,9 +171,10 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="scr\ECS\ComponentManager.cpp" />
+    <ClCompile Include="scr\ScriptSystem\ScriptSystem.cpp" />
     <ClCompile Include="scr\ECS\ECSManager.cpp" />
     <ClCompile Include="scr\ECS\EntityManager.cpp" />
+    <ClCompile Include="scr\ECS\SystemManager.cpp" />
     <ClCompile Include="scr\Physics\Collision\CollisionSolver.cpp" />
     <ClCompile Include="scr\Physics\PhysicSimulation\PhysicWorld.cpp" />
     <ClCompile Include="scr\Metric\MetricHelper.cpp" />
@@ -204,10 +205,14 @@
     <ClCompile Include="scr\WindowFunctions\WindowFunctions.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="scr\ScriptSystem\ScriptSystem.h" />
     <ClInclude Include="scr\ECS\ComponentArray.h" />
     <ClInclude Include="scr\ECS\ComponentManager.h" />
     <ClInclude Include="scr\ECS\ECSManager.h" />
     <ClInclude Include="scr\ECS\EntityManager.h" />
+    <ClInclude Include="scr\ECS\EventSystem\EntityEventSystem.h" />
+    <ClInclude Include="scr\ECS\ISystem.h" />
+    <ClInclude Include="scr\ECS\SystemManager.h" />
     <ClInclude Include="scr\Physics\Collision\CollisionSolver.h" />
     <ClInclude Include="scr\Physics\PhysicSimulation\PhysicWorld.h" />
     <ClInclude Include="scr\Metric\MetricHelper.h" />
@@ -228,6 +233,7 @@
     <ClInclude Include="scr\Renderer\Renderer.h" />
     <ClInclude Include="scr\SceneManager\SceneManager.h" />
     <ClInclude Include="scr\ScriptableObject\ScriptableObject.h" />
+    <ClInclude Include="scr\ScriptComponent.h" />
     <ClInclude Include="scr\Shader\ShaderProgram\ShaderProgram.h" />
     <ClInclude Include="scr\Shader\ShadersContianer\Shaders.h" />
     <ClInclude Include="scr\Sprite\Sprite.h" />

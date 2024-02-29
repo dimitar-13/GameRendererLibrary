@@ -24,6 +24,10 @@ void SpriteRenderer::Renderer::Init()
     m_instance.m_SquareShader->GetShaderUniformLocation("ModelMatrix");
     m_instance.m_SquareShader->GetShaderUniformLocation("ViewProjectionMatrix");
     m_instance.m_SquareShader->GetShaderUniformLocation("uColor");
+
+    //m_instance.m_entitySprites = &ECSManager::GetComponentArray<Sprite>();
+    //m_instance.m_entityTransforms = &ECSManager::GetComponentArray<Transform>();
+    m_instance.m_entities = ECSManager::GetComponentEntities<Sprite>();
 }
 
 void SpriteRenderer::Renderer::IndexedDraw(const VertexArray& vertexArray)
@@ -37,37 +41,55 @@ void SpriteRenderer::Renderer::ArrayDraw(const VertexArray& vertexArray)
     vertexArray.UnbindArray();
 }
 
-void SpriteRenderer::Renderer::Draw(const std::unordered_map<long long, std::shared_ptr<Sprite>>& sprites)
+void SpriteRenderer::Renderer::Draw()
 {
-    for (const auto& sprite : sprites)
+    m_entities = ECSManager::GetComponentEntities<Sprite>();
+
+    for (uint32_t i = 0 ; i < m_entities.size(); i++)
     {
-        switch (sprite.second->m_shapeType)
+        Transform* transform = ECSManager::GetComponent<Transform>(m_entities[i]);
+        Sprite* sprite = ECSManager::GetComponent<Sprite>(m_entities[i]);;
+        //ISystem::Unpack(m_instance.m_entities[i], transform,sprite);
+        switch (sprite->m_shapeType)
         {
         case SPRITE_SHAPE_TYPE_CUBE:
-            m_instance.m_SquareShader->UseProgram();
-            m_instance.m_SquareShader->SetUniform4x4Matrix("ModelMatrix", ECSManager::GetInstance().GetComponent<Transform>(sprite.first)->GetModelMatrix());
-            m_instance.m_SquareShader->SetUniform4x4Matrix("ViewProjectionMatrix", SceneManager::GetAtctiveCamera().GetViewProjectionMatrix());
-            m_instance.m_SquareShader->SetUniform3FloatVector("uColor", ECSManager::GetInstance().GetComponent<Sprite>(sprite.first)->m_Color);
-            break;
+            /*      m_instance.m_SquareShader->UseProgram();
+                  m_instance.m_SquareShader->SetUniform4x4Matrix("ModelMatrix", ECSManager::GetInstance().GetComponent<Transform>(sprite.first)->GetModelMatrix());
+                  m_instance.m_SquareShader->SetUniform4x4Matrix("ViewProjectionMatrix", SceneManager::GetAtctiveCamera().GetViewProjectionMatrix());
+                  m_instance.m_SquareShader->SetUniform3FloatVector("uColor", ECSManager::GetInstance().GetComponent<Sprite>(sprite.first)->m_Color);
+           */       break;
         case SPRITE_SHAPE_TYPE_CIRCLE:
-            m_instance.m_CircleShader->UseProgram();
-            m_instance.m_CircleShader->SetUniform4x4Matrix("ModelMatrix", ECSManager::GetInstance().GetComponent<Transform>(sprite.first)->GetModelMatrix());
-            m_instance.m_CircleShader->SetUniform4x4Matrix("ViewProjectionMatrix", SceneManager::GetAtctiveCamera().GetViewProjectionMatrix());
-            m_instance.m_CircleShader->SetUniform2FloatVector("uOrigin", ECSManager::GetInstance().GetComponent<Transform>(sprite.first)->m_Position);
-            m_instance.m_CircleShader->SetUniform3FloatVector("uColor", ECSManager::GetInstance().GetComponent<Sprite>(sprite.first)->m_Color);
-            break;
+                m_instance.m_CircleShader->UseProgram();
+                m_instance.m_CircleShader->SetUniform4x4Matrix("ModelMatrix", transform->GetModelMatrix());
+                m_instance.m_CircleShader->SetUniform4x4Matrix("ViewProjectionMatrix", SceneManager::GetAtctiveCamera().GetViewProjectionMatrix());
+              //  m_instance.m_CircleShader->SetUniform2FloatVector("uOrigin", ECSManager::GetInstance().GetComponent<Transform>(sprite.first)->m_Position);
+                m_instance.m_CircleShader->SetUniform3FloatVector("uColor", sprite->m_Color);
+                break;
         case SPRITE_SHAPE_TYPE_TRIANGLE:
             break;
         case SPRITE_SHAPE_TYPE_CUSTOM:
             break;
         }
-      //Set up shaders
-      //Issue draw call
-        m_instance.ArrayDraw(*sprite.second->m_vertexArray);
+        //Set up shaders
+        //Issue draw call
+          ArrayDraw(*sprite->m_vertexArray);
     }
 }
 
-void SpriteRenderer::Renderer::DestroyShader()
+void SpriteRenderer::Renderer::PreUpdate(float dt)
+{
+}
+
+void SpriteRenderer::Renderer::Update(float dt)
+{
+    Draw();
+}
+
+void SpriteRenderer::Renderer::PostUpdate(float dt)
+{
+}
+
+void SpriteRenderer::Renderer::DestroySystem()
 {
     delete(m_instance.m_CustomShader);
     delete(m_instance.m_CircleShader);

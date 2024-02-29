@@ -1,14 +1,9 @@
 #include"Rendererpch.h"
 #include "GameObject.h"
 #include"SceneManager/SceneManager.h"
-SpriteRenderer::GameObject::GameObject(std::string objectName)
+#include"ECS/ECSManager.h"
+SpriteRenderer::GameObject::GameObject()
 {
-	SceneManager::GetGameObjectID(*this);
-	SceneManager::RegisterComponent<Transform>(this->objectID);
-
-	this->name = objectName;
-}
-
-SpriteRenderer::GameObject::~GameObject()
-{
+	this->m_entity = ECSManager::AddEntity();
+	ECSManager::GetInstance().AddComponent<Transform>(this->m_entity);
 }

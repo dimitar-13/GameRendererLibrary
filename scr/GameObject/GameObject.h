@@ -1,8 +1,6 @@
 #pragma once
 #include"Rendererpch.h"
 #include"../../Core/Global.h"
-#include"SceneManager/SceneManager.h"
-#include"ScriptableObject/ScriptableObject.h"
 #include"ECS/ECSManager.h"
 //TODO: Add an GameObject idenifier like an ID 
 //Instead of iterating throu each game object in the rendering stage we can pack every component in one continus array of bytes and each component will have the id of the gameobj
@@ -14,16 +12,17 @@
 
 //The ECS-entity component system means we can devide our entinies or game objects into components and the system parts mean we can have systems for dealing with 
 //certian components like draw,playaudio,simPhysics and so on
-
 namespace SpriteRenderer
 {
+	class ScriptableObject;
 	class GameObject
 	{
 	public:
-		std::string name;
+		//std::string name;
+		Entity GetEntity() { return this->m_entity; }
 	public:
-		GameObject(std::string objectName);
-		~GameObject();
+		GameObject();
+		void DestroyGameObject() { ECSManager::RemoveEntity(this->m_entity); }
 	public:
 		template <class T>
 		T* AttachComponent();
@@ -32,22 +31,22 @@ namespace SpriteRenderer
 		template <class T>
 		T* GetComponent();
 	private:
-		friend class SceneManager;
-		long long objectID;	
+		friend class ScriptableObject;
+		Entity m_entity;
 	};
 	template<class T>
-	inline T* SpriteRenderer::GameObject::AttachComponent()
+	inline T* GameObject::AttachComponent()
 	{
-		ECSManager::AddComponent<T>(this->objectID);
-		return ECSManager::GetComponent<T>(this->objectID);
+		ECSManager::AddComponent<T>(this->m_entity);
+		return ECSManager::GetComponent<T>(this->m_entity);
 	}
 	template <class T>
-	inline void SpriteRenderer::GameObject::RemoveComponent() {
-		SceneManager::RemoveComponent<T>(this->objectID);
+	inline void GameObject::RemoveComponent() {
+		//SceneManager::RemoveComponent<T>(this->objectID);
 	}
 	template <class T>
-	inline T* SpriteRenderer::GameObject::GetComponent()
+	inline T* GameObject::GetComponent()
 	{
-		return ECSManager::GetComponent<T>(this->objectID);
+		return ECSManager::GetComponent<T>(this->m_entity);
 	}
 }

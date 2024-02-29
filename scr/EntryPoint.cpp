@@ -1,6 +1,7 @@
 #include"Rendererpch.h"
 #include"EntryPoint.h"
 #include"Log/Log.h"
+#include"ECS/ECSManager.h"
 //TODO:__declspec(dllexport)
 namespace SpriteRenderer {
 
@@ -53,15 +54,14 @@ namespace SpriteRenderer {
         glfwSetCursorPosCallback(Global::winContext, mouse_position_callback);
         glfwSetMouseButtonCallback(Global::winContext, MouseCallback);
         glfwSetInputMode(Global::winContext, GLFW_STICKY_KEYS, GLFW_TRUE);
-
         SceneManager::Init();
     }
     void Terminate()
     {
        glfwDestroyWindow(Global::winContext);
        glfwTerminate();
-       Renderer::DestroyShader();
        SceneManager::Terminate();
+       ECSManager::DestroyECSManager();
        RENDER_LOG_MESSAGE_INFO("Renderer was succsessfully terminated.");
     }
 }
