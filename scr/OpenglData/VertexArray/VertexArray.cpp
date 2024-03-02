@@ -3,16 +3,16 @@
 
 SpriteRenderer::VertexArray::VertexArray(const std::vector<Vertex> verts, unsigned int count)
 {
-	glGenVertexArrays(1, &this->vertexArrayHandleID);
+	glGenVertexArrays(1, &this->m_vertexArrayHandleID);
 	//glGenBuffers(1, &this->elementBufferHandleID);
 	if (count != 0)
 	{
 
-		glBindVertexArray(this->vertexArrayHandleID);
+		glBindVertexArray(this->m_vertexArrayHandleID);
 
-		glGenBuffers(1, &this->vertexBufferHandleID);
+		glGenBuffers(1, &this->m_vertexBufferHandleID);
 
-		glBindBuffer(GL_ARRAY_BUFFER, this->vertexBufferHandleID);
+		glBindBuffer(GL_ARRAY_BUFFER, this->m_vertexBufferHandleID);
 		//glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, this->elementBufferHandleID);
 
 		glBufferData(GL_ARRAY_BUFFER, sizeof(Vertex)  * verts.size(), (void *) &verts[0], GL_STATIC_DRAW);
@@ -31,7 +31,7 @@ SpriteRenderer::VertexArray::VertexArray(const std::vector<Vertex> verts, unsign
 		//glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 
 	}
-	this->vertexCount = verts.size();
+	this->m_vertexCount = verts.size();
 	
 }
 

@@ -50,9 +50,9 @@ namespace SpriteRenderer {
         *Global::projection = glm::ortho<float>(-*Global::winWidth / 2, *Global::winWidth / 2, -*Global::winHeight / 2, *Global::winHeight / 2, -1.0, 1.0);
 
         glfwSetWindowSizeCallback(Global::winContext, Resize);
-        glfwSetKeyCallback(Global::winContext, key_callback);
-        glfwSetCursorPosCallback(Global::winContext, mouse_position_callback);
-        glfwSetMouseButtonCallback(Global::winContext, MouseCallback);
+        glfwSetKeyCallback(Global::winContext, KeyCallback);
+        glfwSetCursorPosCallback(Global::winContext, MousePositionCallback);
+        glfwSetMouseButtonCallback(Global::winContext, MouseButtonCallback);
         glfwSetInputMode(Global::winContext, GLFW_STICKY_KEYS, GLFW_TRUE);
         SceneManager::Init();
     }

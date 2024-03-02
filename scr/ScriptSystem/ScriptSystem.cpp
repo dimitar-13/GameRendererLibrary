@@ -1,7 +1,7 @@
 #include "Rendererpch.h"
-#include "ScriptSystem.h"
 #include"ECS/ECSManager.h"
 #include"ScriptableObject/ScriptableObject.h"
+#include "ScriptSystem.h"
 void SpriteRenderer::ScriptSystem::Init()
 {
 	auto& scripts = ECSManager::GetComponentArray<ScriptComponent>();

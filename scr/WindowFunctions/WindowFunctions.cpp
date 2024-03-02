@@ -13,7 +13,7 @@ void SpriteRenderer::Resize(GLFWwindow* window, int width, int height)
 											(float)(*Global::winHeight / 2), -1.0, 1.0);
 }
 
-void SpriteRenderer::key_callback(GLFWwindow* window, int key, int scancode, int action, int mods)
+void SpriteRenderer::KeyCallback(GLFWwindow* window, int key, int scancode, int action, int mods)
 {
 	KeyCodeEnum keyEnum = static_cast<KeyCodeEnum>(key);
 	InputManager& instance = InputManager::GetInstance();
@@ -23,7 +23,7 @@ void SpriteRenderer::key_callback(GLFWwindow* window, int key, int scancode, int
 		KeyHash.at(keyEnum) = static_cast<KeyStateEnum>(action);
 	}
 }
-void SpriteRenderer::MouseCallback(GLFWwindow* window, int button, int action, int mods)
+void SpriteRenderer::MouseButtonCallback(GLFWwindow* window, int button, int action, int mods)
 {
 	InputManager& instance = InputManager::GetInstance();
 	auto& mouseHash = instance.GetMouseHash();
@@ -34,7 +34,7 @@ void SpriteRenderer::MouseCallback(GLFWwindow* window, int button, int action, i
 	}
 }
 
-void SpriteRenderer::mouse_position_callback(GLFWwindow* window, double x, double y)
+void SpriteRenderer::MousePositionCallback(GLFWwindow* window, double x, double y)
 {
 	InputManager::SetMousePosition({ x,y });
 }

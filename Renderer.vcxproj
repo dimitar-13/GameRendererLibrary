@@ -177,7 +177,6 @@
     <ClCompile Include="scr\ECS\SystemManager.cpp" />
     <ClCompile Include="scr\Physics\Collision\CollisionSolver.cpp" />
     <ClCompile Include="scr\Physics\PhysicSimulation\PhysicWorld.cpp" />
-    <ClCompile Include="scr\Metric\MetricHelper.cpp" />
     <ClCompile Include="scr\Physics\Collision\Colider.cpp" />
     <ClCompile Include="scr\Physics\Collision\CollisionDetection.cpp" />
     <ClCompile Include="scr\Camera\Camera.cpp" />
@@ -196,7 +195,6 @@
     <ClCompile Include="scr\OpenglData\VertexArray\VertexArray.cpp" />
     <ClCompile Include="scr\Renderer\Renderer.cpp" />
     <ClCompile Include="scr\SceneManager\SceneManager.cpp" />
-    <ClCompile Include="scr\ScriptableObject\ScriptableObject.cpp" />
     <ClCompile Include="scr\Shader\ShaderProgram\ShaderProgram.cpp" />
     <ClCompile Include="scr\Sprite\Sprite.cpp" />
     <ClCompile Include="scr\Input\Input.cpp" />

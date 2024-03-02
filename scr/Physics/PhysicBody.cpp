@@ -3,9 +3,9 @@
 
 void SpriteRenderer::PhysicBody::UpdatePhysics(glm::vec2* position,float delta)
 {	
-	this->totalForce = useGravity ? externalForce+ mass*GRAVITY_FORCE : externalForce;
-	acceleration = totalForce / mass;
-	velocity += (acceleration * delta);
-	*position += delta * velocity;
-	totalForce = glm::vec2(0);
+	this->m_totalForce = m_useGravity ? m_externalForce+ m_mass*GRAVITY_FORCE : m_externalForce;
+	m_acceleration = m_totalForce / m_mass;
+	m_velocity += (m_acceleration * delta);
+	*position += delta * m_velocity;
+	m_totalForce = glm::vec2(0);
 }

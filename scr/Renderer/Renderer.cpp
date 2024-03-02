@@ -1,33 +1,33 @@
 #include"Rendererpch.h"
-#include "Renderer.h"
-#include"Shader/ShaderProgram/ShaderProgram.h"
-#include"Shader/ShadersContianer/Shaders.h"
-#include"SceneManager/SceneManager.h"
 #include"ECS/ECSManager.h"
+#include "Renderer.h"
+#include"SceneManager/SceneManager.h"
+#include"Shader/ShaderProgram/ShaderProgram.h"
+
 void SpriteRenderer::Renderer::Init()
 {
-    m_instance.m_CustomShader = new ShaderProgram("../Renderer/Assets/Shaders/Color_shader.glsl");
-    m_instance.m_CustomShader->UseProgram();
-    m_instance.m_CustomShader->GetShaderUniformLocation("ModelMatrix");
-    m_instance.m_CustomShader->GetShaderUniformLocation("ViewProjectionMatrix");
-    m_instance.m_CustomShader->GetShaderUniformLocation("samplerTexture");
-    m_instance.m_CustomShader->GetShaderUniformLocation("uColor");
+    m_CustomShader = new ShaderProgram("../Renderer/Assets/Shaders/Color_shader.glsl");
+    m_CustomShader->UseProgram();
+    m_CustomShader->GetShaderUniformLocation("ModelMatrix");
+    m_CustomShader->GetShaderUniformLocation("ViewProjectionMatrix");
+    m_CustomShader->GetShaderUniformLocation("samplerTexture");
+    m_CustomShader->GetShaderUniformLocation("uColor");
 
-    m_instance.m_CircleShader = new ShaderProgram("../Renderer/Assets/Shaders/Circle_shader.glsl");
-    m_instance.m_CircleShader->UseProgram();
-    m_instance.m_CircleShader->GetShaderUniformLocation("ModelMatrix");
-    m_instance.m_CircleShader->GetShaderUniformLocation("ViewProjectionMatrix");
-    m_instance.m_CircleShader->GetShaderUniformLocation("uColor");
+    m_CircleShader = new ShaderProgram("../Renderer/Assets/Shaders/Circle_shader.glsl");
+    m_CircleShader->UseProgram();
+    m_CircleShader->GetShaderUniformLocation("ModelMatrix");
+    m_CircleShader->GetShaderUniformLocation("ViewProjectionMatrix");
+    m_CircleShader->GetShaderUniformLocation("uColor");
 
-    m_instance.m_SquareShader = new ShaderProgram("../Renderer/Assets/Shaders/Square_shader.glsl");
-    m_instance.m_SquareShader->UseProgram();
-    m_instance.m_SquareShader->GetShaderUniformLocation("ModelMatrix");
-    m_instance.m_SquareShader->GetShaderUniformLocation("ViewProjectionMatrix");
-    m_instance.m_SquareShader->GetShaderUniformLocation("uColor");
+    m_SquareShader = new ShaderProgram("../Renderer/Assets/Shaders/Square_shader.glsl");
+    m_SquareShader->UseProgram();
+    m_SquareShader->GetShaderUniformLocation("ModelMatrix");
+    m_SquareShader->GetShaderUniformLocation("ViewProjectionMatrix");
+    m_SquareShader->GetShaderUniformLocation("uColor");
 
     //m_instance.m_entitySprites = &ECSManager::GetComponentArray<Sprite>();
     //m_instance.m_entityTransforms = &ECSManager::GetComponentArray<Transform>();
-    m_instance.m_entities = ECSManager::GetComponentEntities<Sprite>();
+    m_entities = ECSManager::GetComponentEntities<Sprite>();
 }
 
 void SpriteRenderer::Renderer::IndexedDraw(const VertexArray& vertexArray)
@@ -53,17 +53,16 @@ void SpriteRenderer::Renderer::Draw()
         switch (sprite->m_shapeType)
         {
         case SPRITE_SHAPE_TYPE_CUBE:
-            /*      m_instance.m_SquareShader->UseProgram();
-                  m_instance.m_SquareShader->SetUniform4x4Matrix("ModelMatrix", ECSManager::GetInstance().GetComponent<Transform>(sprite.first)->GetModelMatrix());
-                  m_instance.m_SquareShader->SetUniform4x4Matrix("ViewProjectionMatrix", SceneManager::GetAtctiveCamera().GetViewProjectionMatrix());
-                  m_instance.m_SquareShader->SetUniform3FloatVector("uColor", ECSManager::GetInstance().GetComponent<Sprite>(sprite.first)->m_Color);
-           */       break;
+                  m_SquareShader->UseProgram();
+                  m_SquareShader->SetUniform4x4Matrix("ModelMatrix", transform->GetModelMatrix());
+                  m_SquareShader->SetUniform4x4Matrix("ViewProjectionMatrix", SceneManager::GetAtctiveCamera().GetViewProjectionMatrix());
+                  m_SquareShader->SetUniform3FloatVector("uColor", sprite->m_Color);
+                  break;
         case SPRITE_SHAPE_TYPE_CIRCLE:
-                m_instance.m_CircleShader->UseProgram();
-                m_instance.m_CircleShader->SetUniform4x4Matrix("ModelMatrix", transform->GetModelMatrix());
-                m_instance.m_CircleShader->SetUniform4x4Matrix("ViewProjectionMatrix", SceneManager::GetAtctiveCamera().GetViewProjectionMatrix());
-              //  m_instance.m_CircleShader->SetUniform2FloatVector("uOrigin", ECSManager::GetInstance().GetComponent<Transform>(sprite.first)->m_Position);
-                m_instance.m_CircleShader->SetUniform3FloatVector("uColor", sprite->m_Color);
+                m_CircleShader->UseProgram();
+                m_CircleShader->SetUniform4x4Matrix("ModelMatrix", transform->GetModelMatrix());
+                m_CircleShader->SetUniform4x4Matrix("ViewProjectionMatrix", SceneManager::GetAtctiveCamera().GetViewProjectionMatrix());
+                m_CircleShader->SetUniform3FloatVector("uColor", sprite->m_Color);
                 break;
         case SPRITE_SHAPE_TYPE_TRIANGLE:
             break;
@@ -91,8 +90,8 @@ void SpriteRenderer::Renderer::PostUpdate(float dt)
 
 void SpriteRenderer::Renderer::DestroySystem()
 {
-    delete(m_instance.m_CustomShader);
-    delete(m_instance.m_CircleShader);
-    delete(m_instance.m_SquareShader);
+    delete(m_CustomShader);
+    delete(m_CircleShader);
+    delete(m_SquareShader);
 }
 

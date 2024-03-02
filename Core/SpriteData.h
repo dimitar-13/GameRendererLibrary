@@ -3,14 +3,13 @@
 #include<vector>
 #include"../../Core/Global.h"
 #include"iostream"
-#include"Metric/MetricHelper.h"
 namespace SpriteRenderer {
 
 	inline std::vector<Vertex>GenQuadVerts()
 	{
         std::vector<Vertex> verts;
 
-        const float UnitMeter = 0.5f*METER_SCALE_FACTOR;
+        const float UnitMeter = 0.5f;
 
         // First triangle (top-right, bottom-right, top-left)
 

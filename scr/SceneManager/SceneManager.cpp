@@ -1,14 +1,11 @@
 #include"Rendererpch.h"
-#include "SceneManager.h"
 #include"../../Core/Global.h"
-#include"GameObject/GameObject.h"
-#include"Input/Input.h"
-#include"ScriptComponent.h"
-#include"Camera/Camera.h"
-#include"Physics/Collision/Colider.h"
-#include"Physics/Collision/CollisionDetection.h"
+#include"ECS/ECSManager.h"
 #include"Physics/PhysicSimulation/PhysicWorld.h"
+#include"Renderer/Renderer.h"
+#include "SceneManager.h"
 #include"ScriptSystem/ScriptSystem.h"
+
 void SpriteRenderer::SceneManager::Init()
 {
 }
@@ -24,20 +21,6 @@ void SpriteRenderer::SceneManager::Start()
 	instance.PipelineLoop();
 }
 
-void SpriteRenderer::SceneManager::Update()
-{
-	UpdateScripts();
-}
-void SpriteRenderer::SceneManager::UpdateScripts()
-{
-	/*auto& scripts = ECSManager::GetComponentArray<ScriptComponent>();
-
-	for (uint32_t i = 0; i < scripts.size; i++)
-	{
-		scripts.componentArray[i]->m_classInstance->OnUpdate();
-	}*/
-}
-
 void SpriteRenderer::SceneManager::PipelineLoop()
 {
 	Renderer::EnableDepthTest();
@@ -47,7 +30,7 @@ void SpriteRenderer::SceneManager::PipelineLoop()
 	while (!glfwWindowShouldClose(Global::winContext))
 	{
 		float time = (float)glfwGetTime();
-		delta = time - previousFrameTime;
+		delta = time - (float)previousFrameTime;
 		previousFrameTime = time;
 
 		Renderer::Clear();
