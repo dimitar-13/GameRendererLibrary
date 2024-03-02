@@ -10,6 +10,11 @@ namespace SpriteRenderer {
 		~ScriptComponent() { m_classInstance.~shared_ptr(); }
 		std::shared_ptr<ScriptableObject> m_classInstance= nullptr;
 		Entity entity;
+		/// <summary>
+		/// Attaches and instanciates a script class inheriting from ScriptableObject.
+		/// </summary>
+		/// <typeparam name="T"></typeparam>
+		/// <returns>Handle(instance) of the script class.</returns>
 		template<typename T>
 		T* AttachScript();	
 	};

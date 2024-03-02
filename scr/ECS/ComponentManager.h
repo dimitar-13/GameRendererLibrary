@@ -11,6 +11,9 @@ namespace SpriteRenderer {
 	class ComponentManager
 	{
 	public:
+		//TODO:Should the user be able to say wich components they need
+		//and is this unnecessary overhead.
+		
 		template<typename T, typename ...Ts>
 		void RegisterComponentTypes() {
 			m_componentHashes.insert({ typeid(T).name(), std::make_shared<ComponentArray<T>>() });
@@ -18,21 +21,6 @@ namespace SpriteRenderer {
 			{
 				RegisterComponentTypes<Ts...>();
 			}
-		}
-
-		void FillComponentTypes()
-		{
-			m_componentHashes.insert({ typeid(Transform).name(), std::make_shared<ComponentArray<Transform>>() });
-
-			m_componentHashes.insert({ typeid(Sprite).name(), std::make_shared<ComponentArray<Sprite>>()});
-
-			m_componentHashes.insert({ typeid(ScriptComponent).name(), std::make_shared<ComponentArray<ScriptComponent>>() });
-
-			m_componentHashes.insert({ typeid(SquareCollider).name(), std::make_shared<ComponentArray<SquareCollider>>() });
-
-			m_componentHashes.insert({ typeid(CircleCollider).name(), std::make_shared<ComponentArray<CircleCollider>>() });
-
-			m_componentHashes.insert({ typeid(PhysicBody).name(), std::make_shared<ComponentArray<PhysicBody>>() });
 		}
 		template<typename T>
 		void AddComponent(Entity entity);

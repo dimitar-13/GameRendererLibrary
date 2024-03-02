@@ -55,6 +55,7 @@ namespace SpriteRenderer {
 	inline void ECSManager::RegisterSystem(Ts ...components)
 	{
 		GetInstance().m_systemManager.RegisterSystem<T>(components...);
+		RENDER_LOG_MESSAGE_INFO("System of type {0} was initialized successfully.",typeid(T).name());
 	}
 	inline ECSManager ECSManager::Instance;
 }

@@ -14,7 +14,6 @@ namespace SpriteRenderer {
 				AddDependecies(components...);
 			}
 		}
-
 	};
 
 	class SystemManager {

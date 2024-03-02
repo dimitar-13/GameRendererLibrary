@@ -54,6 +54,7 @@ namespace SpriteRenderer {
 	{
 		if (m_componentArray.size <= 1)
 		{
+			delete(m_componentArray.componentArray[0]);
 			m_entityToIndex.erase(ent);
 			m_indexToEntity.erase(m_componentArray.size);
 			--m_componentArray.size;
@@ -61,6 +62,7 @@ namespace SpriteRenderer {
 		}
 		uint32_t entityToRemoveIndex = m_entityToIndex[ent];
 		uint32_t lastArrayComponentIndex =m_componentArray.size - 1;
+		delete(m_componentArray.componentArray[entityToRemoveIndex]);
 		m_componentArray.componentArray[entityToRemoveIndex] = m_componentArray.componentArray[lastArrayComponentIndex];
 
 		m_indexToEntity[entityToRemoveIndex] = m_entityToIndex[lastArrayComponentIndex];

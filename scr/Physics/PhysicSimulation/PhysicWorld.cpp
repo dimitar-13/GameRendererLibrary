@@ -29,18 +29,21 @@ void SpriteRenderer::PhysicWorld::ColisionCheck()
 
 void SpriteRenderer::PhysicWorld::Init()
 {
+	this->m_entities = ECSManager::GetComponentEntities<PhysicBody>();
 }
 
 void SpriteRenderer::PhysicWorld::PreUpdate(float dt)
 {
+	this->m_entities = ECSManager::GetComponentEntities<PhysicBody>();
 }
 
 void SpriteRenderer::PhysicWorld::Update(float dt)
 {
-	auto& physicsBodies = ECSManager::GetComponentArray<PhysicBody>();
-	for (uint32_t i =0; i< physicsBodies.size;i++)
+	for (uint32_t i =0; i< m_entities.size();i++)
 	{
-		physicsBodies.componentArray[i]->UpdatePhysics(dt);
+		auto* transform = ECSManager::GetComponent<Transform>(m_entities[i]);
+		auto* physicBodie = ECSManager::GetComponent<PhysicBody>(m_entities[i]);
+		physicBodie->UpdatePhysics(&transform->m_Position,dt);
 	}
 	ColisionCheck();
 }
