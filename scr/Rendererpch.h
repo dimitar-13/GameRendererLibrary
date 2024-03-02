@@ -15,6 +15,7 @@
 #include<unordered_set>
 #include<variant>
 #include<memory>
+#include<set>
 
 #define  FMT_HEADER_ONLY
 #include <fmt/core.h>

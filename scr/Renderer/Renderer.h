@@ -2,18 +2,25 @@
 #include"Rendererpch.h"
 #include"OpenglData/VertexArray/VertexArray.h"
 #include"Sprite/Sprite.h"
+#include"ECS/ComponentArray.h"
+#include"ECS/ISystem.h"
 
 namespace SpriteRenderer {
 	class ShaderProgram;
 
-	class Renderer
+	class Renderer:public ISystem
 	{
 	public:
-		static void Init();
+		void Init() override;
 		static void EnableDepthTest() { glEnable(GL_DEPTH_TEST); }
 		static void DisableDepthTest() { glDisable(GL_DEPTH_TEST); }
 		static void Clear() { glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); }
-		static void Draw(const std::unordered_map<long long, std::shared_ptr<Sprite>>& sprites);
+		void Draw();
+
+		void PreUpdate(float dt) override;
+		void Update(float dt) override;
+		void PostUpdate(float dt) override;
+		void DestroySystem() override;
 
 		//Draw Primitives
 		void DrawCircle();
@@ -21,7 +28,6 @@ namespace SpriteRenderer {
 		//void DrawTriangle();
 		//void DrawSprite(); 
 		//const static ShaderProgram& GetShader() { return m_instance.getShader(); }
-		static void DestroyShader();
 		//TODO:
 		//Render calls with shaders
 	private:
@@ -32,8 +38,6 @@ namespace SpriteRenderer {
 		ShaderProgram* m_CustomShader;
 		ShaderProgram* m_SquareShader;
 		ShaderProgram* m_CircleShader;
-
-		//ShaderProgram& getShader() { return *instance.mainShader; }
 	};
 	inline Renderer Renderer::m_instance;
 }
