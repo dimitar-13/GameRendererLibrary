@@ -6,7 +6,6 @@ namespace SpriteRenderer {
 	class ScriptableObject;
 	class ScriptComponent {
 	public:
-		ScriptComponent() {};
 		~ScriptComponent() { m_classInstance.~shared_ptr(); }
 		std::shared_ptr<ScriptableObject> m_classInstance= nullptr;
 		Entity entity;

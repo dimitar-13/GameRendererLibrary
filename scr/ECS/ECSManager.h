@@ -4,6 +4,7 @@
 #include"ECS/EntityManager.h"
 #include"ECS/EventSystem/EntityEventSystem.h"
 #include"ECS/SystemManager.h"
+#include"Log/Log.h"
 namespace SpriteRenderer {
 	class ECSManager {
 	public:

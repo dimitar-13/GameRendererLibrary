@@ -7,11 +7,11 @@ SpriteRenderer::Collision SpriteRenderer::CollisionDetectionFuncs::TestForCollis
 {
 	Collision result{};
 
-	glm::vec2 CollisionNormal = circleCollider1->Position - CircleCollider2->Position;
-	if (glm::length(CollisionNormal) < circleCollider1->radius*METER_SCALE_FACTOR + CircleCollider2->radius* METER_SCALE_FACTOR)
+	glm::vec2 CollisionNormal = circleCollider1->m_Position - CircleCollider2->m_Position;
+	if (glm::length(CollisionNormal) < circleCollider1->m_radius*METER_SCALE_FACTOR + CircleCollider2->m_radius* METER_SCALE_FACTOR)
 	{
 		result.isColliding = true;
-		float distance = glm::length((CollisionNormal * glm::vec2(1/circleCollider1->radius)) + (CollisionNormal * glm::vec2(1/CircleCollider2->radius)));
+		float distance = glm::length((CollisionNormal * glm::vec2(1/circleCollider1->m_radius)) + (CollisionNormal * glm::vec2(1/CircleCollider2->m_radius)));
 		result.distance = glm::length(CollisionNormal);
 		result.CollisionNormal = glm::normalize(CollisionNormal);
 		result.transformObj1 = circleCollider1->transform;
@@ -26,11 +26,11 @@ SpriteRenderer::Collision SpriteRenderer::CollisionDetectionFuncs::TestForCollis
 	/*if (SquareCollider1->Position == SquareCollider1->transform->m_Position &&
 		SquareCollider2->Position == SquareCollider1->transform->m_Position)return Collision{};*/
 	Collision result{};
-	bool colisionX = (SquareCollider1->max.x > SquareCollider2->min.x) &&
-		(SquareCollider2->max.x > SquareCollider1->min.x);
+	bool colisionX = (SquareCollider1->m_max.x > SquareCollider2->m_min.x) &&
+		(SquareCollider2->m_max.x > SquareCollider1->m_min.x);
 
-	bool colisionY = (SquareCollider1->max.y > SquareCollider2->min.y) &&
-		(SquareCollider2->max.y > SquareCollider1->min.y);
+	bool colisionY = (SquareCollider1->m_max.y > SquareCollider2->m_min.y) &&
+		(SquareCollider2->m_max.y > SquareCollider1->m_min.y);
 	if (colisionX && colisionY)
 	{
 		result.isColliding = true;

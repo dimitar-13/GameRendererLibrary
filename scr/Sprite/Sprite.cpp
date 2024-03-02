@@ -8,11 +8,6 @@ SpriteRenderer::Sprite::Sprite()
 	this->m_shapeType = SPRITE_SHAPE_TYPE_CUBE;
 }
 
-SpriteRenderer::Sprite::Sprite(std::string& texturePath):Sprite()
-{
-	this->m_texture = new Texture2D(texturePath);
-}
-
 SpriteRenderer::Sprite::~Sprite()
 {
 	//delete(this->m_texture);

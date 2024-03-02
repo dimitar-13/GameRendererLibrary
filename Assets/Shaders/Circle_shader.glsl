@@ -11,7 +11,7 @@ out vec2 FragPos;
 void main()
 {
 gl_Position = ViewProjectionMatrix* ModelMatrix * vec4(aPos.xy,0,1.0f);
-FragPos = aPos.xy/100.0;
+FragPos = aPos.xy;
 UvCoords = aUvCoords;
 }
 

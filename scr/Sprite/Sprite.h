@@ -1,6 +1,5 @@
 #pragma once
 #include"Rendererpch.h"
-#include"Shader/ShaderProgram/ShaderProgram.h"
 #include"OpenglData/VertexArray/VertexArray.h"
 #include"TextureClass/Texture2D/Texture2D.h"
 namespace SpriteRenderer {
@@ -17,7 +16,6 @@ namespace SpriteRenderer {
 		friend class Renderer;
 	public:
 		Sprite();
-		Sprite(std::string& texturePath);
 		~Sprite();
 	public:
 		const VertexArray& GetVertexArray() { return *this->m_vertexArray; }
@@ -25,11 +23,13 @@ namespace SpriteRenderer {
 	public:
 		glm::vec3 SetSpriteColor(glm::vec3 color) { return this->m_Color = color; }
 		void SetSpriteType(SpriteType type) { this->m_shapeType = type; }
+		//TODO:Sprite should not manage texture lifetime.
+
+		void SetTexture(std::string& texturePath) { this->m_texture = new Texture2D(texturePath);}
 	private:
-		std::vector<Vertex> m_verts;
 		VertexArray* m_vertexArray;
 		glm::vec3 m_Color;
 		SpriteType m_shapeType;
-		Texture2D* m_texture;
+		Texture2D* m_texture = nullptr;
 	};
 }

@@ -8,19 +8,19 @@ namespace SpriteRenderer {
 	public:
 		//For Testing purposes
 		VertexArray(const std::vector<Vertex> verts, unsigned int count);
-		void BindArray() const { glBindVertexArray(this->vertexArrayHandleID); };
+		void BindArray() const { glBindVertexArray(this->m_vertexArrayHandleID); };
 		void UnbindArray()const { glBindVertexArray(0); }
 		void DeleteVertexArray();
 
-		unsigned int GetVertexCount()const { return this->vertexCount; }
+		unsigned int GetVertexCount()const { return this->m_vertexCount; }
 
 
 	private:
-		unsigned int vertexArrayHandleID;
-		unsigned int vertexBufferHandleID;
-		unsigned int elementBufferHandleID;
+		unsigned int m_vertexArrayHandleID;
+		unsigned int m_vertexBufferHandleID;
+		unsigned int m_elementBufferHandleID;
 
-		unsigned int vertexCount;
+		unsigned int m_vertexCount;
 
 	};
 }

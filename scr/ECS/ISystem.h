@@ -1,6 +1,4 @@
 #pragma once
-#include"Transform/Transoform.h"
-#include"Sprite/Sprite.h"
 namespace SpriteRenderer {
 	using Entity = std::uint32_t;
 	class SystemManager;
