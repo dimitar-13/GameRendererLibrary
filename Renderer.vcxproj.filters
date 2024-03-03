@@ -54,9 +54,6 @@
     <ClCompile Include="scr\Rendererpch.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="scr\Camera\Camera.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="scr\Physics\Collision\CollisionDetection.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>

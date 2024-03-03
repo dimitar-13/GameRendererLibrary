@@ -179,7 +179,6 @@
     <ClCompile Include="scr\Physics\PhysicSimulation\PhysicWorld.cpp" />
     <ClCompile Include="scr\Physics\Collision\Colider.cpp" />
     <ClCompile Include="scr\Physics\Collision\CollisionDetection.cpp" />
-    <ClCompile Include="scr\Camera\Camera.cpp" />
     <ClCompile Include="scr\Physics\PhysicBody.cpp" />
     <ClCompile Include="scr\Rendererpch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

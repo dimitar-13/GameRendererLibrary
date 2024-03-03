@@ -12,6 +12,5 @@ namespace SpriteRenderer {
 		inline int* winWidth = new int(1000);
 		inline int* winHeight = new int(1000);
 		inline GLFWwindow* winContext = 0;
-		inline glm::mat4* projection = new glm::mat4(1);
 	}
 }
