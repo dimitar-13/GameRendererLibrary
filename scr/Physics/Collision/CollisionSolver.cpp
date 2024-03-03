@@ -2,7 +2,17 @@
 #include "CollisionSolver.h"
 void SpriteRenderer::ColisionSolver::SolveColision(Collision collision)
 {
-	//if (collision.collider1->isTrigger || collision.collider1->isTrigger) return;
+	if (collision.collider1->m_isTrigger || collision.collider2->m_isTrigger) return;
+
+	Transform* movingCollider = collision.collider1->m_Position != collision.transformObj1->m_Position ?
+		collision.transformObj1 : collision.transformObj2;
+
+	movingCollider->m_Position += collision.CollisionNormal * collision.distance;
+
+
+
+
+	
 
 	
 		//collision.transformObj1->m_Position += collision.CollisionNormal*collision.distance;

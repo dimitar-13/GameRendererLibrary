@@ -26,6 +26,7 @@
 #include"Transform/Transoform.h"
 #include"Sprite/Sprite.h"
 #include "Physics/PhysicBody.h"
+#include"ColliderComponent.h"
 
 //Sprites and textures
 #include"Sprite/Sprite.h"

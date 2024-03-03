@@ -12,8 +12,10 @@ namespace SpriteRenderer
 	public:
 		void ResolveColisions();
 	private:
+		const  glm::vec2 GRAVITY_FORCE = glm::vec2(0, -9.81f);
 		std::vector<Collision> collisions;
 		ColisionSolver solver;
+		std::vector<Entity> m_CollisionEntities;
 		float time = 0;
 	private:
 		void ColisionCheck();
@@ -23,5 +25,6 @@ namespace SpriteRenderer
 		void Update(float dt) override;
 		void PostUpdate(float dt) override;
 		void DestroySystem() override;
+		void UpdatePhysics(PhysicBody& physicBodie, glm::vec2* position, float delta);
 	};
 }

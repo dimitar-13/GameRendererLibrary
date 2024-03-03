@@ -24,28 +24,34 @@
 //	this->radius = 1 * METER_SCALE_FACTOR;
 //}
 
-SpriteRenderer::Collision SpriteRenderer::CircleCollider::TestForCollision(Collider* collider)
+SpriteRenderer::Collision SpriteRenderer::CircleCollider::TestForCollision(Collider* collider, Transform* callerTransform,
+	Transform* toBeTestedTransform)
 {
-	return collider->TestForCollision(this);
+	return collider->TestForCollision(this, toBeTestedTransform,callerTransform);
 }
 
-SpriteRenderer::Collision SpriteRenderer::CircleCollider::TestForCollision(CircleCollider* CircleCollider2)
+SpriteRenderer::Collision SpriteRenderer::CircleCollider::TestForCollision(CircleCollider* CircleCollider2, Transform* callerTransform,
+	Transform* toBeTestedTransform)
 {
 	return CollisionDetectionFuncs::TestForCollision(this,
-											CircleCollider2);
+											CircleCollider2, callerTransform, toBeTestedTransform);
 }
 
-SpriteRenderer::Collision SpriteRenderer::CircleCollider::TestForCollision(SquareCollider* SquareCollider)
+SpriteRenderer::Collision SpriteRenderer::CircleCollider::TestForCollision(SquareCollider* SquareCollider, Transform* callerTransform,
+	Transform* toBeTestedTransform)
 {
-	return CollisionDetectionFuncs::TestForCollision(SquareCollider,this);
+
+	return CollisionDetectionFuncs::TestForCollision(SquareCollider,this, toBeTestedTransform, callerTransform);
 }
 
-SpriteRenderer::Collision SpriteRenderer::SquareCollider::TestForCollision(Collider* collider)
+SpriteRenderer::Collision SpriteRenderer::SquareCollider::TestForCollision(Collider* collider, Transform* callerTransform,
+	Transform* toBeTestedTransform)
 {
-	return collider->TestForCollision(this);
+	return collider->TestForCollision(this,callerTransform,toBeTestedTransform);
 }
 
-SpriteRenderer::Collision SpriteRenderer::SquareCollider::TestForCollision(SquareCollider* SquareCollider2)
+SpriteRenderer::Collision SpriteRenderer::SquareCollider::TestForCollision(SquareCollider* SquareCollider2, Transform* callerTransform,
+	Transform* toBeTestedTransform)
 {
-	return CollisionDetectionFuncs::TestForCollision(this,SquareCollider2);
+	return CollisionDetectionFuncs::TestForCollision(this,SquareCollider2, callerTransform, toBeTestedTransform);
 }
