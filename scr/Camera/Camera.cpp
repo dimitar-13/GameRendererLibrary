@@ -1,12 +1,6 @@
 #include "Rendererpch.h"
 #include "Camera.h"
 
-SpriteRenderer::OrthographicCamera::OrthographicCamera(float left, float right, float bottom, float top, float near, float far, glm::vec3 Position):
-position(Position)
-{
-    this->projection = glm::ortho(left, right, bottom, top, near, far);
-}
-
 glm::mat4& SpriteRenderer::OrthographicCamera::GetViewProjectionMatrix()
 {
     CalculateLookAtMatrix();

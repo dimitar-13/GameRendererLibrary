@@ -14,15 +14,18 @@ namespace SpriteRenderer {
 	class OrthographicCamera
 	{
 	public:
-
-		OrthographicCamera(float left,float right,float bottom,float top,float near,float far, glm::vec3 Position = glm::vec3(0));
-
 		glm::mat4& GetViewProjectionMatrix();
 		glm::vec3& GetCameraPositionMatrix() { return this->position; }
-		
+		void SetCameraProjDimentions(float left, 
+			float right, 
+			float bottom, 
+			float top, 
+			float near, 
+			float far) {this->projection = glm::ortho(left, right, bottom, top, near, far);}
+	public:
+		bool ResizeOnWindowResize = false;
 	private:
-		glm::vec3 position;
-		glm::vec3 target;
+		glm::vec3 position = glm::vec3(0,0,0.1);
 		glm::mat4 lookAtMatrix;
 		glm::mat4 projection;
 		glm::mat4 viewProjection;
