@@ -10,7 +10,7 @@ out vec2 UvCoords;
 out vec2 FragPos;
 void main()
 {
-gl_Position = ViewProjectionMatrix* ModelMatrix * vec4(aPos.xy,0,1.0f);
+gl_Position = ViewProjectionMatrix* ModelMatrix * vec4(aPos.xy,.1,1.0f);
 FragPos = aPos.xy;
 UvCoords = aUvCoords;
 }
@@ -22,7 +22,6 @@ uniform vec3 uColor;
 uniform vec2 uOrigin;
 in vec2 FragPos;
 in vec2 UvCoords;
-
 void main()
 {
 float distance = 0.5-length(FragPos);

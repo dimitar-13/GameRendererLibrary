@@ -7,10 +7,8 @@ void SpriteRenderer::Resize(GLFWwindow* window, int width, int height)
 	glViewport(0, 0, width, height);
 	*Global::winHeight = height;
 	*Global::winWidth = width;
-	*Global::projection = glm::ortho<float>((float)( - *Global::winWidth / 2),
-											(float)(*Global::winWidth / 2), 
-											(float)( - *Global::winHeight / 2), 
-											(float)(*Global::winHeight / 2), -1.0, 1.0);
+	//TODO:Get the current camera and change the projection
+	//or use event so single the camera that is interested.
 }
 
 void SpriteRenderer::KeyCallback(GLFWwindow* window, int key, int scancode, int action, int mods)

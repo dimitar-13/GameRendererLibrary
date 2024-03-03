@@ -2,9 +2,11 @@
 #include"Rendererpch.h"
 #include"OpenglData/VertexArray/VertexArray.h"
 #include"ECS/ISystem.h"
-
+#include"Transform/Transoform.h"
 namespace SpriteRenderer {
 	class ShaderProgram;
+	//TODO:Create a Render system and a renderer.
+	//The render system can do calls to the renderer 
 
 	class Renderer:public ISystem
 	{
@@ -19,6 +21,9 @@ namespace SpriteRenderer {
 		void Update(float dt) override;
 		void PostUpdate(float dt) override;
 		void DestroySystem() override;
+
+		const glm::mat4 CalculateModelMatrix(const Transform& spriteTransform);
+		const glm::mat4 CalculateViewMatrix(const Transform& cameraTransform);
 
 		//Draw Primitives
 		void DrawCircle();
