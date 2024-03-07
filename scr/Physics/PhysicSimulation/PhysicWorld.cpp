@@ -3,30 +3,7 @@
 #include"Log/Log.h"
 #include"SceneManager/SceneManager.h"
 #include"ECS/ECSManager.h"
-
-void SpriteRenderer::PhysicWorld::ColisionCheck()
-{
-	//for (auto it1 = coliders->begin(); it1 != coliders->end(); it1++)
-	//{
-	//	for (auto it2 = std::next(it1); it2 != coliders->end(); it2++)
-	//	{
-	//		//Get transform
-	//		//I know its slow but cant think of better solution
-	//		it2->second->UpdatePosition();
-	//		it1->second->UpdatePosition();
-
-	//		Collision collision = it1->second.get()->TestForCollision(it2->second.get());
-	//		if (collision.isColliding)
-	//		{
-	//			this->collisions.push_back(collision);
-	//			//RENDER_LOG_MESSAGE_INFO("Colision");
-	//		}
-	//	}
-	//}
-	//ResolveColisions();
-	
-}
-
+#include"ColliderComponent.h"
 void SpriteRenderer::PhysicWorld::Init()
 {
 	this->m_entities = ECSManager::GetComponentEntities<PhysicBody>();
@@ -43,20 +20,25 @@ void SpriteRenderer::PhysicWorld::Update(float dt)
 	{
 		auto* transform = ECSManager::GetComponent<Transform>(m_entities[i]);
 		auto* physicBodie = ECSManager::GetComponent<PhysicBody>(m_entities[i]);
-		physicBodie->UpdatePhysics(&transform->m_Position,dt);
+		UpdatePhysics(*physicBodie, &transform->m_Position, dt);
 	}
-	ColisionCheck();
 }
 
 void SpriteRenderer::PhysicWorld::PostUpdate(float dt)
 {
-	for (auto& collsion : this->collisions)
-	{
-		this->solver.SolveColision(collsion);
-	}
-	this->collisions.clear();
+	//Dependencie between collisionSystem and PhysicsSystem
 }
 
 void SpriteRenderer::PhysicWorld::DestroySystem()
 {
+}
+
+void SpriteRenderer::PhysicWorld::UpdatePhysics(PhysicBody& physicBodie,
+	glm::vec2* physicBodiePosition, float delta)
+{
+	glm::vec2 totalForce = physicBodie.m_useGravity ? physicBodie.m_totalForce + GRAVITY_FORCE : physicBodie.m_totalForce;
+	physicBodie.m_acceleration = totalForce / physicBodie.m_mass;
+	physicBodie.m_velocity += (physicBodie.m_acceleration * delta);
+	*physicBodiePosition += delta * physicBodie.m_velocity;
+	physicBodie.m_totalForce = glm::vec2(0);
 }

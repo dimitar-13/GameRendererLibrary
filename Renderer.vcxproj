@@ -171,6 +171,7 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="scr\Physics\Collision\CollisionSytstem.cpp" />
     <ClCompile Include="scr\ScriptSystem\ScriptSystem.cpp" />
     <ClCompile Include="scr\ECS\ECSManager.cpp" />
     <ClCompile Include="scr\ECS\EntityManager.cpp" />
@@ -179,7 +180,6 @@
     <ClCompile Include="scr\Physics\PhysicSimulation\PhysicWorld.cpp" />
     <ClCompile Include="scr\Physics\Collision\Colider.cpp" />
     <ClCompile Include="scr\Physics\Collision\CollisionDetection.cpp" />
-    <ClCompile Include="scr\Physics\PhysicBody.cpp" />
     <ClCompile Include="scr\Rendererpch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
@@ -202,6 +202,8 @@
     <ClCompile Include="scr\WindowFunctions\WindowFunctions.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="scr\ColliderComponent.h" />
+    <ClInclude Include="scr\Physics\Collision\CollisionSytstem.h" />
     <ClInclude Include="scr\ScriptSystem\ScriptSystem.h" />
     <ClInclude Include="scr\ECS\ComponentArray.h" />
     <ClInclude Include="scr\ECS\ComponentManager.h" />
