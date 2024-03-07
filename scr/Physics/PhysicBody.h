@@ -5,7 +5,6 @@ namespace SpriteRenderer
 	class PhysicWorld;
 	class PhysicBody
 	{
-
 	public:
 		float m_mass =.2f;
 		bool m_useGravity = true;

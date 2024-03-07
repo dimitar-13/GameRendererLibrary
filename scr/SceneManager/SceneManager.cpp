@@ -5,6 +5,7 @@
 #include"Renderer/Renderer.h"
 #include "SceneManager.h"
 #include"ScriptSystem/ScriptSystem.h"
+#include "Physics/Collision/CollisionSytstem.h"
 
 void SpriteRenderer::SceneManager::Init()
 {
@@ -14,6 +15,8 @@ void SpriteRenderer::SceneManager::Start()
 	ECSManager::RegisterSystem<Renderer>();
 	ECSManager::RegisterSystem<ScriptSystem>();
 	ECSManager::RegisterSystem<PhysicWorld>();
+	ECSManager::RegisterSystem<CollisionSystem>();
+
 	ECSManager::GetSystemManager().InitSystems();
 
 	RENDER_LOG_MESSAGE_INFO("Render loop was started.");

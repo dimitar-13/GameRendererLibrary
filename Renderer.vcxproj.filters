@@ -78,6 +78,9 @@
     <ClCompile Include="scr\ScriptSystem\ScriptSystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="scr\Physics\Collision\CollisionSytstem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="scr\Renderer\Renderer.h">
@@ -189,6 +192,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="scr\ColliderComponent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="scr\Physics\Collision\CollisionSytstem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

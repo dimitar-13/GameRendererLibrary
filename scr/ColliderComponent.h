@@ -1,10 +1,19 @@
 #pragma once
 #include"Rendererpch.h"
 #include"Physics/Collision/Colider.h"
+#include<functional>
 namespace SpriteRenderer {
+	class ScriptableObject;
 	struct ColliderComponent
 	{
 		std::shared_ptr<Collider> attachedCollider;
+
+		std::function<void(Collider*)>OnCollisionStart;
+		std::function<void(Collider*)> OnTriggerStart;
+
+		std::function<void(Collider*)>OnCollisionExit;
+		std::function<void(Collider*)> OnTriggerExit;
+
 		template<typename T>
 		void SetColliderType()
 		{
@@ -12,4 +21,6 @@ namespace SpriteRenderer {
 			attachedCollider = std::dynamic_pointer_cast<Collider>(std::make_shared<T>());
 		}
 	};
+
+
 }

@@ -13,9 +13,7 @@ namespace SpriteRenderer
 		void ResolveColisions();
 	private:
 		const  glm::vec2 GRAVITY_FORCE = glm::vec2(0, -9.81f);
-		std::vector<Collision> collisions;
-		ColisionSolver solver;
-		std::vector<Entity> m_CollisionEntities;
+			std::vector<Entity> m_CollisionEntities;
 		float time = 0;
 	private:
 		void ColisionCheck();

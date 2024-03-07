@@ -47,7 +47,7 @@ SpriteRenderer::Collision SpriteRenderer::CircleCollider::TestForCollision(Squar
 SpriteRenderer::Collision SpriteRenderer::SquareCollider::TestForCollision(Collider* collider, Transform* callerTransform,
 	Transform* toBeTestedTransform)
 {
-	return collider->TestForCollision(this,callerTransform,toBeTestedTransform);
+	return collider->TestForCollision(this, toBeTestedTransform,callerTransform);
 }
 
 SpriteRenderer::Collision SpriteRenderer::SquareCollider::TestForCollision(SquareCollider* SquareCollider2, Transform* callerTransform,

@@ -3,13 +3,21 @@
 #include "Transform/Transoform.h"
 
 namespace SpriteRenderer {
+	enum CollisionState {
+		COLLISION_STATE_COLLISION_NONE,
+		COLLISION_STATE_COLLISION_ENTER,
+		COLLISION_STATE_COLLISION_EXIT,
+		COLLISION_STATE_TRIGGER_ENTER,
+		COLLISION_STATE_TRIGGER_EXIT
+	};
+
 	struct Collider;
 	struct Collision
 	{
-		bool  isColliding = false;
+		float isOverlap= false;
 		float distance = 0.0;
 		glm::vec2 CollisionNormal;
-		glm::vec2 PointA, PointB;
+		//glm::vec2 PointA, PointB;
 		Transform* transformObj1;
 		Transform* transformObj2;
 		Collider* collider1;
@@ -20,6 +28,7 @@ namespace SpriteRenderer {
 	struct Collider
 	{
 		glm::vec2 m_Position;
+		CollisionState collisionState = COLLISION_STATE_COLLISION_NONE;
 		bool m_isTrigger = false;
 		virtual Collision TestForCollision(Collider* collider, Transform* callerTransform,
 			Transform* toBeTestedTransform) = 0;
