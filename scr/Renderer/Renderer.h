@@ -1,35 +1,47 @@
 #pragma once
 #include"Rendererpch.h"
-#include"OpenglData/VertexArray/VertexArray.h"
-#include"ECS/ISystem.h"
 #include"Transform/Transoform.h"
+#include "Sprite/Sprite.h"
 namespace SpriteRenderer {
 	class ShaderProgram;
 	//TODO:Create a Render system and a renderer.
 	//The render system can do calls to the renderer 
 
-	class Renderer:public ISystem
+	/*struct IndexArraySpriteData {
+		std::array<Vertex, 4> m_verts;
+		std::array<uint32_t, 4> m_indicies;
+	};
+
+	struct VertexArraySpriteData {
+		std::array<Vertex, 6> m_verts;
+	};*/
+
+	class Renderer
 	{
 	public:
-		void Init() override;
+		Renderer();
+		~Renderer();
 		static void EnableDepthTest() { glEnable(GL_DEPTH_TEST); }
 		static void DisableDepthTest() { glDisable(GL_DEPTH_TEST); }
 		static void Clear() { glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); }
-		void Draw();
+		
 
-		void PreUpdate(float dt) override;
-		void Update(float dt) override;
-		void PostUpdate(float dt) override;
-		void DestroySystem() override;
-
-		const glm::mat4 CalculateModelMatrix(const Transform& spriteTransform);
-		const glm::mat4 CalculateViewMatrix(const Transform& cameraTransform);
+		void SubmitToDraw(Sprite* spriteToDraw,
+			const glm::mat4& modelMatrix,
+			const glm::mat4& viewProjMatrix);
+	
 
 		//Draw Primitives
-		void DrawCircle();
-		//void DrawSquare();
+		void DrawCircle(Sprite* spriteToDraw, const glm::mat4& modelMatrix,
+			const glm::mat4& viewProjMatrix);
+		void DrawSquare(Sprite* spriteToDraw, const glm::mat4& modelMatrix,
+			const glm::mat4& viewProjMatrix);
+		void DrawSprite(Sprite* spriteToDraw, const glm::mat4& modelMatrix,
+			const glm::mat4& viewProjMatrix);
+		//void GenVertexArray();
+		//void GenIndexArray();
+
 		//void DrawTriangle();
-		//void DrawSprite(); 
 		//const static ShaderProgram& GetShader() { return m_instance.getShader(); }
 		//TODO:
 		//Render calls with shaders

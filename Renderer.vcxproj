@@ -172,6 +172,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="scr\Physics\Collision\CollisionSytstem.cpp" />
+    <ClCompile Include="scr\Renderer\RenderSytstem.cpp" />
     <ClCompile Include="scr\ScriptSystem\ScriptSystem.cpp" />
     <ClCompile Include="scr\ECS\ECSManager.cpp" />
     <ClCompile Include="scr\ECS\EntityManager.cpp" />
@@ -204,6 +205,7 @@
   <ItemGroup>
     <ClInclude Include="scr\ColliderComponent.h" />
     <ClInclude Include="scr\Physics\Collision\CollisionSytstem.h" />
+    <ClInclude Include="scr\Renderer\RenderSytstem.h" />
     <ClInclude Include="scr\ScriptSystem\ScriptSystem.h" />
     <ClInclude Include="scr\ECS\ComponentArray.h" />
     <ClInclude Include="scr\ECS\ComponentManager.h" />

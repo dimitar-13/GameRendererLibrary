@@ -2,7 +2,7 @@
 #include"../../Core/Global.h"
 #include"ECS/ECSManager.h"
 #include"Physics/PhysicSimulation/PhysicWorld.h"
-#include"Renderer/Renderer.h"
+#include"Renderer/RenderSytstem.h"
 #include "SceneManager.h"
 #include"ScriptSystem/ScriptSystem.h"
 #include "Physics/Collision/CollisionSytstem.h"
@@ -12,7 +12,7 @@ void SpriteRenderer::SceneManager::Init()
 }
 void SpriteRenderer::SceneManager::Start()
 {
-	ECSManager::RegisterSystem<Renderer>();
+	ECSManager::RegisterSystem<RenderSysytem>();
 	ECSManager::RegisterSystem<ScriptSystem>();
 	ECSManager::RegisterSystem<PhysicWorld>();
 	ECSManager::RegisterSystem<CollisionSystem>();
