@@ -4,7 +4,13 @@
 #include"SceneManager/SceneManager.h"
 #include"Shader/ShaderProgram/ShaderProgram.h"
 #include"Metric/MetricHelper.h"
-void SpriteRenderer::Renderer::Init()
+
+static constexpr const uint32_t INDEX_PER_OBJECT = 6;
+static const uint32_t INDEX_ARRAYCOUNT = INDEX_PER_OBJECT * SpriteRenderer::MAX_OBJECT_CCOUNT_PER_BATCH * 2;
+static std::array<uint32_t, INDEX_ARRAYCOUNT> indexData;
+static uint32_t indexBufferHandle;
+
+SpriteRenderer::Renderer::Renderer()
 {
     m_CustomShader = new ShaderProgram("../Renderer/Assets/Shaders/Color_shader.glsl");
     m_CustomShader->UseProgram();
@@ -15,19 +21,14 @@ void SpriteRenderer::Renderer::Init()
 
     m_CircleShader = new ShaderProgram("../Renderer/Assets/Shaders/Circle_shader.glsl");
     m_CircleShader->UseProgram();
-    m_CircleShader->GetShaderUniformLocation("ModelMatrix");
     m_CircleShader->GetShaderUniformLocation("ViewProjectionMatrix");
-    m_CircleShader->GetShaderUniformLocation("uColor");
 
     m_SquareShader = new ShaderProgram("../Renderer/Assets/Shaders/Square_shader.glsl");
     m_SquareShader->UseProgram();
-    m_SquareShader->GetShaderUniformLocation("ModelMatrix");
     m_SquareShader->GetShaderUniformLocation("ViewProjectionMatrix");
-    m_SquareShader->GetShaderUniformLocation("uColor");
 
-    //m_instance.m_entitySprites = &ECSManager::GetComponentArray<Sprite>();
-    //m_instance.m_entityTransforms = &ECSManager::GetComponentArray<Transform>();
-    m_entities = ECSManager::GetComponentEntities<Sprite>();
+    GenIndexBatchData();
+    SetupBatchData();
 }
 
 void SpriteRenderer::Renderer::IndexedDraw(const VertexArray& vertexArray)
@@ -41,109 +42,220 @@ void SpriteRenderer::Renderer::ArrayDraw(const VertexArray& vertexArray)
     vertexArray.UnbindArray();
 }
 
-void SpriteRenderer::Renderer::Draw()
+
+SpriteRenderer::Renderer::~Renderer()
 {
-    m_entities = ECSManager::GetComponentEntities<Sprite>();
+    delete(m_CircleShader);
+    delete(m_SquareShader);
+    delete(m_CustomShader);
+    delete[](m_SquareBatchData.data);
+    delete[](m_CircleBatchData.data);
 
-    for (uint32_t i = 0 ; i < m_entities.size(); i++)
+}
+
+void SpriteRenderer::Renderer::GenIndexBatchData()
+{
+    uint32_t indexSetCounter = 0;
+    for (uint32_t i = 0; indexSetCounter < SpriteRenderer::MAX_OBJECT_CCOUNT_PER_BATCH*2; i+=4)
     {
-        Transform* transform = ECSManager::GetComponent<Transform>(m_entities[i]);
-        Sprite* sprite = ECSManager::GetComponent<Sprite>(m_entities[i]);
-        Entity cameraEntity = SceneManager::GetAtctiveCamera();
-        OrthographicCamera* camera = ECSManager::GetComponent<OrthographicCamera>(cameraEntity);
-        Transform* cameraTransform = ECSManager::GetComponent<Transform>(cameraEntity);
+        uint32_t indexStartVal = i;
+        uint32_t firstVal = indexStartVal;
+        indexData[indexSetCounter] = indexStartVal;
+        indexData[++indexSetCounter] = ++indexStartVal;
+        indexData[++indexSetCounter] = ++indexStartVal;
+        indexData[++indexSetCounter] = indexStartVal;
+        indexData[++indexSetCounter] = ++indexStartVal;
+        indexData[++indexSetCounter] = firstVal;
+        ++indexSetCounter;
+    }
 
-        //ISystem::Unpack(m_instance.m_entities[i], transform,sprite);
-        switch (sprite->m_shapeType)
-        {
-        case SPRITE_SHAPE_TYPE_CUBE:
-                  m_SquareShader->UseProgram();
-                  m_SquareShader->SetUniform4x4Matrix("ModelMatrix", CalculateModelMatrix(*transform));
-                  m_SquareShader->SetUniform4x4Matrix("ViewProjectionMatrix", camera->GetProjectionMatrix()* CalculateViewMatrix(*cameraTransform));
-                  m_SquareShader->SetUniform3FloatVector("uColor", sprite->m_Color);
-                  break;
-        case SPRITE_SHAPE_TYPE_CIRCLE:
-                m_CircleShader->UseProgram();
-                m_CircleShader->SetUniform4x4Matrix("ModelMatrix", CalculateModelMatrix(*transform));
-                m_CircleShader->SetUniform4x4Matrix("ViewProjectionMatrix", camera->GetProjectionMatrix() * CalculateViewMatrix(*cameraTransform));
-                m_CircleShader->SetUniform3FloatVector("uColor", sprite->m_Color);
-                break;
-        case SPRITE_SHAPE_TYPE_TRIANGLE:
-            break;
-        case SPRITE_SHAPE_TYPE_CUSTOM:
-            break;
-        }
-        //Set up shaders
-        //Issue draw call
-          ArrayDraw(*sprite->m_vertexArray);
+    glGenBuffers(1, &indexBufferHandle);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indexBufferHandle);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indexData), indexData.data(),
+        GL_STATIC_DRAW);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+}
+
+void SpriteRenderer::Renderer::SetupBatchData()
+{
+    const std::vector<AttributeData> CircleAttribLayout{
+      {0,2,GL_FLOAT,sizeof(CircleVertexData),offsetof(CircleVertexData, originalPosition)},
+      {1,2,GL_FLOAT,sizeof(CircleVertexData),offsetof(CircleVertexData, worldPosition)},
+      {2,3,GL_FLOAT,sizeof(CircleVertexData),offsetof(CircleVertexData, color)}};
+
+    this->m_CircleBatchData.batchVertexArray.CreateVertexArray(CircleAttribLayout);
+
+    this->m_CircleBatchData.dataOffsetInBytes = sizeof(CircleVertexData) * 4;
+
+    this->m_CircleBatchData.batchVertexArray.BindBufferToVertexArray(indexBufferHandle,
+        GL_ELEMENT_ARRAY_BUFFER);
+
+    this->m_CircleBatchData.batchVertexArray.GenerateAndBindBufferToVertexArray(GL_ARRAY_BUFFER,
+        this->m_CircleBatchData.dataOffsetInBytes * MAX_OBJECT_CCOUNT_PER_BATCH, nullptr, GL_DYNAMIC_DRAW);
+
+    this->m_CircleBatchData.data = new CircleVertexData[m_CircleBatchData.MaxObjectCount];
+
+
+    const std::vector<AttributeData> SquareAttribLayout{
+      {0,2,GL_FLOAT,sizeof(SquareVertexData),offsetof(SquareVertexData, worldPosition)},
+      {1,3,GL_FLOAT,sizeof(SquareVertexData),offsetof(SquareVertexData, color)}};
+
+    this->m_SquareBatchData.batchVertexArray.CreateVertexArray(SquareAttribLayout);
+
+    this->m_SquareBatchData.dataOffsetInBytes = sizeof(SquareVertexData) * 4;
+
+    this->m_SquareBatchData.batchVertexArray.BindBufferToVertexArray(indexBufferHandle,
+        GL_ELEMENT_ARRAY_BUFFER);
+    this->m_SquareBatchData.batchVertexArray.GenerateAndBindBufferToVertexArray(GL_ARRAY_BUFFER,
+        this->m_SquareBatchData.dataOffsetInBytes * MAX_OBJECT_CCOUNT_PER_BATCH,nullptr,GL_DYNAMIC_DRAW);
+
+    this->m_SquareBatchData.data = new SquareVertexData[m_SquareBatchData.MaxObjectCount];
+
+}
+
+void SpriteRenderer::Renderer::BeginBatch()
+{
+    this->m_SquareBatchData.dataPointer = m_SquareBatchData.data;
+    this->m_SquareBatchData.objectCount = 0;
+    this->m_SquareBatchData.indexCount = 0;
+
+    this->m_CircleBatchData.dataPointer = m_CircleBatchData.data;
+    this->m_CircleBatchData.objectCount = 0;
+    this->m_CircleBatchData.indexCount = 0;
+
+}
+
+void SpriteRenderer::Renderer::SubmitToDraw(Sprite* spriteToDraw, const glm::mat4& modelMatrix)
+{
+    switch (spriteToDraw->m_shapeType)
+    {
+    case SPRITE_SHAPE_TYPE_CUBE:
+        AppendToSquareBatch(spriteToDraw, modelMatrix);
+        break;
+    case SPRITE_SHAPE_TYPE_CIRCLE:
+        AppendToCircleBatch(spriteToDraw,modelMatrix);
+        break;
+    case SPRITE_SHAPE_TYPE_TRIANGLE:
+        break;
+    case SPRITE_SHAPE_TYPE_CUSTOM:
+        //this->DrawSprite(spriteToDraw, modelMatrix, viewProjMatrix);
+        break;
     }
 }
 
-void SpriteRenderer::Renderer::PreUpdate(float dt)
+void SpriteRenderer::Renderer::DrawBatch(const glm::mat4& viewProjMatrix)
 {
+    DrawSquareBatch(viewProjMatrix);
+    DrawCircleBatch(viewProjMatrix);
+    DrawSprite(viewProjMatrix);
 }
 
-void SpriteRenderer::Renderer::Update(float dt)
+void SpriteRenderer::Renderer::EndBatch()
 {
-    Draw();
+
 }
 
-void SpriteRenderer::Renderer::PostUpdate(float dt)
+void SpriteRenderer::Renderer::DrawCircleBatch(const glm::mat4& viewProjMatrix)
 {
+    this->m_CircleBatchData.batchVertexArray.SendBufferSubData(GL_ARRAY_BUFFER,0,
+        this->m_CircleBatchData.dataOffsetInBytes * this->m_CircleBatchData.objectCount,
+        &this->m_CircleBatchData.data[0]);
+
+    this->m_CircleShader->UseProgram();
+    this->m_CircleShader->SetUniform4x4Matrix("ViewProjectionMatrix", viewProjMatrix);
+    this->m_CircleBatchData.batchVertexArray.BindArray();
+
+    glDrawElements(GL_TRIANGLES, this->m_CircleBatchData.indexCount, GL_UNSIGNED_INT, nullptr);
+    this->m_CircleBatchData.batchVertexArray.UnbindArray();
 }
 
-void SpriteRenderer::Renderer::DestroySystem()
+void SpriteRenderer::Renderer::DrawSquareBatch(const glm::mat4& viewProjMatrix)
 {
-    delete(m_CustomShader);
-    delete(m_CircleShader);
-    delete(m_SquareShader);
+    this->m_SquareBatchData.batchVertexArray.SendBufferSubData(GL_ARRAY_BUFFER,0,
+        this->m_SquareBatchData.dataOffsetInBytes * this->m_SquareBatchData.objectCount,
+        &this->m_SquareBatchData.data[0]);
+
+    this->m_SquareShader->UseProgram();
+    this->m_SquareShader->SetUniform4x4Matrix("ViewProjectionMatrix", viewProjMatrix);
+    this->m_SquareBatchData.batchVertexArray.BindArray();
+ 
+    glDrawElements(GL_TRIANGLES, this->m_SquareBatchData.indexCount, GL_UNSIGNED_INT, nullptr);
+    this->m_SquareBatchData.batchVertexArray.UnbindArray();
 }
 
-const glm::mat4 SpriteRenderer::Renderer::CalculateModelMatrix(const Transform& spriteTransform)
+void SpriteRenderer::Renderer::DrawSprite(const glm::mat4& viewProjMatrix)
 {
-    glm::mat4 result(1);
-	result = glm::translate(result, glm::vec3(spriteTransform.m_Position,0));
-
-	result = glm::rotate(result, spriteTransform.m_Rotate.x, glm::vec3(1.0f, 0, 0));
-	result = glm::rotate(result, spriteTransform.m_Rotate.y, glm::vec3(0, 1.0f, 0));
-
-    result = glm::scale(result, glm::vec3(MetricHelper::GetUnitInMeters(spriteTransform.m_Scale.x),
-		MetricHelper::GetUnitInMeters(spriteTransform.m_Scale.y),0));
-	return result;
+    m_CustomShader->UseProgram();
+    //SetTextures
+    //ArrayDraw(*spriteToDraw->m_vertexArray);
 }
 
-const glm::mat4 SpriteRenderer::Renderer::CalculateViewMatrix(const Transform& cameraTransform)
+void SpriteRenderer::Renderer::AppendToCircleBatch(Sprite* spriteToDraw, 
+    const glm::mat4& modelMatrix)
 {
-    glm::mat4 result(1);
-    glm::vec3 DirVec = glm::vec3(0) - glm::vec3(cameraTransform.m_Position,0.1);
-    glm::vec3 front = glm::length(DirVec) > 1 ? glm::normalize(DirVec) : DirVec;
-    glm::vec3 tempUp(0, 1, 0);
+    auto CircleVertexData = this->GenCircleVertexArrayData(spriteToDraw, modelMatrix);
 
-    glm::vec3 right = glm::cross(front, tempUp);
-    glm::vec3 up = glm::cross(right, front);
+    memcpy_s(this->m_CircleBatchData.dataPointer,
+        sizeof(*this->m_CircleBatchData.data) * this->m_CircleBatchData.MaxObjectCount,
+        CircleVertexData.data(),
+        sizeof(CircleVertexData) * CircleVertexData.size());
 
-    right = glm::length(right) > 1 ? glm::normalize(right) : right;
-    up = glm::length(up) > 1 ? glm::normalize(up) : up;
+    this->m_CircleBatchData.dataPointer += 4;
+    this->m_CircleBatchData.objectCount++;
+    this->m_CircleBatchData.indexCount+=6;
 
-    result[0][0] = right.x;
-    result[1][0] = right.y;
-    result[2][0] = right.z;
-
-    result[0][1] = up.x;
-    result[1][1] = up.y;
-    result[2][1] = up.z;
-    
-    result[0][2] = front.x;
-    result[1][2] = front.y;
-    result[2][2] = front.z;
-    
-    result[0][3] = -cameraTransform.m_Position.x;
-    result[1][3] = -cameraTransform.m_Position.y;
-    result[2][3] = -0.1;
-    result = glm::mat4(1);
-    //The target vector must have the same position as the camera exept the z so the camera doesnt
-    //move on z and stays paralel to the x axie.
-    result = glm::lookAt(glm::vec3(cameraTransform.m_Position,.1), glm::vec3(cameraTransform.m_Position,0), tempUp);
-    return result;
 }
 
+void SpriteRenderer::Renderer::AppendToSquareBatch(Sprite* spriteToDraw,
+    const glm::mat4& modelMatrix)
+{
+    auto SquareVertexData = this->GenSqaureVertexArrayData(spriteToDraw, modelMatrix);
+
+    memcpy_s(m_SquareBatchData.dataPointer,
+        sizeof(*m_SquareBatchData.data) * this->m_SquareBatchData.MaxObjectCount,
+        SquareVertexData.data(),
+        sizeof(SquareVertexData) * SquareVertexData.size());
+
+    m_SquareBatchData.dataPointer += 4;
+    this->m_SquareBatchData.objectCount++;
+    this->m_SquareBatchData.indexCount += 6;
+
+}
+
+std::array<SpriteRenderer::CircleVertexData,4> SpriteRenderer::Renderer::GenCircleVertexArrayData(Sprite* spriteToDraw, const glm::mat4& modelMatrix)
+{
+    std::array<SpriteRenderer::CircleVertexData, 4> verts = {};
+    const float ndcOffset = 0.5f;
+    const glm::vec3 color = spriteToDraw->m_Color;
+
+    verts[0] = { glm::vec2(-ndcOffset, -ndcOffset),
+        modelMatrix * glm::vec4(-ndcOffset, -ndcOffset,0,1),
+        color };
+
+    verts[1] = { glm::vec2(-ndcOffset, ndcOffset),
+        modelMatrix * glm::vec4(-ndcOffset, ndcOffset ,0,1),
+        color };
+
+    verts[2] = { glm::vec2(ndcOffset, ndcOffset),
+        modelMatrix * glm::vec4(ndcOffset, ndcOffset ,0,1),
+        color };
+
+    verts[3] = { glm::vec2(ndcOffset, -ndcOffset),
+        modelMatrix * glm::vec4(ndcOffset, -ndcOffset ,0,1),
+        color };
+
+    return verts;
+}
+
+std::array<SpriteRenderer::SquareVertexData,4> SpriteRenderer::Renderer::GenSqaureVertexArrayData(Sprite* spriteToDraw, const glm::mat4& modelMatrix)
+{
+    std::array<SpriteRenderer::SquareVertexData, 4> verts = {};
+
+    const float ndcOffset = 0.5f;
+    const glm::vec3 color = spriteToDraw->m_Color;
+   verts[0] = {modelMatrix * glm::vec4(-ndcOffset, -ndcOffset,0,1),color };
+   verts[1] = {modelMatrix * glm::vec4(-ndcOffset, ndcOffset ,0,1),color };
+   verts[2] = {modelMatrix * glm::vec4(ndcOffset, ndcOffset ,0,1),color };
+   verts[3] = {modelMatrix * glm::vec4(ndcOffset, -ndcOffset ,0,1),color };
+    return verts;
+}

@@ -1,45 +1,79 @@
 #pragma once
 #include"Rendererpch.h"
-#include"OpenglData/VertexArray/VertexArray.h"
-#include"ECS/ISystem.h"
 #include"Transform/Transoform.h"
+#include "Sprite/Sprite.h"
 namespace SpriteRenderer {
 	class ShaderProgram;
-	//TODO:Create a Render system and a renderer.
-	//The render system can do calls to the renderer 
+	static const uint32_t MAX_OBJECT_CCOUNT_PER_BATCH = 100;
 
-	class Renderer:public ISystem
+	template<typename T>
+	struct BatchData {
+		VertexArray batchVertexArray;
+		const uint32_t MaxObjectCount = MAX_OBJECT_CCOUNT_PER_BATCH;
+		uint32_t objectCount = 0;
+		uint32_t indexCount = 0;
+		uint32_t dataOffsetInBytes;
+		T* dataPointer = nullptr;
+		T* data = nullptr;
+	};
+	struct CircleVertexData {
+		glm::vec2 originalPosition;
+		glm::vec2 worldPosition;
+		glm::vec3 color;
+	};
+
+	struct SquareVertexData {
+		glm::vec2 worldPosition;
+		glm::vec3 color;
+		//uint32_t textureUnitID = 0;
+	};
+
+	struct SpriteVertexData {
+		glm::vec2 worldPosition;
+		glm::vec2 uvCoords;
+		uint32_t textureUnit;
+	};
+	class Renderer
 	{
 	public:
-		void Init() override;
+		Renderer();
+		~Renderer();
 		static void EnableDepthTest() { glEnable(GL_DEPTH_TEST); }
 		static void DisableDepthTest() { glDisable(GL_DEPTH_TEST); }
 		static void Clear() { glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); }
-		void Draw();
+		void BeginBatch();
+		void DrawBatch(const glm::mat4& viewProjMatrix);
+		void EndBatch();
 
-		void PreUpdate(float dt) override;
-		void Update(float dt) override;
-		void PostUpdate(float dt) override;
-		void DestroySystem() override;
-
-		const glm::mat4 CalculateModelMatrix(const Transform& spriteTransform);
-		const glm::mat4 CalculateViewMatrix(const Transform& cameraTransform);
-
-		//Draw Primitives
-		void DrawCircle();
-		//void DrawSquare();
-		//void DrawTriangle();
-		//void DrawSprite(); 
-		//const static ShaderProgram& GetShader() { return m_instance.getShader(); }
-		//TODO:
-		//Render calls with shaders
+		void SubmitToDraw(Sprite* spriteToDraw,
+			const glm::mat4& modelMatrix);
 	private:
 		static void IndexedDraw(const VertexArray& vertexArray);
 		static void ArrayDraw(const VertexArray& vertexArray);
+		void GenIndexBatchData();
+		void SetupBatchData();
+		void DrawCircleBatch(const glm::mat4& viewProjMatrix);
+		void DrawSquareBatch(const glm::mat4& viewProjMatrix);
+		void DrawSprite(const glm::mat4& viewProjMatrix);
+
+		void AppendToCircleBatch(Sprite* spriteToDraw,
+			const glm::mat4& modelMatrix);
+
+		void AppendToSquareBatch(Sprite* spriteToDraw,
+			const glm::mat4& modelMatrix);
+
+		std::array<CircleVertexData,4> GenCircleVertexArrayData(Sprite* spriteToDraw,
+			const glm::mat4& modelMatrix);
+
+		std::array<SquareVertexData,4> GenSqaureVertexArrayData(Sprite* spriteToDraw,
+			const glm::mat4& modelMatrix);
 	private:
 		ShaderProgram* m_CustomShader = nullptr;
 		ShaderProgram* m_SquareShader = nullptr;
 		ShaderProgram* m_CircleShader = nullptr;
+
+		BatchData<CircleVertexData> m_CircleBatchData;
+		BatchData<SquareVertexData> m_SquareBatchData;
 	};
 }
 
