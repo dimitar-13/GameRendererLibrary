@@ -18,7 +18,6 @@ namespace SpriteRenderer {
 		Sprite();
 		~Sprite();
 	public:
-		const VertexArray& GetVertexArray() { return *this->m_vertexArray; }
 		const glm::vec3 GetSpriteColor() { return this->m_Color; }
 	public:
 		glm::vec3 SetSpriteColor(glm::vec3 color) { return this->m_Color = color; }
@@ -27,7 +26,6 @@ namespace SpriteRenderer {
 
 		void SetTexture(std::string& texturePath) { this->m_texture = new Texture2D(texturePath);}
 	private:
-		VertexArray* m_vertexArray;
 		glm::vec3 m_Color;
 		SpriteType m_shapeType;
 		Texture2D* m_texture = nullptr;

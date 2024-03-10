@@ -125,9 +125,6 @@
     <ClInclude Include="scr\SceneManager\SceneManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Core\SpriteData.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="scr\TextureClass\Texture2D\Texture2D.h">
       <Filter>Header Files</Filter>
     </ClInclude>

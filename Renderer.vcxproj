@@ -220,7 +220,6 @@
     <ClInclude Include="scr\Physics\Collision\CollisionDetection.h" />
     <ClInclude Include="scr\Camera\Camera.h" />
     <ClInclude Include="Core\Global.h" />
-    <ClInclude Include="Core\SpriteData.h" />
     <ClInclude Include="include\RendererEngine_s.h" />
     <ClInclude Include="scr\Physics\Collision\Colider.h" />
     <ClInclude Include="scr\Physics\PhysicBody.h" />

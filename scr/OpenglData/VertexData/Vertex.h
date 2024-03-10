@@ -7,5 +7,4 @@ namespace SpriteRenderer {
 		//Uv coords
 		glm::vec2 UvCoords;
 	};
-
 }

@@ -17,16 +17,19 @@ void SpriteRenderer::RenderSysytem::Update(float dt)
 {
     Entity cameraEntity = SceneManager::GetAtctiveCamera();
     OrthographicCamera* camera = ECSManager::GetComponent<OrthographicCamera>(cameraEntity);
+    Transform* cameraTransform = ECSManager::GetComponent<Transform>(cameraEntity);
+    glm::mat4 viewProjMatrix = camera->GetProjectionMatrix() * CalculateViewMatrix(*cameraTransform);
+    m_renderer.BeginBatch();
     for (uint32_t i = 0; i < m_entities.size(); i++)
     {
         Transform* transform = ECSManager::GetComponent<Transform>(m_entities[i]);
         Sprite* sprite = ECSManager::GetComponent<Sprite>(m_entities[i]);   
         glm::mat4 spriteModelMatrix = CalculateModelMatrix(*transform);
-        Transform* cameraTransform = ECSManager::GetComponent<Transform>(cameraEntity);
-        glm::mat4 viewProjMatrix = camera->GetProjectionMatrix() * CalculateViewMatrix(*cameraTransform);
-
-        m_renderer.SubmitToDraw(sprite, spriteModelMatrix, viewProjMatrix);
+      
+        m_renderer.SubmitToDraw(sprite, spriteModelMatrix);
     }
+    glm::mat4 test(1);
+    m_renderer.DrawBatch(viewProjMatrix);
 }
 
 void SpriteRenderer::RenderSysytem::PostUpdate(float dt)
