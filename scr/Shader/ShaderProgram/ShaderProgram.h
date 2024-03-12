@@ -11,6 +11,7 @@ namespace SpriteRenderer {
 		void SetUniform2FloatVector(std::string Name, const glm::vec2& value)const;	
 		void SetUniformInt(const char* Name, int value)const;
 		void SetUniform4x4Matrix(const char* Name, const glm::mat4& value)const;
+		void SetUniformIntArray(const char* Name,uint32_t count, const int* value)const;
 		void UseProgram()const { glUseProgram(this->m_programID); }
 		int GetShaderUniformLocation(const char* Name) const;
 	private:

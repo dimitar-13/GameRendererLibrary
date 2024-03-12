@@ -105,6 +105,11 @@ void SpriteRenderer::ShaderProgram::SetUniform4x4Matrix(const char* Name, const 
 	glUniformMatrix4fv(this->GetShaderUniformLocation(Name), 1,GL_FALSE, glm::value_ptr(value));
 }
 
+void SpriteRenderer::ShaderProgram::SetUniformIntArray(const char* Name, uint32_t count, const int* value) const
+{
+	glUniform1iv(this->GetShaderUniformLocation(Name), count, value);
+}
+
 int SpriteRenderer::ShaderProgram::CompileShader(GLenum shaderType, const char* source)
 {
 	unsigned int shader = glCreateShader(shaderType);

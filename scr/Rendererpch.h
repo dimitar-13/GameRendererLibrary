@@ -17,6 +17,7 @@
 #include<memory>
 #include<set>
 #include<array>
+#include<algorithm>
 
 #define  FMT_HEADER_ONLY
 #include <fmt/core.h>
