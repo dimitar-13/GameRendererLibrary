@@ -181,17 +181,9 @@ void SpriteRenderer::Renderer::DrawSquareBatch(const glm::mat4& viewProjMatrix)
     this->m_SquareShader->UseProgram();
 
     this->m_SquareShader->SetUniform4x4Matrix("ViewProjectionMatrix", viewProjMatrix);
-    auto slots = TextureUnitManager::GetTextureSlotArray();
-
-    std::vector<int> destArr(slots.lastTexureUnit);
-    
-        for (uint32_t i = 0; i < destArr.size(); i++)
-        {
-            destArr[i] = i;
-        }
-    //std::transform(slots.m_textureUnits.begin(), slots.m_textureUnits.end(), destArr.data(), [](uint32_t val) { return static_cast<int>(val); });
-    //Pass texture units not texure handles
-    this->m_SquareShader->SetUniformIntArray("samplers", slots.lastTexureUnit, destArr.data());
+   
+    auto& textureSlotsData = TextureUnitManager::GetTextureSlotData();
+    this->m_SquareShader->SetUniformIntArray("samplers", textureSlotsData.size, textureSlotsData.m_textureUnitIndicies.data());
     this->m_SquareBatchData.batchVertexArray.BindArray();
     TextureUnitManager::BindTextures();
 
@@ -269,7 +261,7 @@ std::array<SpriteRenderer::SquareVertexData,4> SpriteRenderer::Renderer::GenSqau
 
     const float ndcOffset = 0.5f;
     const glm::vec3 color = spriteToDraw->m_Color;
-    const float textureID = spriteToDraw->textureIndex;
+    const float textureID = TextureUnitManager::GetTexutreIndex(spriteToDraw->textureIndex);
     verts[0] = {modelMatrix * glm::vec4(-ndcOffset, -ndcOffset,0,1),color,{0,0},textureID};
     verts[1] = {modelMatrix * glm::vec4(-ndcOffset, ndcOffset ,0,1),color,{0,1},textureID};
     verts[2] = {modelMatrix * glm::vec4(ndcOffset, ndcOffset ,0,1),color,{1,1},textureID};

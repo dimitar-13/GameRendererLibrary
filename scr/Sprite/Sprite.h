@@ -25,10 +25,11 @@ namespace SpriteRenderer {
 		//TODO:Sprite should not manage texture lifetime.
 
 		//Set texture in slot for the lifetime of this object
-		void SetTexture(Texture2D& texture) { textureIndex = TextureUnitManager::RegisterTexture(&texture); }
+		void SetTexture(Texture2D& texture) { textureIndex = TextureUnitManager::BindTexture(&texture); }
+		void RemoveTexture() { TextureUnitManager::UnBindTexture(textureIndex); textureIndex = 1; }
 	private:
 		glm::vec3 m_Color;
 		SpriteType m_shapeType;
-		GLuint textureIndex = 0;
+		GLuint textureIndex = 1;
 	};
 }

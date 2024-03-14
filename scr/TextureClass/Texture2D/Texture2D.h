@@ -7,7 +7,7 @@ namespace SpriteRenderer {
 		LINEAR = GL_LINEAR,
 		NEAREST = GL_NEAREST,
 	};
-
+	using TextureHandle = std::uint32_t;
 	class Texture2D {
 
 	public:
@@ -18,10 +18,11 @@ namespace SpriteRenderer {
 	private:
 		int width;
 		int height;
-		uint32_t textureHandle;
 		unsigned char* textSource;
 		TextureFiltering filtering;
 		GLenum textureType;
+		uint32_t textureHandle = 0;
+		uint32_t m_usedByCount = 0;
 	private:
 		void ReadTexture(const std::string& path);
 	};
