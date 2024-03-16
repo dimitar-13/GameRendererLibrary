@@ -9,5 +9,5 @@ SpriteRenderer::Sprite::Sprite()
 SpriteRenderer::Sprite::~Sprite()
 {
 	if(this->textureIndex != 0 )
-		TextureUnitManager::UnRegisterTexture(this->textureIndex);
+		TextureUnitManager::UnBindTexture(this->textureIndex);
 }

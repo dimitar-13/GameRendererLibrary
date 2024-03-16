@@ -44,11 +44,9 @@ uint32_t SpriteRenderer::TextureUnitManager::registerTexture(Texture2D* textureT
 	glBindTexture(GL_TEXTURE_2D, 0);
 
 	m_TextureSlots.m_textureUnits[currentCountIndex] = textureHandle;
-	m_TextureSlots.m_textureHandleToIndex[textureHandle] = currentCountIndex;
+	m_TextureSlots.m_textureHandleToIndex[textureHandle] = { currentCountIndex,1 };
 	m_TextureSlots.size += 1;
 	textureToRegister->textureHandle = textureHandle;
-	textureToRegister->m_usedByCount++;
-
 	return textureHandle;
 }
 
@@ -56,7 +54,7 @@ uint32_t SpriteRenderer::TextureUnitManager::bindTexture(Texture2D* textureToReg
 {
 	if (textureToRegister->textureHandle != 0)
 	{
-		textureToRegister->m_usedByCount++;
+		m_TextureSlots.m_textureHandleToIndex[textureToRegister->textureHandle].spriteBindCount++;
 		return textureToRegister->textureHandle;
 	}
 
@@ -67,9 +65,11 @@ void SpriteRenderer::TextureUnitManager::unBindTexture(uint32_t textureHandle)
 {
 	if (m_TextureSlots.m_textureHandleToIndex.find(textureHandle) == m_TextureSlots.m_textureHandleToIndex.end())
 		return;
-	//textureToRegister->m_usedByCount--;
-	/*if (!(textureToRegister->m_usedByCount <= 0))
-		return;*/
+
+	m_TextureSlots.m_textureHandleToIndex[textureHandle].spriteBindCount--;
+	if (!(m_TextureSlots.m_textureHandleToIndex[textureHandle].spriteBindCount <= 0))
+		return;
+
 	unRegisterTexture(textureHandle);
 }
 
@@ -86,24 +86,24 @@ void SpriteRenderer::TextureUnitManager::unRegisterTexture(uint32_t textureHandl
 		m_TextureSlots.m_textureHandleToIndex.clear();
 		return;
 	}
-	if (m_TextureSlots.size == m_TextureSlots.m_textureHandleToIndex[textureHandle])
+	if (m_TextureSlots.size == m_TextureSlots.m_textureHandleToIndex[textureHandle].index)
 	{
 		m_TextureSlots.m_textureUnits[m_TextureSlots.size] = 0;
-		m_TextureSlots.m_textureHandleToIndex[textureHandle] = 0;
+		m_TextureSlots.m_textureHandleToIndex[textureHandle] = { 0,0 };
 		--m_TextureSlots.size;
 		return;
 	}
 
-	uint32_t indexOfTextureToRemove = m_TextureSlots.m_textureHandleToIndex[textureHandle];
+	uint32_t indexOfTextureToRemove = m_TextureSlots.m_textureHandleToIndex[textureHandle].index;
 	uint32_t indexOfLastTexutre = m_TextureSlots.size;
 	uint32_t lastTexture = m_TextureSlots.m_textureUnits[indexOfLastTexutre];
 
 	glDeleteTextures(1, &textureHandle);
 	m_TextureSlots.m_textureUnits[indexOfTextureToRemove] = m_TextureSlots.m_textureUnits[indexOfLastTexutre];
-	m_TextureSlots.m_textureHandleToIndex[lastTexture] = indexOfTextureToRemove;
+	m_TextureSlots.m_textureHandleToIndex[lastTexture].index = indexOfTextureToRemove;
 
 	m_TextureSlots.m_textureUnits[indexOfLastTexutre] = 0;
-	m_TextureSlots.m_textureHandleToIndex[textureHandle] = 0;
+	m_TextureSlots.m_textureHandleToIndex[textureHandle] = { 0,0 };
 
 	--m_TextureSlots.size;
 }

@@ -2,17 +2,19 @@
 #include"Rendererpch.h"
 namespace SpriteRenderer {
 	class Texture2D;
+	struct TextureGPU {
+		uint32_t index = 0;
+		uint32_t spriteBindCount = 0;
+	};
 	struct TextureSlots {
 		std::array<uint32_t, 32> m_textureUnits = {};
 		uint32_t size =0;
-		std::unordered_map<uint32_t, uint32_t> m_textureHandleToIndex = {};
+		std::unordered_map<uint32_t, TextureGPU> m_textureHandleToIndex = {};
 
 		std::array<int, 32> m_textureUnitIndicies = {};
 		GLint maxTextureSlots = {};
 	};
-
-	//TODO:Struct or a class representing bind between enity(Sprite) and texture objects
-
+	
 	class TextureUnitManager {
 	public:
 		/// <summary>
@@ -27,9 +29,11 @@ namespace SpriteRenderer {
 		/// </summary>
 		/// <param name="textureHandle">Handle of the texture object.</param>
 		/// <returns>Returns the texture index.</returns>
-		static uint32_t GetTexutreIndex(uint32_t textureHandle) { return GetInstance().m_TextureSlots.m_textureHandleToIndex[textureHandle]; }
+		static uint32_t GetTexutreIndex(uint32_t textureHandle) { return GetInstance().m_TextureSlots.m_textureHandleToIndex[textureHandle].index; }
+
 		/// <summary>
-		/// Removes the texture if no entity is using it.
+		/// Decrement the "spriteBindCount" of the texture. If spriteBindCount is 0 than it will delete the texture from GPU
+		/// and free the texture slot.
 		/// </summary>
 		/// <param name="textureHandle">Texture object to be removed.</param>
 		static void UnBindTexture(uint32_t textureHandle) { GetInstance().unBindTexture(textureHandle); }

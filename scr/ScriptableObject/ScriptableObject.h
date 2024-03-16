@@ -6,6 +6,7 @@ namespace SpriteRenderer {
 	class ScriptSystem;
 	class ScriptComponent;
 	struct Collider;
+
 	class ScriptableObject {
 		protected:
 			friend class ScriptComponent;
