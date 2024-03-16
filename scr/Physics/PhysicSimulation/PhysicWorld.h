@@ -1,6 +1,6 @@
 #pragma once
 #include"Rendererpch.h"
-#include"Physics/PhysicBody.h"
+#include"Components/PhysicBody.h"
 #include"Physics/Collision/Colider.h"
 #include"Physics/Collision/CollisionDetection.h"
 #include"Physics/Collision/CollisionSolver.h"

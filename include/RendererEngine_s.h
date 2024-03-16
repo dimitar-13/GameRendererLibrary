@@ -10,7 +10,6 @@
 //Renderer Libs
 #include"EntryPoint.h"
 #include"../Core/Global.h"
-#include"Camera/Camera.h"
 #include"SceneManager/SceneManager.h"
 #include"Renderer/Renderer.h"
 
@@ -22,13 +21,15 @@
 #include"GameObject/GameObject.h"
 
 //Components
-#include"Transform/Transoform.h"
-#include"Sprite/Sprite.h"
-#include "Physics/PhysicBody.h"
-#include"ColliderComponent.h"
+#include"Components/Transoform.h"
+#include"Components/Sprite.h"
+#include"Components/PhysicBody.h"
+#include"Components/ColliderComponent.h"
+#include"Components/Camera.h"
+#include"Components/ScriptComponent.h"
+
 
 //Sprites and textures
-#include"Sprite/Sprite.h"
 #include"TextureClass/Texture2D/Texture2D.h"
 
 

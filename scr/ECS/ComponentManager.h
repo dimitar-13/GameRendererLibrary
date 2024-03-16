@@ -1,10 +1,6 @@
 #pragma once
 #include"ECS/ComponentArray.h"
-#include"Transform/Transoform.h"
-#include"Sprite/Sprite.h"
-#include"ScriptComponent.h"
-#include"Physics/Collision/Colider.h"
-#include"Physics/PhysicBody.h"
+
 #include"Rendererpch.h"
 namespace SpriteRenderer {
 	using Entity = std::uint32_t;
@@ -30,6 +26,8 @@ namespace SpriteRenderer {
 		void RemoveComponent(Entity entity);
 		template<typename T>
 		T* GetComponent(Entity entity);
+		template<typename T>
+		bool HasComponent(Entity ent);
 		template<typename T>
 		const std::vector<Entity> GetComponentEntities();
 		void EntityDestroyed(Entity ent) {
@@ -79,6 +77,11 @@ namespace SpriteRenderer {
 	inline const std::vector<Entity> ComponentManager::GetComponentEntities()
 	{
 		return GetComponentArray<T>().GetComponentEntities();
+	}
+	template<typename T>
+	inline bool ComponentManager::HasComponent(Entity ent)
+	{
+		return GetComponentArray<T>().HasComponent(ent);
 	}
 }
 

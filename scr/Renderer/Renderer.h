@@ -1,7 +1,8 @@
 #pragma once
 #include"Rendererpch.h"
-#include"Transform/Transoform.h"
-#include "Sprite/Sprite.h"
+#include"Components/Transoform.h"
+#include"Components/Sprite.h"
+#include"OpenGLData/VertexArray/VertexArray.h"
 namespace SpriteRenderer {
 	class ShaderProgram;
 	static const uint32_t MAX_OBJECT_CCOUNT_PER_BATCH = 100;

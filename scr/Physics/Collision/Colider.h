@@ -1,6 +1,6 @@
 #pragma once
 #include "Rendererpch.h"
-#include "Transform/Transoform.h"
+#include "Components/Transoform.h"
 
 namespace SpriteRenderer {
 	enum CollisionState {

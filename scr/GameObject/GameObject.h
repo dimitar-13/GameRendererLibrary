@@ -12,7 +12,7 @@ namespace SpriteRenderer
 		/// Returns the ID of the caller object.
 		/// </summary>
 		/// <returns>ID of the entity.</returns>
-		Entity GetEntity() { return this->m_entity; }
+		Entity GetEntity()const { return this->m_entity; }
 	public:
 		/// <summary>
 		/// Creates a entity and attach a transform component to it.
@@ -44,6 +44,14 @@ namespace SpriteRenderer
 		/// <returns>Handle(pointer) of the created component.</returns>
 		template <typename T>
 		T* GetComponent();
+		/// <summary>
+		/// Checks if the caller game object has component of type T.
+		/// </summary>
+		/// <typeparam name="T">Can be any component.</typeparam>
+		/// <returns>Returns true if it has and false if it doesnt.</returns>
+		template <typename T>
+		bool HasComponent();
+
 	private:
 		friend class ScriptableObject;
 		Entity m_entity;
@@ -62,5 +70,10 @@ namespace SpriteRenderer
 	inline T* GameObject::GetComponent()
 	{
 		return ECSManager::GetComponent<T>(this->m_entity);
+	}
+	template<typename T>
+	inline bool GameObject::HasComponent()
+	{
+		return ECSManager::HasComponent<T>(this->m_entity);
 	}
 }

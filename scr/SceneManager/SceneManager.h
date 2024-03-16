@@ -1,7 +1,7 @@
 #pragma once
 #include"Rendererpch.h"
 #include"DeltaTime.h"
-#include"Camera/Camera.h"
+#include"Components/Camera.h"
 #include"Log/Log.h"
 namespace SpriteRenderer {
 	using Entity = std::uint32_t;

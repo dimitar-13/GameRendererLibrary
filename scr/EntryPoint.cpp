@@ -2,6 +2,7 @@
 #include"EntryPoint.h"
 #include"Log/Log.h"
 #include"ECS/ECSManager.h"
+#include"TextureClass/TextureUnitManager.h"
 //TODO:__declspec(dllexport)
 namespace SpriteRenderer {
 
