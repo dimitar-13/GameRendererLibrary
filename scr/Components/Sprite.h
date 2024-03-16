@@ -10,7 +10,7 @@ namespace SpriteRenderer {
 		SPRITE_SHAPE_TYPE_TRIANGLE = 3,
 		SPRITE_SHAPE_TYPE_CUSTOM = 4
 	};
-	class Sprite
+	class Sprite:public Component
 	{
 		friend class Renderer;
 	public:

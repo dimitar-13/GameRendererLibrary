@@ -1,7 +1,11 @@
 #pragma once
-#include"GameObject/GameObject.h"
 namespace SpriteRenderer {
+	class GameObject;
+	using Entity = std::uint32_t;
 	struct Component {
-		GameObject gameObject;
+		Entity entity;
+		GameObject GetGameObj();
+		void SetGameObjectEntity(Entity ent);
 	};
+
 }

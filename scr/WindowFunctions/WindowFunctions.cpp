@@ -2,11 +2,13 @@
 #include "WindowFunctions.h"
 #include"../../Core/Global.h"
 #include"Input/Input.h"
+#include"SceneManager/SceneManager.h"
 void SpriteRenderer::Resize(GLFWwindow* window, int width, int height)
 {
 	glViewport(0, 0, width, height);
 	*Global::winHeight = height;
 	*Global::winWidth = width;
+	SceneManager::GetAtctiveCamera()->WindowSizeChanged(width, height);
 	//TODO:Get the current camera and change the projection
 	//or use event so single the camera that is interested.
 }

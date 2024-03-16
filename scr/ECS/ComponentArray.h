@@ -1,5 +1,6 @@
 #pragma once
 #include"Rendererpch.h"
+#include"Component.h"
 #include<array>
 namespace SpriteRenderer {
 	using ComponentType = std::uint8_t;
@@ -92,6 +93,8 @@ namespace SpriteRenderer {
 		m_entityToIndex[ent] = index;
 		m_indexToEntity[index] = ent;
 		m_componentArray.componentArray[index] = new T();
+		Component* componentCast = dynamic_cast<Component *> (m_componentArray.componentArray[index]);
+		componentCast->entity = ent;
 		m_componentArray.size++;
 	}
 	template<typename T>

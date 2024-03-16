@@ -1,6 +1,6 @@
 #pragma once
 #include"ECS/ComponentArray.h"
-
+#include"Component.h"
 #include"Rendererpch.h"
 namespace SpriteRenderer {
 	using Entity = std::uint32_t;
@@ -12,6 +12,7 @@ namespace SpriteRenderer {
 		
 		template<typename T, typename ...Ts>
 		void RegisterComponentTypes() {
+			static_assert(std::is_base_of<Component, T>::value, "Class or struct must inherit from Component");
 			m_componentHashes.insert({ typeid(T).name(), std::make_shared<ComponentArray<T>>() });
 			if constexpr (sizeof...(Ts) > 0)
 			{

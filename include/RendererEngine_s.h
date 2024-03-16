@@ -27,7 +27,7 @@
 #include"Components/ColliderComponent.h"
 #include"Components/Camera.h"
 #include"Components/ScriptComponent.h"
-
+#include"Components/TagComponent.h"
 
 //Sprites and textures
 #include"TextureClass/Texture2D/Texture2D.h"

@@ -171,6 +171,7 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="scr\Component.cpp" />
     <ClCompile Include="scr\Physics\Collision\CollisionSytstem.cpp" />
     <ClCompile Include="scr\Renderer\RenderSytstem.cpp" />
     <ClCompile Include="scr\ScriptSystem\ScriptSystem.cpp" />
@@ -204,6 +205,7 @@
   <ItemGroup>
     <ClInclude Include="scr\Components\ColliderComponent.h" />
     <ClInclude Include="scr\Component.h" />
+    <ClInclude Include="scr\Components\TagComponent.h" />
     <ClInclude Include="scr\Physics\Collision\CollisionSytstem.h" />
     <ClInclude Include="scr\Renderer\RenderSytstem.h" />
     <ClInclude Include="scr\ScriptSystem\ScriptSystem.h" />

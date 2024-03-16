@@ -1,5 +1,6 @@
 #pragma once
 #include"Rendererpch.h"
+#include"Component.h"
 namespace SpriteRenderer
 {
 	class PhysicWorld;

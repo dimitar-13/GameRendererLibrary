@@ -1,10 +1,12 @@
 #pragma once
 #include"Rendererpch.h"
+#include"Component.h"
 //#include"ScriptableObject/ScriptableObject.h"
 //Wrapper for the generic Scripts that can be created
 namespace SpriteRenderer {
 	class ScriptableObject;
-	struct ScriptComponent {
+	struct ScriptComponent:public Component
+	{
 		~ScriptComponent() { m_classInstance.~shared_ptr(); }
 		std::shared_ptr<ScriptableObject> m_classInstance= nullptr;
 		Entity entity;

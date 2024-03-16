@@ -103,7 +103,7 @@ void SpriteRenderer::TextureUnitManager::unRegisterTexture(uint32_t textureHandl
 	m_TextureSlots.m_textureHandleToIndex[lastTexture].index = indexOfTextureToRemove;
 
 	m_TextureSlots.m_textureUnits[indexOfLastTexutre] = 0;
-	m_TextureSlots.m_textureHandleToIndex[textureHandle] = { 0,0 };
+	m_TextureSlots.m_textureHandleToIndex.erase(textureHandle);
 
 	--m_TextureSlots.size;
 }

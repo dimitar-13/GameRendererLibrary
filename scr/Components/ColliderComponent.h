@@ -8,11 +8,11 @@ namespace SpriteRenderer {
 	{
 		std::shared_ptr<Collider> attachedCollider;
 
-		std::function<void(Collider*)>OnCollisionStart;
-		std::function<void(Collider*)> OnTriggerStart;
+		std::function<void(ColliderComponent*)>OnCollisionStart;
+		std::function<void(ColliderComponent*)> OnTriggerStart;
 
-		std::function<void(Collider*)>OnCollisionExit;
-		std::function<void(Collider*)> OnTriggerExit;
+		std::function<void(ColliderComponent*)>OnCollisionExit;
+		std::function<void(ColliderComponent*)> OnTriggerExit;
 
 		template<typename T>
 		void SetColliderType()

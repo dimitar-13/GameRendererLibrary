@@ -5,6 +5,8 @@
 namespace SpriteRenderer
 {
 	class ScriptableObject;
+	struct Component;
+
 	class GameObject
 	{
 	public:		
@@ -54,6 +56,8 @@ namespace SpriteRenderer
 
 	private:
 		friend class ScriptableObject;
+		friend struct Component;
+		GameObject(Entity Entity) { m_entity = Entity; }
 		Entity m_entity;
 	};
 	template<typename T>
