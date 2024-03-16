@@ -25,13 +25,8 @@ namespace SpriteRenderer {
 	struct SquareVertexData {
 		glm::vec2 worldPosition;
 		glm::vec3 color;
-		//uint32_t textureUnitID = 0;
-	};
-
-	struct SpriteVertexData {
-		glm::vec2 worldPosition;
 		glm::vec2 uvCoords;
-		uint32_t textureUnit;
+		float textureID = 0;
 	};
 	class Renderer
 	{

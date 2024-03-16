@@ -8,5 +8,6 @@ SpriteRenderer::Sprite::Sprite()
 
 SpriteRenderer::Sprite::~Sprite()
 {
-	//delete(this->m_texture);
+	if(this->textureIndex != 0 )
+		TextureUnitManager::UnBindTexture(this->textureIndex);
 }

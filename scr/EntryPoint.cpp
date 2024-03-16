@@ -60,6 +60,7 @@ namespace SpriteRenderer {
        glfwTerminate();
        SceneManager::Terminate();
        ECSManager::DestroyECSManager();
+       TextureUnitManager::Destroy();
        RENDER_LOG_MESSAGE_INFO("Renderer was succsessfully terminated.");
     }
 }

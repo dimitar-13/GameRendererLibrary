@@ -6,9 +6,11 @@
 #include "SceneManager.h"
 #include"ScriptSystem/ScriptSystem.h"
 #include "Physics/Collision/CollisionSytstem.h"
+#include "TextureClass/TextureUnitManager.h"
 
 void SpriteRenderer::SceneManager::Init()
 {
+	TextureUnitManager::Init();
 }
 void SpriteRenderer::SceneManager::Start()
 {

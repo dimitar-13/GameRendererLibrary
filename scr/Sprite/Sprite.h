@@ -24,10 +24,12 @@ namespace SpriteRenderer {
 		void SetSpriteType(SpriteType type) { this->m_shapeType = type; }
 		//TODO:Sprite should not manage texture lifetime.
 
-		void SetTexture(std::string& texturePath) { this->m_texture = new Texture2D(texturePath);}
+		//Set texture in slot for the lifetime of this object
+		void SetTexture(Texture2D& texture) { textureIndex = TextureUnitManager::BindTexture(&texture); }
+		void RemoveTexture() { TextureUnitManager::UnBindTexture(textureIndex); textureIndex = 1; }
 	private:
 		glm::vec3 m_Color;
 		SpriteType m_shapeType;
-		Texture2D* m_texture = nullptr;
+		GLuint textureIndex = 1;
 	};
 }

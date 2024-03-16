@@ -1,36 +1,27 @@
 #pragma once
 #include"Rendererpch.h"
+#include"TextureClass/TextureUnitManager.h"
 
 namespace SpriteRenderer {
 	enum TextureFiltering {
 		LINEAR = GL_LINEAR,
 		NEAREST = GL_NEAREST,
 	};
-
-	//struct TextureUnit {
-	//	unsigned int textureUnit;
-	//	bool isTextureUnitInUse = false;
-	//};
-
-	class Sprite;
-	class SceneManager;
-
 	class Texture2D {
 
 	public:
 		Texture2D(const std::string& path, TextureFiltering filtering = LINEAR);
-		Texture2D(int width, int height, TextureFiltering filtering);
+		~Texture2D();
 	private:
-		friend class Sprite;
-		friend class SceneManager;
-		void BindTexture()const { glBindTexture(GL_TEXTURE_2D, this->textureHandle); }
-		void UnBindTexture()const { glBindTexture(GL_TEXTURE_2D, 0); }
+		friend class TextureUnitManager;
 	private:
 		int width;
 		int height;
-		uint32_t textureHandle;
 		unsigned char* textSource;
+		TextureFiltering filtering;
+		GLenum textureType;
+		uint32_t textureHandle = 0;
 	private:
-		unsigned char* ReadTexture(const std::string& path);
+		void ReadTexture(const std::string& path);
 	};
 }

@@ -26,6 +26,7 @@ SpriteRenderer::Renderer::Renderer()
     m_SquareShader = new ShaderProgram("../Renderer/Assets/Shaders/Square_shader.glsl");
     m_SquareShader->UseProgram();
     m_SquareShader->GetShaderUniformLocation("ViewProjectionMatrix");
+    m_SquareShader->GetShaderUniformLocation("samplers");
 
     GenIndexBatchData();
     SetupBatchData();
@@ -81,7 +82,7 @@ void SpriteRenderer::Renderer::SetupBatchData()
     const std::vector<AttributeData> CircleAttribLayout{
       {0,2,GL_FLOAT,sizeof(CircleVertexData),offsetof(CircleVertexData, originalPosition)},
       {1,2,GL_FLOAT,sizeof(CircleVertexData),offsetof(CircleVertexData, worldPosition)},
-      {2,3,GL_FLOAT,sizeof(CircleVertexData),offsetof(CircleVertexData, color)}};
+      {2,3,GL_FLOAT,sizeof(CircleVertexData),offsetof(CircleVertexData, color)},};
 
     this->m_CircleBatchData.batchVertexArray.CreateVertexArray(CircleAttribLayout);
 
@@ -98,7 +99,9 @@ void SpriteRenderer::Renderer::SetupBatchData()
 
     const std::vector<AttributeData> SquareAttribLayout{
       {0,2,GL_FLOAT,sizeof(SquareVertexData),offsetof(SquareVertexData, worldPosition)},
-      {1,3,GL_FLOAT,sizeof(SquareVertexData),offsetof(SquareVertexData, color)}};
+      {1,3,GL_FLOAT,sizeof(SquareVertexData),offsetof(SquareVertexData, color)},
+      {2,2,GL_FLOAT,sizeof(SquareVertexData),offsetof(SquareVertexData,uvCoords)},
+      {3,1,GL_FLOAT,sizeof(SquareVertexData),offsetof(SquareVertexData,textureID)}};
 
     this->m_SquareBatchData.batchVertexArray.CreateVertexArray(SquareAttribLayout);
 
@@ -176,9 +179,14 @@ void SpriteRenderer::Renderer::DrawSquareBatch(const glm::mat4& viewProjMatrix)
         &this->m_SquareBatchData.data[0]);
 
     this->m_SquareShader->UseProgram();
+
     this->m_SquareShader->SetUniform4x4Matrix("ViewProjectionMatrix", viewProjMatrix);
+   
+    auto& textureSlotsData = TextureUnitManager::GetTextureSlotData();
+    this->m_SquareShader->SetUniformIntArray("samplers", textureSlotsData.size, textureSlotsData.m_textureUnitIndicies.data());
     this->m_SquareBatchData.batchVertexArray.BindArray();
- 
+    TextureUnitManager::BindTextures();
+
     glDrawElements(GL_TRIANGLES, this->m_SquareBatchData.indexCount, GL_UNSIGNED_INT, nullptr);
     this->m_SquareBatchData.batchVertexArray.UnbindArray();
 }
@@ -253,9 +261,10 @@ std::array<SpriteRenderer::SquareVertexData,4> SpriteRenderer::Renderer::GenSqau
 
     const float ndcOffset = 0.5f;
     const glm::vec3 color = spriteToDraw->m_Color;
-   verts[0] = {modelMatrix * glm::vec4(-ndcOffset, -ndcOffset,0,1),color };
-   verts[1] = {modelMatrix * glm::vec4(-ndcOffset, ndcOffset ,0,1),color };
-   verts[2] = {modelMatrix * glm::vec4(ndcOffset, ndcOffset ,0,1),color };
-   verts[3] = {modelMatrix * glm::vec4(ndcOffset, -ndcOffset ,0,1),color };
+    const float textureID = TextureUnitManager::GetTexutreIndex(spriteToDraw->textureIndex);
+    verts[0] = {modelMatrix * glm::vec4(-ndcOffset, -ndcOffset,0,1),color,{0,0},textureID};
+    verts[1] = {modelMatrix * glm::vec4(-ndcOffset, ndcOffset ,0,1),color,{0,1},textureID};
+    verts[2] = {modelMatrix * glm::vec4(ndcOffset, ndcOffset ,0,1),color,{1,1},textureID};
+    verts[3] = {modelMatrix * glm::vec4(ndcOffset, -ndcOffset ,0,1),color,{1,0},textureID};
     return verts;
 }

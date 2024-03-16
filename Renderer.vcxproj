@@ -199,6 +199,7 @@
     <ClCompile Include="scr\Sprite\Sprite.cpp" />
     <ClCompile Include="scr\Input\Input.cpp" />
     <ClCompile Include="scr\TextureClass\Texture2D\Texture2D.cpp" />
+    <ClCompile Include="scr\TextureClass\TextureUnitManager.cpp" />
     <ClCompile Include="scr\Transform\Transoform.cpp" />
     <ClCompile Include="scr\WindowFunctions\WindowFunctions.cpp" />
   </ItemGroup>
@@ -239,6 +240,7 @@
     <ClInclude Include="scr\Sprite\Sprite.h" />
     <ClInclude Include="scr\TextureClass\Texture2D\Texture2D.h" />
     <ClInclude Include="scr\DeltaTime.h" />
+    <ClInclude Include="scr\TextureClass\TextureUnitManager.h" />
     <ClInclude Include="scr\Transform\Transoform.h" />
     <ClInclude Include="scr\WindowFunctions\WindowFunctions.h" />
   </ItemGroup>
@@ -250,6 +252,8 @@
   <ItemGroup>
     <Image Include="Assets\Textures\Apple.png" />
     <Image Include="Assets\Textures\Texture.jpg" />
+    <Image Include="Assets\Textures\WhiteTexture.png" />
+    <Image Include="C:\Users\MSI Katana 15\Desktop\WhiteTexture.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
