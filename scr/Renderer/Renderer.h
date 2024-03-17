@@ -44,13 +44,20 @@ namespace SpriteRenderer {
 		void SubmitToDraw(Sprite* spriteToDraw,
 			const glm::mat4& modelMatrix);
 	private:
+		/// <summary>
+		/// Obsolete function might be removed.
+		/// </summary>
+		/// <param name="vertexArray"></param>
 		static void IndexedDraw(const VertexArray& vertexArray);
+		/// <summary>
+		/// Obsolete function might be removed.
+		/// </summary>
+		/// <param name="vertexArray"></param>
 		static void ArrayDraw(const VertexArray& vertexArray);
 		void GenIndexBatchData();
 		void SetupBatchData();
 		void DrawCircleBatch(const glm::mat4& viewProjMatrix);
 		void DrawSquareBatch(const glm::mat4& viewProjMatrix);
-		void DrawSprite(const glm::mat4& viewProjMatrix);
 
 		void AppendToCircleBatch(Sprite* spriteToDraw,
 			const glm::mat4& modelMatrix);
