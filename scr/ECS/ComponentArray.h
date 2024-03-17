@@ -1,5 +1,6 @@
 #pragma once
 #include"Rendererpch.h"
+#include"Component.h"
 #include<array>
 namespace SpriteRenderer {
 	using ComponentType = std::uint8_t;
@@ -27,6 +28,7 @@ namespace SpriteRenderer {
 		void RemoveComponent(Entity ent);
 		void AddComponent(Entity ent);
 		T* GetComponent(Entity ent);
+		bool HasComponent(Entity ent);
 		ComponentArrayWrapper<T>& GetArray() { return m_componentArray; }
 		const std::vector<Entity> GetComponentEntities();
 		void OnEntityDestroyed(Entity ent) override
@@ -62,11 +64,22 @@ namespace SpriteRenderer {
 		}
 		uint32_t entityToRemoveIndex = m_entityToIndex[ent];
 		uint32_t lastArrayComponentIndex =m_componentArray.size - 1;
+		uint32_t lastEntity = m_indexToEntity[lastArrayComponentIndex];
+		if (lastEntity == ent)
+		{
+			delete(m_componentArray.componentArray[entityToRemoveIndex]);
+			m_componentArray.componentArray[lastArrayComponentIndex] = NULL;
+			m_entityToIndex.erase(ent);
+			m_indexToEntity.erase(lastArrayComponentIndex);
+			--m_componentArray.size;
+			return;
+		}
 		delete(m_componentArray.componentArray[entityToRemoveIndex]);
 		m_componentArray.componentArray[entityToRemoveIndex] = m_componentArray.componentArray[lastArrayComponentIndex];
 
-		m_indexToEntity[entityToRemoveIndex] = m_entityToIndex[lastArrayComponentIndex];
-		m_entityToIndex[lastArrayComponentIndex] = entityToRemoveIndex;
+		m_indexToEntity[entityToRemoveIndex] = lastEntity;
+		m_entityToIndex[lastEntity] = entityToRemoveIndex;
+		m_componentArray.componentArray[lastArrayComponentIndex] = NULL;
 
 		m_entityToIndex.erase(ent);
 		m_indexToEntity.erase(lastArrayComponentIndex);
@@ -80,13 +93,23 @@ namespace SpriteRenderer {
 		m_entityToIndex[ent] = index;
 		m_indexToEntity[index] = ent;
 		m_componentArray.componentArray[index] = new T();
+		Component* componentCast = dynamic_cast<Component *> (m_componentArray.componentArray[index]);
+		componentCast->entity = ent;
 		m_componentArray.size++;
 	}
-
+	template<typename T>
+	inline bool ComponentArray<T>::HasComponent(Entity ent)
+	{
+		if (m_entityToIndex.find(ent) != m_entityToIndex.end())
+			return true;
+		return false;
+	}
 	template<typename T>
 	inline T* ComponentArray<T>::GetComponent(Entity ent)
 	{
-		return m_componentArray.componentArray[m_entityToIndex[ent]];
+		if(m_entityToIndex.find(ent) != m_entityToIndex.end())
+			return m_componentArray.componentArray[m_entityToIndex[ent]];
+		return nullptr;
 	}
 
 	template<typename T>

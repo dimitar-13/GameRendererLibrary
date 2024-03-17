@@ -4,7 +4,6 @@
 #include"SceneManager/SceneManager.h"
 #include"Shader/ShaderProgram/ShaderProgram.h"
 #include"Metric/MetricHelper.h"
-
 static constexpr const uint32_t INDEX_PER_OBJECT = 6;
 static const uint32_t INDEX_ARRAYCOUNT = INDEX_PER_OBJECT * SpriteRenderer::MAX_OBJECT_CCOUNT_PER_BATCH * 2;
 static std::array<uint32_t, INDEX_ARRAYCOUNT> indexData;
@@ -140,9 +139,6 @@ void SpriteRenderer::Renderer::SubmitToDraw(Sprite* spriteToDraw, const glm::mat
         break;
     case SPRITE_SHAPE_TYPE_TRIANGLE:
         break;
-    case SPRITE_SHAPE_TYPE_CUSTOM:
-        //this->DrawSprite(spriteToDraw, modelMatrix, viewProjMatrix);
-        break;
     }
 }
 
@@ -150,7 +146,6 @@ void SpriteRenderer::Renderer::DrawBatch(const glm::mat4& viewProjMatrix)
 {
     DrawSquareBatch(viewProjMatrix);
     DrawCircleBatch(viewProjMatrix);
-    DrawSprite(viewProjMatrix);
 }
 
 void SpriteRenderer::Renderer::EndBatch()
@@ -189,13 +184,6 @@ void SpriteRenderer::Renderer::DrawSquareBatch(const glm::mat4& viewProjMatrix)
 
     glDrawElements(GL_TRIANGLES, this->m_SquareBatchData.indexCount, GL_UNSIGNED_INT, nullptr);
     this->m_SquareBatchData.batchVertexArray.UnbindArray();
-}
-
-void SpriteRenderer::Renderer::DrawSprite(const glm::mat4& viewProjMatrix)
-{
-    m_CustomShader->UseProgram();
-    //SetTextures
-    //ArrayDraw(*spriteToDraw->m_vertexArray);
 }
 
 void SpriteRenderer::Renderer::AppendToCircleBatch(Sprite* spriteToDraw, 

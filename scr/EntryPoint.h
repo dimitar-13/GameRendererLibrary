@@ -6,7 +6,6 @@
 
 namespace SpriteRenderer {
 
-	//Make it a singleton or make it so the client cant delete the object
 	int Init();
 
 	void Terminate();

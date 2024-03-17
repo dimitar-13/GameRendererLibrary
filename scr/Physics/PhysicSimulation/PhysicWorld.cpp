@@ -3,7 +3,7 @@
 #include"Log/Log.h"
 #include"SceneManager/SceneManager.h"
 #include"ECS/ECSManager.h"
-#include"ColliderComponent.h"
+#include"Components/ColliderComponent.h"
 void SpriteRenderer::PhysicWorld::Init()
 {
 	this->m_entities = ECSManager::GetComponentEntities<PhysicBody>();

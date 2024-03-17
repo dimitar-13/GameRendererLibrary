@@ -1,7 +1,8 @@
 #pragma once
 #include"Rendererpch.h"
-#include"Transform/Transoform.h"
-#include "Sprite/Sprite.h"
+#include"Components/Transoform.h"
+#include"Components/Sprite.h"
+#include"OpenGLData/VertexArray/VertexArray.h"
 namespace SpriteRenderer {
 	class ShaderProgram;
 	static const uint32_t MAX_OBJECT_CCOUNT_PER_BATCH = 100;
@@ -43,13 +44,20 @@ namespace SpriteRenderer {
 		void SubmitToDraw(Sprite* spriteToDraw,
 			const glm::mat4& modelMatrix);
 	private:
+		/// <summary>
+		/// Obsolete function might be removed.
+		/// </summary>
+		/// <param name="vertexArray"></param>
 		static void IndexedDraw(const VertexArray& vertexArray);
+		/// <summary>
+		/// Obsolete function might be removed.
+		/// </summary>
+		/// <param name="vertexArray"></param>
 		static void ArrayDraw(const VertexArray& vertexArray);
 		void GenIndexBatchData();
 		void SetupBatchData();
 		void DrawCircleBatch(const glm::mat4& viewProjMatrix);
 		void DrawSquareBatch(const glm::mat4& viewProjMatrix);
-		void DrawSprite(const glm::mat4& viewProjMatrix);
 
 		void AppendToCircleBatch(Sprite* spriteToDraw,
 			const glm::mat4& modelMatrix);

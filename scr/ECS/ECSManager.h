@@ -17,6 +17,8 @@ namespace SpriteRenderer {
 		template<typename T>
 		static T* GetComponent(Entity ent);
 		template<typename T>
+		static bool HasComponent(Entity ent);
+		template<typename T>
 		static inline ComponentArrayWrapper<T>& GetComponentArray() { return GetInstance().m_componentManager.GetComponentArray<T>().GetArray(); }
 		template<typename T>
 		static const std::vector<Entity> GetComponentEntities();
@@ -51,6 +53,11 @@ namespace SpriteRenderer {
 	inline const std::vector<Entity> ECSManager::GetComponentEntities()
 	{
 		return GetInstance().m_componentManager.GetComponentEntities<T>();
+	}
+	template<typename T>
+	inline bool ECSManager::HasComponent(Entity ent)
+	{
+		return GetInstance().m_componentManager.HasComponent<T>(ent);
 	}
 	template<typename T, typename... Ts>
 	inline void ECSManager::RegisterSystem(Ts ...components)

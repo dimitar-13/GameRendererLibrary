@@ -24,16 +24,10 @@
     <ClCompile Include="scr\Shader\ShaderProgram\ShaderProgram.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="scr\Sprite\Sprite.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="scr\Input\Input.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="scr\OpenglData\VertexArray\VertexArray.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="scr\Transform\Transoform.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="scr\GameObject\GameObject.cpp">
@@ -87,6 +81,9 @@
     <ClCompile Include="scr\TextureClass\TextureUnitManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="scr\Component.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="scr\Renderer\Renderer.h">
@@ -98,7 +95,7 @@
     <ClInclude Include="scr\Shader\ShadersContianer\Shaders.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="scr\Sprite\Sprite.h">
+    <ClInclude Include="scr\Components\Sprite.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Core\Global.h">
@@ -116,7 +113,7 @@
     <ClInclude Include="scr\ScriptableObject\ScriptableObject.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="scr\Transform\Transoform.h">
+    <ClInclude Include="scr\Components\Transoform.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="scr\GameObject\GameObject.h">
@@ -146,7 +143,7 @@
     <ClInclude Include="scr\DeltaTime.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="scr\Camera\Camera.h">
+    <ClInclude Include="scr\Components\Camera.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="scr\Physics\Collision\Colider.h">
@@ -158,7 +155,7 @@
     <ClInclude Include="scr\Metric\MetricHelper.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="scr\Physics\PhysicBody.h">
+    <ClInclude Include="scr\Components\PhysicBody.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="scr\Physics\PhysicSimulation\PhysicWorld.h">
@@ -185,7 +182,7 @@
     <ClInclude Include="scr\ECS\SystemManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="scr\ScriptComponent.h">
+    <ClInclude Include="scr\Components\ScriptComponent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="scr\ECS\EventSystem\EntityEventSystem.h">
@@ -194,7 +191,7 @@
     <ClInclude Include="scr\ScriptSystem\ScriptSystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="scr\ColliderComponent.h">
+    <ClInclude Include="scr\Components\ColliderComponent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="scr\Physics\Collision\CollisionSytstem.h">
@@ -204,6 +201,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="scr\TextureClass\TextureUnitManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="scr\Component.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="scr\Components\TagComponent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

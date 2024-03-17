@@ -1,7 +1,7 @@
 #pragma once
 #include"Rendererpch.h"
 #include"ECS/ISystem.h"
-#include"ColliderComponent.h"
+#include"Components/ColliderComponent.h"
 #include"Physics/Collision/CollisionSolver.h"
 #include"Physics/Collision/Colider.h"
 #include"Physics/Collision/CollisionDetection.h"

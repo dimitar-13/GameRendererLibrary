@@ -34,31 +34,31 @@ void SpriteRenderer::CollisionSystem::Update(float dt)
 			{
 			case COLLISION_STATE_COLLISION_ENTER:
 				if(colliderComponent1->OnCollisionStart != NULL)
-				colliderComponent1->OnCollisionStart(colliderComponent2->attachedCollider.get());
+				colliderComponent1->OnCollisionStart(colliderComponent2);
 				if(collision.isOverlap)
 					this->collisions.push_back(collision);
 				break;
 
 			case COLLISION_STATE_COLLISION_EXIT:
 				 if (colliderComponent1->OnCollisionExit != NULL)
-					 colliderComponent1->OnCollisionExit(colliderComponent2->attachedCollider.get());
+					 colliderComponent1->OnCollisionExit(colliderComponent2);
 				 
 				 if (colliderComponent2->OnCollisionExit != NULL)
-					colliderComponent2->OnCollisionExit(colliderComponent1->attachedCollider.get());
+					colliderComponent2->OnCollisionExit(colliderComponent1);
 				break;
 			case COLLISION_STATE_TRIGGER_ENTER:
 				if (colliderComponent1->OnTriggerStart != NULL)
-					colliderComponent1->OnTriggerStart(colliderComponent2->attachedCollider.get());
+					colliderComponent1->OnTriggerStart(colliderComponent2);
 
 				if (colliderComponent2->OnTriggerStart != NULL)
-					colliderComponent2->OnTriggerStart(colliderComponent1->attachedCollider.get());
+					colliderComponent2->OnTriggerStart(colliderComponent1);
 				break;
 			case COLLISION_STATE_TRIGGER_EXIT:
 				if (colliderComponent2->OnTriggerExit != NULL)
-					colliderComponent2->OnTriggerExit(colliderComponent2->attachedCollider.get());
+					colliderComponent2->OnTriggerExit(colliderComponent2);
 
 				if (colliderComponent2->OnTriggerExit != NULL)
-					colliderComponent2->OnTriggerExit(colliderComponent1->attachedCollider.get());
+					colliderComponent2->OnTriggerExit(colliderComponent1);
 				break;
 			case COLLISION_STATE_COLLISION_NONE:
 

@@ -6,6 +6,7 @@ namespace SpriteRenderer {
 	public:
 		ShaderProgram(const char* vertexShader, const char* fragmentShader);
 		ShaderProgram(const std::string& path);
+		~ShaderProgram() { glDeleteProgram(this->m_programID); }
 		void SetUniform3FloatVector(std::string Name, const glm::vec3& value)const;
 		void SetUniform3Float(const char* Name, float value1, float value2, float value3)const;
 		void SetUniform2FloatVector(std::string Name, const glm::vec2& value)const;	

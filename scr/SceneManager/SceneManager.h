@@ -1,7 +1,7 @@
 #pragma once
 #include"Rendererpch.h"
 #include"DeltaTime.h"
-#include"Camera/Camera.h"
+#include"Components/Camera.h"
 #include"Log/Log.h"
 namespace SpriteRenderer {
 	using Entity = std::uint32_t;
@@ -14,13 +14,13 @@ namespace SpriteRenderer {
 	public:
 		static void Init();
 		static void Start();
-		static void SetActiveCamera(Entity camera) { instance.activeCameraEntity = camera; }
+		static void SetActiveCamera(OrthographicCamera* camera) { instance.activeCameraEntity = camera; }
 		static void Terminate();
-		static Entity GetAtctiveCamera() { return getInstance().activeCameraEntity; }
+		static OrthographicCamera* GetAtctiveCamera() { return getInstance().activeCameraEntity; }
 
 		static SceneManager& getInstance() { return instance; }
 		static SceneManager instance;
-		Entity activeCameraEntity;
+		OrthographicCamera* activeCameraEntity;
 	private:
 		void PipelineLoop();	
 	};

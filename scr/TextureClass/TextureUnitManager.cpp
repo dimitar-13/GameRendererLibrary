@@ -32,7 +32,7 @@ uint32_t SpriteRenderer::TextureUnitManager::registerTexture(Texture2D* textureT
 		RENDER_LOG_MESSAGE_WARNING("No more slots left to assing to.");
 		return 0;
 	}
-	TextureHandle textureHandle;
+	uint32_t textureHandle;
 	glGenTextures(1, &textureHandle);
 	glBindTexture(GL_TEXTURE_2D, textureHandle);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
@@ -95,7 +95,7 @@ void SpriteRenderer::TextureUnitManager::unRegisterTexture(uint32_t textureHandl
 	}
 
 	uint32_t indexOfTextureToRemove = m_TextureSlots.m_textureHandleToIndex[textureHandle].index;
-	uint32_t indexOfLastTexutre = m_TextureSlots.size;
+	uint32_t indexOfLastTexutre = m_TextureSlots.size - 1;
 	uint32_t lastTexture = m_TextureSlots.m_textureUnits[indexOfLastTexutre];
 
 	glDeleteTextures(1, &textureHandle);
@@ -103,7 +103,7 @@ void SpriteRenderer::TextureUnitManager::unRegisterTexture(uint32_t textureHandl
 	m_TextureSlots.m_textureHandleToIndex[lastTexture].index = indexOfTextureToRemove;
 
 	m_TextureSlots.m_textureUnits[indexOfLastTexutre] = 0;
-	m_TextureSlots.m_textureHandleToIndex[textureHandle] = { 0,0 };
+	m_TextureSlots.m_textureHandleToIndex.erase(textureHandle);
 
 	--m_TextureSlots.size;
 }
