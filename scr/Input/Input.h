@@ -145,6 +145,9 @@ namespace SpriteRenderer
 		 MOUSE_EXTRA_4_BUTTON = GLFW_MOUSE_BUTTON_7,
 		 MOUSE_EXTRA_5_BUTTON = GLFW_MOUSE_BUTTON_8,
 	};
+	 struct MousePos {
+		 float x, y;
+	 };
 
 	 class InputManager {
 	 public:
@@ -171,7 +174,11 @@ namespace SpriteRenderer
 		 static InputManager& GetInstance() { return m_inputManager; }
 		 static std::unordered_map<KeyCodeEnum, KeyStateEnum>& GetKeyHash() { return GetInstance().m_keyState; }
 		 static std::unordered_map<MouseButton, KeyStateEnum>& GetMouseHash() { return GetInstance().m_mouseButtonStates; }
-		 static std::pair<float, float> GetMousePosition() { return GetInstance().getMousePosition(); }
+		 /// <summary>
+		 /// Gets the mouse position during the current frame.
+		 /// </summary>
+		 /// <returns>Mouse position in pixel coords.</returns>
+		 static MousePos GetMousePosition() { return GetInstance().getMousePosition(); }
 		 static void SetMousePosition(std::pair<float, float> newPosition) { GetInstance().setMousePosition(newPosition); }
 	 private:
 		 static InputManager m_inputManager;
@@ -316,7 +323,7 @@ namespace SpriteRenderer
 		bool isKeyPressed(KeyCodeEnum key);
 		bool isMouseButtonPressed(MouseButton button);
 		bool isMouseButtonDown(MouseButton button);
-		std::pair<float, float> getMousePosition() { return std::pair<float,float>(this->mouseXPos, this->mouseYPos); }
+		MousePos getMousePosition() { return { this->mouseXPos, this->mouseYPos }; }
 		void setMousePosition(std::pair<float, float> newPosition);
 	};
 
