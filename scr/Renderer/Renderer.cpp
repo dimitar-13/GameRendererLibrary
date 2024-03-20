@@ -4,6 +4,7 @@
 #include"SceneManager/SceneManager.h"
 #include"Shader/ShaderProgram/ShaderProgram.h"
 #include"Metric/MetricHelper.h"
+
 static constexpr const uint32_t INDEX_PER_OBJECT = 6;
 static const uint32_t INDEX_ARRAYCOUNT = INDEX_PER_OBJECT * SpriteRenderer::MAX_OBJECT_CCOUNT_PER_BATCH * 2;
 static std::array<uint32_t, INDEX_ARRAYCOUNT> indexData;
@@ -50,7 +51,7 @@ SpriteRenderer::Renderer::~Renderer()
     delete(m_CustomShader);
     delete[](m_SquareBatchData.data);
     delete[](m_CircleBatchData.data);
-
+    RENDER_LOG_MESSAGE_SUCCESS("Batch renderer was deleted successfully.");
 }
 
 void SpriteRenderer::Renderer::GenIndexBatchData()

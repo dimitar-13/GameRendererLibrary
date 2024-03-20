@@ -17,12 +17,15 @@ namespace SpriteRenderer {
 		static void SetActiveCamera(OrthographicCamera* camera) { instance.activeCameraEntity = camera; }
 		static void Terminate();
 		static OrthographicCamera* GetAtctiveCamera() { return getInstance().activeCameraEntity; }
-
+		
 		static SceneManager& getInstance() { return instance; }
+		static void WindowSizeChanged(int newWidth,int newHeight) { getInstance().windowSizeChanged(newWidth, newHeight); }
 		static SceneManager instance;
 		OrthographicCamera* activeCameraEntity;
 	private:
 		void PipelineLoop();	
+		void windowSizeChanged(int newWidth, int newHeight);
+
 	};
 	inline SceneManager SceneManager::instance;
 	

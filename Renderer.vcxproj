@@ -200,6 +200,7 @@
     <ClCompile Include="scr\Input\Input.cpp" />
     <ClCompile Include="scr\TextureClass\Texture2D\Texture2D.cpp" />
     <ClCompile Include="scr\TextureClass\TextureUnitManager.cpp" />
+    <ClCompile Include="scr\Window.cpp" />
     <ClCompile Include="scr\WindowFunctions\WindowFunctions.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -243,6 +244,7 @@
     <ClInclude Include="scr\DeltaTime.h" />
     <ClInclude Include="scr\TextureClass\TextureUnitManager.h" />
     <ClInclude Include="scr\Components\Transoform.h" />
+    <ClInclude Include="scr\Window.h" />
     <ClInclude Include="scr\WindowFunctions\WindowFunctions.h" />
   </ItemGroup>
   <ItemGroup>

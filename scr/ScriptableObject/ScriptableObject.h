@@ -5,12 +5,12 @@
 namespace SpriteRenderer {
 	class ScriptSystem;
 	class ScriptComponent;
-	struct Collider;
 
 	class ScriptableObject {
 		protected:
 			friend class ScriptComponent;
 			friend class ScriptSystem;
+
 			virtual void OnUpdate() { };
 			virtual void OnStart() { };
 			virtual void OnDelete() { };

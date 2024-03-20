@@ -7,7 +7,7 @@
 #include"ScriptSystem/ScriptSystem.h"
 #include "Physics/Collision/CollisionSytstem.h"
 #include "TextureClass/TextureUnitManager.h"
-
+#include "Window.h"
 void SpriteRenderer::SceneManager::Init()
 {
 	TextureUnitManager::Init();
@@ -22,7 +22,8 @@ void SpriteRenderer::SceneManager::Start()
 	ECSManager::GetSystemManager().InitSystems();
 
 	RENDER_LOG_MESSAGE_INFO("Render loop was started.");
-	
+	WindowSize winSize = MainWindow::GetWindowSize();
+	instance.windowSizeChanged(winSize.winWidth,winSize.winHeight);
 	instance.PipelineLoop();
 }
 
@@ -32,7 +33,7 @@ void SpriteRenderer::SceneManager::PipelineLoop()
 	uint32_t frameCounter = 0;
 	double previousTime = glfwGetTime();
 	double previousFrameTime = 0;
-	while (!glfwWindowShouldClose(Global::winContext))
+	while (!glfwWindowShouldClose(MainWindow::GetGLFWWindow()))
 	{
 		float time = (float)glfwGetTime();
 		delta = time - (float)previousFrameTime;
@@ -45,7 +46,7 @@ void SpriteRenderer::SceneManager::PipelineLoop()
 		ECSManager::GetSystemManager().Update(delta.GetTimeInSeconds());
 		ECSManager::GetSystemManager().PostUpdate(delta.GetTimeInSeconds());
 		
-		glfwSwapBuffers(Global::winContext);
+		glfwSwapBuffers(MainWindow::GetGLFWWindow());
 		glfwPollEvents();
 		if (glfwGetTime() - previousTime >= 1.0)
 		{
@@ -58,6 +59,20 @@ void SpriteRenderer::SceneManager::PipelineLoop()
 			frameCounter += 1;
 		}	
 	}
+}
+
+void SpriteRenderer::SceneManager::windowSizeChanged(int newWidth, int newHeight)
+{
+	if (!this->activeCameraEntity->UpdateProjectionOnWindowResize)
+		return;
+	float left = (float)-newWidth / 2;
+	float right = (float)newWidth / 2;
+	float bottom = (float)-newHeight / 2;
+	float top = (float)newHeight / 2;
+	float near = -1.0f;
+	float far = 1.0f;
+
+	this->activeCameraEntity->SetCameraProjDimentions(left,right,bottom,top,near,far);
 }
 
 void SpriteRenderer::SceneManager::Terminate()

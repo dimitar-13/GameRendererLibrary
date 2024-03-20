@@ -1,6 +1,7 @@
 #pragma once
 #include"ECS/ISystem.h"
 #include"Rendererpch.h"
+#include"Log/Log.h"
 namespace SpriteRenderer {
 	struct SystemComponentDependencies {
 		std::uint32_t m_systemID;
@@ -24,7 +25,7 @@ namespace SpriteRenderer {
 		void PreUpdate(float dt);
 		void Update(float dt);
 		void PostUpdate(float dt);
-		~SystemManager();
+		void DestroySystems();
 		std::vector<std::shared_ptr<ISystem>> m_systems;
 		//std::vector<SystemComponentDependencies> m_systemComponentDependecies;
 
@@ -43,12 +44,14 @@ namespace SpriteRenderer {
 		m_systemComponentDependecies.push_back(systemDependencie);
 		*/
 	}
-	inline SystemManager::~SystemManager()
+	inline void SystemManager::DestroySystems()
 	{
 		for (uint32_t i = 0; i < m_systems.size(); i++)
 		{
 			m_systems[i]->DestroySystem();
 		}
 		m_systems.clear();
+		RENDER_LOG_MESSAGE_SUCCESS("All systems were destroyed successfully.");
+
 	}
 }
