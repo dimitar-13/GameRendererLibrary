@@ -14,7 +14,7 @@ namespace SpriteRenderer
 		/// Returns the ID of the caller object.
 		/// </summary>
 		/// <returns>ID of the entity.</returns>
-		Entity GetEntity()const { return this->m_entity; }
+		ECSTypes::Entity GetEntity()const { return this->m_entity; }
 	public:
 		/// <summary>
 		/// Creates a entity and attach a transform component to it.
@@ -57,8 +57,8 @@ namespace SpriteRenderer
 	private:
 		friend class ScriptableObject;
 		friend struct Component;
-		GameObject(Entity Entity) { m_entity = Entity; }
-		Entity m_entity;
+		GameObject(ECSTypes::Entity Entity) { m_entity = Entity; }
+		ECSTypes::Entity m_entity;
 	};
 	template<typename T>
 	inline T* GameObject::AttachComponent()

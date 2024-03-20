@@ -215,6 +215,9 @@
     <ClInclude Include="scr\Window.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="scr\ECS\ECSTypes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Shaders\Color_shader.glsl" />

@@ -4,7 +4,6 @@
 #include"Components/Camera.h"
 #include"Log/Log.h"
 namespace SpriteRenderer {
-	using Entity = std::uint32_t;
 	class GameObject;
 	class SceneManager {
 

@@ -1,7 +1,7 @@
 #include "Rendererpch.h"
 #include "ECSManager.h"
 
-void SpriteRenderer::ECSManager::RemoveEntity(Entity ent)
+void SpriteRenderer::ECSManager::RemoveEntity(ECSTypes::Entity ent)
 {
 	GetInstance().m_componentManager.EntityDestroyed(ent);
 	GetInstance().m_EntityManager.DestroyEntity(ent);

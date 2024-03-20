@@ -22,7 +22,7 @@ namespace SpriteRenderer {
 			if (this->textureIndex != 0)
 				TextureUnitManager::UnBindTexture(this->textureIndex);
 		}
-		const glm::vec3 GetSpriteColor() { return this->m_Color; }
+		glm::vec3 GetSpriteColor()const { return this->m_Color; }
 		glm::vec3 SetSpriteColor(glm::vec3 color) { return this->m_Color = color; }
 		void SetSpriteType(SpriteType type) { this->m_shapeType = type; }
 		void SetTexture(Texture2D& texture) { textureIndex = TextureUnitManager::BindTexture(&texture);  }

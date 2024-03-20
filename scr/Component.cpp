@@ -6,7 +6,7 @@ SpriteRenderer::GameObject SpriteRenderer::Component::GetGameObj()
 {
     return { entity };
 }
-void SpriteRenderer::Component::SetGameObjectEntity(Entity ent)
+void SpriteRenderer::Component::SetGameObjectEntity(ECSTypes::Entity ent)
 {
     this->entity = ent;
 }

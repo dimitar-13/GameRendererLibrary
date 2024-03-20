@@ -17,6 +17,7 @@
 #include<memory>
 #include<set>
 #include<array>
+#include<queue>
 #include<algorithm>
 
 #define  FMT_HEADER_ONLY

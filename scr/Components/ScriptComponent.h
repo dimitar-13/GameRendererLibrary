@@ -7,16 +7,18 @@ namespace SpriteRenderer {
 	class ScriptableObject;
 	struct ScriptComponent:public Component
 	{
-		~ScriptComponent() { m_classInstance.~shared_ptr(); }
 		std::shared_ptr<ScriptableObject> m_classInstance= nullptr;
-		Entity entity;
+		ECSTypes::Entity entity;
 		/// <summary>
 		/// Attaches and instanciates a script class inheriting from ScriptableObject.
 		/// </summary>
 		/// <typeparam name="T"></typeparam>
 		/// <returns>Handle(instance) of the script class.</returns>
 		template<typename T>
-		T* AttachScript();	
+		T* AttachScript();
+
+		// Inherited via Component
+		void OnEntityDeleted() override;
 	};
 	template<typename T>
 	T* ScriptComponent::AttachScript() {
@@ -25,5 +27,5 @@ namespace SpriteRenderer {
 		//m_classInstance->gameObject->m_entity = entity;
 		return std::static_pointer_cast<T>(m_classInstance).get();
 	}
-
+	inline void SpriteRenderer::ScriptComponent::OnEntityDeleted() { m_classInstance->OnDelete(); }
 }

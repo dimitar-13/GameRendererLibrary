@@ -207,6 +207,7 @@
     <ClInclude Include="scr\Components\ColliderComponent.h" />
     <ClInclude Include="scr\Component.h" />
     <ClInclude Include="scr\Components\TagComponent.h" />
+    <ClInclude Include="scr\ECS\ECSTypes.h" />
     <ClInclude Include="scr\Physics\Collision\CollisionSytstem.h" />
     <ClInclude Include="scr\Renderer\RenderSytstem.h" />
     <ClInclude Include="scr\ScriptSystem\ScriptSystem.h" />
