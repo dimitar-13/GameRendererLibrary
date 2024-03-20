@@ -5,7 +5,7 @@ namespace SpriteRenderer {
 	public:
 		DeltaTime(float time = 0.0f) :m_time(time){}
 
-		const float GetTimeInSeconds() { return m_time; }
+		const float GetTimeInSeconds() const { return m_time; }
 	private:
 		float m_time;
 	};

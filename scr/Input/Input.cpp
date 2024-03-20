@@ -1,9 +1,10 @@
 #include"Rendererpch.h"
 #include"input.h"
+#include"Window.h"
 SpriteRenderer::InputManager::InputManager()
 {
 	double mousey, mousex;
-	glfwGetCursorPos(Global::winContext, &mousex, &mousey);
+	glfwGetCursorPos(MainWindow::GetGLFWWindow(), &mousex, &mousey);
 	this->mouseXPos = static_cast<float>(mousex);
 	this->mouseXPos = static_cast<float>(mousey);
 }

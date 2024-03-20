@@ -2,6 +2,7 @@
 #include"ECS/ComponentArray.h"
 #include"Component.h"
 #include"Rendererpch.h"
+#include"Log/Log.h"
 namespace SpriteRenderer {
 	using Entity = std::uint32_t;
 	class ComponentManager
@@ -44,6 +45,7 @@ namespace SpriteRenderer {
 				array.second->DestroyComponentArray();
 			}
 			m_componentHashes.clear();
+			RENDER_LOG_MESSAGE_SUCCESS("All component arrays were destroyed successfully.");
 		}
 
 	private:

@@ -121,6 +121,7 @@ void SpriteRenderer::TextureUnitManager::bindTextures()
 void SpriteRenderer::TextureUnitManager::destroy()
 {
 	glDeleteTextures(m_TextureSlots.size, m_TextureSlots.m_textureUnits.data());
+	RENDER_LOG_MESSAGE_SUCCESS("Texture unit manager deleted successfully.");
 }
 
 
