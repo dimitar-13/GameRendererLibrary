@@ -1,11 +1,15 @@
 #pragma once
+#include"ECS/ECSTypes.h"
 namespace SpriteRenderer {
 	class GameObject;
-	using Entity = std::uint32_t;
-	struct Component {
-		Entity entity;
+	class IComponentArray;
+	class Component {
+	public:
 		GameObject GetGameObj();
-		void SetGameObjectEntity(Entity ent);
+		ECSTypes::Entity entity = {};
+		void SetGameObjectEntity(ECSTypes::Entity ent);
+		void virtual OnEntityDeleted(){ };
+
 	};
 
 }

@@ -8,20 +8,20 @@
 namespace SpriteRenderer {
 	class ECSManager {
 	public:
-		static Entity AddEntity() {return GetInstance().m_EntityManager.CreateEntity(); }
-		static void RemoveEntity(Entity ent);
+		static ECSTypes::Entity AddEntity() {return GetInstance().m_EntityManager.CreateEntity(); }
+		static void RemoveEntity(ECSTypes::Entity ent);
 		template<typename T>
-		static void AddComponent(Entity ent);
+		static void AddComponent(ECSTypes::Entity ent);
 		template<typename T>
-		static void RemoveComponent(Entity ent);
+		static void RemoveComponent(ECSTypes::Entity ent);
 		template<typename T>
-		static T* GetComponent(Entity ent);
+		static T* GetComponent(ECSTypes::Entity ent);
 		template<typename T>
-		static bool HasComponent(Entity ent);
+		static bool HasComponent(ECSTypes::Entity ent);
 		template<typename T>
 		static inline ComponentArrayWrapper<T>& GetComponentArray() { return GetInstance().m_componentManager.GetComponentArray<T>().GetArray(); }
 		template<typename T>
-		static const std::vector<Entity> GetComponentEntities();
+		static const std::vector<ECSTypes::Entity> GetComponentEntities();
 		static ECSManager& GetInstance() { return Instance; }
 		template<typename T,typename... Ts>
 		static void RegisterSystem(Ts ...components);
@@ -36,26 +36,26 @@ namespace SpriteRenderer {
 		SystemManager m_systemManager;
 	};
 	template<typename T>
-	inline void ECSManager::AddComponent(Entity ent)
+	inline void ECSManager::AddComponent(ECSTypes::Entity ent)
 	{
 		GetInstance().m_componentManager.AddComponent<T>(ent);
 	}
 	template<typename T>
-	inline void ECSManager::RemoveComponent(Entity ent) {
+	inline void ECSManager::RemoveComponent(ECSTypes::Entity ent) {
 		GetInstance().m_componentManager.RemoveComponent<T>(ent);
 	}
 	template<typename T>
-	inline T* ECSManager::GetComponent(Entity ent)
+	inline T* ECSManager::GetComponent(ECSTypes::Entity ent)
 	{
 		return GetInstance().m_componentManager.GetComponent<T>(ent);
 	}
 	template<typename T>
-	inline const std::vector<Entity> ECSManager::GetComponentEntities()
+	inline const std::vector<ECSTypes::Entity> ECSManager::GetComponentEntities()
 	{
 		return GetInstance().m_componentManager.GetComponentEntities<T>();
 	}
 	template<typename T>
-	inline bool ECSManager::HasComponent(Entity ent)
+	inline bool ECSManager::HasComponent(ECSTypes::Entity ent)
 	{
 		return GetInstance().m_componentManager.HasComponent<T>(ent);
 	}

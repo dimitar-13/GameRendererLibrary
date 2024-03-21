@@ -69,7 +69,7 @@ void SpriteRenderer::CollisionSystem::Update(float dt)
 		}
 	}
 	ResolveColisions();
-
+	m_entities = ECSManager::GetComponentEntities<ColliderComponent>();
 }
 
 void SpriteRenderer::CollisionSystem::PostUpdate(float dt)

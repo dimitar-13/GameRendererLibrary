@@ -15,6 +15,6 @@ namespace SpriteRenderer
 		void UpdatePhysics(PhysicBody& physicBodie, glm::vec2* position, float delta);
 	private:
 		const glm::vec2 GRAVITY_FORCE = glm::vec2(0, -9.81f);
-		std::vector<Entity> m_CollisionEntities;
+		std::vector<ECSTypes::Entity> m_CollisionEntities;
 	};
 }

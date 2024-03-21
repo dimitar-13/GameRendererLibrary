@@ -3,22 +3,21 @@
 
 SpriteRenderer::EntityManager::EntityManager()
 {
-    for (uint32_t i = 0; i < MAX_ENTITIES; i++)
+    for (uint32_t i = 0; i < ECSTypes::MAX_ENTITIES; i++)
     {
         m_entitites.push(i);
     }
-
 }
 
-Entity SpriteRenderer::EntityManager::CreateEntity()
+ECSTypes::Entity SpriteRenderer::EntityManager::CreateEntity()
 {
-    Entity id = m_entitites.front();
+    ECSTypes::Entity id = m_entitites.front();
     m_entitites.pop();
     ++m_entityCount;
     return id;
 }
 
-void SpriteRenderer::EntityManager::DestroyEntity(Entity ent)
+void SpriteRenderer::EntityManager::DestroyEntity(ECSTypes::Entity ent)
 {
     m_entitites.push(ent);
     --m_entityCount;

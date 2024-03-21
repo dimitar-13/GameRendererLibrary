@@ -16,7 +16,7 @@ namespace SpriteRenderer {
 			virtual void OnDelete() { };
 			//TODO:Fix the callbacks maybe use func pointers
 			GameObject gameObject = {0};
-			void BindScriptToEntity(Entity entity) { gameObject.m_entity = entity; }
+			void BindScriptToEntity(ECSTypes::Entity entity) { gameObject.m_entity = entity; }
 	};
 
 	

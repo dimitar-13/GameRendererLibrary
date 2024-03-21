@@ -12,13 +12,7 @@ static uint32_t indexBufferHandle;
 
 SpriteRenderer::Renderer::Renderer()
 {
-    m_CustomShader = new ShaderProgram("../Renderer/Assets/Shaders/Color_shader.glsl");
-    m_CustomShader->UseProgram();
-    m_CustomShader->GetShaderUniformLocation("ModelMatrix");
-    m_CustomShader->GetShaderUniformLocation("ViewProjectionMatrix");
-    m_CustomShader->GetShaderUniformLocation("samplerTexture");
-    m_CustomShader->GetShaderUniformLocation("uColor");
-
+   
     m_CircleShader = new ShaderProgram("../Renderer/Assets/Shaders/Circle_shader.glsl");
     m_CircleShader->UseProgram();
     m_CircleShader->GetShaderUniformLocation("ViewProjectionMatrix");
@@ -48,7 +42,6 @@ SpriteRenderer::Renderer::~Renderer()
 {
     delete(m_CircleShader);
     delete(m_SquareShader);
-    delete(m_CustomShader);
     delete[](m_SquareBatchData.data);
     delete[](m_CircleBatchData.data);
     RENDER_LOG_MESSAGE_SUCCESS("Batch renderer was deleted successfully.");
@@ -138,8 +131,7 @@ void SpriteRenderer::Renderer::SubmitToDraw(Sprite* spriteToDraw, const glm::mat
     case SPRITE_SHAPE_TYPE_CIRCLE:
         AppendToCircleBatch(spriteToDraw,modelMatrix);
         break;
-    case SPRITE_SHAPE_TYPE_TRIANGLE:
-        break;
+
     }
 }
 

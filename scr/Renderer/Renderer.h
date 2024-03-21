@@ -5,15 +5,15 @@
 #include"OpenGLData/VertexArray/VertexArray.h"
 namespace SpriteRenderer {
 	class ShaderProgram;
-	static const uint32_t MAX_OBJECT_CCOUNT_PER_BATCH = 100;
+	static constexpr uint32_t MAX_OBJECT_CCOUNT_PER_BATCH = 100;
 
 	template<typename T>
 	struct BatchData {
-		VertexArray batchVertexArray;
+		VertexArray batchVertexArray = {};
 		const uint32_t MaxObjectCount = MAX_OBJECT_CCOUNT_PER_BATCH;
 		uint32_t objectCount = 0;
 		uint32_t indexCount = 0;
-		uint32_t dataOffsetInBytes;
+		uint32_t dataOffsetInBytes = {};
 		T* dataPointer = nullptr;
 		T* data = nullptr;
 	};
@@ -71,7 +71,6 @@ namespace SpriteRenderer {
 		std::array<SquareVertexData,4> GenSqaureVertexArrayData(Sprite* spriteToDraw,
 			const glm::mat4& modelMatrix);
 	private:
-		ShaderProgram* m_CustomShader = nullptr;
 		ShaderProgram* m_SquareShader = nullptr;
 		ShaderProgram* m_CircleShader = nullptr;
 

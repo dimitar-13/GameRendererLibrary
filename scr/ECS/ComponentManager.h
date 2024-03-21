@@ -4,7 +4,6 @@
 #include"Rendererpch.h"
 #include"Log/Log.h"
 namespace SpriteRenderer {
-	using Entity = std::uint32_t;
 	class ComponentManager
 	{
 	public:
@@ -21,18 +20,18 @@ namespace SpriteRenderer {
 			}
 		}
 		template<typename T>
-		void AddComponent(Entity entity);
+		void AddComponent(ECSTypes::Entity entity);
 		template<typename T>
 		ComponentArray<T>& GetComponentArray();
 		template<typename T>
-		void RemoveComponent(Entity entity);
+		void RemoveComponent(ECSTypes::Entity entity);
 		template<typename T>
-		T* GetComponent(Entity entity);
+		T* GetComponent(ECSTypes::Entity entity);
 		template<typename T>
-		bool HasComponent(Entity ent);
+		bool HasComponent(ECSTypes::Entity ent);
 		template<typename T>
-		const std::vector<Entity> GetComponentEntities();
-		void EntityDestroyed(Entity ent) {
+		const std::vector<ECSTypes::Entity> GetComponentEntities();
+		void EntityDestroyed(ECSTypes::Entity ent) {
 			for (const auto& pair : m_componentHashes)
 			{
 				pair.second->OnEntityDestroyed(ent);
@@ -54,7 +53,7 @@ namespace SpriteRenderer {
 	};
 
 	template<typename T>
-	inline void ComponentManager::AddComponent(Entity entity)
+	inline void ComponentManager::AddComponent(ECSTypes::Entity entity)
 	{
 		GetComponentArray<T>().AddComponent(entity);
 	}
@@ -66,23 +65,23 @@ namespace SpriteRenderer {
 	}
 
 	template<typename T>
-	inline void ComponentManager::RemoveComponent(Entity entity)
+	inline void ComponentManager::RemoveComponent(ECSTypes::Entity entity)
 	{
 		GetComponentArray<T>().RemoveComponent(entity);
 	}
 
 	template<typename T>
-	inline T* ComponentManager::GetComponent(Entity entity)
+	inline T* ComponentManager::GetComponent(ECSTypes::Entity entity)
 	{
 		return GetComponentArray<T>().GetComponent(entity);
 	}
 	template<typename T>
-	inline const std::vector<Entity> ComponentManager::GetComponentEntities()
+	inline const std::vector<ECSTypes::Entity> ComponentManager::GetComponentEntities()
 	{
 		return GetComponentArray<T>().GetComponentEntities();
 	}
 	template<typename T>
-	inline bool ComponentManager::HasComponent(Entity ent)
+	inline bool ComponentManager::HasComponent(ECSTypes::Entity ent)
 	{
 		return GetComponentArray<T>().HasComponent(ent);
 	}
