@@ -108,7 +108,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>GLEW_STATIC;RENDER_ENGINE_API_BUILD</PreprocessorDefinitions>
+      <PreprocessorDefinitions>GLEW_STATIC;RENDER_ENGINE_API_BUILD;</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)../Renderer\Dependencies\GLEW\include;$(SolutionDir)../Renderer\Dependencies\GLFW\include;$(SolutionDir)../Renderer\Dependencies\GLM;$(SolutionDir)../Renderer\Dependencies\ImgReading;$(SolutionDir)../Renderer\scr;$(SolutionDir)../Renderer/vendor\fmt\fmt-10.2.1\include;$(SolutionDir)../Renderer/vendor\fmt\fmt-10.2.1;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
@@ -152,7 +152,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>GLEW_STATIC;RENDER_ENGINE_API_BUILD</PreprocessorDefinitions>
+      <PreprocessorDefinitions>GLEW_STATIC;RENDER_ENGINE_API_BUILD;</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)../Renderer\Dependencies\GLEW\include;$(SolutionDir)../Renderer\Dependencies\GLFW\include;$(SolutionDir)../Renderer\Dependencies\GLM;$(SolutionDir)../Renderer\Dependencies\ImgReading;$(SolutionDir)../Renderer\scr;$(SolutionDir)../Renderer/vendor\fmt\fmt-10.2.1\include;$(SolutionDir)../Renderer/vendor\fmt\fmt-10.2.1;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
@@ -204,6 +204,7 @@
     <ClCompile Include="scr\WindowFunctions\WindowFunctions.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Assets\AssetPath.h" />
     <ClInclude Include="scr\Components\ColliderComponent.h" />
     <ClInclude Include="scr\Component.h" />
     <ClInclude Include="scr\Components\TagComponent.h" />
@@ -257,7 +258,6 @@
     <Image Include="Assets\Textures\Apple.png" />
     <Image Include="Assets\Textures\Texture.jpg" />
     <Image Include="Assets\Textures\WhiteTexture.png" />
-    <Image Include="C:\Users\MSI Katana 15\Desktop\WhiteTexture.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

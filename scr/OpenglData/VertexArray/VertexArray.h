@@ -1,7 +1,6 @@
 #pragma once
 #include"Rendererpch.h"
 #include"OpenglData/VertexData/Vertex.h"
-#include"../../Core/Global.h"
 namespace SpriteRenderer {
 
 	struct AttributeData {

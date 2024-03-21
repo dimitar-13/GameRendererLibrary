@@ -1,6 +1,5 @@
 #pragma once
 #include"Rendererpch.h"
-#include"../../Core/Global.h"
 #include"ECS/ECSManager.h"
 namespace SpriteRenderer
 {

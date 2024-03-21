@@ -2,6 +2,7 @@
 #include "TextureUnitManager.h"
 #include"Log/Log.h"
 #include "Texture2D/Texture2D.h"
+#include"../Assets/AssetPath.h"
 
 void SpriteRenderer::TextureUnitManager::Init()
 {
@@ -20,7 +21,7 @@ void SpriteRenderer::TextureUnitManager::fillTextureSlotsArray()
 void SpriteRenderer::TextureUnitManager::querryMaxTextureSlotsCount()
 {
 	glGetIntegerv(GL_MAX_TEXTURE_UNITS, &m_TextureSlots.maxTextureSlots);
-	Texture2D whiteTexture("D:/c++/OpenGl/SnakeGame/Renderer/Assets/Textures/WhiteTexture.png");
+	Texture2D whiteTexture(AssetPathHelper::GetAssetPath()+"/Textures/WhiteTexture.png");
 	registerTexture(&whiteTexture);
 }
 
