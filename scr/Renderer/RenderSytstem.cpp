@@ -45,8 +45,8 @@ const glm::mat4 SpriteRenderer::RenderSysytem::CalculateModelMatrix(const Transf
     glm::mat4 result(1);
     result = glm::translate(result, glm::vec3(spriteTransform.m_Position, 0));
 
-    result = glm::rotate(result, spriteTransform.m_Rotate.x, glm::vec3(1.0f, 0, 0));
-    result = glm::rotate(result, spriteTransform.m_Rotate.y, glm::vec3(0, 1.0f, 0));
+    result = glm::rotate(result, glm::radians(spriteTransform.m_RotationAngle), glm::vec3(0.0, 0, 1.0f));
+    //result = glm::rotate(result, spriteTransform.m_Rotate.y, glm::vec3(0, 1.0f, 0));
 
     result = glm::scale(result, glm::vec3(MetricHelper::GetUnitInMeters(spriteTransform.m_Scale.x),
         MetricHelper::GetUnitInMeters(spriteTransform.m_Scale.y), 0));

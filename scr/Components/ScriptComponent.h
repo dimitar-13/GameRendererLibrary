@@ -5,8 +5,10 @@
 //Wrapper for the generic Scripts that can be created
 namespace SpriteRenderer {
 	class ScriptableObject;
-	struct ScriptComponent:public Component
+	class GameObject;
+	class ScriptComponent:public Component
 	{
+	public:
 		std::shared_ptr<ScriptableObject> m_classInstance= nullptr;
 		ECSTypes::Entity entity;
 		/// <summary>
@@ -16,9 +18,9 @@ namespace SpriteRenderer {
 		/// <returns>Handle(instance) of the script class.</returns>
 		template<typename T>
 		T* AttachScript();
-
-		// Inherited via Component
-		void OnEntityDeleted() override;
+	private:
+		friend class GameObject;
+		void OnEntityDeleted();
 	};
 	template<typename T>
 	T* ScriptComponent::AttachScript() {
