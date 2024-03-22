@@ -4,9 +4,18 @@
 #include "SceneManager/SceneManager.h"
 #include "Metric/MetricHelper.h"
 #include "GameObject/GameObject.h"
+
+static void onCompChanged()
+{
+    std::cout << "A spirte was removed" << '\n';
+}
+
 void SpriteRenderer::RenderSysytem::Init()
 {
     m_entities = ECSManager::GetComponentEntities<Sprite>();
+    auto onTriggerFunc = std::bind(&RenderSysytem::OnComponentArrayChanged, this);
+    //void(*listener)() = &(this->*OnComponentArrayChanged)();
+    ECSManager::AddEventListener<Sprite>(onTriggerFunc);
 }
 
 void SpriteRenderer::RenderSysytem::PreUpdate(float dt)
@@ -38,6 +47,13 @@ void SpriteRenderer::RenderSysytem::PostUpdate(float dt)
 
 void SpriteRenderer::RenderSysytem::DestroySystem()
 {
+}
+
+void SpriteRenderer::RenderSysytem::OnComponentArrayChanged()
+{
+    std::cout << "A spirte was removed" << '\n';
+    m_entities = ECSManager::GetComponentEntities<Sprite>();
+
 }
 
 const glm::mat4 SpriteRenderer::RenderSysytem::CalculateModelMatrix(const Transform& spriteTransform)

@@ -3,8 +3,11 @@
 
 void SpriteRenderer::ECSManager::RemoveEntity(ECSTypes::Entity ent)
 {
-	GetInstance().m_componentManager.EntityDestroyed(ent);
-	GetInstance().m_EntityManager.DestroyEntity(ent);
+	ECSManager insatnce = GetInstance();
+	Instance.m_OnEntityDeletedEvent.Invoke();
+
+	insatnce.m_componentManager.EntityDestroyed(ent);
+	insatnce.m_EntityManager.DestroyEntity(ent);
 }
 
 void SpriteRenderer::ECSManager::DestroyECSManager()

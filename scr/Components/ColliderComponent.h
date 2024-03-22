@@ -1,7 +1,6 @@
 #pragma once
 #include"Rendererpch.h"
 #include"Physics/Collision/Colider.h"
-#include<functional>
 namespace SpriteRenderer {
 	class ScriptableObject;
 	struct ColliderComponent : public Component

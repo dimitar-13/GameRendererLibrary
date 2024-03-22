@@ -28,12 +28,17 @@ namespace SpriteRenderer {
 		static SystemManager& GetSystemManager() { return GetInstance().m_systemManager; }
 		static void DestroyECSManager();
 		static ComponentManager& GetComponentManager() { return GetInstance().m_componentManager; }
+		template<typename T>
+		static void AddEventListener(std::function<void()>listener) { GetInstance().m_componentManager.GetComponentArray<T>().AddEventListener(listener); }
+		static void AddEventListenerOnEntityDeletion(const std::function<void()>&listener) { GetInstance().m_OnEntityDeletedEvent += listener; }
+
 	public:
 		static ECSManager Instance;
 	private:
 		ComponentManager m_componentManager;
 		EntityManager m_EntityManager;
 		SystemManager m_systemManager;
+		Event<void> m_OnEntityDeletedEvent;
 	};
 	template<typename T>
 	inline void ECSManager::AddComponent(ECSTypes::Entity ent)

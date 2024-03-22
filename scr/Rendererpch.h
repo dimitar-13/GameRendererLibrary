@@ -20,6 +20,7 @@
 #include<queue>
 #include<algorithm>
 #include<filesystem>
+#include<functional>
 
 
 #define  FMT_HEADER_ONLY

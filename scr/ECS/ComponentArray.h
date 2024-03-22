@@ -3,6 +3,7 @@
 #include"Component.h"
 #include"Log/Log.h"
 #include"ECS/ECSTypes.h"
+#include"ECS/EventSystem/EntityEventSystem.h"
 namespace SpriteRenderer {
 	class IComponentArray
 	{
@@ -27,12 +28,14 @@ namespace SpriteRenderer {
 		T* GetComponent(ECSTypes::Entity ent);
 		bool HasComponent(ECSTypes::Entity ent);
 		ComponentArrayWrapper<T>& GetArray() { return m_componentArray; }
+		void AddEventListener(std::function<void()>listener) { m_componentArrayChangedEvent += listener; }
 		const std::vector<ECSTypes::Entity> GetComponentEntities();
 		void OnEntityDestroyed(ECSTypes::Entity ent) override
 		{
 			if (m_entityToIndex.find(ent) != m_entityToIndex.end())
 			{
 				RemoveComponent(ent);
+				m_componentArrayChangedEvent.Invoke();
 			}
 		}
 		void DestroyComponentArray()override {
@@ -47,10 +50,13 @@ namespace SpriteRenderer {
 		ComponentArrayWrapper<T> m_componentArray;
 		std::unordered_map< ECSTypes::Entity, uint32_t> m_entityToIndex{};
 		std::unordered_map< uint32_t , ECSTypes::Entity> m_indexToEntity{};
+		Event<void> m_componentArrayChangedEvent;
 	};
 	template<typename T>
 	inline void ComponentArray<T>::RemoveComponent(ECSTypes::Entity ent)
 	{
+		//Check if component exists
+
 		if (m_componentArray.size <= 1)
 		{
 			delete(m_componentArray.componentArray[0]);
@@ -93,6 +99,8 @@ namespace SpriteRenderer {
 		Component* componentCast = dynamic_cast<Component *> (m_componentArray.componentArray[index]);
 		componentCast->entity = ent;
 		m_componentArray.size++;
+
+		m_componentArrayChangedEvent.Invoke();
 	}
 	template<typename T>
 	inline bool ComponentArray<T>::HasComponent(ECSTypes::Entity ent)
