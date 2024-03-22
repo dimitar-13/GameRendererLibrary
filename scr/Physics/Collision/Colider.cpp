@@ -3,27 +3,6 @@
 #include"Metric/MetricHelper.h"
 #include "Physics/Collision/CollisionDetection.h" 
 
-//SpriteRenderer::SquareCollider::SquareCollider(Transform& transform):Collider(transform)
-//{
-//	this->width = transform.m_Scale.x * METER_SCALE_FACTOR;
-//	this->height = transform.m_Scale.y * METER_SCALE_FACTOR;
-//}
-//
-//std::pair<glm::vec2, glm::vec2> SpriteRenderer::SquareCollider::GetMinAndMax()
-//{
-//	this->max.x = this->originPosition.x + (this->width / 2);
-//	this->max.y = this->originPosition.y + (this->height / 2);
-//	this->min.x = this->originPosition.x - (this->width / 2);
-//	this->min.y = this->originPosition.y - (this->height / 2);
-//
-//	return std::pair<glm::vec2, glm::vec2>(max, min);
-//}
-//
-//SpriteRenderer::CircleCollider::CircleCollider(Transform& transform):Collider(transform)
-//{
-//	this->radius = 1 * METER_SCALE_FACTOR;
-//}
-
 SpriteRenderer::Collision SpriteRenderer::CircleCollider::TestForCollision(Collider* collider, Transform* callerTransform,
 	Transform* toBeTestedTransform)
 {
@@ -33,8 +12,7 @@ SpriteRenderer::Collision SpriteRenderer::CircleCollider::TestForCollision(Colli
 SpriteRenderer::Collision SpriteRenderer::CircleCollider::TestForCollision(CircleCollider* CircleCollider2, Transform* callerTransform,
 	Transform* toBeTestedTransform)
 {
-	return CollisionDetectionFuncs::TestForCollision(this,
-											CircleCollider2, callerTransform, toBeTestedTransform);
+	return CollisionDetectionFuncs::TestForCollision(this,CircleCollider2, callerTransform, toBeTestedTransform);
 }
 
 SpriteRenderer::Collision SpriteRenderer::CircleCollider::TestForCollision(SquareCollider* SquareCollider, Transform* callerTransform,

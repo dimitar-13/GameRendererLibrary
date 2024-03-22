@@ -32,15 +32,7 @@ namespace SpriteRenderer {
 		{
 			if (m_entityToIndex.find(ent) != m_entityToIndex.end())
 			{
-				Component* component = static_cast<Component*>(GetComponent(ent));
-
-				if (component == nullptr) {
-					RENDER_LOG_MESSAGE_ERROR("Failed to cast '{0}' to '{1}'", typeid(T).name(), typeid(Component).name());
-				}
-				else {
-					component->OnEntityDeleted();
-				}
-			RemoveComponent(ent);
+				RemoveComponent(ent);
 			}
 		}
 		void DestroyComponentArray()override {
