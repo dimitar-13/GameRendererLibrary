@@ -10,11 +10,14 @@ void SpriteRenderer::CollisionSystem::Init()
 		auto* collider1Transform = ECSManager::GetComponent<Transform>(m_entities[i]);
 		colliderComponent1->attachedCollider->m_Position = collider1Transform->m_Position;
 	}
+	const auto& onColliderArrayChangedFunc = std::bind(&CollisionSystem::OnColliderArrayChanged, this);
+	ECSManager::AddEventListenerOnComponentArrayChange<ColliderComponent>(onColliderArrayChangedFunc);
+
 }
 
 void SpriteRenderer::CollisionSystem::PreUpdate(float dt)
 {
-	m_entities = ECSManager::GetComponentEntities<ColliderComponent>();
+
 }
 
 void SpriteRenderer::CollisionSystem::Update(float dt)
@@ -69,7 +72,6 @@ void SpriteRenderer::CollisionSystem::Update(float dt)
 		}
 	}
 	ResolveColisions();
-	m_entities = ECSManager::GetComponentEntities<ColliderComponent>();
 }
 
 void SpriteRenderer::CollisionSystem::PostUpdate(float dt)
@@ -84,6 +86,10 @@ void SpriteRenderer::CollisionSystem::PostUpdate(float dt)
 
 void SpriteRenderer::CollisionSystem::DestroySystem()
 {
+}
+void SpriteRenderer::CollisionSystem::OnColliderArrayChanged()
+{
+	m_entities = ECSManager::GetComponentEntities<ColliderComponent>();
 }
 void SpriteRenderer::CollisionSystem::ResolveColisions()
 {

@@ -21,6 +21,6 @@ namespace SpriteRenderer {
 		void Update(float dt) override;
 		void PostUpdate(float dt) override;
 		void DestroySystem() override;
-
+		void OnColliderArrayChanged();
 	};
 }

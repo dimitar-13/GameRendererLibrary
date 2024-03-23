@@ -33,3 +33,13 @@ void SpriteRenderer::SystemManager::PostUpdate(float dt)
 		m_systems[i]->PostUpdate(dt);
 	}
 }
+
+SpriteRenderer::SystemManager::~SystemManager()
+{
+	for (uint32_t i = 0; i < m_systems.size(); i++)
+	{
+		m_systems[i]->DestroySystem();
+	}
+	m_systems.clear();
+	RENDER_LOG_MESSAGE_SUCCESS("All systems were destroyed successfully.");
+}

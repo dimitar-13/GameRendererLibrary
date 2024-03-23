@@ -216,7 +216,7 @@
     <ClInclude Include="scr\ECS\ComponentManager.h" />
     <ClInclude Include="scr\ECS\ECSManager.h" />
     <ClInclude Include="scr\ECS\EntityManager.h" />
-    <ClInclude Include="scr\ECS\EventSystem\EntityEventSystem.h" />
+    <ClInclude Include="scr\ECS\EventSystem\EventSystem.h" />
     <ClInclude Include="scr\ECS\ISystem.h" />
     <ClInclude Include="scr\ECS\SystemManager.h" />
     <ClInclude Include="scr\Physics\Collision\CollisionSolver.h" />

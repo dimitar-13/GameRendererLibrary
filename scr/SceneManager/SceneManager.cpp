@@ -8,6 +8,7 @@
 #include "Physics/Collision/CollisionSytstem.h"
 #include "TextureClass/TextureUnitManager.h"
 #include "Window.h"
+#include"ECS/EventSystem/EventSystem.h"
 void SpriteRenderer::SceneManager::Init()
 {
 	TextureUnitManager::Init();
@@ -79,3 +80,4 @@ void SpriteRenderer::SceneManager::Terminate()
 {
 	//TODO:Clear memory;
 }
+

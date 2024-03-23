@@ -9,16 +9,9 @@ namespace SpriteRenderer {
 	public:
 		//TODO:Should the user be able to say wich components they need
 		//and is this unnecessary overhead.
-		
+	
 		template<typename T, typename ...Ts>
-		void RegisterComponentTypes() {
-			static_assert(std::is_base_of<Component, T>::value, "Class or struct must inherit from Component");
-			m_componentHashes.insert({ typeid(T).name(), std::make_shared<ComponentArray<T>>() });
-			if constexpr (sizeof...(Ts) > 0)
-			{
-				RegisterComponentTypes<Ts...>();
-			}
-		}
+		void RegisterComponentTypes();
 		template<typename T>
 		void AddComponent(ECSTypes::Entity entity);
 		template<typename T>
@@ -31,26 +24,42 @@ namespace SpriteRenderer {
 		bool HasComponent(ECSTypes::Entity ent);
 		template<typename T>
 		const std::vector<ECSTypes::Entity> GetComponentEntities();
-		void EntityDestroyed(ECSTypes::Entity ent) {
-			for (const auto& pair : m_componentHashes)
-			{
-				pair.second->OnEntityDestroyed(ent);
-			}
-		}
-		void DestroyComponentArrays()
-		{
-			for (const auto& array : m_componentHashes)
-			{
-				array.second->DestroyComponentArray();
-			}
-			m_componentHashes.clear();
-			RENDER_LOG_MESSAGE_SUCCESS("All component arrays were destroyed successfully.");
-		}
-
+		void EntityDestroyed(ECSTypes::Entity ent);
+		~ComponentManager();
 	private:
 		std::unordered_map<const char *,std::shared_ptr<IComponentArray>> m_componentHashes{};
 		std::uint32_t componentCount{};
 	};
+
+#pragma region Methods
+	inline void ComponentManager::EntityDestroyed(ECSTypes::Entity ent) {
+		for (const auto& pair : m_componentHashes)
+		{
+			pair.second->OnEntityDestroyed(ent);
+		}
+	}
+	inline ComponentManager::~ComponentManager()
+	{
+		for (const auto& array : m_componentHashes)
+		{
+			array.second->DestroyComponentArray();
+		}
+		m_componentHashes.clear();
+		RENDER_LOG_MESSAGE_SUCCESS("All component arrays were destroyed successfully.");
+	}
+#pragma endregion
+
+#pragma region TemplatedMethods
+
+	template<typename T, typename ...Ts>
+	inline void ComponentManager::RegisterComponentTypes() {
+		static_assert(std::is_base_of<Component, T>::value, "Class or struct must inherit from Component");
+		m_componentHashes.insert({ typeid(T).name(), std::make_shared<ComponentArray<T>>() });
+		if constexpr (sizeof...(Ts) > 0)
+		{
+			RegisterComponentTypes<Ts...>();
+		}
+	}
 
 	template<typename T>
 	inline void ComponentManager::AddComponent(ECSTypes::Entity entity)
@@ -85,5 +94,6 @@ namespace SpriteRenderer {
 	{
 		return GetComponentArray<T>().HasComponent(ent);
 	}
+#pragma endregion
 }
 
