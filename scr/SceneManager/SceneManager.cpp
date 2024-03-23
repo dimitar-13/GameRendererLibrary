@@ -8,45 +8,10 @@
 #include "Physics/Collision/CollisionSytstem.h"
 #include "TextureClass/TextureUnitManager.h"
 #include "Window.h"
-#include"ECS/EventSystem/EntityEventSystem.h"
-
-void TestFunc(int a , int b, int c)
-{
-	std::cout << "This is a test function and it was called with .";
-	std::cout << "a = " << a << "b = " << b << "c = " << c << '\n';
-
-}
-void TestFunc2(int a, int b, int c)
-{
-	std::cout << "This is a test function 2." << '\n';
-	std::cout << "a = " << a << "b = " << b << "c = " << c << '\n';
-
-}
-
-void TestFunc3()
-{
-	std::cout << "This is a test function 3." << '\n';
-
-}
-void TestFunc4()
-{
-	std::cout << "This is a test function 4." << '\n';
-
-}
-
+#include"ECS/EventSystem/EventSystem.h"
 void SpriteRenderer::SceneManager::Init()
 {
 	TextureUnitManager::Init();
-	Event<void,int,int,int> TestEvent;
-	TestEvent += TestFunc;
-	TestEvent += TestFunc2;
-	//TestEvent += TestFunc3;
-	//TestEvent += TestFunc4;
-	TestEvent -= TestFunc;
-
-
-
-	TestEvent.Invoke(5,6,3);
 }
 void SpriteRenderer::SceneManager::Start()
 {
@@ -115,3 +80,4 @@ void SpriteRenderer::SceneManager::Terminate()
 {
 	//TODO:Clear memory;
 }
+

@@ -13,6 +13,7 @@ namespace SpriteRenderer
 		void PostUpdate(float dt) override;
 		void DestroySystem() override;
 		void UpdatePhysics(PhysicBody& physicBodie, glm::vec2* position, float delta);
+		void OnComponentArrayChanged();
 	private:
 		const glm::vec2 GRAVITY_FORCE = glm::vec2(0, -9.81f);
 		std::vector<ECSTypes::Entity> m_CollisionEntities;

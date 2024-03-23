@@ -188,7 +188,7 @@
     <ClInclude Include="scr\Components\ScriptComponent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="scr\ECS\EventSystem\EntityEventSystem.h">
+    <ClInclude Include="scr\ECS\EventSystem\EventSystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="scr\ScriptSystem\ScriptSystem.h">

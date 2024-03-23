@@ -13,9 +13,9 @@ static void onCompChanged()
 void SpriteRenderer::RenderSysytem::Init()
 {
     m_entities = ECSManager::GetComponentEntities<Sprite>();
-    auto onTriggerFunc = std::bind(&RenderSysytem::OnComponentArrayChanged, this);
+    auto onCompArrayChanged = std::bind(&RenderSysytem::OnComponentArrayChanged, this);
     //void(*listener)() = &(this->*OnComponentArrayChanged)();
-    ECSManager::AddEventListener<Sprite>(onTriggerFunc);
+    ECSManager::AddEventListenerOnComponentArrayChange<Sprite>(onCompArrayChanged);
 }
 
 void SpriteRenderer::RenderSysytem::PreUpdate(float dt)

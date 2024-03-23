@@ -67,7 +67,7 @@ namespace SpriteRenderer
 	}
 	template <typename T>
 	inline void GameObject::RemoveComponent() {
-		if(this->HasComponent())
+		if(this->HasComponent<T>())
 			ECSManager::RemoveComponent<T>(this->m_entity);
 	}
 	template <typename T>

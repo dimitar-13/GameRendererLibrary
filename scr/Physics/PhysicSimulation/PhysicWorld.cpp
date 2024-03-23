@@ -7,11 +7,12 @@
 void SpriteRenderer::PhysicWorld::Init()
 {
 	this->m_entities = ECSManager::GetComponentEntities<PhysicBody>();
+	const auto& onComponentArrayChangedFunc = std::bind(&PhysicWorld::OnComponentArrayChanged, this);
+	ECSManager::AddEventListenerOnComponentArrayChange<PhysicBody>(onComponentArrayChangedFunc);
 }
 
 void SpriteRenderer::PhysicWorld::PreUpdate(float dt)
 {
-	this->m_entities = ECSManager::GetComponentEntities<PhysicBody>();
 }
 
 void SpriteRenderer::PhysicWorld::Update(float dt)
@@ -41,4 +42,9 @@ void SpriteRenderer::PhysicWorld::UpdatePhysics(PhysicBody& physicBodie,
 	physicBodie.m_velocity += (physicBodie.m_acceleration * delta);
 	*physicBodiePosition += delta * physicBodie.m_velocity;
 	physicBodie.m_totalForce = glm::vec2(0);
+}
+
+void SpriteRenderer::PhysicWorld::OnComponentArrayChanged()
+{
+	this->m_entities = ECSManager::GetComponentEntities<PhysicBody>();
 }

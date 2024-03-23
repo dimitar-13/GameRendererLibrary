@@ -2,13 +2,13 @@
 #include"ECS/ComponentArray.h"
 #include"ECS/ComponentManager.h"
 #include"ECS/EntityManager.h"
-#include"ECS/EventSystem/EntityEventSystem.h"
+#include"ECS/EventSystem/EventSystem.h"
 #include"ECS/SystemManager.h"
 #include"Log/Log.h"
 namespace SpriteRenderer {
 	class ECSManager {
 	public:
-		static ECSTypes::Entity AddEntity() {return GetInstance().m_EntityManager.CreateEntity(); }
+		static ECSTypes::Entity AddEntity() {return Instance.m_EntityManager.CreateEntity(); }
 		static void RemoveEntity(ECSTypes::Entity ent);
 		template<typename T>
 		static void AddComponent(ECSTypes::Entity ent);
@@ -19,19 +19,19 @@ namespace SpriteRenderer {
 		template<typename T>
 		static bool HasComponent(ECSTypes::Entity ent);
 		template<typename T>
-		static inline ComponentArrayWrapper<T>& GetComponentArray() { return GetInstance().m_componentManager.GetComponentArray<T>().GetArray(); }
+		static inline ComponentArrayWrapper<T>& GetComponentArray() { return Instance.m_componentManager.GetComponentArray<T>().GetArray(); }
 		template<typename T>
 		static const std::vector<ECSTypes::Entity> GetComponentEntities();
 		static ECSManager& GetInstance() { return Instance; }
 		template<typename T,typename... Ts>
 		static void RegisterSystem(Ts ...components);
-		static SystemManager& GetSystemManager() { return GetInstance().m_systemManager; }
+		static SystemManager& GetSystemManager() { return Instance.m_systemManager; }
 		static void DestroyECSManager();
-		static ComponentManager& GetComponentManager() { return GetInstance().m_componentManager; }
+		static ComponentManager& GetComponentManager() { return Instance.m_componentManager; }
 		template<typename T>
-		static void AddEventListener(std::function<void()>listener) { GetInstance().m_componentManager.GetComponentArray<T>().AddEventListener(listener); }
-		static void AddEventListenerOnEntityDeletion(const std::function<void()>&listener) { GetInstance().m_OnEntityDeletedEvent += listener; }
-
+		static void AddEventListenerOnComponentArrayChange(const std::function<void()>& listener) { Instance.m_componentManager.GetComponentArray<T>().AddEventListener(listener); }
+		static void AddEventListenerOnEntityDeletion(const std::function<void()>&listener) { Instance.m_OnEntityDeletedEvent += listener; }
+		~ECSManager();
 	public:
 		static ECSManager Instance;
 	private:
@@ -39,35 +39,36 @@ namespace SpriteRenderer {
 		EntityManager m_EntityManager;
 		SystemManager m_systemManager;
 		Event<void> m_OnEntityDeletedEvent;
+
 	};
 	template<typename T>
 	inline void ECSManager::AddComponent(ECSTypes::Entity ent)
 	{
-		GetInstance().m_componentManager.AddComponent<T>(ent);
+		Instance.m_componentManager.AddComponent<T>(ent);
 	}
 	template<typename T>
 	inline void ECSManager::RemoveComponent(ECSTypes::Entity ent) {
-		GetInstance().m_componentManager.RemoveComponent<T>(ent);
+		Instance.m_componentManager.RemoveComponent<T>(ent);
 	}
 	template<typename T>
 	inline T* ECSManager::GetComponent(ECSTypes::Entity ent)
 	{
-		return GetInstance().m_componentManager.GetComponent<T>(ent);
+		return Instance.m_componentManager.GetComponent<T>(ent);
 	}
 	template<typename T>
 	inline const std::vector<ECSTypes::Entity> ECSManager::GetComponentEntities()
 	{
-		return GetInstance().m_componentManager.GetComponentEntities<T>();
+		return Instance.m_componentManager.GetComponentEntities<T>();
 	}
 	template<typename T>
 	inline bool ECSManager::HasComponent(ECSTypes::Entity ent)
 	{
-		return GetInstance().m_componentManager.HasComponent<T>(ent);
+		return Instance.m_componentManager.HasComponent<T>(ent);
 	}
 	template<typename T, typename... Ts>
 	inline void ECSManager::RegisterSystem(Ts ...components)
 	{
-		GetInstance().m_systemManager.RegisterSystem<T>(components...);
+		Instance.m_systemManager.RegisterSystem<T>(components...);
 		RENDER_LOG_MESSAGE_INFO("System of type {0} was initialized successfully.",typeid(T).name());
 	}
 	inline ECSManager ECSManager::Instance;
