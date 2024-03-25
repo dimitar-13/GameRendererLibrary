@@ -33,15 +33,17 @@ namespace SpriteRenderer {
         glfwSetMouseButtonCallback(mainWin, EventCallbackFuncs::MouseButtonCallback);
         glfwSetInputMode(mainWin, GLFW_STICKY_KEYS, GLFW_TRUE);
 
-        SceneManager::Init();
+        Scene::Init();
     }
     void Terminate()
     {
 
        MainWindow::DeleteWindow();
-       SceneManager::Terminate();
-       ECSManager::DestroyECSManager();
+       Scene::Terminate();
+       //We call destroy for now because of a resource removeval race with the textrueUnitManager
+       ECSManager::Destroy();
        TextureUnitManager::Destroy();
+
        RENDER_LOG_MESSAGE_SUCCESS("Renderer was succsessfully terminated.");
     }
 }

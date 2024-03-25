@@ -10,7 +10,7 @@
 //Renderer Libs
 #include"EntryPoint.h"
 #include"../Core/Global.h"
-#include"SceneManager/SceneManager.h"
+#include"Scene/Scene.h"
 #include"Renderer/Renderer.h"
 
 //Scripts

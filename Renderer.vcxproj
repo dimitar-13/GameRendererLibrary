@@ -195,7 +195,7 @@
     <ClCompile Include="scr\EntryPoint.cpp" />
     <ClCompile Include="scr\OpenglData\VertexArray\VertexArray.cpp" />
     <ClCompile Include="scr\Renderer\Renderer.cpp" />
-    <ClCompile Include="scr\SceneManager\SceneManager.cpp" />
+    <ClCompile Include="scr\Scene\Scene.cpp" />
     <ClCompile Include="scr\Shader\ShaderProgram\ShaderProgram.cpp" />
     <ClCompile Include="scr\Input\Input.cpp" />
     <ClCompile Include="scr\TextureClass\Texture2D\Texture2D.cpp" />
@@ -236,7 +236,7 @@
     <ClInclude Include="scr\OpenglData\VertexArray\VertexArray.h" />
     <ClInclude Include="scr\OpenglData\VertexData\Vertex.h" />
     <ClInclude Include="scr\Renderer\Renderer.h" />
-    <ClInclude Include="scr\SceneManager\SceneManager.h" />
+    <ClInclude Include="scr\Scene\Scene.h" />
     <ClInclude Include="scr\ScriptableObject\ScriptableObject.h" />
     <ClInclude Include="scr\Components\ScriptComponent.h" />
     <ClInclude Include="scr\Shader\ShaderProgram\ShaderProgram.h" />

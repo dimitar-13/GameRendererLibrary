@@ -34,7 +34,7 @@ void SpriteRenderer::SystemManager::PostUpdate(float dt)
 	}
 }
 
-SpriteRenderer::SystemManager::~SystemManager()
+void SpriteRenderer::SystemManager::Destroy()
 {
 	for (uint32_t i = 0; i < m_systems.size(); i++)
 	{

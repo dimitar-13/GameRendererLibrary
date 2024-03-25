@@ -4,5 +4,5 @@
 SpriteRenderer::GameObject::GameObject()
 {
 	this->m_entity = ECSManager::AddEntity();
-	ECSManager::GetInstance().AddComponent<Transform>(this->m_entity);
+	this->AttachComponent<Transform>();
 }

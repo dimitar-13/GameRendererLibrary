@@ -22,7 +22,6 @@ namespace SpriteRenderer {
 		static inline ComponentArrayWrapper<T>& GetComponentArray() { return Instance.m_componentManager.GetComponentArray<T>().GetArray(); }
 		template<typename T>
 		static const std::vector<ECSTypes::Entity> GetComponentEntities();
-		static ECSManager& GetInstance() { return Instance; }
 		template<typename T,typename... Ts>
 		static void RegisterSystem(Ts ...components);
 		static SystemManager& GetSystemManager() { return Instance.m_systemManager; }
@@ -31,7 +30,8 @@ namespace SpriteRenderer {
 		template<typename T>
 		static void AddEventListenerOnComponentArrayChange(const std::function<void()>& listener) { Instance.m_componentManager.GetComponentArray<T>().AddEventListener(listener); }
 		static void AddEventListenerOnEntityDeletion(const std::function<void()>&listener) { Instance.m_OnEntityDeletedEvent += listener; }
-		~ECSManager();
+		static void Destroy() { Instance.destroy(); }
+		void destroy();
 	public:
 		static ECSManager Instance;
 	private:
