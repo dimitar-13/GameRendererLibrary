@@ -25,7 +25,7 @@ namespace SpriteRenderer {
 		void PreUpdate(float dt);
 		void Update(float dt);
 		void PostUpdate(float dt);
-		~SystemManager();
+		void Destroy();
 		std::vector<std::shared_ptr<ISystem>> m_systems;
 		//std::vector<SystemComponentDependencies> m_systemComponentDependecies;
 

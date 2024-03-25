@@ -16,7 +16,9 @@ void SpriteRenderer::ECSManager::DestroyECSManager()
 	RENDER_LOG_MESSAGE_SUCCESS("Entity component system was manager destroyed successfully.");*/
 }
 
-SpriteRenderer::ECSManager::~ECSManager()
+void SpriteRenderer::ECSManager::destroy()
 {
+	this->m_componentManager.Destroy();
+	this->m_systemManager.Destroy();
 	RENDER_LOG_MESSAGE_SUCCESS("Entity component system was manager destroyed successfully.");
 }

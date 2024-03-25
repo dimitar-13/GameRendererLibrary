@@ -1,7 +1,7 @@
 #include "Rendererpch.h"
 #include "RenderSytstem.h"
 #include "ECS/ECSManager.h"
-#include "SceneManager/SceneManager.h"
+#include "Scene/Scene.h"
 #include "Metric/MetricHelper.h"
 #include "GameObject/GameObject.h"
 
@@ -25,7 +25,7 @@ void SpriteRenderer::RenderSysytem::PreUpdate(float dt)
 
 void SpriteRenderer::RenderSysytem::Update(float dt)
 {
-    OrthographicCamera* cameraEntity = SceneManager::GetAtctiveCamera();
+    OrthographicCamera* cameraEntity = Scene::GetAtctiveCamera();
     Transform* cameraTransform = cameraEntity->GetGameObj().GetComponent<Transform>();
     glm::mat4 viewProjMatrix = cameraEntity->GetProjectionMatrix() * CalculateViewMatrix(*cameraTransform);
     m_renderer.BeginBatch();

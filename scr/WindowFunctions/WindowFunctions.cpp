@@ -2,13 +2,13 @@
 #include "WindowFunctions.h"
 #include"../../Core/Global.h"
 #include"Input/Input.h"
-#include"SceneManager/SceneManager.h"
+#include"Scene/Scene.h"
 #include"Window.h"
 void SpriteRenderer::EventCallbackFuncs::Resize(GLFWwindow* window, int width, int height)
 {
 	glViewport(0, 0, width, height);
 	MainWindow::SetWindowSize(width, height);
-	SceneManager::WindowSizeChanged(width, height);
+	Scene::WindowSizeChanged(width, height);
 }
 
 void SpriteRenderer::EventCallbackFuncs::KeyCallback(GLFWwindow* window, int key, int scancode, int action, int mods)

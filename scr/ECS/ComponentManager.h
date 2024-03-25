@@ -25,7 +25,7 @@ namespace SpriteRenderer {
 		template<typename T>
 		const std::vector<ECSTypes::Entity> GetComponentEntities();
 		void EntityDestroyed(ECSTypes::Entity ent);
-		~ComponentManager();
+		void Destroy();
 	private:
 		std::unordered_map<const char *,std::shared_ptr<IComponentArray>> m_componentHashes{};
 		std::uint32_t componentCount{};
@@ -38,7 +38,7 @@ namespace SpriteRenderer {
 			pair.second->OnEntityDestroyed(ent);
 		}
 	}
-	inline ComponentManager::~ComponentManager()
+	inline void ComponentManager::Destroy()
 	{
 		for (const auto& array : m_componentHashes)
 		{
