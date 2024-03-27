@@ -1,5 +1,4 @@
 #pragma once
-
 #include"Rendererpch.h"
 #include"ECS/ECSTypes.h"
 

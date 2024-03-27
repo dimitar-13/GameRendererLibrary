@@ -87,6 +87,9 @@
     <ClCompile Include="scr\Scene\Scene.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="scr\GameObject\GameObjectRegister.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="scr\Renderer\Renderer.h">
@@ -219,6 +222,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="scr\Scene\Scene.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="scr\GameObject\GameObjectRegister.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
