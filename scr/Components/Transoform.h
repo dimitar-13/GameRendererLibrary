@@ -7,13 +7,13 @@ namespace SpriteRenderer {
 	{
 		//Adds the degrees to the overall degrees 
 		void Rotate(float angle_in_degrees) { this->m_RotationAngle += angle_in_degrees; }
+		//Adds the position to the currect position;
 		void Translate(glm::vec2 position) { m_Position += position; }
+		//Adds the scale to the currect scale;
 		void Scale(glm::vec2 scale) { m_Scale += scale; }
 
 		//Specifies the position of an object on the X and Y axies.
 		glm::vec2 m_Position = glm::vec2(0);
-
-		//glm::vec2 m_Rotate = glm::vec2(0);
 
 		//Specifies the rotation of an object around the Z axies in degrees.
 		float m_RotationAngle = 0.0f;

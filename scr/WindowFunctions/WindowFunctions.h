@@ -2,6 +2,7 @@
 #include<GLFW/glfw3.h>
 namespace SpriteRenderer
 {
+	//Wrapper for window/input event callbacks.
 	class EventCallbackFuncs {
 		public:
 			static void Resize(GLFWwindow* window, int width, int height);

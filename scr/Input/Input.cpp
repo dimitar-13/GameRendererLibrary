@@ -3,7 +3,7 @@
 #include"Window.h"
 SpriteRenderer::InputManager::InputManager()
 {
-	double mousey, mousex;
+	double mousey, mousex = {};
 	glfwGetCursorPos(MainWindow::GetGLFWWindow(), &mousex, &mousey);
 	this->mouseXPos = static_cast<float>(mousex);
 	this->mouseXPos = static_cast<float>(mousey);
@@ -32,8 +32,8 @@ bool SpriteRenderer::InputManager::isKeyDown(KeyCodeEnum key)
 	return this->m_keyState.at(key) == KEY_HELD || this->m_keyState.at(key) == KEY_PRESSED;
 }
 
-void SpriteRenderer::InputManager::setMousePosition(std::pair<float, float> newPosition)
+void SpriteRenderer::InputManager::setMousePosition(MousePos newPosition)
 {
-	this->mouseXPos = newPosition.first;
-	this->mouseXPos = newPosition.second;
+	this->mouseXPos = newPosition.x;
+	this->mouseXPos = newPosition.y;
 }

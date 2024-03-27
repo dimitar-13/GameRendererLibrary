@@ -4,9 +4,13 @@
 #include"ECS/ISystem.h"
 namespace SpriteRenderer
 {
+	class SystemManager;
+
 	class PhysicWorld : public ISystem
 	{
 	private:
+		friend class SystemManager;
+		//Inherited via ISystem
 		void Init() override;
 		void PreUpdate(float dt) override;
 		void Update(float dt) override;
@@ -16,6 +20,5 @@ namespace SpriteRenderer
 		void OnComponentArrayChanged();
 	private:
 		const glm::vec2 GRAVITY_FORCE = glm::vec2(0, -9.81f);
-		std::vector<ECSTypes::Entity> m_CollisionEntities;
 	};
 }

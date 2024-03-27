@@ -71,7 +71,7 @@ void SpriteRenderer::CollisionSystem::Update(float dt)
 			}				
 		}
 	}
-	ResolveColisions();
+	ResolveCollisions();
 }
 
 void SpriteRenderer::CollisionSystem::PostUpdate(float dt)
@@ -91,7 +91,7 @@ void SpriteRenderer::CollisionSystem::OnColliderArrayChanged()
 {
 	m_entities = ECSManager::GetComponentEntities<ColliderComponent>();
 }
-void SpriteRenderer::CollisionSystem::ResolveColisions()
+void SpriteRenderer::CollisionSystem::ResolveCollisions()
 {
 	for (std::uint32_t i = 0; i < this->collisions.size(); i++)
 	{

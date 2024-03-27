@@ -39,6 +39,7 @@ namespace SpriteRenderer {
 		std::unordered_map< uint32_t , ECSTypes::Entity> m_indexToEntity{};
 		Event<void> m_componentArrayChangedEvent;
 	};
+#pragma region Templated methods
 	template<typename T>
 	inline void ComponentArray<T>::OnEntityDestroyed(ECSTypes::Entity ent)
 	{
@@ -62,7 +63,7 @@ namespace SpriteRenderer {
 	inline void ComponentArray<T>::RemoveComponent(ECSTypes::Entity ent)
 	{
 		uint32_t entityToRemoveIndex = m_entityToIndex[ent];
-		uint32_t lastArrayComponentIndex =m_componentArray.size - 1;
+		uint32_t lastArrayComponentIndex = m_componentArray.size - 1;
 		uint32_t lastEntity = m_indexToEntity[lastArrayComponentIndex];
 		delete(m_componentArray.componentArray[entityToRemoveIndex]);
 		if (lastEntity != ent)
@@ -75,7 +76,7 @@ namespace SpriteRenderer {
 
 			m_entityToIndex.erase(ent);
 			m_indexToEntity.erase(lastArrayComponentIndex);
-			--m_componentArray.size;		
+			--m_componentArray.size;
 		}
 		else
 		{
@@ -84,7 +85,7 @@ namespace SpriteRenderer {
 			m_indexToEntity.erase(lastArrayComponentIndex);
 			--m_componentArray.size;
 		}
-		
+
 		m_componentArrayChangedEvent.Invoke();
 	}
 
@@ -95,7 +96,7 @@ namespace SpriteRenderer {
 		m_entityToIndex[ent] = index;
 		m_indexToEntity[index] = ent;
 		m_componentArray.componentArray[index] = new T();
-		Component* componentCast = dynamic_cast<Component *> (m_componentArray.componentArray[index]);
+		Component* componentCast = dynamic_cast<Component*> (m_componentArray.componentArray[index]);
 		componentCast->SetGameObjectMember(GameObjectRegister::GetGameObjRef(ent));
 		m_componentArray.size++;
 
@@ -111,7 +112,7 @@ namespace SpriteRenderer {
 	template<typename T>
 	inline T* ComponentArray<T>::GetComponent(ECSTypes::Entity ent)
 	{
-		if(m_entityToIndex.find(ent) != m_entityToIndex.end())
+		if (m_entityToIndex.find(ent) != m_entityToIndex.end())
 			return m_componentArray.componentArray[m_entityToIndex[ent]];
 		return nullptr;
 	}
@@ -126,5 +127,5 @@ namespace SpriteRenderer {
 		}
 		return result;
 	}
-
+#pragma endregion
 }

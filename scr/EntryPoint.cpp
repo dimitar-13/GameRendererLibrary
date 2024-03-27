@@ -24,9 +24,7 @@ namespace SpriteRenderer {
         glViewport(0, 0, MainWindow::GetWindowSize().winWidth, MainWindow::GetWindowSize().winHeight);
 
         GLFWwindow* mainWin = MainWindow::GetGLFWWindow();
-        //For now object will be defined in the range from -winWidth/2 to winWidth/2 ,-winHeight/2 to winHeight/2
-        //I might change it to be from 0 to winWidth and so on but for now because its ez to use the model matrix will keep it like this 
-        //if it show problems with the sprites and pixels will change it to screenspace ortho matrix
+
         glfwSetWindowSizeCallback(mainWin, EventCallbackFuncs::Resize);
         glfwSetKeyCallback(mainWin, EventCallbackFuncs::KeyCallback);
         glfwSetCursorPosCallback(mainWin, EventCallbackFuncs::MousePositionCallback);
@@ -37,7 +35,6 @@ namespace SpriteRenderer {
     }
     void Terminate()
     {
-
        MainWindow::DeleteWindow();
        Scene::Terminate();
        //We call destroy for now because of a resource removeval race with the textrueUnitManager

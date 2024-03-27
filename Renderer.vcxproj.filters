@@ -78,9 +78,6 @@
     <ClCompile Include="scr\TextureClass\TextureUnitManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="scr\Component.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="scr\Window.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>

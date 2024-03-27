@@ -1,9 +1,15 @@
 #pragma once
 #include"Rendererpch.h"
 namespace SpriteRenderer {
+	/// <summary>
+	/// Event class for creating and invoking events.
+	/// </summary>
+	/// <typeparam name="_ReturnType">Return type of the event.</typeparam>
+	/// <typeparam name="..._Parameters"> Parameters of the event.</typeparam>
 	template<typename _ReturnType,typename... _Parameters>
 	class Event {
 	public:
+		//Calls all of the subscribers.
 		void Invoke(_Parameters... args);
 		void operator+=(const std::function<_ReturnType(_Parameters...)>& callback)
 		{

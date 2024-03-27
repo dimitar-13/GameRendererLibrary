@@ -7,9 +7,6 @@ namespace SpriteRenderer {
 	class ComponentManager
 	{
 	public:
-		//TODO:Should the user be able to say wich components they need
-		//and is this unnecessary overhead.
-	
 		template<typename T, typename ...Ts>
 		void RegisterComponentTypes();
 		template<typename T>
@@ -49,7 +46,7 @@ namespace SpriteRenderer {
 	}
 #pragma endregion
 
-#pragma region TemplatedMethods
+#pragma region Templated methods
 
 	template<typename T, typename ...Ts>
 	inline void ComponentManager::RegisterComponentTypes() {

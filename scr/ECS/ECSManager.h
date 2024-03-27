@@ -41,6 +41,7 @@ namespace SpriteRenderer {
 		Event<void> m_OnEntityDeletedEvent;
 
 	};
+#pragma region Templated methods
 	template<typename T>
 	inline void ECSManager::AddComponent(ECSTypes::Entity ent)
 	{
@@ -72,4 +73,6 @@ namespace SpriteRenderer {
 		RENDER_LOG_MESSAGE_INFO("System of type {0} was initialized successfully.",typeid(T).name());
 	}
 	inline ECSManager ECSManager::Instance;
+#pragma endregion
+
 }

@@ -1,16 +1,16 @@
 #include "Rendererpch.h"
 #include "Window.h"
 #include"log/Log.h"
-void SpriteRenderer::MainWindow::createWindow(int widht, int height)
+void SpriteRenderer::MainWindow::createWindow(int width, int height)
 {
-    this->m_mainWinSize.winWidth = widht;
+    this->m_mainWinSize.winWidth = width;
     this->m_mainWinSize.winHeight = height;
     glfwInit();
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 
-    RENDER_LOG_MESSAGE_INFO("Renderer initilizing.");
+    RENDER_LOG_MESSAGE_INFO("Renderer initializing.");
     RENDER_LOG_MESSAGE_INFO("Graphical API:'{0}'.", "OpenGL");
     RENDER_LOG_MESSAGE_INFO("Graphical API profile:'{0}'.", "Core");
     RENDER_LOG_MESSAGE_INFO("Graphical API version major:'{0}'.", 3);

@@ -5,10 +5,14 @@
 #include"Shader/ShaderProgram/ShaderProgram.h"
 #include"Metric/MetricHelper.h"
 #include"../Assets/AssetPath.h"
+
+#pragma region Static data
 static constexpr const uint32_t INDEX_PER_OBJECT = 6;
 static const uint32_t INDEX_ARRAYCOUNT = INDEX_PER_OBJECT * SpriteRenderer::MAX_OBJECT_CCOUNT_PER_BATCH * 2;
 static std::array<uint32_t, INDEX_ARRAYCOUNT> indexData;
 static uint32_t indexBufferHandle;
+#pragma endregion
+
 
 SpriteRenderer::Renderer::Renderer()
 {
@@ -135,7 +139,7 @@ void SpriteRenderer::Renderer::SubmitToDraw(Sprite* spriteToDraw, const glm::mat
     }
 }
 
-void SpriteRenderer::Renderer::DrawBatch(const glm::mat4& viewProjMatrix)
+void SpriteRenderer::Renderer::DrawBatches(const glm::mat4& viewProjMatrix)
 {
     DrawSquareBatch(viewProjMatrix);
     DrawCircleBatch(viewProjMatrix);
@@ -198,7 +202,7 @@ void SpriteRenderer::Renderer::AppendToCircleBatch(Sprite* spriteToDraw,
 void SpriteRenderer::Renderer::AppendToSquareBatch(Sprite* spriteToDraw,
     const glm::mat4& modelMatrix)
 {
-    auto SquareVertexData = this->GenSqaureVertexArrayData(spriteToDraw, modelMatrix);
+    auto SquareVertexData = this->GenSquareVertexArrayData(spriteToDraw, modelMatrix);
 
     memcpy_s(m_SquareBatchData.dataPointer,
         sizeof(*m_SquareBatchData.data) * this->m_SquareBatchData.MaxObjectCount,
@@ -236,13 +240,13 @@ std::array<SpriteRenderer::CircleVertexData,4> SpriteRenderer::Renderer::GenCirc
     return verts;
 }
 
-std::array<SpriteRenderer::SquareVertexData,4> SpriteRenderer::Renderer::GenSqaureVertexArrayData(Sprite* spriteToDraw, const glm::mat4& modelMatrix)
+std::array<SpriteRenderer::SquareVertexData,4> SpriteRenderer::Renderer::GenSquareVertexArrayData(Sprite* spriteToDraw, const glm::mat4& modelMatrix)
 {
     std::array<SpriteRenderer::SquareVertexData, 4> verts = {};
 
     const float ndcOffset = 0.5f;
     const glm::vec3 color = spriteToDraw->m_Color;
-    const float textureID = TextureUnitManager::GetTexutreIndex(spriteToDraw->textureIndex);
+    const float textureID = static_cast<float>(TextureUnitManager::GetTextureIndex(spriteToDraw->textureIndex));
     verts[0] = {modelMatrix * glm::vec4(-ndcOffset, -ndcOffset,0,1),color,{0,0},textureID};
     verts[1] = {modelMatrix * glm::vec4(-ndcOffset, ndcOffset ,0,1),color,{0,1},textureID};
     verts[2] = {modelMatrix * glm::vec4(ndcOffset, ndcOffset ,0,1),color,{1,1},textureID};

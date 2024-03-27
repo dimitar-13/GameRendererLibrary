@@ -15,7 +15,7 @@ void SpriteRenderer::Scene::Init()
 }
 void SpriteRenderer::Scene::Start()
 {
-	ECSManager::RegisterSystem<RenderSysytem>();
+	ECSManager::RegisterSystem<RenderSystem>();
 	ECSManager::RegisterSystem<ScriptSystem>();
 	ECSManager::RegisterSystem<PhysicWorld>();
 	ECSManager::RegisterSystem<CollisionSystem>();

@@ -3,9 +3,7 @@
 #include"ECS/ECSManager.h"
 namespace SpriteRenderer
 {
-	class ScriptableObject;
-	struct Component;
-
+	//Class representing an entity.
 	class GameObject
 	{
 	public:		
@@ -54,11 +52,9 @@ namespace SpriteRenderer
 		bool HasComponent()const;
 
 	private:
-		friend class ScriptableObject;
-		friend struct Component;
-		//GameObject(ECSTypes::Entity Entity) { m_entity = Entity; }
 		ECSTypes::Entity m_entity;
 	};
+#pragma region Templated methods
 	template<typename T>
 	inline T* GameObject::AttachComponent()const
 	{
@@ -80,4 +76,6 @@ namespace SpriteRenderer
 	{
 		return ECSManager::HasComponent<T>(this->m_entity);
 	}
+#pragma endregion
+
 }
