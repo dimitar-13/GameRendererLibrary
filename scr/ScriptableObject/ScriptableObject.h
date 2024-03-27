@@ -15,8 +15,11 @@ namespace SpriteRenderer {
 			virtual void OnStart() { };
 			virtual void OnDelete() { };
 			//TODO:Fix the callbacks maybe use func pointers
-			GameObject gameObject = {0};
-			void BindScriptToEntity(ECSTypes::Entity entity) { gameObject.m_entity = entity; }
+			const GameObject *const GetGameObject() const { return this->gameObject; }
+		private:
+			friend class ScriptComponent;
+			void BindScript(const GameObject * gameObj) { gameObject = gameObj; }
+			const GameObject * gameObject;
 	};
 
 	

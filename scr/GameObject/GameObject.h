@@ -23,7 +23,7 @@ namespace SpriteRenderer
 		/// <summary>
 		/// Destroys the caller object and every component attached to it.
 		/// </summary>
-		void DestroyGameObject() { ECSManager::RemoveEntity(this->m_entity); }
+		void DestroyGameObject();
 	public:
 		/// <summary>
 		/// Attaches a component to the caller object and returns a handle of the component.
@@ -31,52 +31,52 @@ namespace SpriteRenderer
 		/// <typeparam name="T"></typeparam>
 		/// <returns>Handle(pointer) of the created component.</returns>
 		template <typename T>
-		T* AttachComponent();
+		T* AttachComponent()const;
 		/// <summary>
 		/// Removes the specified component type from the caller object.
 		/// </summary>
 		/// <typeparam name="T"></typeparam>
 		template <typename T>
-		void RemoveComponent();
+		void RemoveComponent()const;
 		/// <summary>
 		/// Returns a handle of the specified component to be worked on.
 		/// </summary>
 		/// <typeparam name="T"></typeparam>
 		/// <returns>Handle(pointer) of the created component.</returns>
 		template <typename T>
-		T* GetComponent();
+		T* GetComponent()const;
 		/// <summary>
 		/// Checks if the caller game object has component of type T.
 		/// </summary>
 		/// <typeparam name="T">Can be any component.</typeparam>
 		/// <returns>Returns true if it has and false if it doesnt.</returns>
 		template <typename T>
-		bool HasComponent();
+		bool HasComponent()const;
 
 	private:
 		friend class ScriptableObject;
 		friend struct Component;
-		GameObject(ECSTypes::Entity Entity) { m_entity = Entity; }
+		//GameObject(ECSTypes::Entity Entity) { m_entity = Entity; }
 		ECSTypes::Entity m_entity;
 	};
 	template<typename T>
-	inline T* GameObject::AttachComponent()
+	inline T* GameObject::AttachComponent()const
 	{
 		ECSManager::AddComponent<T>(this->m_entity);
 		return ECSManager::GetComponent<T>(this->m_entity);
 	}
 	template <typename T>
-	inline void GameObject::RemoveComponent() {
+	inline void GameObject::RemoveComponent()const {
 		if(this->HasComponent<T>())
 			ECSManager::RemoveComponent<T>(this->m_entity);
 	}
 	template <typename T>
-	inline T* GameObject::GetComponent()
+	inline T* GameObject::GetComponent()const
 	{
 		return ECSManager::GetComponent<T>(this->m_entity);
 	}
 	template<typename T>
-	inline bool GameObject::HasComponent()
+	inline bool GameObject::HasComponent()const
 	{
 		return ECSManager::HasComponent<T>(this->m_entity);
 	}

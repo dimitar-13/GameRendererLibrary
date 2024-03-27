@@ -8,7 +8,7 @@ void SpriteRenderer::ScriptSystem::Init()
 	auto& scripts = ECSManager::GetComponentArray<ScriptComponent>();
 	for (uint32_t i = 0; i < scripts.size; i++)
 	{
-		scripts.componentArray[i]->m_classInstance->BindScriptToEntity(scripts.componentArray[i]->entity);
+		//scripts.componentArray[i]->m_classInstance->BindScriptToEntity(scripts.componentArray[i]->entity);
 		const auto& func = std::bind(&ScriptableObject::OnDelete,scripts.componentArray[i]->m_classInstance.get());
 		ECSManager::AddEventListenerOnEntityDeletion(func);
 		scripts.componentArray[i]->m_classInstance->OnStart();

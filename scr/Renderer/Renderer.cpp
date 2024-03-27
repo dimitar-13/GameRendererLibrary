@@ -4,7 +4,7 @@
 #include"Scene/Scene.h"
 #include"Shader/ShaderProgram/ShaderProgram.h"
 #include"Metric/MetricHelper.h"
-
+#include"../Assets/AssetPath.h"
 static constexpr const uint32_t INDEX_PER_OBJECT = 6;
 static const uint32_t INDEX_ARRAYCOUNT = INDEX_PER_OBJECT * SpriteRenderer::MAX_OBJECT_CCOUNT_PER_BATCH * 2;
 static std::array<uint32_t, INDEX_ARRAYCOUNT> indexData;
@@ -13,11 +13,11 @@ static uint32_t indexBufferHandle;
 SpriteRenderer::Renderer::Renderer()
 {
    
-    m_CircleShader = new ShaderProgram("../Renderer/Assets/Shaders/Circle_shader.glsl");
+    m_CircleShader = new ShaderProgram(AssetPathHelper::GetAssetPath() + "/Shaders/Circle_shader.glsl");
     m_CircleShader->UseProgram();
     m_CircleShader->GetShaderUniformLocation("ViewProjectionMatrix");
 
-    m_SquareShader = new ShaderProgram("../Renderer/Assets/Shaders/Square_shader.glsl");
+    m_SquareShader = new ShaderProgram(AssetPathHelper::GetAssetPath() + "/Shaders/Square_shader.glsl");
     m_SquareShader->UseProgram();
     m_SquareShader->GetShaderUniformLocation("ViewProjectionMatrix");
     m_SquareShader->GetShaderUniformLocation("samplers");

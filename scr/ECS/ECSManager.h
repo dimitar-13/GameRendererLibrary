@@ -22,8 +22,8 @@ namespace SpriteRenderer {
 		static inline ComponentArrayWrapper<T>& GetComponentArray() { return Instance.m_componentManager.GetComponentArray<T>().GetArray(); }
 		template<typename T>
 		static const std::vector<ECSTypes::Entity> GetComponentEntities();
-		template<typename T,typename... Ts>
-		static void RegisterSystem(Ts ...components);
+		template<typename T>
+		static void RegisterSystem();
 		static SystemManager& GetSystemManager() { return Instance.m_systemManager; }
 		static void DestroyECSManager();
 		static ComponentManager& GetComponentManager() { return Instance.m_componentManager; }
@@ -65,10 +65,10 @@ namespace SpriteRenderer {
 	{
 		return Instance.m_componentManager.HasComponent<T>(ent);
 	}
-	template<typename T, typename... Ts>
-	inline void ECSManager::RegisterSystem(Ts ...components)
+	template<typename T>
+	inline void ECSManager::RegisterSystem()
 	{
-		Instance.m_systemManager.RegisterSystem<T>(components...);
+		Instance.m_systemManager.RegisterSystem<T>();
 		RENDER_LOG_MESSAGE_INFO("System of type {0} was initialized successfully.",typeid(T).name());
 	}
 	inline ECSManager ECSManager::Instance;

@@ -4,6 +4,7 @@
 #include"Log/Log.h"
 #include"ECS/ECSTypes.h"
 #include"ECS/EventSystem/EventSystem.h"
+#include"GameObject/GameObjectRegister.h"
 namespace SpriteRenderer {
 	class IComponentArray
 	{
@@ -95,7 +96,7 @@ namespace SpriteRenderer {
 		m_indexToEntity[index] = ent;
 		m_componentArray.componentArray[index] = new T();
 		Component* componentCast = dynamic_cast<Component *> (m_componentArray.componentArray[index]);
-		componentCast->entity = ent;
+		componentCast->SetGameObjectMember(GameObjectRegister::GetGameObjRef(ent));
 		m_componentArray.size++;
 
 		m_componentArrayChangedEvent.Invoke();

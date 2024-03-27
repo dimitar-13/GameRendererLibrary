@@ -25,5 +25,6 @@ void SpriteRenderer::EntityManager::DestroyEntity(ECSTypes::Entity ent)
 
 void SpriteRenderer::EntityManager::DestroyEntities()
 {
+   
     m_entityCount = 0;
 }

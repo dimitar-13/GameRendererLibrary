@@ -5,11 +5,6 @@
 #include "Metric/MetricHelper.h"
 #include "GameObject/GameObject.h"
 
-static void onCompChanged()
-{
-    std::cout << "A spirte was removed" << '\n';
-}
-
 void SpriteRenderer::RenderSysytem::Init()
 {
     m_entities = ECSManager::GetComponentEntities<Sprite>();
@@ -26,7 +21,7 @@ void SpriteRenderer::RenderSysytem::PreUpdate(float dt)
 void SpriteRenderer::RenderSysytem::Update(float dt)
 {
     OrthographicCamera* cameraEntity = Scene::GetAtctiveCamera();
-    Transform* cameraTransform = cameraEntity->GetGameObj().GetComponent<Transform>();
+    Transform* cameraTransform = cameraEntity->GetGameObject()->GetComponent<Transform>();
     glm::mat4 viewProjMatrix = cameraEntity->GetProjectionMatrix() * CalculateViewMatrix(*cameraTransform);
     m_renderer.BeginBatch();
     for (uint32_t i = 0; i < m_entities.size(); i++)
@@ -51,7 +46,6 @@ void SpriteRenderer::RenderSysytem::DestroySystem()
 
 void SpriteRenderer::RenderSysytem::OnComponentArrayChanged()
 {
-    std::cout << "A spirte was removed" << '\n';
     m_entities = ECSManager::GetComponentEntities<Sprite>();
 
 }
