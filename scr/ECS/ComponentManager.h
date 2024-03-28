@@ -16,7 +16,7 @@ namespace SpriteRenderer {
 		template<typename T>
 		void RemoveComponent(ECSTypes::Entity entity);
 		template<typename T>
-		T* GetComponent(ECSTypes::Entity entity);
+		T *const GetComponent(ECSTypes::Entity entity);
 		template<typename T>
 		bool HasComponent(ECSTypes::Entity ent);
 		template<typename T>
@@ -77,7 +77,7 @@ namespace SpriteRenderer {
 	}
 
 	template<typename T>
-	inline T* ComponentManager::GetComponent(ECSTypes::Entity entity)
+	inline T *const ComponentManager::GetComponent(ECSTypes::Entity entity)
 	{
 		return GetComponentArray<T>().GetComponent(entity);
 	}

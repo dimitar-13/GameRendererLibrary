@@ -2,11 +2,16 @@
 #include"Rendererpch.h"
 #include"Physics/Collision/Colider.h"
 namespace SpriteRenderer {
-	class ColisionSolver
+	//Helper class for collision resolution.
+	class CollisionSolver
 	{
 	public:
-		std::vector<Collision> colisions;
+		std::vector<Collision> collisions;
 	public:
-		void SolveColision(Collision collision);
+		/// <summary>
+		/// Solves the collision using the 'Collision' struct.
+		/// </summary>
+		/// <param name="collision">The collision to solve.</param>
+		void SolveCollision(Collision collision);
 	};
 }

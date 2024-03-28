@@ -6,6 +6,7 @@
 #include"ECS/SystemManager.h"
 #include"Log/Log.h"
 namespace SpriteRenderer {
+	//Class that communicates with the ECS parts.
 	class ECSManager {
 	public:
 		static ECSTypes::Entity AddEntity() {return Instance.m_EntityManager.CreateEntity(); }
@@ -15,7 +16,7 @@ namespace SpriteRenderer {
 		template<typename T>
 		static void RemoveComponent(ECSTypes::Entity ent);
 		template<typename T>
-		static T* GetComponent(ECSTypes::Entity ent);
+		static T *const GetComponent(ECSTypes::Entity ent);
 		template<typename T>
 		static bool HasComponent(ECSTypes::Entity ent);
 		template<typename T>
@@ -32,13 +33,12 @@ namespace SpriteRenderer {
 		static void AddEventListenerOnEntityDeletion(const std::function<void()>&listener) { Instance.m_OnEntityDeletedEvent += listener; }
 		static void Destroy() { Instance.destroy(); }
 		void destroy();
-	public:
-		static ECSManager Instance;
 	private:
 		ComponentManager m_componentManager;
 		EntityManager m_EntityManager;
 		SystemManager m_systemManager;
 		Event<void> m_OnEntityDeletedEvent;
+		static ECSManager Instance;
 
 	};
 #pragma region Templated methods
@@ -52,7 +52,7 @@ namespace SpriteRenderer {
 		Instance.m_componentManager.RemoveComponent<T>(ent);
 	}
 	template<typename T>
-	inline T* ECSManager::GetComponent(ECSTypes::Entity ent)
+	inline T *const ECSManager::GetComponent(ECSTypes::Entity ent)
 	{
 		return Instance.m_componentManager.GetComponent<T>(ent);
 	}

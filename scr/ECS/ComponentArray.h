@@ -26,7 +26,7 @@ namespace SpriteRenderer {
 	public:
 		void RemoveComponent(ECSTypes::Entity ent);
 		void AddComponent(ECSTypes::Entity ent);
-		T* GetComponent(ECSTypes::Entity ent);
+		T *const GetComponent(ECSTypes::Entity ent);
 		bool HasComponent(ECSTypes::Entity ent);
 		ComponentArrayWrapper<T>& GetArray() { return m_componentArray; }
 		void AddEventListener(std::function<void()>listener) { m_componentArrayChangedEvent += listener; }
@@ -110,7 +110,7 @@ namespace SpriteRenderer {
 		return false;
 	}
 	template<typename T>
-	inline T* ComponentArray<T>::GetComponent(ECSTypes::Entity ent)
+	inline T *const ComponentArray<T>::GetComponent(ECSTypes::Entity ent)
 	{
 		if (m_entityToIndex.find(ent) != m_entityToIndex.end())
 			return m_componentArray.componentArray[m_entityToIndex[ent]];

@@ -11,7 +11,7 @@ namespace SpriteRenderer {
 		void DestroyEntity(ECSTypes::Entity ent);
 		void DestroyEntities();
 	private:
-		std::queue<ECSTypes::Entity> m_entitites{};
+		std::queue<ECSTypes::Entity> m_entities{};
 		uint32_t m_entityCount{};
 	};
 }

@@ -151,6 +151,7 @@ namespace SpriteRenderer
 		 float x, y;
 	 };
 #pragma endregion
+
 	 ///Class for input related calls.
 	 class InputManager {
 	 public:

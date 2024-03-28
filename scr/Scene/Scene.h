@@ -9,19 +9,23 @@ namespace SpriteRenderer {
 
 	//Class that represents the scene.
 	class Scene {
-
 	public:
+		//Change in time from the previous to this frame.
 		inline static DeltaTime delta;
-		//Gets all of the components in the scene.
+
+		/// <summary>
+		/// Gets all of the components in the scene.
+		/// </summary>
+		/// <returns>Returns constant a vector of components.</returns>
 		template<typename T>
 		static const std::shared_ptr<std::vector<T*>> GetComponents();
 	public:
 		static void Init();
-		//Initilizes all the ECS systems and starts the render loop.
+		//Initializes all the ECS systems and starts the render loop.
 		static void Start();
 		//Sets the active camera.
 		static void SetActiveCamera(OrthographicCamera* camera) { instance.activeCameraEntity = camera; }
-		//Is obselate.
+		//Is obsolete.
 		static void Terminate();
 		//Gets the current active camera.
 		static OrthographicCamera* GetActiveCamera() { return instance.activeCameraEntity; }
@@ -36,6 +40,7 @@ namespace SpriteRenderer {
 
 	};
 	inline Scene Scene::instance;
+#pragma region Templated Methods
 	template<typename T>
 	inline const std::shared_ptr<std::vector<T*>> Scene::GetComponents()
 	{
@@ -51,4 +56,5 @@ namespace SpriteRenderer {
 	{
 		return std::bind(instance, classInstance);
 	}
+#pragma endregion
 }

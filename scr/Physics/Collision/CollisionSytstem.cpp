@@ -95,7 +95,7 @@ void SpriteRenderer::CollisionSystem::ResolveCollisions()
 {
 	for (std::uint32_t i = 0; i < this->collisions.size(); i++)
 	{
-		solver.SolveColision(this->collisions[i]);
+		solver.SolveCollision(this->collisions[i]);
 	}
 	this->collisions.clear();
 }

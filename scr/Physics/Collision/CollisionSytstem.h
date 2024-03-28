@@ -10,7 +10,7 @@ namespace SpriteRenderer {
 	class CollisionSystem: public ISystem {
 	private:
 		std::vector<Collision> collisions;
-		ColisionSolver solver;
+		CollisionSolver solver;
 	private:
 		void ResolveCollisions();
 	protected:

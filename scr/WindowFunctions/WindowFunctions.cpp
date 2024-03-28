@@ -34,5 +34,5 @@ void SpriteRenderer::EventCallbackFuncs::MouseButtonCallback(GLFWwindow* window,
 
 void SpriteRenderer::EventCallbackFuncs::MousePositionCallback(GLFWwindow* window, double x, double y)
 {
-	InputManager::SetMousePosition({ x,y });
+	InputManager::SetMousePosition({ static_cast<float>(x),static_cast<float>(y) });
 }

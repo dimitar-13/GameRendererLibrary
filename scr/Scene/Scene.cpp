@@ -1,14 +1,13 @@
 #include"Rendererpch.h"
-#include"../../Core/Global.h"
 #include"ECS/ECSManager.h"
+#include"ECS/EventSystem/EventSystem.h"
+#include "Physics/Collision/CollisionSytstem.h"
 #include"Physics/PhysicSimulation/PhysicWorld.h"
 #include"Renderer/RenderSytstem.h"
 #include "Scene.h"
 #include"ScriptSystem/ScriptSystem.h"
-#include "Physics/Collision/CollisionSytstem.h"
 #include "TextureClass/TextureUnitManager.h"
 #include "Window.h"
-#include"ECS/EventSystem/EventSystem.h"
 void SpriteRenderer::Scene::Init()
 {
 	TextureUnitManager::Init();

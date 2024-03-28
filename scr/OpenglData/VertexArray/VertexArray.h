@@ -57,10 +57,10 @@ namespace SpriteRenderer {
 		void SendBufferSubData(GLenum bufferTarget,uint32_t offset,
 			uint32_t dataSize, void * data);
 	private:
-		unsigned int m_vertexArrayHandleID;
-		unsigned int m_elementBufferHandleID;
-		unsigned int m_vertexBufferHandleID;
-		unsigned int m_vertexCount;
+		uint32_t m_vertexArrayHandleID;
+		uint32_t m_elementBufferHandleID;
+		uint32_t m_vertexBufferHandleID;
+		uint32_t m_vertexCount;
 
 	};
 }

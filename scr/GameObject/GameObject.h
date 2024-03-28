@@ -29,7 +29,7 @@ namespace SpriteRenderer
 		/// <typeparam name="T"></typeparam>
 		/// <returns>Handle(pointer) of the created component.</returns>
 		template <typename T>
-		T* AttachComponent()const;
+		T *const AttachComponent()const;
 		/// <summary>
 		/// Removes the specified component type from the caller object.
 		/// </summary>
@@ -42,7 +42,7 @@ namespace SpriteRenderer
 		/// <typeparam name="T"></typeparam>
 		/// <returns>Handle(pointer) of the created component.</returns>
 		template <typename T>
-		T* GetComponent()const;
+		T *const GetComponent()const;
 		/// <summary>
 		/// Checks if the caller game object has component of type T.
 		/// </summary>
@@ -56,7 +56,7 @@ namespace SpriteRenderer
 	};
 #pragma region Templated methods
 	template<typename T>
-	inline T* GameObject::AttachComponent()const
+	inline T *const GameObject::AttachComponent()const
 	{
 		ECSManager::AddComponent<T>(this->m_entity);
 		return ECSManager::GetComponent<T>(this->m_entity);
@@ -67,7 +67,7 @@ namespace SpriteRenderer
 			ECSManager::RemoveComponent<T>(this->m_entity);
 	}
 	template <typename T>
-	inline T* GameObject::GetComponent()const
+	inline T *const GameObject::GetComponent()const
 	{
 		return ECSManager::GetComponent<T>(this->m_entity);
 	}
