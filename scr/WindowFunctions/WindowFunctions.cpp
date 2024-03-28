@@ -2,15 +2,16 @@
 #include "WindowFunctions.h"
 #include"../../Core/Global.h"
 #include"Input/Input.h"
-void SpriteRenderer::Resize(GLFWwindow* window, int width, int height)
+#include"Scene/Scene.h"
+#include"Window.h"
+void SpriteRenderer::EventCallbackFuncs::Resize(GLFWwindow* window, int width, int height)
 {
 	glViewport(0, 0, width, height);
-	*Global::winHeight = height;
-	*Global::winWidth = width;
-	*Global::projection = glm::ortho<float>(-*Global::winWidth / 2, *Global::winWidth / 2, -*Global::winHeight / 2, *Global::winHeight / 2, -1.0, 1.0);
+	MainWindow::SetWindowSize(width, height);
+	Scene::WindowSizeChanged(width, height);
 }
 
-void SpriteRenderer::key_callback(GLFWwindow* window, int key, int scancode, int action, int mods)
+void SpriteRenderer::EventCallbackFuncs::KeyCallback(GLFWwindow* window, int key, int scancode, int action, int mods)
 {
 	KeyCodeEnum keyEnum = static_cast<KeyCodeEnum>(key);
 	InputManager& instance = InputManager::GetInstance();
@@ -18,10 +19,9 @@ void SpriteRenderer::key_callback(GLFWwindow* window, int key, int scancode, int
   	if (KeyHash.find(keyEnum) != KeyHash.end())
 	{
 		KeyHash.at(keyEnum) = static_cast<KeyStateEnum>(action);
-		std::cout << "Key with keycode" << key << "was:" << action << std::endl;
 	}
 }
-void SpriteRenderer::MouseCallback(GLFWwindow* window, int button, int action, int mods)
+void SpriteRenderer::EventCallbackFuncs::MouseButtonCallback(GLFWwindow* window, int button, int action, int mods)
 {
 	InputManager& instance = InputManager::GetInstance();
 	auto& mouseHash = instance.GetMouseHash();
@@ -29,12 +29,10 @@ void SpriteRenderer::MouseCallback(GLFWwindow* window, int button, int action, i
 	if (mouseHash.find(mouseButton) != mouseHash.end())
 	{
 		mouseHash.at(mouseButton) = static_cast<KeyStateEnum>(action);
-		std::cout << "Mouse key number:" << mouseButton << "was:" << action << std::endl;
 	}
 }
 
-void SpriteRenderer::mouse_position_callback(GLFWwindow* window, double x, double y)
+void SpriteRenderer::EventCallbackFuncs::MousePositionCallback(GLFWwindow* window, double x, double y)
 {
-	InputManager::SetMousePosition({ x,y });
-	//std::cout << "Mouse at position{" << x << "," << y << "}" << std::endl;
+	InputManager::SetMousePosition({ static_cast<float>(x),static_cast<float>(y) });
 }

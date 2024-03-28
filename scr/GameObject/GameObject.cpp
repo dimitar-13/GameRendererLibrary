@@ -1,14 +1,16 @@
 #include"Rendererpch.h"
 #include "GameObject.h"
-SpriteRenderer::GameObject::GameObject(std::string objectName, Sprite* sprite)
+#include"Components/Transoform.h"
+#include"GameObject/GameObjectRegister.h"
+SpriteRenderer::GameObject::GameObject()
 {
-	this->transform = new Transform();
-	this->sprite = sprite;
-	this->name = objectName;
+	this->m_entity = ECSManager::AddEntity();
+	GameObjectRegister::RegisterGameObject(this);
+	this->AttachComponent<Transform>();
 }
 
-SpriteRenderer::GameObject::~GameObject()
+void SpriteRenderer::GameObject::DestroyGameObject()
 {
-	delete(this->transform);
-	delete(this->sprite);
+	ECSManager::RemoveEntity(this->m_entity);
+	GameObjectRegister::UnRegisterGameObject(this->m_entity);
 }

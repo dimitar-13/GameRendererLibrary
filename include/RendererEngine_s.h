@@ -1,6 +1,5 @@
 #pragma once
 
-
 //Dependency libs
 #include<GL/glew.h>
 #include<GLFW/glfw3.h>
@@ -10,20 +9,27 @@
 
 //Renderer Libs
 #include"EntryPoint.h"
-#include"SceneManager/SceneManager.h"
-#include"Renderer/Renderer.h"
 #include"../Core/Global.h"
+#include"Scene/Scene.h"
+#include"Renderer/Renderer.h"
 
 //Scripts
-#include"Script/Script.h"
 #include"ScriptableObject/ScriptableObject.h"
+#include"DeltaTime.h"
 
 //Game object
 #include"GameObject/GameObject.h"
-#include"Transform/Transoform.h"
+
+//Components
+#include"Components/Transoform.h"
+#include"Components/Sprite.h"
+#include"Components/PhysicBody.h"
+#include"Components/ColliderComponent.h"
+#include"Components/Camera.h"
+#include"Components/ScriptComponent.h"
+#include"Components/TagComponent.h"
 
 //Sprites and textures
-#include"Sprite/Sprite.h"
 #include"TextureClass/Texture2D/Texture2D.h"
 
 

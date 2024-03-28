@@ -1,9 +1,9 @@
 #pragma once
-#include"../../Core/Global.h"
-#include<GLFW/glfw3.h>
 #include"Rendererpch.h"
 namespace SpriteRenderer
 {
+#pragma region Enums
+
 	enum KeyCodeEnum
 	{
 		KEY_SPACE =GLFW_KEY_SPACE,
@@ -127,15 +127,13 @@ namespace SpriteRenderer
 		KEY_RIGHT_SUPER = GLFW_KEY_RIGHT_SUPER,
 		KEY_MENU =GLFW_KEY_MENU
 	};
-
-	 enum KeyStateEnum {
+	enum KeyStateEnum {
 		KEY_NONE = GLFW_KEY_UNKNOWN,
 		KEY_RELEASED = GLFW_RELEASE,
 		KEY_PRESSED = GLFW_PRESS,
 		KEY_HELD = GLFW_REPEAT
 	};
-
-	 enum MouseButton {
+	enum MouseButton {
 
 		 MOUSE_LEFT_BUTTON   = GLFW_MOUSE_BUTTON_1,
 		 MOUSE_RIGHT_BUTTON	  = GLFW_MOUSE_BUTTON_2,
@@ -146,18 +144,26 @@ namespace SpriteRenderer
 		 MOUSE_EXTRA_4_BUTTON = GLFW_MOUSE_BUTTON_7,
 		 MOUSE_EXTRA_5_BUTTON = GLFW_MOUSE_BUTTON_8,
 	};
+#pragma endregion
 
+#pragma region Helper structs
+	 struct MousePos {
+		 float x, y;
+	 };
+#pragma endregion
+
+	 ///Class for input related calls.
 	 class InputManager {
 	 public:
-		 /// <summary>
-		 /// Checks to see if this key is currently beeing pressed down.
-		 /// <returns>Returns true if its pressed and false if its not.</returns>
-		 /// </summary>
-		 static bool IsButtonPressed(KeyCodeEnum key) { return GetInstance().isKeyPressed(key); }
 		 /// <summary>
 		 /// Checks to see if the key is pressed on this frame only.
 		 /// </summary>
 		 /// <returns>Returns true if its pressed or held and false if its not.</returns>
+		 static bool IsButtonPressed(KeyCodeEnum key) { return GetInstance().isKeyPressed(key); }
+		 /// <summary>
+		 /// Checks to see if this key is currently beeing pressed down.
+		 /// <returns>Returns true if its pressed and false if its not.</returns>
+		 /// </summary>
 		 static bool IsButtonDown(KeyCodeEnum key) { return GetInstance().isKeyDown(key); }
 		 /// <summary>
 		 /// Checks to see if this mouse key is currently beeing pressed down.
@@ -169,14 +175,18 @@ namespace SpriteRenderer
 		 /// </summary>
 		 /// <returns>Returns true if its pressed or held and false if its not.</returns>
 		 static bool IsMouseButtonDown(MouseButton button) { return GetInstance().isMouseButtonDown(button); }
-		 static InputManager& GetInstance() { return inputManager; }
-		 static std::unordered_map<KeyCodeEnum, KeyStateEnum>& GetKeyHash() { return GetInstance().keyState; }
-		 static std::unordered_map<MouseButton, KeyStateEnum>& GetMouseHash() { return GetInstance().mouseButtonStates; }
-		 static std::pair<float, float> GetMousePosition() { return GetInstance().getMousePosition(); }
-		 static void SetMousePosition(std::pair<float, float> newPosition) { GetInstance().setMousePosition(newPosition); }
+		 static InputManager& GetInstance() { return m_inputManager; }
+		 static std::unordered_map<KeyCodeEnum, KeyStateEnum>& GetKeyHash() { return GetInstance().m_keyState; }
+		 static std::unordered_map<MouseButton, KeyStateEnum>& GetMouseHash() { return GetInstance().m_mouseButtonStates; }
+		 /// <summary>
+		 /// Gets the mouse position during the current frame.
+		 /// </summary>
+		 /// <returns>Mouse position in pixel coords.</returns>
+		 static MousePos GetMousePosition() { return GetInstance().getMousePosition(); }
+		 static void SetMousePosition(MousePos newPosition) { GetInstance().setMousePosition(newPosition); }
 	 private:
-		 static InputManager inputManager;
-		 std::unordered_map<KeyCodeEnum, KeyStateEnum> keyState = std::unordered_map<KeyCodeEnum, KeyStateEnum>(
+		 static InputManager m_inputManager;
+		 std::unordered_map<KeyCodeEnum, KeyStateEnum> m_keyState = std::unordered_map<KeyCodeEnum, KeyStateEnum>(
 			 {
 			  {KEY_SPACE, KEY_RELEASED },
 			  {KEY_APOSTROPHE, KEY_RELEASED},
@@ -298,7 +308,7 @@ namespace SpriteRenderer
 			  {KEY_RIGHT_ALT, KEY_RELEASED},
 			  {KEY_RIGHT_SUPER, KEY_RELEASED},
 			  {KEY_MENU,KEY_RELEASED} });
-		 std::unordered_map<MouseButton, KeyStateEnum> mouseButtonStates = std::unordered_map<MouseButton, KeyStateEnum>(
+		 std::unordered_map<MouseButton, KeyStateEnum> m_mouseButtonStates = std::unordered_map<MouseButton, KeyStateEnum>(
 			 {
 			 {MOUSE_LEFT_BUTTON    , KEY_RELEASED},
 			 {MOUSE_RIGHT_BUTTON   , KEY_RELEASED},
@@ -309,7 +319,8 @@ namespace SpriteRenderer
 			 {MOUSE_EXTRA_4_BUTTON , KEY_RELEASED},
 			 {MOUSE_EXTRA_5_BUTTON , KEY_RELEASED}
 			});
-		float mouseXPos, mouseYPos;
+		float mouseXPos = 0.0f;
+		float mouseYPos = 0.0f;
 	private:
 		InputManager();
 		InputManager(InputManager& copy) = delete;
@@ -317,9 +328,9 @@ namespace SpriteRenderer
 		bool isKeyPressed(KeyCodeEnum key);
 		bool isMouseButtonPressed(MouseButton button);
 		bool isMouseButtonDown(MouseButton button);
-		std::pair<float, float> getMousePosition() { return std::pair<float,float>(this->mouseXPos, this->mouseYPos); }
-		void setMousePosition(std::pair<float, float> newPosition);
+		MousePos getMousePosition() { return { this->mouseXPos, this->mouseYPos }; }
+		void setMousePosition(MousePos newPosition);
 	};
 
-	inline InputManager InputManager::inputManager;
+	inline InputManager InputManager::m_inputManager;
 }

@@ -1,39 +1,43 @@
 #pragma once
 #include"Rendererpch.h"
-#include<GL/glew.h>
+#include"TextureClass/TextureUnitManager.h"
 
 namespace SpriteRenderer {
+#pragma region Enums
+	//Enumerator for representing texture filtering for minification and magnification.
 	enum TextureFiltering {
 		LINEAR = GL_LINEAR,
 		NEAREST = GL_NEAREST,
 	};
+#pragma endregion
 
-	//struct TextureUnit {
-	//	unsigned int textureUnit;
-	//	bool isTextureUnitInUse = false;
-	//};
-
-	class Sprite;
-	class SceneManager;
-
+	//Class for reading 2D textures.
 	class Texture2D {
 
 	public:
+		/// <summary>
+		/// Reads texture from path.
+		/// </summary>
+		/// <param name="path">Absolute path to the texture or relative to the current project.</param>
+		/// <param name="filtering">Minification and magnification filtering options.</param>
 		Texture2D(const std::string& path, TextureFiltering filtering = LINEAR);
-		Texture2D(int width, int height, TextureFiltering filtering);
+		//Destroyers the texture and frees the pixel data.
+		~Texture2D();
+		//Returns the readonly width of the texture.
+		const int GetTextureWidth()const { return width; }
+		//Returns the readonly height of the texture.
+		const int GetTextureHeight()const { return height; }
+		//Returns the readonly pixel data of the texture.
+		const unsigned char* const GetTextureSource()const { return textSource; }
 	private:
-		friend class Sprite;
-		friend class SceneManager;
-		void BindTexture()const { glBindTexture(GL_TEXTURE_2D, this->textureHandle); }
-		void UnBindTexture()const { glBindTexture(GL_TEXTURE_2D, 0); }
-
-
-	private:
+		friend class TextureUnitManager;
 		int width;
 		int height;
-		uint32_t textureHandle;
 		unsigned char* textSource;
+		TextureFiltering filtering;
+		GLenum textureType;
+		uint32_t textureHandle = 0;
 	private:
-		unsigned char* ReadTexture(const std::string& path);
+		void ReadTexture(const std::string& path);
 	};
 }

@@ -1,15 +1,15 @@
 #Shader_type = vertex
 #version 330 core
-layout(location = 0) in vec3 aPos;
+layout(location = 0) in vec2 aPos;
 layout(location = 1) in vec2 aUvCoords;
 
 uniform mat4 ModelMatrix;
-uniform mat4 ProjectionMatrix;
+uniform mat4 ViewProjectionMatrix;
 out vec4 debug;
 out vec2 UvCoords;
 void main()
 {
-gl_Position = ProjectionMatrix* ModelMatrix * vec4(aPos.xy,0,1.0f);
+gl_Position = ViewProjectionMatrix* ModelMatrix * vec4(aPos.xy,0,1.0f);
 UvCoords = aUvCoords;
 }
 
