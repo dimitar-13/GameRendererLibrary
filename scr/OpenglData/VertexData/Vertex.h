@@ -1,5 +1,4 @@
 #pragma once
-#include"../../Core/Global.h"
 namespace SpriteRenderer {
 	struct Vertex {
 		//Position

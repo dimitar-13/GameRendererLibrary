@@ -1,8 +1,9 @@
 #pragma once
-#include"../../Core/Global.h"
 #include"Rendererpch.h"
 namespace SpriteRenderer
 {
+#pragma region Enums
+
 	enum KeyCodeEnum
 	{
 		KEY_SPACE =GLFW_KEY_SPACE,
@@ -126,15 +127,13 @@ namespace SpriteRenderer
 		KEY_RIGHT_SUPER = GLFW_KEY_RIGHT_SUPER,
 		KEY_MENU =GLFW_KEY_MENU
 	};
-
-	 enum KeyStateEnum {
+	enum KeyStateEnum {
 		KEY_NONE = GLFW_KEY_UNKNOWN,
 		KEY_RELEASED = GLFW_RELEASE,
 		KEY_PRESSED = GLFW_PRESS,
 		KEY_HELD = GLFW_REPEAT
 	};
-
-	 enum MouseButton {
+	enum MouseButton {
 
 		 MOUSE_LEFT_BUTTON   = GLFW_MOUSE_BUTTON_1,
 		 MOUSE_RIGHT_BUTTON	  = GLFW_MOUSE_BUTTON_2,
@@ -145,10 +144,15 @@ namespace SpriteRenderer
 		 MOUSE_EXTRA_4_BUTTON = GLFW_MOUSE_BUTTON_7,
 		 MOUSE_EXTRA_5_BUTTON = GLFW_MOUSE_BUTTON_8,
 	};
+#pragma endregion
+
+#pragma region Helper structs
 	 struct MousePos {
 		 float x, y;
 	 };
+#pragma endregion
 
+	 ///Class for input related calls.
 	 class InputManager {
 	 public:
 		 /// <summary>
@@ -179,7 +183,7 @@ namespace SpriteRenderer
 		 /// </summary>
 		 /// <returns>Mouse position in pixel coords.</returns>
 		 static MousePos GetMousePosition() { return GetInstance().getMousePosition(); }
-		 static void SetMousePosition(std::pair<float, float> newPosition) { GetInstance().setMousePosition(newPosition); }
+		 static void SetMousePosition(MousePos newPosition) { GetInstance().setMousePosition(newPosition); }
 	 private:
 		 static InputManager m_inputManager;
 		 std::unordered_map<KeyCodeEnum, KeyStateEnum> m_keyState = std::unordered_map<KeyCodeEnum, KeyStateEnum>(
@@ -315,7 +319,8 @@ namespace SpriteRenderer
 			 {MOUSE_EXTRA_4_BUTTON , KEY_RELEASED},
 			 {MOUSE_EXTRA_5_BUTTON , KEY_RELEASED}
 			});
-		float mouseXPos, mouseYPos;
+		float mouseXPos = 0.0f;
+		float mouseYPos = 0.0f;
 	private:
 		InputManager();
 		InputManager(InputManager& copy) = delete;
@@ -324,7 +329,7 @@ namespace SpriteRenderer
 		bool isMouseButtonPressed(MouseButton button);
 		bool isMouseButtonDown(MouseButton button);
 		MousePos getMousePosition() { return { this->mouseXPos, this->mouseYPos }; }
-		void setMousePosition(std::pair<float, float> newPosition);
+		void setMousePosition(MousePos newPosition);
 	};
 
 	inline InputManager InputManager::m_inputManager;

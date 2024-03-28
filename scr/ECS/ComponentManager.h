@@ -7,9 +7,6 @@ namespace SpriteRenderer {
 	class ComponentManager
 	{
 	public:
-		//TODO:Should the user be able to say wich components they need
-		//and is this unnecessary overhead.
-	
 		template<typename T, typename ...Ts>
 		void RegisterComponentTypes();
 		template<typename T>
@@ -19,7 +16,7 @@ namespace SpriteRenderer {
 		template<typename T>
 		void RemoveComponent(ECSTypes::Entity entity);
 		template<typename T>
-		T* GetComponent(ECSTypes::Entity entity);
+		T *const GetComponent(ECSTypes::Entity entity);
 		template<typename T>
 		bool HasComponent(ECSTypes::Entity ent);
 		template<typename T>
@@ -49,7 +46,7 @@ namespace SpriteRenderer {
 	}
 #pragma endregion
 
-#pragma region TemplatedMethods
+#pragma region Templated methods
 
 	template<typename T, typename ...Ts>
 	inline void ComponentManager::RegisterComponentTypes() {
@@ -80,7 +77,7 @@ namespace SpriteRenderer {
 	}
 
 	template<typename T>
-	inline T* ComponentManager::GetComponent(ECSTypes::Entity entity)
+	inline T *const ComponentManager::GetComponent(ECSTypes::Entity entity)
 	{
 		return GetComponentArray<T>().GetComponent(entity);
 	}

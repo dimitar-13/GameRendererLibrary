@@ -2,19 +2,24 @@
 #include"Rendererpch.h"
 namespace SpriteRenderer {
 	class Texture2D;
+#pragma region Helper structs
+
+
 	struct TextureGPU {
 		uint32_t index = 0;
 		uint32_t spriteBindCount = 0;
 	};
+	//Struct representing GPU texture array data.
 	struct TextureSlots {
 		std::array<uint32_t, 32> m_textureUnits = {};
 		uint32_t size =0;
 		std::unordered_map<uint32_t, TextureGPU> m_textureHandleToIndex = {};
-
 		std::array<int, 32> m_textureUnitIndicies = {};
 		GLint maxTextureSlots = {};
 	};
-	
+#pragma endregion
+
+	//Class managing GPU texture data.
 	class TextureUnitManager {
 	public:
 		/// <summary>
@@ -29,7 +34,7 @@ namespace SpriteRenderer {
 		/// </summary>
 		/// <param name="textureHandle">Handle of the texture object.</param>
 		/// <returns>Returns the texture index.</returns>
-		static uint32_t GetTexutreIndex(uint32_t textureHandle) { return GetInstance().m_TextureSlots.m_textureHandleToIndex[textureHandle].index; }
+		static uint32_t GetTextureIndex(uint32_t textureHandle) { return GetInstance().m_TextureSlots.m_textureHandleToIndex[textureHandle].index; }
 
 		/// <summary>
 		/// Decrement the "spriteBindCount" of the texture. If spriteBindCount is 0 than it will delete the texture from GPU
@@ -50,7 +55,7 @@ namespace SpriteRenderer {
 		static void BindTextures() { GetInstance().bindTextures();}
 		static void Destroy() { GetInstance().destroy(); }
 	private:
-		void querryMaxTextureSlotsCount();
+		void queryMaxTextureSlotsCount();
 		uint32_t registerTexture(Texture2D* textureToRegister);
 		uint32_t bindTexture(Texture2D* textureToRegister);
 		void unBindTexture(uint32_t textureHandle);

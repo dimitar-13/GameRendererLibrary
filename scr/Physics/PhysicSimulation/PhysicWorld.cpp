@@ -27,7 +27,7 @@ void SpriteRenderer::PhysicWorld::Update(float dt)
 
 void SpriteRenderer::PhysicWorld::PostUpdate(float dt)
 {
-	//Dependencie between collisionSystem and PhysicsSystem
+	//TODO:Dependencies between collisionSystem and PhysicsSystem
 }
 
 void SpriteRenderer::PhysicWorld::DestroySystem()

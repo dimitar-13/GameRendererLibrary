@@ -7,7 +7,7 @@
 void SpriteRenderer::TextureUnitManager::Init()
 {
 	auto& instance = GetInstance();
-	instance.querryMaxTextureSlotsCount();
+	instance.queryMaxTextureSlotsCount();
 	instance.fillTextureSlotsArray();
 }
 void SpriteRenderer::TextureUnitManager::fillTextureSlotsArray()
@@ -18,7 +18,7 @@ void SpriteRenderer::TextureUnitManager::fillTextureSlotsArray()
 	}
 }
 
-void SpriteRenderer::TextureUnitManager::querryMaxTextureSlotsCount()
+void SpriteRenderer::TextureUnitManager::queryMaxTextureSlotsCount()
 {
 	glGetIntegerv(GL_MAX_TEXTURE_UNITS, &m_TextureSlots.maxTextureSlots);
 	Texture2D whiteTexture(AssetPathHelper::GetAssetPath()+"/Textures/WhiteTexture.png");

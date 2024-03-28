@@ -3,7 +3,7 @@
 #include"Rendererpch.h"
 #include"Log/Log.h"
 namespace SpriteRenderer {
-	struct SystemComponentDependencies {
+	/*struct SystemComponentDependencies {
 		std::uint32_t m_systemID;
 		std::vector<const char*> m_componentsNames;
 		template<typename T,typename... Ts>
@@ -15,12 +15,26 @@ namespace SpriteRenderer {
 				AddDependecies(components...);
 			}
 		}
-	};
+	};*/
+	
+	class Scene;
+	class ECSManager;
 
+	//Class managing systems.
 	class SystemManager {
 	public:
+		/// <summary>
+		/// Adds a custom system.
+		/// </summary>
+		/// <typeparam name="T">System class must implement ISystem.</typeparam>
+		/// <typeparam name="...Ts">Is obselate.</typeparam>
+		/// <param name="...componentsNames">Is obselate</param>
 		template<typename T,typename... Ts>
 		void RegisterSystem(Ts... componentsNames);
+	private:
+		friend class Scene;
+		friend class ECSManager;
+
 		void InitSystems();
 		void PreUpdate(float dt);
 		void Update(float dt);
@@ -35,13 +49,5 @@ namespace SpriteRenderer {
 	{
 		static_assert(std::is_base_of<ISystem, T>::value, "System class must inherit of class 'ISystem'.");
 		m_systems.push_back(std::make_shared<T>());
-		/*SystemComponentDependencies systemDependencie{};
-		systemDependencie.m_systemID = m_systems.size() - 1;
-		if constexpr (sizeof...(componentsNames) > 0)
-		{
-		systemDependencie.AddDependecies(componentsNames...);
-		}
-		m_systemComponentDependecies.push_back(systemDependencie);
-		*/
 	}
 }

@@ -1,6 +1,7 @@
 #pragma once
 #include"Rendererpch.h"
 namespace SpriteRenderer {
+	//Helper class for creating and using a shader program.
 	class ShaderProgram
 	{
 	public:

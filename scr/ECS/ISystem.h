@@ -3,6 +3,8 @@
 #include"Rendererpch.h"
 namespace SpriteRenderer {
 	class SystemManager;
+
+	//Interface for creating ECS system classes.
 	class ISystem
 	{
 	protected:
@@ -14,6 +16,5 @@ namespace SpriteRenderer {
 		virtual void DestroySystem() = 0;
 		
 		std::vector<ECSTypes::Entity> m_entities;
-		std::uint32_t m_SystemEntitiesSize = 0;
 	};
 }

@@ -4,26 +4,24 @@ This is a solo project of mine created for educational purposes.There are only 5
 [GLEW](https://glew.sourceforge.net/),
 [stb_image](https://github.com/nothings/stb/blob/master/stb_image.h),
 [fmt](https://github.com/fmtlib/fmt).
-In no way do I think this library can be used in profesional setting but it was a fun project that maybe took way too much that i would have liked. 
-So far the this project have the following features:
-* Batch renderer.
-* Custom entity component system.
-* Collision/Trigger detection.
-* Physic simulation.
-* Input manager class for a way to check for inputs.
-* Native c++ scripting using virtual functions.
-* An intuative way to get/add components to game objects. 
+In no way do I think this library can be used in profesional setting but it was a fun project that maybe took way too much that i would have liked.
+In short this is a simple 2D rendering library.
+* The end goal: The goal is to allow users to create games easily without worrying about graphics, ECS, and so on.
+* Why is called like this: Well I didnt come up with a name so yeah.
+* Features: So far the this project have the following features:  
+  * Batch renderer.
+  * Custom entity component system.
+  * Collision/Trigger detection.
+  * Physic simulation.
+  * Input manager class for a way to check for inputs.
+  * Native c++ scripting using virtual functions.
+  * An intuative way to get/add components to game objects. 
 
 # How it works ? 
-Since there is no GUI the way you use it is simple.You can create a game object and your game object will be alive until the end of the program or until you dont use the 'DeleteGameObject' function.
-Every game object comes with a transform component by default.When you use AttachComponent it attaches component and returns you a handle/pointer to work on it.You can remove component and when you do
-your component gets deleted from the heap.
+Since there is no GUI, the usage is straightforward. You can create a game object, and it will remain active until the end of the program or until you explicitly delete it using the DeleteGameObject function. Every game object comes with a transform component by default. When you use methods like AttachComponent, it attaches a component and returns a handle/pointer for you to work with. You can remove components, and upon destroying a game object, the components that it holds will be deleted as well.
 
 # How to use ? 
-You first need to intilize the lirbrary using Init function.This function basicly initilize glfw, and other importand features of the library. After that you can specify you game objects kinda like if you are in a game engine
-and they are defined in the scene.You also have to define your main camera for now but this will be most likely removed. After you've defined all of the game objects and attached the desired components you can 
-use Scene::Start to start the scene and the render pipeline this will bind all the scripts that you've attached and call the Start function. As for now there is not function to Stop the pipeline so only way by 
-closing the window.After closing the window you can call Terminate to free all resources used.Example:
+You first need to initialize the library using the Init function. This function essentially initializes GLFW and other important features of the library. After that, you can specify your game objects, similar to how they are defined in a scene within a game engine. You also have to define your main camera, but this requirement will likely be removed in the future. Once you’ve defined all the game objects and attached the desired components, you can use Scene::Start to initiate the scene and the render pipeline. This will bind all the scripts you’ve attached and call the Start function. Currently, there is no function to stop the pipeline; the only way to do so is by closing the window. After closing the window, you can call Terminate to free all the resources used.
 ```c++
   SpriteRenderer::Init();
 
@@ -73,10 +71,12 @@ closing the window.After closing the window you can call Terminate to free all r
 *Note that there is an option for custom components and a way for you to say wich component you want to use this option might be removed i am not really sure of it for now.
 
 ## Native Scripting with virtual functions.
-You can define your scripts as classes that inherit from 'ScriptableObject' class.This class provide the 'GameObject' wich is a wrapper for calls to the ECSManager for stuff like attaching component and 
-getting them. You can use the OnStart,OnUpdate and OnDelete virtual functions to implement your script behavior.*Note every one of thise virtual function is not pure so you are not forced to implement it.
-When done with your script you can call 'ScriptComponent' wich is a wrapper for your Script it manages the lifetime of your script so you dont have to create object of you script.
-Example of a custom script:
+You can define your scripts as classes that inherit from the 'ScriptableObject' class. This class provides the GameObject, which is the game object attach to the script.
+You can use the OnStart, OnUpdate, and OnDelete virtual functions to implement your script behavior. 
+*Note: Each of these virtual functions is not pure, so you are not obligated to implement them.
+
+Once you’ve completed your script, you can attach a ScriptComponent, which is a wrapper for your script,and attach your script class using 'AttachScript' method(this method instanciate your script and 
+returns the pointer to it so you can work on it or set some script member variables).
 ```c++
 void Player2::OnUpdate()
 {
@@ -116,7 +116,7 @@ void Player2::OnDelete()
 	std::cout << "Component was deleted" << '\n';
 }
 ```
-*Enumrators used in this example are custom defined and are not part of the library.
+*Note:Enumrators, used in this example, are custom defined and are not part of the library.
 Example of attaching a script:
 ```c++
     auto* scriptComponent = snake.AttachComponent<ScriptComponent>();
@@ -124,19 +124,34 @@ Example of attaching a script:
 ```
 # Custom ECS 
 ## First attempts to make the ECS.
-When I first head of ECS I wanted to try to implement it myself so like the most sane person i just placed randomly in a class and called it a day.
-Now to be more clear my initial approach was for each component to make a unordererMap of entity compoennt and using templated functions to add or remove components.Now the problem with this was that
-the ways of determating wich hash map to use was not really readable and often because of my bad code placement i was not really able to use this code anywhere without getting circular dependencies.
+When I first heard of ECS I wanted to try to implement it myself so ,like the most sane person, I just placed randomly in a class and called it a day.
+Now to be more clear my initial approach was for each component to make a unorderer map of entity compoennt and using templated functions to add or remove components.Now the problem with this was that
+the ways of determining wich hash map to use was not really readable and often because of my bad code placement i was not really able to use this code anywhere without getting circular dependencies.
 ## Second attemp at it.
-At some point the code was really unworkable and I wanted to change that so I searched in the internet for some answers i came across [this post](https://austinmorlan.com/posts/entity_component_system/).
-Now the post itself did give me a lot of ideas and my final ECS is really inspired by it.
+At some point the code was really unworkable and I wanted to change that so I searched in the internet for some answers I came across [this post](https://austinmorlan.com/posts/entity_component_system/).
+Now the post itself did give me a lot of ideas and my final ECS is really inspired by it.But the new design is that instead placing everything in the scene class and calling it a day I seperated
+every component of the ECS in its own class and manager class.
 
 ## How does the ECS work ?
 Here I will try to explain it breefly but for more details you can check  [this post](https://austinmorlan.com/posts/entity_component_system/) since my ECS is heavily based of it.
-Every component have a ComponentArray class that is templated class that its responsible for managing the lifetime of all the components of that type.It have functions like Add,Remove and Get.
-There is a component array manager class that manages all of our component arrays.
+The user uses singelton class 'ECSManager' to communicate with the entity component system the singelton class holds 3 objects that are the ComponentManager,SystemManager and EntityManager.
+* ComponentManager - Manages all of the component arrays.
+  * ComponentArray - Templated class that manages the lifetime and creation of components of type T.
+* SystemManager - Holds every system instance and its responsable for systems lifetime.
+  * System - Templated class that is responsible for some task like: drawing to the screen,updating physics etc.
+* EntityManager - Manages all of the avaiable entity IDs.
+Most of the times direct need to use ECSManager wont be needed because 'GameObject' class is a wrapper for Entity and the calss to the ECSManager.
 
-# Custom physic simulation
+## Featrues of the ECS
+The ECS can be used for a user to specify their own custom components with only rule that the component must inherit from Component base class.Like the components user can specify a custom system
+that will work with certain components.The project provides some initial components like Transform,Sprite and so on with their respective systems.
+
+# Custom physic simulation and collision detection
+## Physics
+The physics simulation have 2 main parts the physics body component and the physic system.
+The physics body keeps track of position,velocity,total force, and acceleration.The physic system uses this information to calculate the new position using Newton acceleration formula.
+## Collision
+The collision classes and collision detection design are based from [this video](https://www.youtube.com/watch?v=-_IspRG548E&t=209s&ab_channel=Winterdev).
 
 # Things that are not added and most likely wont be
 * Custom shader support.
@@ -145,3 +160,6 @@ There is a component array manager class that manages all of our component array
 * Better collision detection.
 * System dependencies.
 * Text rendering.
+* Scene graph.
+* Use of multithreading systems.
+* Differend systems.

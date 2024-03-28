@@ -6,7 +6,7 @@ namespace SpriteRenderer {
 		std::string path = {};
 	};
 	inline AssetPath currentAssetPath = {};
-
+	//Helper class for asset folder path.
 	class AssetPathHelper {
 	public:
 		static std::string& GetAssetPath()
