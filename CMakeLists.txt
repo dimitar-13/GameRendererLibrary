@@ -74,10 +74,8 @@ ${CMAKE_CURRENT_SOURCE_DIR}/include/Components/Colider.h
 ${CMAKE_CURRENT_SOURCE_DIR}/include/Components/ColliderComponent.h
 )
 add_subdirectory(vendors/glfw)
-#add_subdirectory(vendors/glfw/src)
 add_subdirectory(vendors/fmt)
 add_subdirectory(vendors/glm)
-#add_subdirectory(vendors/glew/build/cmake)
 add_subdirectory(vendors/glew-2.2.0/build/cmake)
 target_precompile_headers(RendererLib PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/scr/Rendererpch.h)
 # Find the GLEW library
@@ -86,6 +84,7 @@ target_include_directories(RendererLib PUBLIC vendors/glfw/include)
 target_include_directories(RendererLib PUBLIC vendors/glm)
 target_include_directories(RendererLib PUBLIC vendors/fmt/include)
 target_include_directories(RendererLib PUBLIC vendors/glew/include)
+target_include_directories(RendererLib PUBLIC vendors/stbi_image)
 target_include_directories(RendererLib PRIVATE
   vendors/glew-2.2.0/include
   ${CMAKE_CURRENT_SOURCE_DIR}/include
@@ -95,6 +94,8 @@ target_include_directories(Sandbox PUBLIC vendors/glfw/include)
 target_include_directories(Sandbox PUBLIC vendors/glm)
 target_include_directories(Sandbox PUBLIC vendors/fmt/include)
 target_include_directories(Sandbox PUBLIC vendors/glew/include)
+target_include_directories(Sandbox PUBLIC vendors/stbi_image)
+
 target_include_directories(Sandbox PRIVATE
   vendors/glew-2.2.0/include
   ${CMAKE_CURRENT_SOURCE_DIR}/include
@@ -102,15 +103,14 @@ target_include_directories(Sandbox PRIVATE
 )
 target_link_directories(Sandbox PUBLIC vendors/glfw/cmake)
 target_link_directories(RendererLib PUBLIC vendors/glfw/cmake)
-target_link_directories(Sandbox /vendors/glew-2.2.0/lib)
+target_link_directories(Sandbox PUBLIC /vendors/glew-2.2.0/lib)
 
-target_link_libraries(Sandbox 
-PUBLIC RendererLib
-PUBLIC glfw
-PUBLIC fmt
-PUBLIC /vendors/glew-2.2.0/lib/glew_s
+#target_link_libraries(Sandbox 
+#PUBLIC RendererLib
+#PUBLIC glfw.lib
+#PUBLIC /vendors/glew-2.2.0/lib/glew_s.lib
 
 #PRIVATE GLEW::GLEW
-)
-add_dependencies(Sandbox PRIVATE RendererLib)
-add_dependencies(RendererLib PRIVATE glfw fmt glm glew_s)
+#)
+add_dependencies(Sandbox RendererLib)
+add_dependencies(RendererLib glfw fmt glm glew_s)

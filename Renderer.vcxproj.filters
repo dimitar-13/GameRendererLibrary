@@ -203,7 +203,7 @@
     <ClInclude Include="include\Components\Camera.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Components\Colider.h">
+    <ClInclude Include="include\Colider.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="scr\CollisionDetection.h">

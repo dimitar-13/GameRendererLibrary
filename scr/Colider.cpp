@@ -1,5 +1,5 @@
 #include "Rendererpch.h"
-#include "Components/Colider.h"
+#include "Colider.h"
 #include"MetricHelper.h"
 #include "CollisionDetection.h" 
 

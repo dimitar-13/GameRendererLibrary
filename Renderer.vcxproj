@@ -248,7 +248,7 @@
     <ClInclude Include="include\Components\Camera.h" />
     <ClInclude Include="Core\Global.h" />
     <ClInclude Include="include\RendererEngine_s.h" />
-    <ClInclude Include="include\Components\Colider.h" />
+    <ClInclude Include="include\Colider.h" />
     <ClInclude Include="include\Components\PhysicBody.h" />
     <ClInclude Include="scr\Rendererpch.h" />
     <ClInclude Include="scr\Log.h" />

@@ -1,5 +1,5 @@
 #pragma once
-#include"Scene/Scene.h"
+#include"Scene.h"
 #include"../Core/Global.h"
 #include"WindowFunctions.h"
 #include"ShaderProgram.h"
