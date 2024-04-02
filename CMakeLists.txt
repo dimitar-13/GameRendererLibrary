@@ -63,7 +63,7 @@ ${CMAKE_CURRENT_SOURCE_DIR}/include/EventSystem.h
 ${CMAKE_CURRENT_SOURCE_DIR}/include/GameObject.h
 ${CMAKE_CURRENT_SOURCE_DIR}/include/Input.h
 ${CMAKE_CURRENT_SOURCE_DIR}/include/RendererEngine_s.h
-${CMAKE_CURRENT_SOURCE_DIR}/include/Components/Component.h
+${CMAKE_CURRENT_SOURCE_DIR}/include/Component.h
 ${CMAKE_CURRENT_SOURCE_DIR}/include/Components/PhysicBody.h
 ${CMAKE_CURRENT_SOURCE_DIR}/include/Components/ScriptComponent.h
 ${CMAKE_CURRENT_SOURCE_DIR}/include/Components/Sprite.h
