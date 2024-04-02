@@ -4,7 +4,11 @@ project(Sandbox VERSION 1.0)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 #file(GLOB helloworld_SRC CONFIGURE_DEPENDS "*.h" "*.cpp")
-add_executable(Sandbox "Sandbox/Game.cpp")
+add_executable(Sandbox 
+${CMAKE_CURRENT_SOURCE_DIR}/Sandbox/Sandbox.cpp
+${CMAKE_CURRENT_SOURCE_DIR}/Sandbox/GameScripts/ExampleScript.cpp
+${CMAKE_CURRENT_SOURCE_DIR}/Sandbox/GameScripts/ExampleScript.h
+)
 
 add_library(RendererLib 
 ${CMAKE_CURRENT_SOURCE_DIR}/scr/SystemManager.cpp
@@ -95,22 +99,28 @@ target_include_directories(Sandbox PUBLIC vendors/glm)
 target_include_directories(Sandbox PUBLIC vendors/fmt/include)
 target_include_directories(Sandbox PUBLIC vendors/glew/include)
 target_include_directories(Sandbox PUBLIC vendors/stbi_image)
+target_include_directories(Sandbox PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/Sandbox)
+
 
 target_include_directories(Sandbox PRIVATE
   vendors/glew-2.2.0/include
   ${CMAKE_CURRENT_SOURCE_DIR}/include
   ${CMAKE_CURRENT_SOURCE_DIR}/scr
 )
-target_link_directories(Sandbox PUBLIC vendors/glfw/cmake)
-target_link_directories(RendererLib PUBLIC vendors/glfw/cmake)
-target_link_directories(Sandbox PUBLIC /vendors/glew-2.2.0/lib)
+target_link_directories(Sandbox PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/vendors/glfw/src/Debug)
+target_link_directories(Sandbox PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/lib/Debug)
+target_link_directories(Sandbox PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/vendors/glew-2.2.0/lib)
+target_link_directories(Sandbox PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/Debug)
 
-#target_link_libraries(Sandbox 
-#PUBLIC RendererLib
-#PUBLIC glfw.lib
-#PUBLIC /vendors/glew-2.2.0/lib/glew_s.lib
+add_compile_definitions(Sandbox PUBLIC GLEW_STATIC)
+add_compile_definitions(RendererLib PUBLIC GLEW_STATIC)
 
-#PRIVATE GLEW::GLEW
-#)
+
+target_link_libraries(Sandbox 
+PUBLIC glfw3
+PUBLIC libglew32d
+PUBLIC opengl32
+PUBLIC RendererLib.lib)
+
 add_dependencies(Sandbox RendererLib)
 add_dependencies(RendererLib glfw fmt glm glew_s)

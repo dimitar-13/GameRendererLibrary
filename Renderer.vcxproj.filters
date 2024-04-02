@@ -150,6 +150,9 @@
     <ClCompile Include="vendors\glew\src\visualinfo.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Sandbox\GameScripts\ExampleScript.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="scr\Renderer.h">
@@ -333,6 +336,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="vendors\glew\include\GL\wglew.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sandbox\GameScripts\ExampleScript.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

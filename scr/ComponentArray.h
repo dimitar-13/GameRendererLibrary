@@ -1,6 +1,6 @@
 #pragma once
 #include"Rendererpch.h"
-#include"Component.h"
+#include"Components/Component.h"
 #include"Log.h"
 #include"ECSTypes.h"
 #include"EventSystem.h"
