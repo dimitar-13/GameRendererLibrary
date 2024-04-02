@@ -171,84 +171,82 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="scr\GameObject\GameObjectRegister.cpp" />
-    <ClCompile Include="scr\Physics\Collision\CollisionSytstem.cpp" />
-    <ClCompile Include="scr\Renderer\RenderSytstem.cpp" />
-    <ClCompile Include="scr\ScriptSystem\ScriptSystem.cpp" />
-    <ClCompile Include="scr\ECS\ECSManager.cpp" />
-    <ClCompile Include="scr\ECS\EntityManager.cpp" />
-    <ClCompile Include="scr\ECS\SystemManager.cpp" />
-    <ClCompile Include="scr\Physics\Collision\CollisionSolver.cpp" />
-    <ClCompile Include="scr\Physics\PhysicSimulation\PhysicWorld.cpp" />
-    <ClCompile Include="scr\Physics\Collision\Colider.cpp" />
-    <ClCompile Include="scr\Physics\Collision\CollisionDetection.cpp" />
+    <ClCompile Include="scr\GameObjectRegister.cpp" />
+    <ClCompile Include="scr\CollisionSytstem.cpp" />
+    <ClCompile Include="scr\RenderSytstem.cpp" />
+    <ClCompile Include="scr\ScriptSystem.cpp" />
+    <ClCompile Include="scr\ECSManager.cpp" />
+    <ClCompile Include="scr\EntityManager.cpp" />
+    <ClCompile Include="scr\SystemManager.cpp" />
+    <ClCompile Include="scr\CollisionSolver.cpp" />
+    <ClCompile Include="scr\PhysicWorld.cpp" />
+    <ClCompile Include="scr\Colider.cpp" />
+    <ClCompile Include="scr\CollisionDetection.cpp" />
     <ClCompile Include="scr\Rendererpch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="scr\Log\Log.cpp">
+    <ClCompile Include="scr\Log.cpp">
       <DeploymentContent>false</DeploymentContent>
     </ClCompile>
-    <ClCompile Include="scr\GameObject\GameObject.cpp" />
+    <ClCompile Include="scr\GameObject.cpp" />
     <ClCompile Include="scr\EntryPoint.cpp" />
-    <ClCompile Include="scr\OpenglData\VertexArray\VertexArray.cpp" />
-    <ClCompile Include="scr\Renderer\Renderer.cpp" />
-    <ClCompile Include="scr\Scene\Scene.cpp" />
-    <ClCompile Include="scr\Shader\ShaderProgram\ShaderProgram.cpp" />
-    <ClCompile Include="scr\Input\Input.cpp" />
-    <ClCompile Include="scr\TextureClass\Texture2D\Texture2D.cpp" />
-    <ClCompile Include="scr\TextureClass\TextureUnitManager.cpp" />
+    <ClCompile Include="scr\VertexArray.cpp" />
+    <ClCompile Include="scr\Renderer.cpp" />
+    <ClCompile Include="scr\Scene.cpp" />
+    <ClCompile Include="scr\ShaderProgram.cpp" />
+    <ClCompile Include="scr\Input.cpp" />
+    <ClCompile Include="scr\Texture2D.cpp" />
+    <ClCompile Include="scr\TextureUnitManager.cpp" />
     <ClCompile Include="scr\Window.cpp" />
-    <ClCompile Include="scr\WindowFunctions\WindowFunctions.cpp" />
+    <ClCompile Include="scr\WindowFunctions.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Assets\AssetPath.h" />
-    <ClInclude Include="scr\Components\ColliderComponent.h" />
-    <ClInclude Include="scr\Component.h" />
-    <ClInclude Include="scr\Components\TagComponent.h" />
-    <ClInclude Include="scr\ECS\ECSTypes.h" />
-    <ClInclude Include="scr\GameObject\GameObjectRegister.h" />
-    <ClInclude Include="scr\Physics\Collision\CollisionSytstem.h" />
-    <ClInclude Include="scr\Renderer\RenderSytstem.h" />
-    <ClInclude Include="scr\ScriptSystem\ScriptSystem.h" />
-    <ClInclude Include="scr\ECS\ComponentArray.h" />
-    <ClInclude Include="scr\ECS\ComponentManager.h" />
-    <ClInclude Include="scr\ECS\ECSManager.h" />
-    <ClInclude Include="scr\ECS\EntityManager.h" />
-    <ClInclude Include="scr\ECS\EventSystem\EventSystem.h" />
-    <ClInclude Include="scr\ECS\ISystem.h" />
-    <ClInclude Include="scr\ECS\SystemManager.h" />
-    <ClInclude Include="scr\Physics\Collision\CollisionSolver.h" />
-    <ClInclude Include="scr\Physics\PhysicSimulation\PhysicWorld.h" />
-    <ClInclude Include="scr\Metric\MetricHelper.h" />
-    <ClInclude Include="scr\Physics\Collision\CollisionDetection.h" />
-    <ClInclude Include="scr\Components\Camera.h" />
+    <ClInclude Include="include\Components\ColliderComponent.h" />
+    <ClInclude Include="include\Components\Component.h" />
+    <ClInclude Include="include\Components\TagComponent.h" />
+    <ClInclude Include="scr\ECSTypes.h" />
+    <ClInclude Include="scr\GameObjectRegister.h" />
+    <ClInclude Include="scr\CollisionSytstem.h" />
+    <ClInclude Include="scr\RenderSytstem.h" />
+    <ClInclude Include="scr\ScriptSystem.h" />
+    <ClInclude Include="scr\ComponentArray.h" />
+    <ClInclude Include="scr\ComponentManager.h" />
+    <ClInclude Include="scr\ECSManager.h" />
+    <ClInclude Include="scr\EntityManager.h" />
+    <ClInclude Include="include\EventSystem.h" />
+    <ClInclude Include="scr\ISystem.h" />
+    <ClInclude Include="scr\SystemManager.h" />
+    <ClInclude Include="scr\CollisionSolver.h" />
+    <ClInclude Include="scr\PhysicWorld.h" />
+    <ClInclude Include="scr\MetricHelper.h" />
+    <ClInclude Include="scr\CollisionDetection.h" />
+    <ClInclude Include="include\Components\Camera.h" />
     <ClInclude Include="Core\Global.h" />
     <ClInclude Include="include\RendererEngine_s.h" />
-    <ClInclude Include="scr\Physics\Collision\Colider.h" />
-    <ClInclude Include="scr\Components\PhysicBody.h" />
+    <ClInclude Include="include\Components\Colider.h" />
+    <ClInclude Include="include\Components\PhysicBody.h" />
     <ClInclude Include="scr\Rendererpch.h" />
-    <ClInclude Include="scr\Log\Log.h" />
+    <ClInclude Include="scr\Log.h" />
     <ClInclude Include="scr\EntryPoint.h" />
-    <ClInclude Include="scr\GameObject\GameObject.h" />
-    <ClInclude Include="scr\Input\Input.h" />
-    <ClInclude Include="scr\OpenglData\VertexArray\VertexArray.h" />
-    <ClInclude Include="scr\OpenglData\VertexData\Vertex.h" />
-    <ClInclude Include="scr\Renderer\Renderer.h" />
-    <ClInclude Include="scr\Scene\Scene.h" />
-    <ClInclude Include="scr\ScriptableObject\ScriptableObject.h" />
-    <ClInclude Include="scr\Components\ScriptComponent.h" />
-    <ClInclude Include="scr\Shader\ShaderProgram\ShaderProgram.h" />
-    <ClInclude Include="scr\Shader\ShadersContianer\Shaders.h" />
-    <ClInclude Include="scr\Components\Sprite.h" />
-    <ClInclude Include="scr\TextureClass\Texture2D\Texture2D.h" />
-    <ClInclude Include="scr\DeltaTime.h" />
-    <ClInclude Include="scr\TextureClass\TextureUnitManager.h" />
-    <ClInclude Include="scr\Components\Transoform.h" />
+    <ClInclude Include="include\GameObject.h" />
+    <ClInclude Include="include\Input.h" />
+    <ClInclude Include="scr\VertexArray.h" />
+    <ClInclude Include="scr\Renderer.h" />
+    <ClInclude Include="include\Scene.h" />
+    <ClInclude Include="include\ScriptableObject.h" />
+    <ClInclude Include="include\Components\ScriptComponent.h" />
+    <ClInclude Include="scr\ShaderProgram.h" />
+    <ClInclude Include="include\Components\Sprite.h" />
+    <ClInclude Include="include\Texture2D.h" />
+    <ClInclude Include="include\DeltaTime.h" />
+    <ClInclude Include="scr\TextureUnitManager.h" />
+    <ClInclude Include="include\Components\Transoform.h" />
     <ClInclude Include="scr\Window.h" />
-    <ClInclude Include="scr\WindowFunctions\WindowFunctions.h" />
+    <ClInclude Include="scr\WindowFunctions.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Shaders\Circle_shader.glsl" />
