@@ -1,6 +1,6 @@
 #pragma once
 #include"ScriptableObject.h"
-class ExampleScript:SpriteRenderer::ScriptableObject
+class ExampleScript: public SpriteRenderer::ScriptableObject
 {
 	public:
 		void OnStart()override;

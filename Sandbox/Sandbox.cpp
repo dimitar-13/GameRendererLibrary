@@ -24,6 +24,7 @@ int main()
     //Attaches the example script.
     gameObj.AttachComponent<ScriptComponent>()->AttachScript<ExampleScript>();
 
+    Scene::SetActiveCamera(camera);
     Scene::Start();
     SpriteRenderer::Terminate();
 

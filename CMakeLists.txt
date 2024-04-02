@@ -3,6 +3,8 @@ project(Sandbox VERSION 1.0)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -RENDER_DEBUG")
+
 #file(GLOB helloworld_SRC CONFIGURE_DEPENDS "*.h" "*.cpp")
 add_executable(Sandbox 
 ${CMAKE_CURRENT_SOURCE_DIR}/Sandbox/Sandbox.cpp
@@ -114,6 +116,7 @@ target_link_directories(Sandbox PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/Debug)
 
 add_compile_definitions(Sandbox PUBLIC GLEW_STATIC)
 add_compile_definitions(RendererLib PUBLIC GLEW_STATIC)
+
 
 
 target_link_libraries(Sandbox 
