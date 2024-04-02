@@ -19,7 +19,7 @@ int main()
     GameObject gameObj;
 
     //Gets the component.
-    auto* gameObjTransform = gameObj.GetComponent<Transfrom>();
+    auto* gameObjTransform = gameObj.GetComponent<Transform>();
       
     //Attaches the example script.
     gameObj.AttachComponent<ScriptComponent>()->AttachScript<ExampleScript>();

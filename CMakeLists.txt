@@ -3,7 +3,6 @@ project(Sandbox VERSION 1.0)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
-set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -RENDER_DEBUG")
 
 #file(GLOB helloworld_SRC CONFIGURE_DEPENDS "*.h" "*.cpp")
 add_executable(Sandbox 
@@ -79,6 +78,10 @@ ${CMAKE_CURRENT_SOURCE_DIR}/include/Components/Camera.h
 ${CMAKE_CURRENT_SOURCE_DIR}/include/Colider.h
 ${CMAKE_CURRENT_SOURCE_DIR}/include/Components/ColliderComponent.h
 )
+
+target_compile_definitions(RendererLib PUBLIC "$<$<CONFIG:DEBUG>:RENDER_DEBUG>")
+
+
 add_subdirectory(vendors/glfw)
 add_subdirectory(vendors/fmt)
 add_subdirectory(vendors/glm)
