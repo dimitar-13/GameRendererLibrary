@@ -16,12 +16,25 @@ In short this is a simple 2D rendering library.
   * Input manager class for a way to check for inputs.
   * Native c++ scripting using virtual functions.
   * An intuative way to get/add components to game objects. 
+# How to build.
+It currently supports only windows.To build it you will need:
+* cmake
+* gitbash
+First open the cmd in the folder you want to clone the repo and past this command:
+```git
+git clone https://github.com/dimitar-13/GameRendererLibrary.git --recursive
+```
+After its clonned go to the folder where the project is cloned and in the cmd run this:
+```cmake
+cmake -S . -B .
+```
+Lastly on visual studio set the Sandbox app as startup project and run.
 
 # How it works ? 
-Since there is no GUI, the usage is straightforward. You can create a game object, and it will remain active until the end of the program or until you explicitly delete it using the DeleteGameObject function. Every game object comes with a transform component by default. When you use methods like AttachComponent, it attaches a component and returns a handle/pointer for you to work with. You can remove components, and upon destroying a game object, the components that it holds will be deleted as well.
+Since there is no GUI, the usage is straightforward. You can create a game object, and it will remain active until the end of the program or until you explicitly delete it using the DeleteGameObject function. Every game object comes with a transform component by default. When you use methods like AttachComponent, it attaches a component and returns a handle/pointer for you to work with. You can remove components, and upon destroying a game object, the components that it holds will be deleted as well. The sandbox app is your lets say it "game world" in there you can have your scripts and so on.
 
 # How to use ? 
-You first need to initialize the library using the Init function. This function essentially initializes GLFW and other important features of the library. After that, you can specify your game objects, similar to how they are defined in a scene within a game engine. You also have to define your main camera, but this requirement will likely be removed in the future. Once you’ve defined all the game objects and attached the desired components, you can use Scene::Start to initiate the scene and the render pipeline. This will bind all the scripts you’ve attached and call the Start function. Currently, there is no function to stop the pipeline; the only way to do so is by closing the window. After closing the window, you can call Terminate to free all the resources used.
+You first need to initialize the library using the Init function. This function essentially initializes GLFW and other important features of the library. After that, you can specify your game objects, similar to how they are defined in a scene within a game engine. You also have to define your main camera, but this requirement will likely be removed in the future. Once youâ€™ve defined all the game objects and attached the desired components, you can use Scene::Start to initiate the scene and the render pipeline. This will bind all the scripts youâ€™ve attached and call the Start function. Currently, there is no function to stop the pipeline; the only way to do so is by closing the window. After closing the window, you can call Terminate to free all the resources used.
 ```c++
   SpriteRenderer::Init();
 
@@ -75,7 +88,7 @@ You can define your scripts as classes that inherit from the 'ScriptableObject' 
 You can use the OnStart, OnUpdate, and OnDelete virtual functions to implement your script behavior. 
 *Note: Each of these virtual functions is not pure, so you are not obligated to implement them.
 
-Once you’ve completed your script, you can attach a ScriptComponent, which is a wrapper for your script,and attach your script class using 'AttachScript' method(this method instanciate your script and 
+Once youâ€™ve completed your script, you can attach a ScriptComponent, which is a wrapper for your script,and attach your script class using 'AttachScript' method(this method instanciate your script and 
 returns the pointer to it so you can work on it or set some script member variables).
 ```c++
 void Player2::OnUpdate()

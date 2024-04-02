@@ -18,114 +18,174 @@
     <ClCompile Include="scr\EntryPoint.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="scr\Renderer\Renderer.cpp">
+    <ClCompile Include="scr\Renderer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="scr\Shader\ShaderProgram\ShaderProgram.cpp">
+    <ClCompile Include="scr\ShaderProgram.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="scr\Input\Input.cpp">
+    <ClCompile Include="scr\Input.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="scr\OpenglData\VertexArray\VertexArray.cpp">
+    <ClCompile Include="scr\VertexArray.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="scr\GameObject\GameObject.cpp">
+    <ClCompile Include="scr\GameObject.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="scr\WindowFunctions\WindowFunctions.cpp">
+    <ClCompile Include="scr\WindowFunctions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="scr\TextureClass\Texture2D\Texture2D.cpp">
+    <ClCompile Include="scr\Texture2D.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="scr\Log\Log.cpp">
+    <ClCompile Include="scr\Log.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="scr\Rendererpch.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="scr\Physics\Collision\CollisionDetection.cpp">
+    <ClCompile Include="scr\CollisionDetection.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="scr\Physics\Collision\Colider.cpp">
+    <ClCompile Include="scr\Colider.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="scr\Physics\PhysicSimulation\PhysicWorld.cpp">
+    <ClCompile Include="scr\PhysicWorld.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="scr\Physics\Collision\CollisionSolver.cpp">
+    <ClCompile Include="scr\CollisionSolver.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="scr\ECS\EntityManager.cpp">
+    <ClCompile Include="scr\EntityManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="scr\ECS\ECSManager.cpp">
+    <ClCompile Include="scr\ECSManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="scr\ECS\SystemManager.cpp">
+    <ClCompile Include="scr\SystemManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="scr\ScriptSystem\ScriptSystem.cpp">
+    <ClCompile Include="scr\ScriptSystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="scr\Physics\Collision\CollisionSytstem.cpp">
+    <ClCompile Include="scr\CollisionSytstem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="scr\Renderer\RenderSytstem.cpp">
+    <ClCompile Include="scr\RenderSytstem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="scr\TextureClass\TextureUnitManager.cpp">
+    <ClCompile Include="scr\TextureUnitManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="scr\Window.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="scr\Scene\Scene.cpp">
+    <ClCompile Include="scr\Scene.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="scr\GameObject\GameObjectRegister.cpp">
+    <ClCompile Include="scr\GameObjectRegister.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="vendors\glew\auto\src\glew_head.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="vendors\glew\auto\src\glew_init_egl.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="vendors\glew\auto\src\glew_init_gl.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="vendors\glew\auto\src\glew_init_glx.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="vendors\glew\auto\src\glew_init_tail.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="vendors\glew\auto\src\glew_init_wgl.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="vendors\glew\auto\src\glew_str_egl.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="vendors\glew\auto\src\glew_str_glx.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="vendors\glew\auto\src\glew_str_head.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="vendors\glew\auto\src\glew_str_tail.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="vendors\glew\auto\src\glew_str_wgl.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="vendors\glew\auto\src\glewinfo_egl.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="vendors\glew\auto\src\glewinfo_gl.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="vendors\glew\auto\src\glewinfo_glx.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="vendors\glew\auto\src\glewinfo_head.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="vendors\glew\auto\src\glewinfo_tail.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="vendors\glew\auto\src\glewinfo_wgl.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="vendors\glew\build\cmake\testbuild\main.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="vendors\glew\src\glew.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="vendors\glew\src\glewinfo.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="vendors\glew\src\visualinfo.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Sandbox\GameScripts\ExampleScript.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="scr\Renderer\Renderer.h">
+    <ClInclude Include="scr\Renderer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="scr\Shader\ShaderProgram\ShaderProgram.h">
+    <ClInclude Include="scr\ShaderProgram.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="scr\Shader\ShadersContianer\Shaders.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="scr\Components\Sprite.h">
+    <ClInclude Include="include\Components\Sprite.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Core\Global.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="scr\OpenglData\VertexArray\VertexArray.h">
+    <ClInclude Include="scr\VertexArray.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="scr\OpenglData\VertexData\Vertex.h">
+    <ClInclude Include="include\Input.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="scr\Input\Input.h">
+    <ClInclude Include="include\ScriptableObject.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="scr\ScriptableObject\ScriptableObject.h">
+    <ClInclude Include="include\Components\Transoform.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="scr\Components\Transoform.h">
+    <ClInclude Include="include\GameObject.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="scr\GameObject\GameObject.h">
+    <ClInclude Include="scr\WindowFunctions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="scr\WindowFunctions\WindowFunctions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="scr\TextureClass\Texture2D\Texture2D.h">
+    <ClInclude Include="include\Texture2D.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="scr\EntryPoint.h">
@@ -134,94 +194,151 @@
     <ClInclude Include="include\RendererEngine_s.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="scr\Log\Log.h">
+    <ClInclude Include="scr\Log.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="scr\Rendererpch.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="scr\DeltaTime.h">
+    <ClInclude Include="include\DeltaTime.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="scr\Components\Camera.h">
+    <ClInclude Include="include\Components\Camera.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="scr\Physics\Collision\Colider.h">
+    <ClInclude Include="include\Colider.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="scr\Physics\Collision\CollisionDetection.h">
+    <ClInclude Include="scr\CollisionDetection.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="scr\Metric\MetricHelper.h">
+    <ClInclude Include="scr\MetricHelper.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="scr\Components\PhysicBody.h">
+    <ClInclude Include="include\Components\PhysicBody.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="scr\Physics\PhysicSimulation\PhysicWorld.h">
+    <ClInclude Include="scr\PhysicWorld.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="scr\Physics\Collision\CollisionSolver.h">
+    <ClInclude Include="scr\CollisionSolver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="scr\ECS\EntityManager.h">
+    <ClInclude Include="scr\EntityManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="scr\ECS\ComponentManager.h">
+    <ClInclude Include="scr\ComponentManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="scr\ECS\ComponentArray.h">
+    <ClInclude Include="scr\ComponentArray.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="scr\ECS\ECSManager.h">
+    <ClInclude Include="scr\ECSManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="scr\ECS\ISystem.h">
+    <ClInclude Include="scr\ISystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="scr\ECS\SystemManager.h">
+    <ClInclude Include="scr\SystemManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="scr\Components\ScriptComponent.h">
+    <ClInclude Include="include\Components\ScriptComponent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="scr\ECS\EventSystem\EventSystem.h">
+    <ClInclude Include="include\EventSystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="scr\ScriptSystem\ScriptSystem.h">
+    <ClInclude Include="scr\ScriptSystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="scr\Components\ColliderComponent.h">
+    <ClInclude Include="include\Components\ColliderComponent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="scr\Physics\Collision\CollisionSytstem.h">
+    <ClInclude Include="scr\CollisionSytstem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="scr\Renderer\RenderSytstem.h">
+    <ClInclude Include="scr\RenderSytstem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="scr\TextureClass\TextureUnitManager.h">
+    <ClInclude Include="scr\TextureUnitManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="scr\Component.h">
+    <ClInclude Include="include\Components\Component.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="scr\Components\TagComponent.h">
+    <ClInclude Include="include\Components\TagComponent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="scr\Window.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="scr\ECS\ECSTypes.h">
+    <ClInclude Include="scr\ECSTypes.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Assets\AssetPath.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="scr\Scene\Scene.h">
+    <ClInclude Include="include\Scene.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="scr\GameObject\GameObjectRegister.h">
+    <ClInclude Include="scr\GameObjectRegister.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendors\glew\auto\src\eglew_head.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendors\glew\auto\src\eglew_mid.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendors\glew\auto\src\eglew_tail.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendors\glew\auto\src\glew_head.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendors\glew\auto\src\glew_license.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendors\glew\auto\src\glew_tail.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendors\glew\auto\src\glxew_head.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendors\glew\auto\src\glxew_mid.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendors\glew\auto\src\glxew_tail.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendors\glew\auto\src\khronos_license.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendors\glew\auto\src\mesa_license.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendors\glew\auto\src\wglew_head.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendors\glew\auto\src\wglew_mid.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendors\glew\auto\src\wglew_tail.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendors\glew\include\GL\eglew.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendors\glew\include\GL\glew.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendors\glew\include\GL\glxew.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendors\glew\include\GL\wglew.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sandbox\GameScripts\ExampleScript.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -229,6 +346,25 @@
     <None Include="Assets\Shaders\Color_shader.glsl" />
     <None Include="Assets\Shaders\Circle_shader.glsl" />
     <None Include="Assets\Shaders\Square_shader.glsl" />
+    <None Include="vendors\glew\auto\doc\advanced.html" />
+    <None Include="vendors\glew\auto\doc\basic.html" />
+    <None Include="vendors\glew\auto\doc\build.html" />
+    <None Include="vendors\glew\auto\doc\credits.html" />
+    <None Include="vendors\glew\auto\doc\index.html" />
+    <None Include="vendors\glew\auto\doc\install.html" />
+    <None Include="vendors\glew\auto\doc\log.html" />
+    <None Include="vendors\glew\auto\src\footer.html" />
+    <None Include="vendors\glew\auto\src\header.html" />
+    <None Include="vendors\glew\doc\advanced.html" />
+    <None Include="vendors\glew\doc\basic.html" />
+    <None Include="vendors\glew\doc\build.html" />
+    <None Include="vendors\glew\doc\credits.html" />
+    <None Include="vendors\glew\doc\glew.html" />
+    <None Include="vendors\glew\doc\glxew.html" />
+    <None Include="vendors\glew\doc\index.html" />
+    <None Include="vendors\glew\doc\install.html" />
+    <None Include="vendors\glew\doc\log.html" />
+    <None Include="vendors\glew\doc\wglew.html" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Assets\Textures\Texture.jpg">
@@ -240,5 +376,25 @@
     <Image Include="Assets\Textures\WhiteTexture.png">
       <Filter>Resource Files</Filter>
     </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="vendors\glew\auto\src\glew.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+    <ResourceCompile Include="vendors\glew\auto\src\glewinfo.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+    <ResourceCompile Include="vendors\glew\auto\src\visualinfo.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+    <ResourceCompile Include="vendors\glew\build\glew.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+    <ResourceCompile Include="vendors\glew\build\glewinfo.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+    <ResourceCompile Include="vendors\glew\build\visualinfo.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
   </ItemGroup>
 </Project>
