@@ -1,6 +1,6 @@
 #pragma once
 #include"Rendererpch.h"
-#include"GameObject/GameObject.h"
+#include"GameObject.h"
 namespace SpriteRenderer {
 	class ScriptSystem;
 	class ScriptComponent;

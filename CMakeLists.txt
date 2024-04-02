@@ -1,7 +1,8 @@
 cmake_minimum_required(VERSION 3.20)
 project(Sandbox VERSION 1.0)
 
-
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 #file(GLOB helloworld_SRC CONFIGURE_DEPENDS "*.h" "*.cpp")
 add_executable(Sandbox "Sandbox/Game.cpp")
 
@@ -78,7 +79,7 @@ add_subdirectory(vendors/fmt)
 add_subdirectory(vendors/glm)
 #add_subdirectory(vendors/glew/build/cmake)
 add_subdirectory(vendors/glew-2.2.0/build/cmake)
-target_precompile_headers(RendererLib ${CMAKE_CURRENT_SOURCE_DIR}/scr/Rendererpch.h)
+target_precompile_headers(RendererLib PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/scr/Rendererpch.h)
 # Find the GLEW library
 
 target_include_directories(RendererLib PUBLIC vendors/glfw/include)
@@ -101,8 +102,15 @@ target_include_directories(Sandbox PRIVATE
 )
 target_link_directories(Sandbox PUBLIC vendors/glfw/cmake)
 target_link_directories(RendererLib PUBLIC vendors/glfw/cmake)
+target_link_directories(Sandbox /vendors/glew-2.2.0/lib)
+
 target_link_libraries(Sandbox 
 PUBLIC RendererLib
 PUBLIC glfw
+PUBLIC fmt
+PUBLIC /vendors/glew-2.2.0/lib/glew_s
+
 #PRIVATE GLEW::GLEW
 )
+add_dependencies(Sandbox PRIVATE RendererLib)
+add_dependencies(RendererLib PRIVATE glfw fmt glm glew_s)

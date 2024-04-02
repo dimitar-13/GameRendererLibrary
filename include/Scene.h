@@ -2,8 +2,8 @@
 #include"Rendererpch.h"
 #include"DeltaTime.h"
 #include"Components/Camera.h"
-#include"Log/Log.h"
-#include"ECS/ECSManager.h"
+#include"Log.h"
+#include"ECSManager.h"
 namespace SpriteRenderer {
 	class GameObject;
 

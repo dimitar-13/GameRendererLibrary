@@ -1,6 +1,6 @@
 #pragma once
 #include"Rendererpch.h"
-#include"Physics/Collision/Colider.h"
+#include"Colider.h"
 namespace SpriteRenderer {
 	class ScriptableObject;
 	//Wrapper struct for holding collider and callback functions.

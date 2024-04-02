@@ -1,6 +1,6 @@
 #pragma once
 #include"Rendererpch.h"
-#include"TextureClass/Texture2D/Texture2D.h"
+#include"Texture2D.h"
 namespace SpriteRenderer {
 	class Renderer;
 	//Enumerator representing shape of the sprite.

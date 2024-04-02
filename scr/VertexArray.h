@@ -1,6 +1,5 @@
 #pragma once
 #include"Rendererpch.h"
-#include"Vertex.h"
 namespace SpriteRenderer {
 
 #pragma region Helper structs

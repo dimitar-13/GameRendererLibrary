@@ -2,7 +2,7 @@
 #include"ComponentArray.h"
 #include"ComponentManager.h"
 #include"EntityManager.h"
-#include"EventSystem/EventSystem.h"
+#include"EventSystem.h"
 #include"SystemManager.h"
 #include"Log.h"
 namespace SpriteRenderer {

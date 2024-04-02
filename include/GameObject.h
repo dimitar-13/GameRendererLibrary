@@ -1,6 +1,6 @@
 #pragma once
 #include"Rendererpch.h"
-#include"ECS/ECSManager.h"
+#include"ECSManager.h"
 namespace SpriteRenderer
 {
 	//Class representing an entity.

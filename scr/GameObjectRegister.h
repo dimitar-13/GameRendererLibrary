@@ -1,6 +1,6 @@
 #pragma once
 #include"Rendererpch.h"
-#include"ECS/ECSTypes.h"
+#include"ECSTypes.h"
 #include"Log.h"
 namespace SpriteRenderer {
 #define MAX_GAME_OBJECTS 15
