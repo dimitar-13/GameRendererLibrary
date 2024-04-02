@@ -5,21 +5,101 @@ project(Sandbox VERSION 1.0)
 #file(GLOB helloworld_SRC CONFIGURE_DEPENDS "*.h" "*.cpp")
 add_executable(Sandbox "Sandbox/Game.cpp")
 
-file(GLOB rendererLib_src CONFIGURE_DEPENDS "src/*.h" "include/*.h" "src/*.cpp")
-add_library(RendererLib ${rendererLib_src})
-
+add_library(RendererLib 
+${CMAKE_CURRENT_SOURCE_DIR}/scr/SystemManager.cpp
+${CMAKE_CURRENT_SOURCE_DIR}/scr/SystemManager.h
+${CMAKE_CURRENT_SOURCE_DIR}/scr/Texture2D.cpp
+${CMAKE_CURRENT_SOURCE_DIR}/scr/TextureUnitManager.cpp
+${CMAKE_CURRENT_SOURCE_DIR}/scr/TextureUnitManager.h
+${CMAKE_CURRENT_SOURCE_DIR}/scr/VertexArray.cpp
+${CMAKE_CURRENT_SOURCE_DIR}/scr/VertexArray.h
+${CMAKE_CURRENT_SOURCE_DIR}/scr/Window.cpp
+${CMAKE_CURRENT_SOURCE_DIR}/scr/Window.h
+${CMAKE_CURRENT_SOURCE_DIR}/scr/WindowFunctions.cpp
+${CMAKE_CURRENT_SOURCE_DIR}/scr/WindowFunctions.h
+${CMAKE_CURRENT_SOURCE_DIR}/scr/Colider.cpp
+${CMAKE_CURRENT_SOURCE_DIR}/scr/CollisionDetection.cpp
+${CMAKE_CURRENT_SOURCE_DIR}/scr/CollisionDetection.h
+${CMAKE_CURRENT_SOURCE_DIR}/scr/CollisionSolver.cpp
+${CMAKE_CURRENT_SOURCE_DIR}/scr/CollisionSolver.h
+${CMAKE_CURRENT_SOURCE_DIR}/scr/CollisionSytstem.cpp
+${CMAKE_CURRENT_SOURCE_DIR}/scr/CollisionSytstem.h
+${CMAKE_CURRENT_SOURCE_DIR}/scr/ComponentArray.h
+${CMAKE_CURRENT_SOURCE_DIR}/scr/ComponentManager.h
+${CMAKE_CURRENT_SOURCE_DIR}/scr/ECSManager.cpp
+${CMAKE_CURRENT_SOURCE_DIR}/scr/ECSManager.h
+${CMAKE_CURRENT_SOURCE_DIR}/scr/ECSTypes.h
+${CMAKE_CURRENT_SOURCE_DIR}/scr/EntityManager.cpp
+${CMAKE_CURRENT_SOURCE_DIR}/scr/EntityManager.h
+${CMAKE_CURRENT_SOURCE_DIR}/scr/EntryPoint.cpp
+${CMAKE_CURRENT_SOURCE_DIR}/scr/EntryPoint.h
+${CMAKE_CURRENT_SOURCE_DIR}/scr/GameObject.cpp
+${CMAKE_CURRENT_SOURCE_DIR}/scr/GameObjectRegister.cpp
+${CMAKE_CURRENT_SOURCE_DIR}/scr/GameObjectRegister.h
+${CMAKE_CURRENT_SOURCE_DIR}/scr/Input.cpp
+${CMAKE_CURRENT_SOURCE_DIR}/scr/ISystem.h
+${CMAKE_CURRENT_SOURCE_DIR}/scr/Log.cpp
+${CMAKE_CURRENT_SOURCE_DIR}/scr/Log.h
+${CMAKE_CURRENT_SOURCE_DIR}/scr/MetricHelper.h
+${CMAKE_CURRENT_SOURCE_DIR}/scr/PhysicWorld.cpp
+${CMAKE_CURRENT_SOURCE_DIR}/scr/PhysicWorld.h
+${CMAKE_CURRENT_SOURCE_DIR}/scr/Renderer.cpp
+${CMAKE_CURRENT_SOURCE_DIR}/scr/Renderer.h
+${CMAKE_CURRENT_SOURCE_DIR}/scr/Rendererpch.cpp
+${CMAKE_CURRENT_SOURCE_DIR}/scr/Rendererpch.h
+${CMAKE_CURRENT_SOURCE_DIR}/scr/RenderSytstem.cpp
+${CMAKE_CURRENT_SOURCE_DIR}/scr/RenderSytstem.h
+${CMAKE_CURRENT_SOURCE_DIR}/scr/Scene.cpp
+${CMAKE_CURRENT_SOURCE_DIR}/scr/ScriptSystem.cpp
+${CMAKE_CURRENT_SOURCE_DIR}/scr/ScriptSystem.h
+${CMAKE_CURRENT_SOURCE_DIR}/scr/ShaderProgram.cpp
+${CMAKE_CURRENT_SOURCE_DIR}/scr/ShaderProgram.h
+${CMAKE_CURRENT_SOURCE_DIR}/include/Scene.h
+${CMAKE_CURRENT_SOURCE_DIR}/include/ScriptableObject.h
+${CMAKE_CURRENT_SOURCE_DIR}/include/Texture2D.h
+${CMAKE_CURRENT_SOURCE_DIR}/include/DeltaTime.h
+${CMAKE_CURRENT_SOURCE_DIR}/include/EventSystem.h
+${CMAKE_CURRENT_SOURCE_DIR}/include/GameObject.h
+${CMAKE_CURRENT_SOURCE_DIR}/include/Input.h
+${CMAKE_CURRENT_SOURCE_DIR}/include/RendererEngine_s.h
+${CMAKE_CURRENT_SOURCE_DIR}/include/Components/Component.h
+${CMAKE_CURRENT_SOURCE_DIR}/include/Components/PhysicBody.h
+${CMAKE_CURRENT_SOURCE_DIR}/include/Components/ScriptComponent.h
+${CMAKE_CURRENT_SOURCE_DIR}/include/Components/Sprite.h
+${CMAKE_CURRENT_SOURCE_DIR}/include/Components/TagComponent.h
+${CMAKE_CURRENT_SOURCE_DIR}/include/Components/Transoform.h
+${CMAKE_CURRENT_SOURCE_DIR}/include/Components/Camera.h
+${CMAKE_CURRENT_SOURCE_DIR}/include/Components/Colider.h
+${CMAKE_CURRENT_SOURCE_DIR}/include/Components/ColliderComponent.h
+)
 add_subdirectory(vendors/glfw)
+#add_subdirectory(vendors/glfw/src)
 add_subdirectory(vendors/fmt)
 add_subdirectory(vendors/glm)
+#add_subdirectory(vendors/glew/build/cmake)
+find_package(GLEW REQUIRED)
+
+# Find the GLEW library
+find_library(GLEW_LIBRARY NAMES GLEW glew32 HINTS ${GLEW_ROOT_DIR}/lib)
 
 target_include_directories(RendererLib PUBLIC vendors/glfw/include)
 target_include_directories(RendererLib PUBLIC vendors/glm/include)
 target_include_directories(RendererLib PUBLIC vendors/fmt/include)
 target_include_directories(RendererLib PUBLIC vendors/glew/include)
-
+target_include_directories(RendererLib PRIVATE
+  ${GLEW_ROOT_DIR}/include
+)
 target_include_directories(Sandbox PUBLIC vendors/glfw/include)
 target_include_directories(Sandbox PUBLIC vendors/glm/include)
 target_include_directories(Sandbox PUBLIC vendors/fmt/include)
 target_include_directories(Sandbox PUBLIC vendors/glew/include)
-
-target_link_directories(RendererLib vendors/glfw/cmake)
+target_include_directories(Sandbox PRIVATE
+  ${GLEW_ROOT_DIR}/include
+)
+target_link_directories(Sandbox PUBLIC vendors/glfw/cmake)
+target_link_directories(RendererLib PUBLIC vendors/glfw/cmake)
+target_link_libraries(Sandbox 
+PUBLIC RendererLib
+PUBLIC glfw
+PRIVATE GLEW::GLEW
+)
