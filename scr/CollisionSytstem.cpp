@@ -1,6 +1,6 @@
 #include "Rendererpch.h"
 #include "CollisionSytstem.h"
-#include "ECS/ECSManager.h"
+#include "ECSManager.h"
 void SpriteRenderer::CollisionSystem::Init()
 {
 	m_entities = ECSManager::GetComponentEntities<ColliderComponent>();

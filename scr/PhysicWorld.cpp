@@ -1,8 +1,8 @@
 #include "Rendererpch.h"
 #include "PhysicWorld.h"
 #include"Log/Log.h"
-#include"Scene/Scene.h"
-#include"ECS/ECSManager.h"
+#include"Scene.h"
+#include"ECSManager.h"
 #include"Components/ColliderComponent.h"
 void SpriteRenderer::PhysicWorld::Init()
 {

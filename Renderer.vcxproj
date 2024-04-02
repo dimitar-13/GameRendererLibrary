@@ -202,6 +202,27 @@
     <ClCompile Include="scr\TextureUnitManager.cpp" />
     <ClCompile Include="scr\Window.cpp" />
     <ClCompile Include="scr\WindowFunctions.cpp" />
+    <ClCompile Include="vendors\glew\auto\src\glewinfo_egl.c" />
+    <ClCompile Include="vendors\glew\auto\src\glewinfo_gl.c" />
+    <ClCompile Include="vendors\glew\auto\src\glewinfo_glx.c" />
+    <ClCompile Include="vendors\glew\auto\src\glewinfo_head.c" />
+    <ClCompile Include="vendors\glew\auto\src\glewinfo_tail.c" />
+    <ClCompile Include="vendors\glew\auto\src\glewinfo_wgl.c" />
+    <ClCompile Include="vendors\glew\auto\src\glew_head.c" />
+    <ClCompile Include="vendors\glew\auto\src\glew_init_egl.c" />
+    <ClCompile Include="vendors\glew\auto\src\glew_init_gl.c" />
+    <ClCompile Include="vendors\glew\auto\src\glew_init_glx.c" />
+    <ClCompile Include="vendors\glew\auto\src\glew_init_tail.c" />
+    <ClCompile Include="vendors\glew\auto\src\glew_init_wgl.c" />
+    <ClCompile Include="vendors\glew\auto\src\glew_str_egl.c" />
+    <ClCompile Include="vendors\glew\auto\src\glew_str_glx.c" />
+    <ClCompile Include="vendors\glew\auto\src\glew_str_head.c" />
+    <ClCompile Include="vendors\glew\auto\src\glew_str_tail.c" />
+    <ClCompile Include="vendors\glew\auto\src\glew_str_wgl.c" />
+    <ClCompile Include="vendors\glew\build\cmake\testbuild\main.c" />
+    <ClCompile Include="vendors\glew\src\glew.c" />
+    <ClCompile Include="vendors\glew\src\glewinfo.c" />
+    <ClCompile Include="vendors\glew\src\visualinfo.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Assets\AssetPath.h" />
@@ -247,16 +268,61 @@
     <ClInclude Include="include\Components\Transoform.h" />
     <ClInclude Include="scr\Window.h" />
     <ClInclude Include="scr\WindowFunctions.h" />
+    <ClInclude Include="vendors\glew\auto\src\eglew_head.h" />
+    <ClInclude Include="vendors\glew\auto\src\eglew_mid.h" />
+    <ClInclude Include="vendors\glew\auto\src\eglew_tail.h" />
+    <ClInclude Include="vendors\glew\auto\src\glew_head.h" />
+    <ClInclude Include="vendors\glew\auto\src\glew_license.h" />
+    <ClInclude Include="vendors\glew\auto\src\glew_tail.h" />
+    <ClInclude Include="vendors\glew\auto\src\glxew_head.h" />
+    <ClInclude Include="vendors\glew\auto\src\glxew_mid.h" />
+    <ClInclude Include="vendors\glew\auto\src\glxew_tail.h" />
+    <ClInclude Include="vendors\glew\auto\src\khronos_license.h" />
+    <ClInclude Include="vendors\glew\auto\src\mesa_license.h" />
+    <ClInclude Include="vendors\glew\auto\src\wglew_head.h" />
+    <ClInclude Include="vendors\glew\auto\src\wglew_mid.h" />
+    <ClInclude Include="vendors\glew\auto\src\wglew_tail.h" />
+    <ClInclude Include="vendors\glew\include\GL\eglew.h" />
+    <ClInclude Include="vendors\glew\include\GL\glew.h" />
+    <ClInclude Include="vendors\glew\include\GL\glxew.h" />
+    <ClInclude Include="vendors\glew\include\GL\wglew.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Shaders\Circle_shader.glsl" />
     <None Include="Assets\Shaders\Color_shader.glsl" />
     <None Include="Assets\Shaders\Square_shader.glsl" />
+    <None Include="vendors\glew\auto\doc\advanced.html" />
+    <None Include="vendors\glew\auto\doc\basic.html" />
+    <None Include="vendors\glew\auto\doc\build.html" />
+    <None Include="vendors\glew\auto\doc\credits.html" />
+    <None Include="vendors\glew\auto\doc\index.html" />
+    <None Include="vendors\glew\auto\doc\install.html" />
+    <None Include="vendors\glew\auto\doc\log.html" />
+    <None Include="vendors\glew\auto\src\footer.html" />
+    <None Include="vendors\glew\auto\src\header.html" />
+    <None Include="vendors\glew\doc\advanced.html" />
+    <None Include="vendors\glew\doc\basic.html" />
+    <None Include="vendors\glew\doc\build.html" />
+    <None Include="vendors\glew\doc\credits.html" />
+    <None Include="vendors\glew\doc\glew.html" />
+    <None Include="vendors\glew\doc\glxew.html" />
+    <None Include="vendors\glew\doc\index.html" />
+    <None Include="vendors\glew\doc\install.html" />
+    <None Include="vendors\glew\doc\log.html" />
+    <None Include="vendors\glew\doc\wglew.html" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Assets\Textures\Apple.png" />
     <Image Include="Assets\Textures\Texture.jpg" />
     <Image Include="Assets\Textures\WhiteTexture.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="vendors\glew\auto\src\glew.rc" />
+    <ResourceCompile Include="vendors\glew\auto\src\glewinfo.rc" />
+    <ResourceCompile Include="vendors\glew\auto\src\visualinfo.rc" />
+    <ResourceCompile Include="vendors\glew\build\glew.rc" />
+    <ResourceCompile Include="vendors\glew\build\glewinfo.rc" />
+    <ResourceCompile Include="vendors\glew\build\visualinfo.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

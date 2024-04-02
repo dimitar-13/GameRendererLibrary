@@ -1,7 +1,7 @@
 #include "Rendererpch.h"
 #include "CollisionDetection.h"
-#include"Log/Log.h"
-#include"Metric/MetricHelper.h"
+#include"Log.h"
+#include"MetricHelper.h"
 
 SpriteRenderer::Collision SpriteRenderer::CollisionDetectionFuncs::TestForCollision(CircleCollider* circleCollider1, CircleCollider* circleCollider2, Transform* transformCollider1,
 	Transform* transformCollider2)

@@ -1,10 +1,10 @@
 #pragma once
 #include"Rendererpch.h"
 #include"Components/ColliderComponent.h"
-#include"ECS/ISystem.h"
-#include"Physics/Collision/Colider.h"
-#include"Physics/Collision/CollisionDetection.h"
-#include"Physics/Collision/CollisionSolver.h"
+#include"ISystem.h"
+#include"Colider.h"
+#include"CollisionDetection.h"
+#include"CollisionSolver.h"
 namespace SpriteRenderer {
 	class SystemManager;
 	class CollisionSystem: public ISystem {

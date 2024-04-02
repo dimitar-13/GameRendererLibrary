@@ -1,10 +1,10 @@
 #pragma once
-#include"ECS/ComponentArray.h"
-#include"ECS/ComponentManager.h"
-#include"ECS/EntityManager.h"
-#include"ECS/EventSystem/EventSystem.h"
-#include"ECS/SystemManager.h"
-#include"Log/Log.h"
+#include"ComponentArray.h"
+#include"ComponentManager.h"
+#include"EntityManager.h"
+#include"EventSystem/EventSystem.h"
+#include"SystemManager.h"
+#include"Log.h"
 namespace SpriteRenderer {
 	//Class that communicates with the ECS parts.
 	class ECSManager {

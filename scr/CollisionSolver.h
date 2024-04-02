@@ -1,6 +1,6 @@
 #pragma once
 #include"Rendererpch.h"
-#include"Physics/Collision/Colider.h"
+#include"Colider.h"
 namespace SpriteRenderer {
 	//Helper class for collision resolution.
 	class CollisionSolver

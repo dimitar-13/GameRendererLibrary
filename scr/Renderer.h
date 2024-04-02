@@ -2,7 +2,7 @@
 #include"Rendererpch.h"
 #include"Components/Transoform.h"
 #include"Components/Sprite.h"
-#include"OpenGLData/VertexArray/VertexArray.h"
+#include"VertexArray.h"
 namespace SpriteRenderer {
 	class ShaderProgram;
 

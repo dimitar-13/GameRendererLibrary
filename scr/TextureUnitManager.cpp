@@ -1,7 +1,7 @@
 #include "Rendererpch.h"
 #include "TextureUnitManager.h"
-#include"Log/Log.h"
-#include "Texture2D/Texture2D.h"
+#include"Log.h"
+#include "Texture2D.h"
 #include"../Assets/AssetPath.h"
 
 void SpriteRenderer::TextureUnitManager::Init()

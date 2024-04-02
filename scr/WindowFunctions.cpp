@@ -1,8 +1,8 @@
 #include"Rendererpch.h"
 #include "WindowFunctions.h"
 #include"../../Core/Global.h"
-#include"Input/Input.h"
-#include"Scene/Scene.h"
+#include"Input.h"
+#include"Scene.h"
 #include"Window.h"
 void SpriteRenderer::EventCallbackFuncs::Resize(GLFWwindow* window, int width, int height)
 {

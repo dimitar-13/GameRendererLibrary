@@ -87,6 +87,69 @@
     <ClCompile Include="scr\GameObjectRegister.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="vendors\glew\auto\src\glew_head.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="vendors\glew\auto\src\glew_init_egl.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="vendors\glew\auto\src\glew_init_gl.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="vendors\glew\auto\src\glew_init_glx.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="vendors\glew\auto\src\glew_init_tail.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="vendors\glew\auto\src\glew_init_wgl.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="vendors\glew\auto\src\glew_str_egl.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="vendors\glew\auto\src\glew_str_glx.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="vendors\glew\auto\src\glew_str_head.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="vendors\glew\auto\src\glew_str_tail.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="vendors\glew\auto\src\glew_str_wgl.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="vendors\glew\auto\src\glewinfo_egl.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="vendors\glew\auto\src\glewinfo_gl.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="vendors\glew\auto\src\glewinfo_glx.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="vendors\glew\auto\src\glewinfo_head.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="vendors\glew\auto\src\glewinfo_tail.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="vendors\glew\auto\src\glewinfo_wgl.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="vendors\glew\build\cmake\testbuild\main.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="vendors\glew\src\glew.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="vendors\glew\src\glewinfo.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="vendors\glew\src\visualinfo.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="scr\Renderer.h">
@@ -218,11 +281,84 @@
     <ClInclude Include="scr\GameObjectRegister.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="vendors\glew\auto\src\eglew_head.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendors\glew\auto\src\eglew_mid.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendors\glew\auto\src\eglew_tail.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendors\glew\auto\src\glew_head.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendors\glew\auto\src\glew_license.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendors\glew\auto\src\glew_tail.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendors\glew\auto\src\glxew_head.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendors\glew\auto\src\glxew_mid.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendors\glew\auto\src\glxew_tail.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendors\glew\auto\src\khronos_license.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendors\glew\auto\src\mesa_license.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendors\glew\auto\src\wglew_head.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendors\glew\auto\src\wglew_mid.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendors\glew\auto\src\wglew_tail.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendors\glew\include\GL\eglew.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendors\glew\include\GL\glew.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendors\glew\include\GL\glxew.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendors\glew\include\GL\wglew.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Shaders\Color_shader.glsl" />
     <None Include="Assets\Shaders\Circle_shader.glsl" />
     <None Include="Assets\Shaders\Square_shader.glsl" />
+    <None Include="vendors\glew\auto\doc\advanced.html" />
+    <None Include="vendors\glew\auto\doc\basic.html" />
+    <None Include="vendors\glew\auto\doc\build.html" />
+    <None Include="vendors\glew\auto\doc\credits.html" />
+    <None Include="vendors\glew\auto\doc\index.html" />
+    <None Include="vendors\glew\auto\doc\install.html" />
+    <None Include="vendors\glew\auto\doc\log.html" />
+    <None Include="vendors\glew\auto\src\footer.html" />
+    <None Include="vendors\glew\auto\src\header.html" />
+    <None Include="vendors\glew\doc\advanced.html" />
+    <None Include="vendors\glew\doc\basic.html" />
+    <None Include="vendors\glew\doc\build.html" />
+    <None Include="vendors\glew\doc\credits.html" />
+    <None Include="vendors\glew\doc\glew.html" />
+    <None Include="vendors\glew\doc\glxew.html" />
+    <None Include="vendors\glew\doc\index.html" />
+    <None Include="vendors\glew\doc\install.html" />
+    <None Include="vendors\glew\doc\log.html" />
+    <None Include="vendors\glew\doc\wglew.html" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Assets\Textures\Texture.jpg">
@@ -234,5 +370,25 @@
     <Image Include="Assets\Textures\WhiteTexture.png">
       <Filter>Resource Files</Filter>
     </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="vendors\glew\auto\src\glew.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+    <ResourceCompile Include="vendors\glew\auto\src\glewinfo.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+    <ResourceCompile Include="vendors\glew\auto\src\visualinfo.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+    <ResourceCompile Include="vendors\glew\build\glew.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+    <ResourceCompile Include="vendors\glew\build\glewinfo.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+    <ResourceCompile Include="vendors\glew\build\visualinfo.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
   </ItemGroup>
 </Project>

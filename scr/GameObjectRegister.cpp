@@ -1,6 +1,6 @@
 #include "Rendererpch.h"
 #include "GameObjectRegister.h"
-#include"GameObject/GameObject.h"
+#include"GameObject.h"
 
 
 void SpriteRenderer::GameObjectRegister::RegisterGameObject(GameObject* gameObj)

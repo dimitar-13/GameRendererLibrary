@@ -2,7 +2,7 @@
 #include "Texture2D.h"
 #define STB_IMAGE_IMPLEMENTATION
 #include<stb_image.h>
-#include"Log/Log.h"
+#include"Log.h"
 SpriteRenderer::Texture2D::Texture2D(const std::string& path, TextureFiltering filtering)
 {
 	stbi_set_flip_vertically_on_load(true);

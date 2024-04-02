@@ -1,6 +1,6 @@
 #pragma once
-#include"ECS/ISystem.h"
-#include "Renderer/Renderer.h"
+#include"ISystem.h"
+#include "Renderer.h"
 namespace SpriteRenderer {
 	class SystemManager;
 

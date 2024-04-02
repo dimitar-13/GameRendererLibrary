@@ -1,10 +1,10 @@
 #pragma once
 #include"Rendererpch.h"
 #include"Component.h"
-#include"Log/Log.h"
-#include"ECS/ECSTypes.h"
-#include"ECS/EventSystem/EventSystem.h"
-#include"GameObject/GameObjectRegister.h"
+#include"Log.h"
+#include"ECSTypes.h"
+#include"EventSystem.h"
+#include"GameObjectRegister.h"
 namespace SpriteRenderer {
 	class IComponentArray
 	{

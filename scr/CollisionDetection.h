@@ -1,5 +1,5 @@
 #pragma once
-#include"Physics/Collision/Colider.h"
+#include"Colider.h"
 namespace SpriteRenderer {
 	namespace CollisionDetectionFuncs {
 

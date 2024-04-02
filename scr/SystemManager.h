@@ -1,7 +1,7 @@
 #pragma once
-#include"ECS/ISystem.h"
+#include"ISystem.h"
 #include"Rendererpch.h"
-#include"Log/Log.h"
+#include"Log.h"
 namespace SpriteRenderer {
 	/*struct SystemComponentDependencies {
 		std::uint32_t m_systemID;

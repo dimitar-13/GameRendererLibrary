@@ -1,8 +1,8 @@
 #pragma once
-#include"ECS/ComponentArray.h"
-#include"Component.h"
+#include"ComponentArray.h"
+#include"Components/Component.h"
 #include"Rendererpch.h"
-#include"Log/Log.h"
+#include"Log.h"
 namespace SpriteRenderer {
 	class ComponentManager
 	{

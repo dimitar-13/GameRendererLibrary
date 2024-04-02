@@ -77,29 +77,32 @@ add_subdirectory(vendors/glfw)
 add_subdirectory(vendors/fmt)
 add_subdirectory(vendors/glm)
 #add_subdirectory(vendors/glew/build/cmake)
-find_package(GLEW REQUIRED)
-
+add_subdirectory(vendors/glew-2.2.0/build/cmake)
+target_precompile_headers(RendererLib ${CMAKE_CURRENT_SOURCE_DIR}/scr/Rendererpch.h)
 # Find the GLEW library
-find_library(GLEW_LIBRARY NAMES GLEW glew32 HINTS ${GLEW_ROOT_DIR}/lib)
 
 target_include_directories(RendererLib PUBLIC vendors/glfw/include)
-target_include_directories(RendererLib PUBLIC vendors/glm/include)
+target_include_directories(RendererLib PUBLIC vendors/glm)
 target_include_directories(RendererLib PUBLIC vendors/fmt/include)
 target_include_directories(RendererLib PUBLIC vendors/glew/include)
 target_include_directories(RendererLib PRIVATE
-  ${GLEW_ROOT_DIR}/include
+  vendors/glew-2.2.0/include
+  ${CMAKE_CURRENT_SOURCE_DIR}/include
+  ${CMAKE_CURRENT_SOURCE_DIR}/scr
 )
 target_include_directories(Sandbox PUBLIC vendors/glfw/include)
-target_include_directories(Sandbox PUBLIC vendors/glm/include)
+target_include_directories(Sandbox PUBLIC vendors/glm)
 target_include_directories(Sandbox PUBLIC vendors/fmt/include)
 target_include_directories(Sandbox PUBLIC vendors/glew/include)
 target_include_directories(Sandbox PRIVATE
-  ${GLEW_ROOT_DIR}/include
+  vendors/glew-2.2.0/include
+  ${CMAKE_CURRENT_SOURCE_DIR}/include
+  ${CMAKE_CURRENT_SOURCE_DIR}/scr
 )
 target_link_directories(Sandbox PUBLIC vendors/glfw/cmake)
 target_link_directories(RendererLib PUBLIC vendors/glfw/cmake)
 target_link_libraries(Sandbox 
 PUBLIC RendererLib
 PUBLIC glfw
-PRIVATE GLEW::GLEW
+#PRIVATE GLEW::GLEW
 )

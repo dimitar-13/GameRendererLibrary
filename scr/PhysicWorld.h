@@ -1,7 +1,7 @@
 #pragma once
 #include"Rendererpch.h"
 #include"Components/PhysicBody.h"
-#include"ECS/ISystem.h"
+#include"ISystem.h"
 namespace SpriteRenderer
 {
 	class SystemManager;

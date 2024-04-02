@@ -1,9 +1,9 @@
 #include"Rendererpch.h"
-#include"ECS/ECSManager.h"
+#include"ECSManager.h"
 #include "Renderer.h"
-#include"Scene/Scene.h"
-#include"Shader/ShaderProgram/ShaderProgram.h"
-#include"Metric/MetricHelper.h"
+#include"Scene.h"
+#include"/ShaderProgram.h"
+#include"MetricHelper.h"
 #include"../Assets/AssetPath.h"
 
 #pragma region Static data

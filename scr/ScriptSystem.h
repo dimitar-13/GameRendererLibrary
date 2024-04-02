@@ -1,5 +1,5 @@
 #pragma once
-#include"ECS/ISystem.h"
+#include"ISystem.h"
 namespace SpriteRenderer {
 	class SystemManager;
 	class ScriptSystem :public ISystem

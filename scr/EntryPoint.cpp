@@ -1,8 +1,8 @@
 #include"Rendererpch.h"
 #include"EntryPoint.h"
-#include"Log/Log.h"
-#include"ECS/ECSManager.h"
-#include"TextureClass/TextureUnitManager.h"
+#include"Log.h"
+#include"ECSManager.h"
+#include"TextureUnitManager.h"
 #include"Window.h"
 //TODO:__declspec(dllexport)
 namespace SpriteRenderer {

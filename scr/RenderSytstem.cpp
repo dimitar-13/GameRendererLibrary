@@ -1,9 +1,9 @@
 #include "Rendererpch.h"
 #include "RenderSytstem.h"
-#include "ECS/ECSManager.h"
-#include "Scene/Scene.h"
-#include "Metric/MetricHelper.h"
-#include "GameObject/GameObject.h"
+#include "ECSManager.h"
+#include "Scene.h"
+#include "MetricHelper.h"
+#include "GameObject.h"
 
 void SpriteRenderer::RenderSystem::Init()
 {

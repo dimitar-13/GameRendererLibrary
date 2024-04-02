@@ -1,6 +1,6 @@
 #include "Rendererpch.h"
-#include"ECS/ECSManager.h"
-#include"ScriptableObject/ScriptableObject.h"
+#include"ECSManager.h"
+#include"ScriptableObject.h"
 #include"Components/ScriptComponent.h"
 #include "ScriptSystem.h"
 void SpriteRenderer::ScriptSystem::Init()
